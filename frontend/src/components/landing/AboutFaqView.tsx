@@ -55,13 +55,13 @@ export function AboutFaqView() {
             </div>
           </div>
 
-          <div className="mx-auto rounded-2xl border border-[#D7C7B4] bg-[#E9DCCB] p-6">
+          <div className="mx-auto rounded-2xl border border-[#D7C7B4] bg-[#FBF7F1] px-7 py-5">
             <Image
               src="/images/denvora-lexora-logo.png"
               alt="Logo Denvora Lexora"
-              width={180}
-              height={180}
-              className="h-40 w-40 rounded-xl object-cover"
+              width={280}
+              height={186}
+              className="w-56 sm:w-64 h-auto object-contain mix-blend-multiply"
             />
           </div>
         </div>

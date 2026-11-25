@@ -48,22 +48,15 @@ export function LandingNavbar() {
         className="mx-auto max-w-6xl rounded-full border border-[#D7C7B4] bg-[#FBF7F1]/95 px-4 py-2.5 shadow-[0_8px_28px_rgba(43,29,20,0.08)] backdrop-blur-sm"
       >
         <div className="flex items-center justify-between gap-4">
-          <Link href="/" className="flex items-center gap-3 shrink-0">
+          <Link href="/" aria-label="Beranda Denvora Lexora" className="flex items-center shrink-0 pl-1">
             <Image
               src="/images/denvora-lexora-logo.png"
-              alt="Logo Denvora Lexora"
-              width={36}
-              height={36}
-              className="h-9 w-9 rounded-full object-cover border border-[#D7C7B4]"
+              alt="Denvora Lexora — Where Knowledge Finds Its Way."
+              width={240}
+              height={160}
+              priority
+              className="h-10 sm:h-11 w-auto object-contain mix-blend-multiply"
             />
-            <div className="leading-tight">
-              <span className="font-editorial block text-base font-bold tracking-tight text-[#2B1D14]">
-                Denvora Lexora
-              </span>
-              <span className="block text-[11px] font-medium text-[#8C7B6B]">
-                Perpustakaan Digital
-              </span>
-            </div>
           </Link>
 
           <ul className="hidden md:flex items-center gap-2 text-sm font-medium text-[#2B1D14]">
