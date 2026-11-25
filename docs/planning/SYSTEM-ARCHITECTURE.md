@@ -52,7 +52,7 @@ Denvora Lexora memisahkan presentation layer, business logic layer, dan data sto
 | | `shadcn/ui` (Radix UI primitives) | Komponen aksesibel yang disalin lokal (`Button`, `Input`, `Dialog`, `Select`, `Table`, `Badge`, `Sheet`, dll.) dan dikustomisasi penuh ke tema Cream Mocha (`RECOMMENDATION`). |
 | | `motion` | 1 library animasi ringan untuk transisi modal, tab indicator, dan *scroll reveal* (`whileInView`) secara tenang tanpa `lenis`/`gsap` (`RECOMMENDATION`). |
 | | `lucide-react` | Paket ikon SVG lokal (ter-bundle di `node_modules` sekaligus ikon default `shadcn/ui`), tampil sempurna tanpa internet. |
-| **Backend** | Node.js + Express.js | Runtime ringan dan cepat untuk REST API lokal. |
+| **Backend** | Node.js + Express.js (TypeScript) | Runtime ringan dan *type-safe* untuk REST API lokal (`tsx` saat dev, kompilasi `tsc` ke `dist/`). |
 | | `mysql2/promise` | Koneksi pool async/await, mendukung *prepared statements* dan transaksi SQL. |
 | | `bcryptjs` | Hashing password aman secara lokal tanpa dependensi native compiler C++. |
 | | `zod` | Validasi skema request body, query, dan params yang tegas dan terstruktur. |
@@ -80,7 +80,7 @@ Dibagi ke dalam pola **Routes → Middlewares → Controllers → Services → D
   - `errorHandler`: Penanganan error terpusat dengan format JSON seragam.
 - **Controllers (`src/controllers/`):** Menerima `req`, memanggil service, memformat response HTTP (`200`, `201`, dll.).
 - **Services (`src/services/`):** Berisi seluruh *business logic* (hashing password, pengecekan stok dalam transaksi DB, pengolahan array untuk rekap statistik & CSV).
-- **Utils (`src/utils/`):** Helper token HMAC (`token.js`), helper file log & ekspor CSV (`fileHelper.js`), serta konfigurasi pool MySQL (`src/config/db.js`).
+- **Utils (`src/utils/`):** Helper token HMAC (`token.ts`), helper file log & ekspor CSV (`fileHelper.ts`), serta konfigurasi pool MySQL (`src/config/db.ts`).
 
 ### C. Database (`database/`)
 - Menyimpan data persisten dalam 4 tabel ternormalisasi (`users`, `categories`, `books`, `transactions`).
@@ -130,15 +130,18 @@ sistem-peminjaman-buku/
 │   ├── logs/                             # Output file log lokal (PPsp 1.12)
 │   ├── exports/                          # Output sementara / arsip CSV ekspor (PPsp 1.12)
 │   ├── src/
-│   │   ├── config/db.js                  # MySQL2 connection pool
-│   │   ├── middlewares/                  # auth, role, validate, errorHandler
-│   │   ├── routes/                       # auth, books, categories, members, staff, transactions, reports
+│   │   ├── config/                       # env.ts & db.ts (MySQL2 pool)
+│   │   ├── middlewares/                  # auth.ts, validate.ts, errorHandler.ts
+│   │   ├── routes/                       # auth, siswa, petugas, admin
 │   │   ├── controllers/
 │   │   ├── services/
 │   │   ├── validators/                   # Zod schemas
-│   │   ├── utils/                        # token.js, fileHelper.js, response.js
-│   │   └── app.js & server.js
-│   ├── database/seed.js                  # Seeder akun awal & data contoh
+│   │   ├── utils/                        # token.ts, fileHelper.ts, response.ts
+│   │   ├── docs/openapi.ts               # Spesifikasi Swagger lokal
+│   │   ├── types/express.d.ts
+│   │   └── app.ts & server.ts
+│   ├── database/seed.ts                  # Seeder akun awal & data contoh
+│   ├── tsconfig.json
 │   ├── .env.example
 │   └── package.json
 ├── database/

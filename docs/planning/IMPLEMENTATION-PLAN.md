@@ -17,7 +17,7 @@
 ### Prioritas 2 — Extended Scope (`RECOMMENDATION` & Bukti Kompetensi PPsp)
 1. Penambahan peran `petugas` pada RBAC backend, seeder akun `petugas1`, halaman `/petugas/*`, dan menu Kelola Petugas di Admin.
 2. Indikator `due_date` (+7 hari) & status keterlambatan pada tampilan transaksi.
-3. Modul `fileHelper.js` untuk `app.log` dan endpoint ekspor laporan transaksi `.csv` (bukti PPsp 1.12).
+3. Modul `fileHelper.ts` untuk `app.log` dan endpoint ekspor laporan transaksi `.csv` (bukti PPsp 1.12).
 4. Penambahan JSDoc konsisten & generate dokumentasi fungsi/prosedur (bukti PPsp 1.13–1.15).
 
 ### Prioritas 3 — Debugging, Pengujian & Paket Pengumpulan UKK
@@ -31,8 +31,8 @@
 
 1. **Database:** Buat database `denvora_lexora` → jalankan DDL tabel & indeks → isi data awal kategori, buku, user (`admin`, `petugas`, `siswa`) → verifikasi relasi di MySQL Workbench.
 2. **Backend:**
-   - Init Express.js + `mysql2/promise` pool + `cors` + `errorHandler`.
-   - Implementasi `utils/token.js`, `utils/response.js`, `utils/fileHelper.js`.
+   - Init Express.js (TypeScript) + `mysql2/promise` pool + `cors` + `errorHandler`.
+   - Implementasi `utils/token.ts`, `utils/response.ts`, `utils/fileHelper.ts`.
    - Implementasi `auth` & middleware `authMiddleware` + `requireRole`.
    - Implementasi `categories` & `books` (termasuk query filter kondisi tertentu).
    - Implementasi `members` & `staff`.
@@ -74,7 +74,7 @@ Agar penilai dapat memverifikasi secara langsung tanpa menebak-nebak, berikut pe
 | **1.2** | Metode pengembangan program | Perencanaan bertahap di `docs/planning/` (*Waterfall/Iterative terstruktur*). |
 | **1.3** | Diagram & deskripsi program | Flowchart di `USER-FLOW.md`, ERD di `DATABASE-ERD.md`, deskripsi di `docs/ukk-submission/`. |
 | **1.4** | Menerapkan hasil pemodelan ke program | Tabel SQL & relasi FK sesuai persis dengan ERD; alur UI sesuai Flowchart. |
-| **1.5** | Mengeksekusi source code | Backend Express (`node src/server.js`) & Frontend Next.js (`npm run dev/start`) berjalan di localhost. |
+| **1.5** | Mengeksekusi source code | Backend Express TS (`npm run dev` / `dist/server.js`) & Frontend Next.js (`npm run dev/start`) berjalan di localhost. |
 | **1.6** | Coding guidelines & best practices | Penamaan konsisten, pemisahan layer, Zod validation, prepared SQL statements, ESLint. |
 | **1.7** | Ukuran performansi dalam kode | Pool koneksi MySQL, `LIMIT/OFFSET` paginasi, indeks kolom pencarian, `SELECT` kolom spesifik. |
 | **1.8** | Tipe data & control program | Tipe SQL & TypeScript eksplisit (`INT`, `DATE`, `ENUM`, `boolean`), percabangan `if/else` status stok & role. |
@@ -88,7 +88,7 @@ Agar penilai dapat memverifikasi secara langsung tanpa menebak-nebak, berikut pe
 | **1.16** | Mempersiapkan kode program | Struktur folder bersih, `.env.example`, script `npm` standar, kode bebas error sintaks. |
 | **1.17** | Melakukan debugging | Pemeriksaan log terminal, DevTools Network, SQL error, serta pencatatan kasus bug yang ditemukan. |
 | **1.18** | Memperbaiki program | Bukti perbaikan bug yang tercatat pada log debugging hingga lolos pengujian ulang. |
-| **1.19–1.23** | Kebutuhan, dokumentasi, data, pelaksanaan & evaluasi uji coba | Tertuang lengkap di `TEST-PLAN.md`, `seed.js`, serta hasil eksekusi & evaluasi di `docs/ukk-submission/`. |
+| **1.19–1.23** | Kebutuhan, dokumentasi, data, pelaksanaan & evaluasi uji coba | Tertuang lengkap di `TEST-PLAN.md`, `seed.ts`, serta hasil eksekusi & evaluasi di `docs/ukk-submission/`. |
 
 ### B. Kriteria Elemen Kompetensi Pendukung (2.1 – 2.4)
 

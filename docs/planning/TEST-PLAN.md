@@ -19,7 +19,7 @@
 
 ## 2. Test Data (Data Uji Standar)
 
-Data berikut disiapkan dalam `database/perpustakaan.sql` dan `backend/database/seed.js`:
+Data berikut disiapkan dalam `database/perpustakaan.sql` dan `backend/database/seed.ts`:
 
 | Entitas | Data Uji | Keterangan |
 |---|---|---|
