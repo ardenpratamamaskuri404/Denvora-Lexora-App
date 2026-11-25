@@ -71,7 +71,7 @@ Agar penilai dapat memverifikasi secara langsung tanpa menebak-nebak, berikut pe
 | Kode | Elemen Kompetensi | Bukti Nyata pada Project |
 |---|---|---|
 | **1.1** | Menerapkan struktur data & akses data | Skema relasional MySQL 4 tabel + objek DTO & array di layer service. |
-| **1.2** | Metode pengembangan program | Perencanaan bertahap di `docs/planning/` (*Waterfall/Iterative terstruktur*). |
+| **1.2** | Metode pengembangan program | Perencanaan Agile iteratif bertahap (*Sprint Backlog & Review*) di `docs/planning/`. |
 | **1.3** | Diagram & deskripsi program | Flowchart di `USER-FLOW.md`, ERD di `DATABASE-ERD.md`, deskripsi di `docs/ukk-submission/`. |
 | **1.4** | Menerapkan hasil pemodelan ke program | Tabel SQL & relasi FK sesuai persis dengan ERD; alur UI sesuai Flowchart. |
 | **1.5** | Mengeksekusi source code | Backend Express TS (`npm run dev` / `npm start`) & Frontend Next.js (`npm run dev/start`) berjalan di localhost. |
@@ -108,3 +108,14 @@ Agar penilai dapat memverifikasi secara langsung tanpa menebak-nebak, berikut pe
 - [ ] **3.c. Dokumentasi fungsi/prosedur:** Hasil generate JSDoc + tabel fungsi utama.
 - [ ] **3.d. Dokumentasi debugging:** Catatan error/bug yang ditemukan selama pengembangan dan cara perbaikannya.
 - [ ] **4. Laporan evaluasi singkat:** Ringkasan hasil pengujian `TEST-PLAN.md`, ketercapaian fitur wajib & rekomendasi, serta kesimpulan kelayakan aplikasi.
+
+---
+
+## 6. Log Sprint Agile (Progres Terkini)
+
+| Sprint | Lingkup & Deliverable | Status |
+|---|---|---|
+| **Sprint 1** | `database/schema.sql`, REST API Express TypeScript + RBAC 3 Role + Zod + Swagger UI + Smoke Test | Selesai (`0c2c769`–`df61c4f`), menunggu eksekusi seed saat MySQL aktif |
+| **Sprint 2** | Setup Next.js 16 (Webpack) Cream Mocha, Multi-page Landing (`/`, `/fitur`, `/alur`, `/tentang`), 4 aset 3D SVG khusus, Dark/Light mode toggle, GPU smooth scroll parallax & Footer 4 kolom | Selesai & terverifikasi lint/typecheck/build |
+| **Sprint 3** | Halaman Auth (`/login`, `/register`), API Client + Auth Context, dan Dashboard + CRUD Siswa, Petugas, & Admin | Berikutnya |
+| **Sprint 4** | Uji integrasi full-stack (MySQL aktif), verifikasi `TEST-PLAN.md`, JSDoc, dan paket akhir `docs/ukk-submission/` | Terjadwal |

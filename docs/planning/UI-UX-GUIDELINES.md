@@ -87,9 +87,11 @@ Tema warna **Denvora Lexora** terkunci pada palet **Cream Mocha (Krem & Cokelat 
 
 1. **Komponen `shadcn/ui` Terpilih:** Gunakan hanya komponen yang benar-benar dibutuhkan (`Button`, `Input`, `Label`, `Dialog`, `Select`, `Table`, `Badge`, `Sheet` untuk mobile sidebar drawer) dan sesuaikan seluruh token CSS-nya ke palet **Cream Mocha** (bukan warna default abu-abu/hitam shadcn).
 2. **Ikon (`lucide-react`):** Terpasang lokal di `node_modules` (aman 100% offline dan menjadi ikon bawaan `shadcn/ui`). Gunakan `strokeWidth={1.75}` yang selaras dengan nuansa editorial, pilih ikon yang relevan dengan fungsi nyata perpustakaan, dan **dilarang** memakai emoji dekoratif pada judul/tombol.
-3. **Animasi & Scroll Reveal (`motion`):**
-   - Gunakan maksimal `150ms–250ms` dengan kurva tenang (`easeOut`), tanpa `bounce`, tanpa `hover:scale-105`, dan tanpa animasi loop/pulse tanpa henti.
-   - Efek *scroll reveal* cukup memakai `whileInView={{ opacity: 1, y: 0 }}` (`viewport={{ once: true }}`) milik `motion` pada daftar kartu katalog/section — tanpa menambah `lenis` atau `gsap`.
+3. **Animasi & Scroll Motion (`motion`):**
+   - Gunakan animasi tenang (`150ms–550ms`, kurva cubic-bezier `[0.22, 1, 0.36, 1]` / `easeOut`) dengan transform GPU (`transform-gpu`), tanpa `bounce` berlebihan atau loop tak terbatas.
+   - Parallax hero & bagian *CERITA* memakai `useScroll` + `useSpring` (`stiffness: 180, damping: 32`) + `whileInView={{ opacity: 1, y: 0 }}` (`viewport={{ once: true }}`), tanpa library pihak ketiga tambahan seperti `lenis` atau `gsap`.
+4. **Mode Gelap & Terang (`Theme Toggle`):**
+   - Tombol ikon Bulan/Matahari tersedia di sebelah tombol `Masuk` pada `LandingNavbar` (`localStorage` key `denvora-theme`), mengaktifkan class `.dark` dan token CSS Dark Espresso Mocha (`#18110C`, `#241913`, `#2E2017`, `#C87E4F`, `#F6EFE6`) di `globals.css`.
 4. **Buttons:**
    - *Primary:* Latar `#A8643A`, teks `#F6EFE6`, hover `#8E512D`.
    - *Secondary:* Border `#A8643A` atau `#8C7B6B`, teks `#2B1D14`, latar transparan/`#FBF7F1`.
@@ -102,6 +104,12 @@ Tema warna **Denvora Lexora** terkunci pada palet **Cream Mocha (Krem & Cokelat 
 ---
 
 ## 6. Spesifikasi Halaman Utama
+
+### A0. Public Landing Multi-Page (`/`, `/fitur`, `/alur`, `/tentang`)
+- **Arsitektur 1 Menu = 1 Halaman:** `LandingNavbar` mengarahkan masing-masing menu ke halaman terpisah (`Beranda` `/`, `Layanan` `/fitur`, `Panduan` `/alur`, `Tentang Kami` `/tentang`), disertai logo penuh `denvora-lexora-logo.png`, toggle tema gelap/terang, `Masuk`, dan `Daftar Anggota`.
+- **Halaman Beranda (`/`):** Hero dengan ilustrasi 3D Cream Mocha, *wave divider* berlapis `wave-divider.svg`, strip ringkasan perpustakaan, bagian animasi scroll *CERITA* (video lokal `denvora-landing-welcome.mp4`), kartu pilar literasi, dan footer gelap 4 kolom dengan pencarian katalog cepat.
+- **Halaman Layanan (`/fitur`):** Bento grid layanan perpustakaan dan 4 ilustrasi 3D Cream Mocha khusus (`fitur-katalog-terpadu.svg`, `fitur-aktivasi-kartu.svg`, `fitur-portal-baca.svg`, `fitur-eksplorasi-pinjam.svg`).
+- **Halaman Panduan (`/alur`) & Tentang Kami (`/tentang`):** 3 langkah mudah peminjaman, kartu interaktif keunggulan layanan, profil perpustakaan, serta FAQ akordeon.
 
 ### A. Authentication Pages (`/login` & `/register`)
 - *Split layout editorial* di atas `#F6EFE6` (panel identitas **Denvora Lexora**, logo, dan slogan *"Where Knowledge Finds Its Way."* di kiri; form autentikasi bersih di kanan).

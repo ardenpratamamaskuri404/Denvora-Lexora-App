@@ -111,18 +111,21 @@ Setiap peran memiliki namespace endpoint masing-masing agar pemisahan hak akses 
 sistem-peminjaman-buku/
 ├── frontend/
 │   ├── public/
-│   │   └── images/
-│   │       └── denvora-lexora-logo.png
+│   │   ├── images/                       # Logo, hero 3D SVG, wave-divider, fitur-*, login/register SVG
+│   │   └── videos/denvora-landing-welcome.mp4
 │   ├── src/
 │   │   ├── app/
-│   │   │   ├── page.tsx                  # Landing / redirect ke login atau dashboard
+│   │   │   ├── page.tsx                  # Beranda (Hero, Cerita Video Reveal, Pilar Literasi)
+│   │   │   ├── fitur/page.tsx            # Halaman Layanan Perpustakaan (/fitur)
+│   │   │   ├── alur/page.tsx             # Halaman Panduan Peminjaman (/alur)
+│   │   │   ├── tentang/page.tsx          # Halaman Tentang Kami & FAQ (/tentang)
 │   │   │   ├── login/page.tsx            # Halaman Login terpadu (sesuai flowmap)
 │   │   │   ├── register/page.tsx         # Daftar Anggota khusus Siswa
 │   │   │   ├── admin/                    # Dashboard, Buku, Anggota, Petugas, Transaksi, Laporan
 │   │   │   ├── petugas/                  # Dashboard Petugas, Buku, Transaksi, Daftar Anggota
 │   │   │   └── siswa/                    # Dashboard Siswa, Katalog & Pinjam, Pengembalian
-│   │   ├── components/                   # UI components (Sidebar, Navbar, Table, Modal, Badge)
-│   │   ├── lib/                          # API client & helper formatting
+│   │   ├── components/                   # landing/ (Navbar, Hero, Story, Pillars, Views, Footer) & ui/ (Button, Badge)
+│   │   ├── lib/                          # API client & helper formatting (`utils.ts`)
 │   │   └── types/                        # TypeScript interfaces
 │   ├── .env.local.example
 │   └── package.json
