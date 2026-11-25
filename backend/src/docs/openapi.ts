@@ -3,6 +3,8 @@
  * @description Spesifikasi OpenAPI 3.0 lokal (100% offline) untuk Swagger UI (/api-docs).
  */
 
+import { staffAndAdminPaths } from './openapi.paths';
+
 export const openApiSpec = {
   openapi: '3.0.3',
   info: {
@@ -111,6 +113,14 @@ export const openApiSpec = {
         responses: { 200: { description: 'OK' } },
       },
     },
+    '/siswa/books/{id}': {
+      get: {
+        tags: ['Siswa'],
+        summary: 'Detail buku',
+        parameters: [{ name: 'id', in: 'path', required: true, schema: { type: 'integer' } }],
+        responses: { 200: { description: 'OK' } },
+      },
+    },
     '/siswa/transactions': {
       get: { tags: ['Siswa'], summary: 'Riwayat transaksi milik siswa login', responses: { 200: { description: 'OK' } } },
     },
@@ -141,63 +151,6 @@ export const openApiSpec = {
         responses: { 200: { description: 'Pengembalian berhasil' } },
       },
     },
-    '/petugas/books': {
-      get: { tags: ['Petugas'], summary: 'Daftar & pencarian buku', responses: { 200: { description: 'OK' } } },
-      post: { tags: ['Petugas'], summary: 'Tambah buku baru', responses: { 201: { description: 'Created' } } },
-    },
-    '/petugas/books/{id}': {
-      put: {
-        tags: ['Petugas'],
-        summary: 'Perbarui data buku (Delete hanya di /api/admin/books/:id)',
-        parameters: [{ name: 'id', in: 'path', required: true, schema: { type: 'integer' } }],
-        responses: { 200: { description: 'OK' } },
-      },
-    },
-    '/petugas/members': {
-      get: { tags: ['Petugas'], summary: 'Lihat daftar anggota siswa (read-only)', responses: { 200: { description: 'OK' } } },
-    },
-    '/petugas/transactions': {
-      get: { tags: ['Petugas'], summary: 'Daftar & filter seluruh transaksi', responses: { 200: { description: 'OK' } } },
-      post: { tags: ['Petugas'], summary: 'Buat transaksi pinjam untuk siswa', responses: { 201: { description: 'Created' } } },
-    },
-    '/petugas/reports/transactions/export': {
-      get: { tags: ['Petugas'], summary: 'Unduh laporan transaksi CSV (PPsp 1.12)', responses: { 200: { description: 'File CSV' } } },
-    },
-    '/admin/books': {
-      get: { tags: ['Admin'], summary: 'Daftar & pencarian buku', responses: { 200: { description: 'OK' } } },
-      post: { tags: ['Admin'], summary: 'Tambah buku baru', responses: { 201: { description: 'Created' } } },
-    },
-    '/admin/books/{id}': {
-      put: {
-        tags: ['Admin'],
-        summary: 'Edit data buku',
-        parameters: [{ name: 'id', in: 'path', required: true, schema: { type: 'integer' } }],
-        responses: { 200: { description: 'OK' } },
-      },
-      delete: {
-        tags: ['Admin'],
-        summary: 'Hapus buku (ditolak 409 jika sedang dipinjam)',
-        parameters: [{ name: 'id', in: 'path', required: true, schema: { type: 'integer' } }],
-        responses: { 200: { description: 'Deleted' } },
-      },
-    },
-    '/admin/members': {
-      get: { tags: ['Admin'], summary: 'Daftar & cari anggota siswa', responses: { 200: { description: 'OK' } } },
-      post: { tags: ['Admin'], summary: 'Tambah anggota siswa', responses: { 201: { description: 'Created' } } },
-    },
-    '/admin/staff': {
-      get: { tags: ['Admin'], summary: 'Daftar akun petugas', responses: { 200: { description: 'OK' } } },
-      post: { tags: ['Admin'], summary: 'Tambah akun petugas', responses: { 201: { description: 'Created' } } },
-    },
-    '/admin/transactions': {
-      get: { tags: ['Admin'], summary: 'Daftar & filter seluruh transaksi', responses: { 200: { description: 'OK' } } },
-      post: { tags: ['Admin'], summary: 'Buat transaksi pinjam untuk siswa', responses: { 201: { description: 'Created' } } },
-    },
-    '/admin/reports/summary': {
-      get: { tags: ['Admin'], summary: 'Ringkasan statistik perpustakaan', responses: { 200: { description: 'OK' } } },
-    },
-    '/admin/reports/transactions/export': {
-      get: { tags: ['Admin'], summary: 'Unduh laporan transaksi CSV (PPsp 1.12)', responses: { 200: { description: 'File CSV' } } },
-    },
+    ...staffAndAdminPaths,
   },
 };

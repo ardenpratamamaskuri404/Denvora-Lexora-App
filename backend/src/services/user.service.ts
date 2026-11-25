@@ -152,41 +152,33 @@ export async function updateUserByRole(
   await getUserByIdAndRole(id, role);
   const memberCode = role === 'siswa' ? input.member_code || null : null;
 
+  const setClauses = [
+    'name = ?',
+    'username = ?',
+    'member_code = ?',
+    'class_name = ?',
+    'phone = ?',
+    'is_active = ?',
+  ];
+  const params: Array<string | number | null> = [
+    input.name,
+    input.username,
+    memberCode,
+    input.class_name || null,
+    input.phone || null,
+    input.is_active ?? 1,
+  ];
+
   if (input.password && input.password.length >= 6) {
-    const passwordHash = await bcrypt.hash(input.password, 10);
-    await pool.execute<ResultSetHeader>(
-      `UPDATE users
-       SET name = ?, username = ?, password_hash = ?, member_code = ?, class_name = ?, phone = ?, is_active = ?
-       WHERE id = ? AND role = ?`,
-      [
-        input.name,
-        input.username,
-        passwordHash,
-        memberCode,
-        input.class_name || null,
-        input.phone || null,
-        input.is_active ?? 1,
-        id,
-        role,
-      ]
-    );
-  } else {
-    await pool.execute<ResultSetHeader>(
-      `UPDATE users
-       SET name = ?, username = ?, member_code = ?, class_name = ?, phone = ?, is_active = ?
-       WHERE id = ? AND role = ?`,
-      [
-        input.name,
-        input.username,
-        memberCode,
-        input.class_name || null,
-        input.phone || null,
-        input.is_active ?? 1,
-        id,
-        role,
-      ]
-    );
+    setClauses.push('password_hash = ?');
+    params.push(await bcrypt.hash(input.password, 10));
   }
+
+  params.push(id, role);
+  await pool.execute<ResultSetHeader>(
+    `UPDATE users SET ${setClauses.join(', ')} WHERE id = ? AND role = ?`,
+    params
+  );
 
   return getUserByIdAndRole(id, role);
 }
