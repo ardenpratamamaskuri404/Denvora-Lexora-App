@@ -70,12 +70,12 @@ export function StoryRevealSection() {
                     Selamat Datang di Denvora Lexora
                   </p>
                   <h2 className="font-editorial mt-1.5 text-lg font-bold leading-snug sm:text-2xl">
-                    Setiap buku menemukan pembacanya, setiap transaksi tercatat rapi.
+                    Setiap buku menemukan pembacanya, setiap halaman membuka cakrawala baru.
                   </h2>
                 </div>
                 <Button asChild size="pill" className="shrink-0">
-                  <Link href="/register">
-                    Kenali Sistem Kami
+                  <Link href="/fitur">
+                    Jelajahi Layanan
                     <ArrowRight size={15} strokeWidth={1.75} />
                   </Link>
                 </Button>

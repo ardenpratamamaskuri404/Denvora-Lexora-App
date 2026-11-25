@@ -4,8 +4,8 @@ import { AboutFaqView } from "@/components/landing/AboutFaqView";
 import { SiteFooter } from "@/components/landing/SiteFooter";
 
 export const metadata: Metadata = {
-  title: "Tentang & FAQ | Denvora Lexora",
-  description: "Tentang sistem perpustakaan Denvora Lexora dan jawaban atas pertanyaan yang sering diajukan.",
+  title: "Tentang Kami | Denvora Lexora",
+  description: "Mengenal perpustakaan digital Denvora Lexora dan jawaban atas pertanyaan umum pembaca.",
 };
 
 export default function TentangPage() {

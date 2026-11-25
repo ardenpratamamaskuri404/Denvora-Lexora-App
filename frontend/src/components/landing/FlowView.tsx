@@ -9,38 +9,38 @@ import { Button } from "@/components/ui/button";
 const STEPS = [
   {
     num: "1",
-    title: "Daftar Anggota",
-    desc: "Siswa baru mengisi nama, NIS, kelas, dan membuat akun secara mandiri sebelum login.",
+    title: "Buat Akun Anggota",
+    desc: "Siswa mengisi nama lengkap, nomor induk, dan kelas untuk mengaktifkan keanggotaan perpustakaan.",
   },
   {
     num: "2",
     title: "Pilih & Pinjam Buku",
-    desc: "Cari judul atau kategori buku tersedia, konfirmasi pinjaman, dan simpan kode transaksi.",
+    desc: "Cari judul atau kategori bacaan yang tersedia di katalog, lalu ajukan peminjaman dengan satu klik.",
   },
   {
     num: "3",
     title: "Kembalikan Tepat Waktu",
-    desc: "Pantau daftar pinjaman aktif dan kembalikan buku dari menu pengembalian kapan saja.",
+    desc: "Pantau daftar buku yang sedang dibaca beserta batas waktu 7 hari, lalu kembalikan saat selesai.",
   },
 ];
 
 const FLIP_CARDS = [
   {
-    frontTitle: "ALUR JELAS & SESUAI STANDAR UKK",
+    frontTitle: "KATALOG RAPI & MUDAH DIJELAJAHI",
     backText:
-      "Seluruh menu Admin dan Siswa dibangun selaras dengan flowmap resmi: daftar anggota, login tervalidasi, peminjaman, pengembalian, dan CRUD terstruktur.",
+      "Koleksi bacaan dikelompokkan berdasarkan bidang studi, literasi fiksi, dan referensi agar siswa menemukan buku incaran lebih cepat.",
     bg: "bg-[#FBF7F1]",
   },
   {
-    frontTitle: "AMAN & CEPAT DI LOCALHOST",
+    frontTitle: "PENCATATAN TERTIB & JELAS",
     backText:
-      "Berjalan penuh secara lokal tanpa ketergantungan internet. Password ter-hash bcryptjs, input divalidasi Zod, dan tiap endpoint dilindungi RBAC.",
+      "Setiap peminjaman memiliki tanggal ambil serta batas pengembalian yang tertera jelas di riwayat keanggotaan masing-masing.",
     bg: "bg-[#E9DCCB]",
   },
   {
-    frontTitle: "STOK & LAPORAN AKURAT",
+    frontTitle: "PELAYANAN PERPUSTAKAAN PRAKTIS",
     backText:
-      "Transaksi peminjaman mengunci stok secara atomik di MySQL agar tidak bentrok, lengkap dengan indikator jatuh tempo dan ekspor laporan CSV.",
+      "Anggota dan pustakawan dapat memantau ketersediaan buku serta merapikan sirkulasi harian tanpa antrean panjang.",
     bg: "bg-[#FBF7F1]",
   },
 ];
@@ -59,20 +59,20 @@ export function FlowView() {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#A8643A]">
-                Halaman Alur Sistem
+                Panduan Peminjaman
               </p>
               <h1 className="font-editorial mt-2 text-4xl font-bold tracking-tight text-[#2B1D14] sm:text-5xl">
-                3 LANGKAH MUDAH
+                Tiga Langkah Mudah
               </h1>
-              <p className="mt-2 text-sm text-[#8C7B6B] sm:text-base max-w-xl">
-                Mengikuti alur resmi flowmap siswa dari pendaftaran anggota hingga
-                pengembalian buku, terhubung langsung dengan layanan Admin dan Petugas.
+              <p className="mt-2 text-sm text-[#8C7B6B] sm:text-base max-w-xl leading-relaxed">
+                Dari pendaftaran kartu anggota hingga pengembalian buku, seluruh tahap
+                dibuat ringkas agar Anda bisa langsung menikmati koleksi bacaan.
               </p>
             </div>
             <Button asChild size="pill">
               <Link href="/register">
                 <Users size={16} strokeWidth={1.75} />
-                Mulai Daftar Sekarang
+                Daftar Sebagai Anggota
               </Link>
             </Button>
           </div>
@@ -107,10 +107,10 @@ export function FlowView() {
         <div className="mx-auto max-w-6xl">
           <div className="text-center max-w-2xl mx-auto">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#A8643A]">
-              Klik Kartu Untuk Detail
+              Keunggulan Layanan
             </p>
             <h2 className="font-editorial mt-2 text-3xl font-bold text-[#2B1D14] sm:text-4xl">
-              Mengapa Memilih Denvora Lexora
+              Mengapa Membaca Bersama Denvora Lexora
             </h2>
           </div>
 

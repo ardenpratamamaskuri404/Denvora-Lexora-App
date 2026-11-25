@@ -4,8 +4,8 @@ import { FlowView } from "@/components/landing/FlowView";
 import { SiteFooter } from "@/components/landing/SiteFooter";
 
 export const metadata: Metadata = {
-  title: "Alur Peminjaman | Denvora Lexora",
-  description: "Tiga langkah mudah meminjam dan mengembalikan buku di Denvora Lexora.",
+  title: "Panduan Peminjaman | Denvora Lexora",
+  description: "Tiga langkah mudah mendaftar, meminjam, dan mengembalikan buku di Denvora Lexora.",
 };
 
 export default function AlurPage() {

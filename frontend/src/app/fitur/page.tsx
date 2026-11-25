@@ -4,8 +4,8 @@ import { FeaturesView } from "@/components/landing/FeaturesView";
 import { SiteFooter } from "@/components/landing/SiteFooter";
 
 export const metadata: Metadata = {
-  title: "Fitur Utama | Denvora Lexora",
-  description: "Daftar fitur katalog buku, portal anggota, dan sirkulasi perpustakaan Denvora Lexora.",
+  title: "Layanan Perpustakaan | Denvora Lexora",
+  description: "Berbagai layanan katalog buku, pencarian koleksi, dan pencatatan pinjaman Denvora Lexora.",
 };
 
 export default function FiturPage() {

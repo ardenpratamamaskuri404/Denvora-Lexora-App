@@ -10,9 +10,9 @@ import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
   { label: "Beranda", href: "/" },
-  { label: "Fitur", href: "/fitur" },
-  { label: "Alur", href: "/alur" },
-  { label: "Tentang", href: "/tentang" },
+  { label: "Layanan", href: "/fitur" },
+  { label: "Panduan", href: "/alur" },
+  { label: "Tentang Kami", href: "/tentang" },
 ];
 
 function AuthButtons({ mobile = false }: { mobile?: boolean }) {

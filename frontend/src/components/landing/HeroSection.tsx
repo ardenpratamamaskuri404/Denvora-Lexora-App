@@ -8,10 +8,10 @@ import { ArrowDown, BookOpen, LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const HIGHLIGHTS = [
-  { value: "3 Peran", label: "Siswa, Petugas & Admin" },
-  { value: "4 Tabel", label: "Relasi MySQL Terstruktur" },
-  { value: "Real-Time", label: "Sinkronisasi Stok Otomatis" },
-  { value: "Offline", label: "Berjalan Penuh di Localhost" },
+  { value: "Koleksi Lengkap", label: "Fiksi, Sains, Sejarah & Referensi" },
+  { value: "Pantau Rak", label: "Ketersediaan Buku Selalu Terkini" },
+  { value: "7 Hari Pinjam", label: "Durasi Baca Nyaman & Teratur" },
+  { value: "Akses Mudah", label: "Cari Judul & Kategori Seketika" },
 ];
 
 export function HeroSection() {
@@ -68,8 +68,8 @@ export function HeroSection() {
 
             <p className="mt-4 text-base leading-relaxed text-[#2B1D14]/85 sm:text-lg">
               <strong>Denvora Lexora</strong> — <em>Where Knowledge Finds Its Way.</em>{" "}
-              Kelola katalog buku, keanggotaan siswa, serta peminjaman dan pengembalian
-              dalam satu alur lokal yang cepat dan tertib.
+              Jelajahi ribuan bahan bacaan sekolah, periksa ketersediaan rak secara
+              langsung, dan kelola peminjaman buku Anda dengan tertib.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3.5">

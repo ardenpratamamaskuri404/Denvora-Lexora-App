@@ -8,20 +8,20 @@ import { Button } from "@/components/ui/button";
 
 const FAQS = [
   {
-    q: "Bagaimana cara siswa baru meminjam buku?",
-    a: "Klik Daftar Anggota di halaman utama atau login, isi nama, NIS, kelas, username, dan password. Setelah akun dibuat, masuk ke dashboard siswa untuk meminjam buku.",
+    q: "Bagaimana cara mendaftar menjadi anggota perpustakaan?",
+    a: "Klik tombol Daftar Anggota, isi nama lengkap, nomor induk siswa, kelas, serta detail akun Anda. Setelah terdaftar, Anda langsung dapat masuk dan memilih buku.",
   },
   {
-    q: "Apa perbedaan hak akses Petugas dan Admin?",
-    a: "Admin memiliki kendali penuh termasuk menghapus buku/kategori serta mengelola akun anggota dan petugas. Petugas fokus membantu operasional buku, transaksi, ekspor CSV, dan melihat daftar anggota.",
+    q: "Berapa lama batas waktu peminjaman setiap buku?",
+    a: "Masa peminjaman standar berlaku selama 7 hari terhitung sejak tanggal peminjaman, sehingga koleksi tetap bergilir dengan merata bagi seluruh pembaca.",
   },
   {
-    q: "Berapa lama batas waktu peminjaman buku?",
-    a: "Setiap peminjaman otomatis menetapkan tanggal jatuh tempo 7 hari sejak tanggal pinjam sebagai penanda informasi keterlambatan tanpa perhitungan denda uang.",
+    q: "Bagaimana jika stok buku yang ingin dipinjam sedang habis?",
+    a: "Informasi jumlah stok tampil pada katalog. Apabila seluruh eksemplar sedang dipinjam, Anda dapat memeriksa kembali secara berkala atau memilih judul lain di kategori serupa.",
   },
   {
-    q: "Apakah aplikasi bisa dijalankan tanpa koneksi internet?",
-    a: "Ya. Seluruh aset ilustrasi, video, font sistem, API Express, dan database MySQL berjalan secara lokal di localhost.",
+    q: "Di mana anggota bisa memantau daftar pinjaman aktif?",
+    a: "Setelah masuk melalui portal anggota, seluruh daftar buku yang sedang dipinjam beserta tanggal pengembaliannya dapat dilihat pada riwayat pinjaman.",
   },
 ];
 
@@ -40,17 +40,16 @@ export function AboutFaqView() {
               Where Knowledge Finds Its Way.
             </h1>
             <p className="mt-4 text-base leading-relaxed text-[#2B1D14]/80">
-              <strong>Denvora Lexora</strong> adalah aplikasi Perpustakaan Sekolah Digital
-              yang memisahkan antarmuka Next.js, REST API Express TypeScript, dan basis
-              data MySQL secara rapi untuk mendukung pembelajaran serta administrasi
-              peminjaman buku di lingkungan sekolah.
+              <strong>Denvora Lexora</strong> hadir sebagai pusat literasi digital sekolah
+              yang membantu siswa menemukan referensi belajar, menumbuhkan kebiasaan membaca,
+              serta menjaga keteraturan koleksi perpustakaan setiap hari.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button asChild size="pill">
                 <Link href="/register">Daftar Anggota</Link>
               </Button>
               <Button asChild variant="outline" size="pill">
-                <Link href="/login">Masuk ke Sistem</Link>
+                <Link href="/login">Masuk ke Portal</Link>
               </Button>
             </div>
           </div>
@@ -67,10 +66,10 @@ export function AboutFaqView() {
         </div>
       </section>
 
-      <section className="bg-[#A8643A] py-20 px-6 text-[#F6EFE6]">
+      <section id="faq" className="bg-[#A8643A] py-20 px-6 text-[#F6EFE6]">
         <div className="mx-auto max-w-4xl">
           <h2 className="font-editorial text-center text-3xl font-bold sm:text-4xl">
-            Pertanyaan Umum. Kami Menjawab.
+            Pertanyaan yang Sering Diajukan
           </h2>
 
           <div className="mt-10 space-y-3">
