@@ -57,6 +57,7 @@ Denvora Lexora memisahkan presentation layer, business logic layer, dan data sto
 | | `bcryptjs` | Hashing password aman secara lokal tanpa dependensi native compiler C++. |
 | | `zod` | Validasi skema request body, query, dan params yang tegas dan terstruktur. |
 | | `cors` | Mengatur izin origin `http://localhost:3000` dengan dukungan kredensial. |
+| | `swagger-ui-express` | Dokumentasi REST API interaktif lokal di `/api-docs` menggunakan file OpenAPI lokal tanpa internet (`RECOMMENDATION`). |
 | | Node `crypto` & `fs/promises` (built-in) | Penandatanganan token sesi HMAC-SHA256 dan akses file lokal (CSV export & log) **tanpa menambah dependensi eksternal yang tidak perlu**. |
 | **Database** | MySQL + MySQL Workbench | RDBMS lokal yang stabil, mudah diekspor ke `.sql` untuk deliverable UKK. |
 
@@ -202,4 +203,4 @@ NEXT_PUBLIC_API_URL=http://localhost:5000/api
 | 1.10 | Prosedur dan fungsi | Fungsi service, helper token, helper formatting tanggal & validasi stok. |
 | 1.11 | Penggunaan array | Pengolahan array buku, filter multi-kondisi, agregasi statistik dashboard & baris CSV. |
 | 1.12 | Akses file | Modul `fs/promises` di `fileHelper.js` untuk menulis `backend/logs/app.log` & generate file ekspor `.csv`. |
-| 1.13–1.15 | Dokumentasi modul, fungsi & generate | JSDoc di seluruh service/controller + generate dokumentasi statis (JSDoc/Markdown). |
+| 1.13–1.15 | Dokumentasi modul, fungsi & generate | JSDoc di seluruh service/controller + generate dokumentasi statis & Swagger UI `/api-docs` (`swagger-ui-express`). |

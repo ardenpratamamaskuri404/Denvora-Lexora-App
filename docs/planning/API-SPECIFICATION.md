@@ -1,6 +1,7 @@
 # API Specification — Denvora Lexora
 
 **Base URL (Lokal):** `http://localhost:5000/api`  
+**Interactive Docs (`RECOMMENDATION`):** `http://localhost:5000/api-docs` (`swagger-ui-express` dengan spesifikasi OpenAPI lokal, 100% offline tanpa CDN)  
 **Format Data:** `application/json` (kecuali ekspor CSV: `text/csv`)  
 **Validasi Input:** `Zod`  
 **Konvensi Endpoint:** Dipisah per namespace peran (`/api/auth/*`, `/api/siswa/*`, `/api/petugas/*`, `/api/admin/*`) agar batas otorisasi RBAC eksplisit dan mudah diaudit, sementara di backend tetap memakai *shared services* agar tidak ada duplikasi logika.
