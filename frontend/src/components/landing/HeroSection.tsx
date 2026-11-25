@@ -52,9 +52,9 @@ export function HeroSection() {
             width={1920}
             height={1080}
             priority
-            className="h-full w-full object-cover object-[74%_28%] sm:object-[right_22%] dark:opacity-55"
+            className="h-full w-full object-cover object-[74%_28%] sm:object-[right_22%] dark:brightness-[0.92] dark:contrast-[1.06]"
           />
-          <div className="absolute inset-0 bg-[#F6EFE6]/85 dark:bg-[#18110C]/78 sm:bg-transparent sm:bg-gradient-to-r sm:from-[#F6EFE6]/95 sm:via-[#F6EFE6]/55 sm:to-transparent dark:sm:from-[#18110C]/95 dark:sm:via-[#18110C]/65 dark:sm:to-transparent" />
+          <div className="absolute inset-0 bg-[#F6EFE6]/85 dark:bg-[#18110C]/55 sm:bg-transparent sm:bg-gradient-to-r sm:from-[#F6EFE6]/95 sm:via-[#F6EFE6]/55 sm:to-transparent dark:sm:from-[#18110C]/96 dark:sm:via-[#18110C]/62 dark:sm:via-45% dark:sm:to-transparent" />
         </motion.div>
 
         <AmbientSparkles className="z-[5]" />
