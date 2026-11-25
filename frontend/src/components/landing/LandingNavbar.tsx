@@ -3,18 +3,42 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
-  { label: "Beranda", href: "#beranda" },
-  { label: "Cerita", href: "#cerita" },
-  { label: "Fitur", href: "#fitur" },
-  { label: "Alur", href: "#alur" },
-  { label: "Tentang", href: "#tentang" },
+  { label: "Beranda", href: "/" },
+  { label: "Fitur", href: "/fitur" },
+  { label: "Alur", href: "/alur" },
+  { label: "Tentang", href: "/tentang" },
 ];
 
+function AuthButtons({ mobile = false }: { mobile?: boolean }) {
+  return (
+    <div className={mobile ? "flex gap-2 pt-2" : "hidden md:flex items-center gap-2.5 shrink-0"}>
+      <Button
+        asChild
+        variant="outline"
+        size="sm"
+        className={cn("rounded-full", mobile ? "flex-1" : "px-4")}
+      >
+        <Link href="/login">Masuk</Link>
+      </Button>
+      <Button
+        asChild
+        size="sm"
+        className={cn("rounded-full", mobile ? "flex-1" : "px-5")}
+      >
+        <Link href="/register">Daftar Anggota</Link>
+      </Button>
+    </div>
+  );
+}
+
 export function LandingNavbar() {
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
@@ -42,27 +66,28 @@ export function LandingNavbar() {
             </div>
           </Link>
 
-          <ul className="hidden md:flex items-center gap-6 text-sm font-medium text-[#2B1D14]">
-            {NAV_LINKS.map((item) => (
-              <li key={item.href}>
-                <a
-                  href={item.href}
-                  className="transition-colors duration-150 hover:text-[#A8643A]"
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
+          <ul className="hidden md:flex items-center gap-2 text-sm font-medium text-[#2B1D14]">
+            {NAV_LINKS.map((item) => {
+              const active = pathname === item.href;
+              return (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className={cn(
+                      "rounded-full px-4 py-1.5 transition-colors duration-150",
+                      active
+                        ? "bg-[#E9DCCB] font-semibold text-[#A8643A]"
+                        : "hover:bg-[#E9DCCB]/60 hover:text-[#A8643A]"
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
 
-          <div className="hidden md:flex items-center gap-2.5 shrink-0">
-            <Button asChild variant="outline" size="sm" className="rounded-full px-4">
-              <Link href="/login">Masuk</Link>
-            </Button>
-            <Button asChild size="sm" className="rounded-full px-5">
-              <Link href="/register">Daftar Anggota</Link>
-            </Button>
-          </div>
+          <AuthButtons />
 
           <button
             type="button"
@@ -76,25 +101,26 @@ export function LandingNavbar() {
         </div>
 
         {mobileOpen && (
-          <div className="md:hidden mt-3 pt-3 pb-2 border-t border-[#D7C7B4] flex flex-col gap-2">
-            {NAV_LINKS.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={() => setMobileOpen(false)}
-                className="px-3 py-1.5 rounded-lg text-sm font-medium text-[#2B1D14] hover:bg-[#E9DCCB]"
-              >
-                {item.label}
-              </a>
-            ))}
-            <div className="flex gap-2 pt-2">
-              <Button asChild variant="outline" size="sm" className="flex-1 rounded-full">
-                <Link href="/login">Masuk</Link>
-              </Button>
-              <Button asChild size="sm" className="flex-1 rounded-full">
-                <Link href="/register">Daftar Anggota</Link>
-              </Button>
-            </div>
+          <div className="md:hidden mt-3 pt-3 pb-2 border-t border-[#D7C7B4] flex flex-col gap-1.5">
+            {NAV_LINKS.map((item) => {
+              const active = pathname === item.href;
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setMobileOpen(false)}
+                  className={cn(
+                    "px-3 py-2 rounded-lg text-sm font-medium",
+                    active
+                      ? "bg-[#E9DCCB] font-semibold text-[#A8643A]"
+                      : "text-[#2B1D14] hover:bg-[#E9DCCB]/60"
+                  )}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+            <AuthButtons mobile />
           </div>
         )}
       </nav>
