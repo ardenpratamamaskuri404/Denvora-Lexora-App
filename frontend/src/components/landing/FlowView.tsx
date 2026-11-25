@@ -85,7 +85,7 @@ export function FlowView() {
                 key={step.num}
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
+                viewport={{ once: false, amount: 0.08 }}
                 transition={{ duration: 0.42, delay: idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
                 className="flex items-start gap-4 rounded-2xl border border-[var(--border-subtle)] bg-[var(--surface-elevated)] p-6 shadow-xs"
               >

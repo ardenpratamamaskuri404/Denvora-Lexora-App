@@ -56,7 +56,7 @@ export function FlowMoreSections() {
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
+            viewport={{ once: false, amount: 0.08 }}
             transition={{ duration: 0.48, ease: SMOOTH_EASE }}
             className="max-w-2xl mb-12"
           >
@@ -74,7 +74,7 @@ export function FlowMoreSections() {
                 key={item.num}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
+                viewport={{ once: false, amount: 0.08 }}
                 transition={{ duration: 0.42, delay: idx * 0.06, ease: SMOOTH_EASE }}
                 className="rounded-2xl border border-[var(--border-subtle)] bg-[var(--surface-elevated)] p-6"
               >
@@ -98,7 +98,7 @@ export function FlowMoreSections() {
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
+            viewport={{ once: false, amount: 0.08 }}
             transition={{ duration: 0.48, ease: SMOOTH_EASE }}
             className="text-center max-w-2xl mx-auto mb-12"
           >
@@ -118,7 +118,7 @@ export function FlowMoreSections() {
                   key={rule.title}
                   initial={{ opacity: 0, y: 18 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.15 }}
+                  viewport={{ once: false, amount: 0.08 }}
                   transition={{ duration: 0.42, delay: idx * 0.07, ease: SMOOTH_EASE }}
                   className="rounded-2xl border border-[var(--border-subtle)] bg-[var(--surface-elevated)] p-7"
                 >

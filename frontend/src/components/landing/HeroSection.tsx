@@ -150,7 +150,7 @@ export function HeroSection() {
               key={item.label}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: false, amount: 0.08 }}
               transition={{ duration: 0.45, delay: idx * 0.06, ease: SMOOTH_EASE }}
               className="text-center md:text-left"
             >

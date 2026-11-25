@@ -144,7 +144,7 @@ export function FeaturesView() {
                 key={card.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
+                viewport={{ once: false, amount: 0.08 }}
                 transition={{ duration: 0.4, delay: idx * 0.08 }}
                 className={`group rounded-2xl border border-[var(--border-subtle)] ${card.tone} p-4 shadow-[0_14px_32px_rgba(43,29,20,0.08)] transition-transform duration-200 ${card.tilt} md:hover:rotate-0 md:hover:-translate-y-2`}
               >

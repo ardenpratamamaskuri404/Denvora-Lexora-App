@@ -59,7 +59,7 @@ export function FeaturesMoreSections() {
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
+            viewport={{ once: false, amount: 0.08 }}
             transition={{ duration: 0.48, ease: SMOOTH_EASE }}
             className="max-w-2xl mb-12"
           >
@@ -77,7 +77,7 @@ export function FeaturesMoreSections() {
                 key={track.badge}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
+                viewport={{ once: false, amount: 0.08 }}
                 transition={{ duration: 0.45, delay: idx * 0.08, ease: SMOOTH_EASE }}
                 className="rounded-3xl border border-[var(--border-subtle)] bg-[var(--surface-elevated)] p-8 shadow-xs"
               >
@@ -112,7 +112,7 @@ export function FeaturesMoreSections() {
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
+            viewport={{ once: false, amount: 0.08 }}
             transition={{ duration: 0.48, ease: SMOOTH_EASE }}
             className="text-center max-w-2xl mx-auto mb-12"
           >
@@ -132,7 +132,7 @@ export function FeaturesMoreSections() {
                   key={item.title}
                   initial={{ opacity: 0, y: 18 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.15 }}
+                  viewport={{ once: false, amount: 0.08 }}
                   transition={{ duration: 0.42, delay: idx * 0.06, ease: SMOOTH_EASE }}
                   className="rounded-2xl border border-[var(--border-subtle)] bg-[var(--surface-elevated)] p-6"
                 >

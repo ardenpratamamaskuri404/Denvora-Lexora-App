@@ -59,7 +59,7 @@ export function HomeExtraSections() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
+            viewport={{ once: false, amount: 0.08 }}
             transition={{ duration: 0.5, ease: SMOOTH_EASE }}
             className="max-w-2xl mb-12"
           >
@@ -83,7 +83,7 @@ export function HomeExtraSections() {
                   key={item.title}
                   initial={{ opacity: 0, y: 22 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.15 }}
+                  viewport={{ once: false, amount: 0.08 }}
                   transition={{ duration: 0.45, delay: idx * 0.05, ease: SMOOTH_EASE }}
                   whileHover={{ y: -4 }}
                   className="rounded-2xl border border-[var(--border-subtle)] bg-[var(--surface-elevated)] p-6 shadow-xs transition-colors hover:border-[var(--accent-primary)]/50 transform-gpu"
@@ -108,7 +108,7 @@ export function HomeExtraSections() {
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
+          viewport={{ once: false, amount: 0.08 }}
           transition={{ duration: 0.5, ease: SMOOTH_EASE }}
           className="mx-auto max-w-5xl rounded-3xl border border-[var(--border-subtle)] bg-[var(--surface-elevated)] p-8 sm:p-12 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-8"
         >

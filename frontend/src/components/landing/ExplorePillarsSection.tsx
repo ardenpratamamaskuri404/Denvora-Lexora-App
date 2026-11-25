@@ -40,7 +40,7 @@ export function ExplorePillarsSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
+          viewport={{ once: false, amount: 0.08 }}
           transition={{ duration: 0.5, ease: SMOOTH_EASE }}
           className="max-w-2xl mb-12"
         >
@@ -64,7 +64,7 @@ export function ExplorePillarsSection() {
                 key={item.href}
                 initial={{ opacity: 0, y: 22 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
+                viewport={{ once: false, amount: 0.08 }}
                 transition={{ duration: 0.48, delay: idx * 0.08, ease: SMOOTH_EASE }}
                 whileHover={{ y: -5 }}
                 className="transform-gpu"
