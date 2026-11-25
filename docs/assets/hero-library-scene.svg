@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 460" width="640" height="460" fill="none">
+  <rect width="640" height="460" rx="24" fill="#F6EFE6"/>
+  <path d="M120 404 C120 198, 520 198, 520 404 Z" fill="#E9DCCB"/>
+  <path d="M150 404 C150 232, 490 232, 490 404" stroke="#D7C7B4" stroke-width="2" stroke-dasharray="6 6"/>
+  <circle cx="476" cy="128" r="38" fill="#E9DCCB"/>
+  <circle cx="476" cy="128" r="24" fill="#A8643A" fill-opacity="0.18"/>
+  <path d="M168 130 C186 116, 208 116, 224 130" stroke="#8C7B6B" stroke-width="2" stroke-linecap="round"/>
+  <path d="M210 112 C222 102, 238 102, 248 112" stroke="#8C7B6B" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Rak buku arsip kiri -->
+  <rect x="170" y="210" width="176" height="194" rx="10" fill="#FBF7F1" stroke="#2B1D14" stroke-width="2.5"/>
+  <line x1="170" y1="276" x2="346" y2="276" stroke="#2B1D14" stroke-width="2.5"/>
+  <line x1="170" y1="342" x2="346" y2="342" stroke="#2B1D14" stroke-width="2.5"/>
+
+  <!-- Baris buku atas -->
+  <rect x="184" y="226" width="18" height="50" rx="3" fill="#A8643A" stroke="#2B1D14" stroke-width="2"/>
+  <rect x="205" y="232" width="16" height="44" rx="3" fill="#E9DCCB" stroke="#2B1D14" stroke-width="2"/>
+  <rect x="224" y="222" width="20" height="54" rx="3" fill="#8C7B6B" stroke="#2B1D14" stroke-width="2"/>
+  <rect x="247" y="236" width="15" height="40" rx="3" fill="#F6EFE6" stroke="#2B1D14" stroke-width="2"/>
+  <path d="M268 275 L282 226 L299 231 L285 276 Z" fill="#A8643A" stroke="#2B1D14" stroke-width="2"/>
+  <line x1="193" y1="236" x2="193" y2="264" stroke="#F6EFE6" stroke-width="1.5"/>
+
+  <!-- Baris buku tengah -->
+  <rect x="184" y="290" width="20" height="52" rx="3" fill="#2B1D14"/>
+  <rect x="208" y="296" width="16" height="46" rx="3" fill="#A8643A" stroke="#2B1D14" stroke-width="2"/>
+  <rect x="228" y="288" width="18" height="54" rx="3" fill="#E9DCCB" stroke="#2B1D14" stroke-width="2"/>
+  <rect x="256" y="324" width="72" height="18" rx="4" fill="#8C7B6B" stroke="#2B1D14" stroke-width="2"/>
+  <rect x="262" y="308" width="60" height="16" rx="4" fill="#F6EFE6" stroke="#2B1D14" stroke-width="2"/>
+
+  <!-- Baris buku bawah -->
+  <rect x="186" y="356" width="16" height="48" rx="3" fill="#8C7B6B" stroke="#2B1D14" stroke-width="2"/>
+  <rect x="205" y="352" width="22" height="52" rx="3" fill="#E9DCCB" stroke="#2B1D14" stroke-width="2"/>
+  <rect x="230" y="360" width="16" height="44" rx="3" fill="#A8643A" stroke="#2B1D14" stroke-width="2"/>
+  <rect x="280" y="368" width="48" height="36" rx="6" fill="#E9DCCB" stroke="#2B1D14" stroke-width="2"/>
+  <path d="M304 368 C304 352, 290 342, 286 332 C298 334, 306 346, 306 368" fill="#A8643A"/>
+  <path d="M306 368 C308 350, 322 340, 328 330 C328 344, 316 356, 308 368" fill="#8C7B6B"/>
+
+  <!-- Meja baca & buku terbuka kanan -->
+  <rect x="372" y="326" width="146" height="14" rx="5" fill="#A8643A" stroke="#2B1D14" stroke-width="2.5"/>
+  <line x1="392" y1="340" x2="392" y2="404" stroke="#2B1D14" stroke-width="3" stroke-linecap="round"/>
+  <line x1="498" y1="340" x2="498" y2="404" stroke="#2B1D14" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Lampu baca -->
+  <path d="M474 326 L474 268 C474 252, 460 242, 444 246" stroke="#2B1D14" stroke-width="3" stroke-linecap="round"/>
+  <path d="M424 256 L456 240 L466 260 L432 272 Z" fill="#A8643A" stroke="#2B1D14" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M432 272 L404 324 L468 324 L454 264 Z" fill="#FBF7F1" fill-opacity="0.55"/>
+
+  <!-- Buku terbuka di atas meja -->
+  <path d="M388 312 C404 306, 418 308, 424 316 C430 308, 444 306, 460 312 L460 326 L388 326 Z" fill="#FBF7F1" stroke="#2B1D14" stroke-width="2.5" stroke-linejoin="round"/>
+  <line x1="424" y1="316" x2="424" y2="326" stroke="#2B1D14" stroke-width="2"/>
+  <path d="M436 316 L436 334 L441 330 L446 334 L446 314 Z" fill="#A8643A"/>
+
+  <!-- Garis lantai tenang -->
+  <line x1="76" y1="404" x2="564" y2="404" stroke="#2B1D14" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="112" y1="418" x2="260" y2="418" stroke="#D7C7B4" stroke-width="2" stroke-linecap="round"/>
+  <line x1="380" y1="418" x2="520" y2="418" stroke="#D7C7B4" stroke-width="2" stroke-linecap="round"/>
+</svg>
