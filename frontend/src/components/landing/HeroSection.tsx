@@ -71,7 +71,7 @@ export function HeroSection() {
               Perpustakaan Sekolah Digital
             </p>
 
-            <h1 className="font-editorial mt-2.5 text-4xl font-bold leading-[1.12] tracking-tight text-[var(--text-primary)] sm:text-5xl lg:text-[3.4rem]">
+            <h1 className="font-editorial mt-2.5 text-3xl font-bold leading-[1.15] tracking-tight text-[var(--text-primary)] sm:text-5xl lg:text-[3.4rem]">
               Temukan Buku,{" "}
               <span className="text-[var(--accent-primary)]">Tumbuhkan Wawasan.</span>
             </h1>

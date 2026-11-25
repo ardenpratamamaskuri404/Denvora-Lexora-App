@@ -63,7 +63,7 @@ export function StoryRevealSection() {
             style={{ scale: frameScale, y: frameY }}
             className="relative z-10 w-full max-w-5xl overflow-hidden rounded-3xl border-2 border-[var(--border-subtle)] bg-[var(--surface-elevated)] shadow-[0_28px_70px_rgba(43,29,20,0.2)] transform-gpu will-change-transform"
           >
-            <div className="relative aspect-[4/3] sm:aspect-[16/9] w-full overflow-hidden bg-[var(--bg-primary)]">
+            <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden bg-[var(--bg-primary)]">
               <video
                 src="/videos/denvora-landing-welcome.mp4"
                 autoPlay
@@ -73,24 +73,24 @@ export function StoryRevealSection() {
                 preload="auto"
                 className="h-full w-full object-cover"
               />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#2B1D14]/75 via-transparent to-transparent" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#2B1D14]/80 via-[#2B1D14]/20 to-transparent" />
 
               <motion.div
                 style={{ opacity: captionOpacity, y: captionY }}
-                className="absolute bottom-0 inset-x-0 p-5 sm:p-8 text-[#F6EFE6] flex flex-col sm:flex-row sm:items-end justify-between gap-4 transform-gpu will-change-transform"
+                className="absolute bottom-0 inset-x-0 p-4 sm:p-8 text-[#F6EFE6] flex flex-col sm:flex-row sm:items-end justify-between gap-2.5 sm:gap-4 transform-gpu will-change-transform"
               >
                 <div className="max-w-xl">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#E9DCCB]">
+                  <p className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.18em] text-[#E9DCCB]">
                     Perpustakaan Digital Sekolah
                   </p>
-                  <h2 className="font-editorial mt-1.5 text-lg font-bold leading-snug sm:text-2xl">
+                  <h2 className="font-editorial mt-1 text-sm sm:text-2xl font-bold leading-snug">
                     Setiap buku menemukan pembacanya, setiap halaman membuka cakrawala baru.
                   </h2>
                 </div>
-                <Button asChild size="pill" className="shrink-0">
+                <Button asChild size="pill" className="w-fit h-9 sm:h-11 px-4 sm:px-6 text-xs sm:text-sm shrink-0">
                   <Link href="/fitur">
                     Jelajahi Layanan
-                    <ArrowRight size={15} strokeWidth={1.75} />
+                    <ArrowRight size={14} strokeWidth={1.75} />
                   </Link>
                 </Button>
               </motion.div>

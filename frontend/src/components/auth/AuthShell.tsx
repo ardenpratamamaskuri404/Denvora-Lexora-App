@@ -55,7 +55,7 @@ export function AuthShell({
           <Link
             href="/"
             aria-label="Kembali ke Beranda Denvora Lexora"
-            className="flex items-center overflow-hidden h-11 sm:h-12 rounded-full dark:bg-[#FBF7F1] dark:px-3.5"
+            className="flex items-center overflow-hidden h-10 sm:h-12 rounded-full dark:bg-[#FBF7F1] dark:px-3.5"
           >
             <Image
               src="/images/denvora-lexora-logo.png"
@@ -63,7 +63,7 @@ export function AuthShell({
               width={280}
               height={186}
               priority
-              className="h-[74px] sm:h-[82px] w-auto object-contain mix-blend-multiply"
+              className="h-[64px] sm:h-[82px] w-auto object-contain mix-blend-multiply"
             />
           </Link>
 

@@ -1,3 +1,8 @@
+/**
+ * @module components/landing/LandingNavbar
+ * @description Navbar utama mengambang responsif dengan menu per halaman, toggle tema, dan akses Auth.
+ */
+
 "use client";
 
 import { useState } from "react";
@@ -40,24 +45,40 @@ function ThemeToggleButton() {
   );
 }
 
-function AuthButtons({ mobile = false }: { mobile?: boolean }) {
+function AuthButtons({
+  mobile = false,
+  onNavigate,
+}: {
+  mobile?: boolean;
+  onNavigate?: () => void;
+}) {
   return (
-    <div className={mobile ? "flex items-center gap-2 pt-2" : "hidden md:flex items-center gap-2.5 shrink-0"}>
-      <ThemeToggleButton />
+    <div
+      className={
+        mobile
+          ? "grid grid-cols-2 gap-2.5 pt-3 border-t border-[var(--border-subtle)]"
+          : "hidden md:flex items-center gap-2.5 shrink-0"
+      }
+    >
+      {!mobile && <ThemeToggleButton />}
       <Button
         asChild
         variant="outline"
         size="sm"
-        className={cn("rounded-full", mobile ? "flex-1" : "px-4")}
+        className={cn("rounded-full", mobile ? "w-full justify-center" : "px-4")}
       >
-        <Link href="/login">Masuk</Link>
+        <Link href="/login" onClick={onNavigate}>
+          Masuk
+        </Link>
       </Button>
       <Button
         asChild
         size="sm"
-        className={cn("rounded-full", mobile ? "flex-1" : "px-5")}
+        className={cn("rounded-full", mobile ? "w-full justify-center" : "px-5")}
       >
-        <Link href="/register">Daftar Anggota</Link>
+        <Link href="/register" onClick={onNavigate}>
+          Daftar Anggota
+        </Link>
       </Button>
     </div>
   );
@@ -68,16 +89,22 @@ export function LandingNavbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="fixed top-4 inset-x-0 z-50 px-4">
+    <header className="fixed top-3 sm:top-4 inset-x-0 z-50 px-3 sm:px-4">
       <nav
         aria-label="Navigasi utama"
-        className="mx-auto max-w-6xl rounded-full border border-[var(--border-subtle)] bg-[var(--surface-elevated)]/95 px-4 sm:px-5 py-2 shadow-[0_8px_28px_rgba(43,29,20,0.08)] backdrop-blur-sm transition-colors"
+        className={cn(
+          "mx-auto max-w-6xl border border-[var(--border-subtle)] bg-[var(--surface-elevated)]/95 shadow-[0_8px_28px_rgba(43,29,20,0.08)] backdrop-blur-md transition-colors",
+          mobileOpen
+            ? "rounded-3xl px-4 py-3.5 md:rounded-full md:px-5 md:py-2"
+            : "rounded-full px-3.5 sm:px-5 py-2"
+        )}
       >
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center justify-between gap-3 sm:gap-4">
           <Link
             href="/"
             aria-label="Beranda Denvora Lexora"
-            className="flex items-center shrink-0 overflow-hidden h-11 sm:h-12 rounded-full dark:bg-[#FBF7F1] dark:px-3"
+            onClick={() => setMobileOpen(false)}
+            className="flex items-center shrink-0 overflow-hidden h-10 sm:h-12 rounded-full dark:bg-[#FBF7F1] dark:px-3"
           >
             <Image
               src="/images/denvora-lexora-logo.png"
@@ -85,7 +112,7 @@ export function LandingNavbar() {
               width={320}
               height={213}
               priority
-              className="h-[74px] sm:h-[84px] w-auto object-contain mix-blend-multiply"
+              className="h-[66px] sm:h-[82px] w-auto object-contain mix-blend-multiply"
             />
           </Link>
 
@@ -112,14 +139,14 @@ export function LandingNavbar() {
 
           <AuthButtons />
 
-          <div className="md:hidden flex items-center gap-2">
+          <div className="md:hidden flex items-center gap-2 shrink-0">
             <ThemeToggleButton />
             <button
               type="button"
               aria-label={mobileOpen ? "Tutup menu" : "Buka menu"}
               aria-expanded={mobileOpen}
               onClick={() => setMobileOpen((prev) => !prev)}
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--border-subtle)] text-[var(--text-primary)] hover:bg-[var(--bg-surface)]"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--border-subtle)] bg-[var(--surface-elevated)] text-[var(--text-primary)] hover:bg-[var(--bg-surface)] cursor-pointer"
             >
               {mobileOpen ? <X size={18} strokeWidth={1.75} /> : <Menu size={18} strokeWidth={1.75} />}
             </button>
@@ -127,7 +154,7 @@ export function LandingNavbar() {
         </div>
 
         {mobileOpen && (
-          <div className="md:hidden mt-3 pt-3 pb-2 border-t border-[var(--border-subtle)] flex flex-col gap-1.5">
+          <div className="md:hidden mt-3 pt-3 border-t border-[var(--border-subtle)] flex flex-col gap-1.5">
             {NAV_LINKS.map((item) => {
               const active = pathname === item.href;
               return (
@@ -136,7 +163,7 @@ export function LandingNavbar() {
                   href={item.href}
                   onClick={() => setMobileOpen(false)}
                   className={cn(
-                    "px-3 py-2 rounded-lg text-sm font-medium",
+                    "px-3.5 py-2.5 rounded-xl text-sm font-medium transition-colors",
                     active
                       ? "bg-[var(--bg-surface)] font-semibold text-[var(--accent-primary)]"
                       : "text-[var(--text-primary)] hover:bg-[var(--bg-surface)]/60"
@@ -146,7 +173,7 @@ export function LandingNavbar() {
                 </Link>
               );
             })}
-            <AuthButtons mobile />
+            <AuthButtons mobile onNavigate={() => setMobileOpen(false)} />
           </div>
         )}
       </nav>
