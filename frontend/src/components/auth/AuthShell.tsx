@@ -80,16 +80,16 @@ export function AuthShell({
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-          className="relative z-10 my-6 lg:my-8 flex items-center justify-center"
+          className="relative z-10 my-4 lg:my-6 flex items-center justify-center"
         >
-          <div className="relative w-full max-w-[320px] sm:max-w-[390px] lg:max-w-[440px] aspect-[7/8] rounded-3xl overflow-hidden border border-[#E9DCCB] dark:border-[#4A3528] bg-[#F3E8D9] dark:bg-[#2E2017] shadow-sm">
+          <div className="relative w-full max-w-[380px] sm:max-w-[470px] lg:max-w-[540px] aspect-[84/94]">
             <Image
               src={illustrationSrc}
               alt={illustrationAlt}
               width={840}
-              height={960}
+              height={940}
               priority
-              className="h-full w-full object-cover dark:brightness-[0.95]"
+              className="h-full w-full object-contain drop-shadow-[0_18px_36px_rgba(43,29,20,0.08)]"
             />
           </div>
         </motion.div>
