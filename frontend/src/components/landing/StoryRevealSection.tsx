@@ -61,7 +61,7 @@ export function StoryRevealSection() {
 
           <motion.div
             style={{ scale: frameScale, y: frameY }}
-            className="relative z-10 w-full max-w-4xl overflow-hidden rounded-3xl border-2 border-[var(--border-subtle)] bg-[var(--surface-elevated)] shadow-[0_28px_70px_rgba(43,29,20,0.2)] transform-gpu will-change-transform"
+            className="relative z-10 w-full max-w-5xl overflow-hidden rounded-3xl border-2 border-[var(--border-subtle)] bg-[var(--surface-elevated)] shadow-[0_28px_70px_rgba(43,29,20,0.2)] transform-gpu will-change-transform"
           >
             <div className="relative aspect-[4/3] sm:aspect-[16/9] w-full overflow-hidden bg-[var(--bg-primary)]">
               <video
@@ -81,7 +81,7 @@ export function StoryRevealSection() {
               >
                 <div className="max-w-xl">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#E9DCCB]">
-                    Selamat Datang di Denvora Lexora
+                    Perpustakaan Digital Sekolah
                   </p>
                   <h2 className="font-editorial mt-1.5 text-lg font-bold leading-snug sm:text-2xl">
                     Setiap buku menemukan pembacanya, setiap halaman membuka cakrawala baru.

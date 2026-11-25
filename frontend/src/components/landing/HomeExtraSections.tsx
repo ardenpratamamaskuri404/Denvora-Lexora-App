@@ -52,7 +52,7 @@ const SMOOTH_EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 export function HomeExtraSections() {
   return (
     <>
-      <section className="relative py-20 md:py-24 bg-[var(--bg-surface)] transition-colors overflow-hidden">
+      <section className="relative py-20 md:py-24 bg-[var(--bg-primary)] transition-colors overflow-hidden">
         <AmbientSparkles />
 
         <div className="relative z-10 max-w-6xl mx-auto px-6">
@@ -104,7 +104,7 @@ export function HomeExtraSections() {
         </div>
       </section>
 
-      <section className="py-20 px-6 bg-[var(--bg-primary)] transition-colors">
+      <section className="py-20 px-6 bg-[var(--bg-surface)] transition-colors">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}

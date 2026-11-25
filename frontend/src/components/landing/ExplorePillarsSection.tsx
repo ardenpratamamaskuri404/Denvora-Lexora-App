@@ -50,7 +50,7 @@ export function ExplorePillarsSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-20 md:py-24 bg-[var(--bg-primary)] transition-colors overflow-hidden"
+      className="relative py-20 md:py-24 bg-[var(--bg-surface)] transition-colors overflow-hidden"
     >
       <AmbientSparkles />
 
@@ -97,7 +97,7 @@ export function ExplorePillarsSection() {
                   className="group h-full rounded-3xl bg-[var(--surface-elevated)] border border-[var(--border-subtle)] p-7 shadow-xs hover:shadow-md hover:border-[var(--accent-primary)]/50 transition-all flex flex-col justify-between"
                 >
                   <div>
-                    <div className="w-11 h-11 rounded-2xl bg-[var(--bg-surface)] text-[var(--accent-primary)] flex items-center justify-center mb-5 group-hover:bg-[var(--accent-primary)] group-hover:text-[#F6EFE6] transition-colors">
+                    <div className="w-11 h-11 rounded-2xl bg-[var(--bg-primary)] text-[var(--accent-primary)] flex items-center justify-center mb-5 group-hover:bg-[var(--accent-primary)] group-hover:text-[#F6EFE6] transition-colors">
                       <Icon className="w-5 h-5" />
                     </div>
                     <h3 className="font-editorial text-xl font-bold text-[var(--text-primary)] mb-2">
