@@ -85,7 +85,7 @@ export function AuthShell({
           <div className="relative w-full max-w-[320px] sm:max-w-[400px] lg:max-w-[440px] lg:max-h-[calc(100dvh-120px)] aspect-[84/94]">
             <Image
               unoptimized
-              src={`${illustrationSrc}?v=3`}
+              src={`${illustrationSrc}?v=4`}
               alt={illustrationAlt}
               width={840}
               height={940}
