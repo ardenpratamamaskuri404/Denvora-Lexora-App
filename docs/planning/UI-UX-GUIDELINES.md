@@ -107,9 +107,10 @@ Tema warna **Denvora Lexora** terkunci pada palet **Cream Mocha (Krem & Cokelat 
 
 ### A0. Public Landing Multi-Page (`/`, `/fitur`, `/alur`, `/tentang`)
 - **Arsitektur 1 Menu = 1 Halaman:** `LandingNavbar` mengarahkan masing-masing menu ke halaman terpisah (`Beranda` `/`, `Layanan` `/fitur`, `Panduan` `/alur`, `Tentang Kami` `/tentang`), disertai logo penuh `denvora-lexora-logo.png`, toggle tema gelap/terang, `Masuk`, dan `Daftar Anggota`.
-- **Halaman Beranda (`/`):** Hero dengan ilustrasi 3D Cream Mocha, *wave divider* berlapis `wave-divider.svg`, strip ringkasan perpustakaan, bagian animasi scroll *CERITA* (video lokal `denvora-landing-welcome.mp4`), kartu pilar literasi, dan footer gelap 4 kolom dengan pencarian katalog cepat.
-- **Halaman Layanan (`/fitur`):** Bento grid layanan perpustakaan dan 4 ilustrasi 3D Cream Mocha khusus (`fitur-katalog-terpadu.svg`, `fitur-aktivasi-kartu.svg`, `fitur-portal-baca.svg`, `fitur-eksplorasi-pinjam.svg`).
-- **Halaman Panduan (`/alur`) & Tentang Kami (`/tentang`):** 3 langkah mudah peminjaman, kartu interaktif keunggulan layanan, profil perpustakaan, serta FAQ akordeon.
+- **Halaman Beranda (`/`):** Hero ilustrasi 3D Cream Mocha (terlihat jelas baik mode terang maupun gelap lewat gradasi kiri), *wave divider* berlapis `wave-divider.svg`, strip ringkasan perpustakaan, bagian animasi scroll *CERITA* (video lokal `denvora-landing-welcome.mp4`), pilar literasi, ragam kategori bacaan (`HomeExtraSections`), banner ajakan bergabung, serta footer gelap 4 kolom dengan logo dan pencarian katalog cepat.
+- **Halaman Layanan (`/fitur`):** Bento grid layanan perpustakaan, 4 ilustrasi 3D Cream Mocha khusus (`fitur-*.svg`), manfaat untuk siswa & pengelola, serta etika & kualitas ruang baca (`FeaturesMoreSections`).
+- **Halaman Panduan (`/alur`):** 3 langkah meminjam, kartu keunggulan layanan, panduan pengembalian 4 tahap, dan ketentuan singkat peminjaman (`FlowMoreSections`).
+- **Halaman Tentang Kami (`/tentang`):** Profil Denvora Lexora, FAQ akordeon interaktif, visi & misi literasi, serta jam operasional & zona baca (`AboutMoreSections`).
 
 ### A. Authentication Pages (`/login` & `/register`)
 - *Split layout editorial* di atas `#F6EFE6` (panel identitas **Denvora Lexora**, logo, dan slogan *"Where Knowledge Finds Its Way."* di kiri; form autentikasi bersih di kanan).
