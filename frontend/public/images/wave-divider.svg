@@ -1,3 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" width="1440" height="120" preserveAspectRatio="none" fill="none">
-  <path d="M0 44 C260 110, 520 110, 780 56 C1040 2, 1260 18, 1440 62 L1440 120 L0 120 Z" fill="#F6EFE6"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 160" width="1440" height="160" preserveAspectRatio="none" fill="none">
+  <path
+    d="M0 46 C240 122, 480 128, 760 66 C1030 6, 1255 24, 1440 72 L1440 160 L0 160 Z"
+    fill="#D7C7B4"
+    fill-opacity="0.55"
+  />
+  <path
+    d="M0 64 C265 130, 520 128, 785 74 C1045 20, 1265 36, 1440 84 L1440 160 L0 160 Z"
+    fill="#E9DCCB"
+    fill-opacity="0.92"
+  />
+  <path
+    d="M0 64 C265 130, 520 128, 785 74 C1045 20, 1265 36, 1440 84"
+    stroke="#A8643A"
+    stroke-opacity="0.45"
+    stroke-width="2.5"
+  />
+  <path
+    d="M0 84 C290 142, 540 138, 800 90 C1060 42, 1275 56, 1440 98 L1440 160 L0 160 Z"
+    fill="#FBF7F1"
+  />
+  <path
+    d="M0 84 C290 142, 540 138, 800 90 C1060 42, 1275 56, 1440 98"
+    stroke="#D7C7B4"
+    stroke-width="1.5"
+  />
 </svg>
