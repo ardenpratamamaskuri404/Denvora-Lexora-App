@@ -1,8 +1,14 @@
+/**
+ * @module lib/api
+ * @description Klien HTTP terpusat untuk komunikasi dengan REST API backend Denvora Lexora.
+ */
+
 import type { ApiFieldError, ApiResponse, AuthUser, OtpPurpose } from "@/types/auth";
 
 export const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
 
+/** Representasi error terstruktur yang dikembalikan oleh REST API. */
 export class ApiRequestError extends Error {
   status: number;
   errors: ApiFieldError[];
@@ -14,6 +20,11 @@ export class ApiRequestError extends Error {
   }
 }
 
+/**
+ * Mengirim permintaan HTTP terautentikasi cookie HttpOnly ke server backend lokal.
+ * @param path Path endpoint relatif terhadap API_BASE_URL
+ * @param options Konfigurasi fetch standar
+ */
 export async function apiRequest<T>(
   path: string,
   options: RequestInit = {}
@@ -33,19 +44,19 @@ export async function apiRequest<T>(
   } catch {
     throw new ApiRequestError(
       0,
-      "Tidak dapat terhubung ke server backend (pastikan API berjalan di port 5000)."
+      "Layanan server tidak dapat dijangkau. Pastikan server aplikasi aktif pada localhost."
     );
   }
 
   const payload = (await response.json().catch(() => ({
     success: false,
-    message: "Respons server tidak valid.",
+    message: "Format respons server tidak sesuai.",
   }))) as ApiResponse<T>;
 
   if (!response.ok || !payload.success) {
     throw new ApiRequestError(
       response.status,
-      payload.message || "Terjadi kesalahan saat memproses permintaan.",
+      payload.message || "Permintaan tidak dapat diproses.",
       payload.errors || []
     );
   }
@@ -63,6 +74,7 @@ export interface RegisterPayload {
   phone?: string;
 }
 
+/** Mendaftarkan anggota siswa baru dan memicu pengiriman OTP verifikasi. */
 export async function registerApi(payload: RegisterPayload) {
   return apiRequest<{ user: AuthUser; mailpit_url?: string }>("/auth/register", {
     method: "POST",
@@ -70,6 +82,7 @@ export async function registerApi(payload: RegisterPayload) {
   });
 }
 
+/** Memvalidasi kredensial pengguna (username atau email beserta password). */
 export async function loginApi(username: string, password: string) {
   return apiRequest<{ user: AuthUser }>("/auth/login", {
     method: "POST",
@@ -77,6 +90,7 @@ export async function loginApi(username: string, password: string) {
   });
 }
 
+/** Mengirim kode OTP 6 digit ke alamat email terdaftar melalui layanan surat lokal. */
 export async function sendOtpApi(email: string, purpose: OtpPurpose) {
   return apiRequest<{ email: string; purpose: OtpPurpose; mailpit_url?: string }>(
     "/auth/otp/send",
@@ -87,6 +101,7 @@ export async function sendOtpApi(email: string, purpose: OtpPurpose) {
   );
 }
 
+/** Memverifikasi kode OTP 6 digit untuk aktivasi akun atau pemulihan akses masuk. */
 export async function verifyOtpApi(email: string, otp: string, purpose: OtpPurpose) {
   return apiRequest<{ user: AuthUser }>("/auth/otp/verify", {
     method: "POST",
@@ -94,10 +109,12 @@ export async function verifyOtpApi(email: string, otp: string, purpose: OtpPurpo
   });
 }
 
+/** Mengambil profil sesi pengguna yang sedang aktif. */
 export async function meApi() {
   return apiRequest<{ user: AuthUser }>("/auth/me", { method: "GET" });
 }
 
+/** Menghapus sesi aktif pengguna saat keluar dari sistem. */
 export async function logoutApi() {
   return apiRequest<null>("/auth/logout", { method: "POST" });
 }

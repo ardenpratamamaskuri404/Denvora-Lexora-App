@@ -1,3 +1,8 @@
+/**
+ * @module app/register/page
+ * @description Halaman pendaftaran anggota siswa baru sesuai alur SPK-3/4 dengan verifikasi OTP.
+ */
+
 "use client";
 
 import { useState } from "react";
@@ -23,11 +28,15 @@ export default function RegisterPage() {
 
   function validateForm(): boolean {
     const errs: Record<string, string> = {};
-    if (name.trim().length < 3) errs.name = "Nama minimal 3 karakter";
+    if (name.trim().length < 3) errs.name = "Nama lengkap minimal 3 karakter";
     if (memberCode.trim().length < 3) errs.member_code = "NIS / Kode anggota minimal 3 karakter";
+    if (className.trim().length < 2) errs.class_name = "Kelas wajib diisi (mis. XII RPL 1)";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) errs.email = "Format email tidak valid";
+    if (phone.trim() && !/^[0-9+\-\s]{8,20}$/.test(phone.trim())) {
+      errs.phone = "Nomor telepon harus terdiri dari 8–20 digit";
+    }
     if (!/^[a-zA-Z0-9_]{4,50}$/.test(username.trim())) {
-      errs.username = "Minimal 4 karakter (huruf, angka, atau _)";
+      errs.username = "Minimal 4 karakter (huruf, angka, atau garis bawah _)";
     }
     if (password.length < 6) errs.password = "Password minimal 6 karakter";
 
@@ -45,7 +54,7 @@ export default function RegisterPage() {
       await registerApi({
         name: name.trim(),
         member_code: memberCode.trim(),
-        class_name: className.trim() || undefined,
+        class_name: className.trim(),
         phone: phone.trim() || undefined,
         email: email.trim().toLowerCase(),
         username: username.trim(),
@@ -61,7 +70,7 @@ export default function RegisterPage() {
         setFieldErrors(mapped);
         setGeneralError(err.message);
       } else {
-        setGeneralError("Pendaftaran gagal diproses. Silakan coba kembali.");
+        setGeneralError("Pendaftaran belum dapat diproses. Silakan coba kembali.");
       }
     } finally {
       setLoading(false);
@@ -75,13 +84,13 @@ export default function RegisterPage() {
     >
       <div className="mb-6">
         <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#C87E4F]">
-          Pendaftaran Anggota Perpustakaan
+          Pendaftaran Anggota Siswa
         </p>
         <h1 className="font-editorial mt-1.5 text-3xl sm:text-4xl font-bold text-[#F6EFE6]">
           Daftar Anggota
         </h1>
         <p className="mt-2 text-xs sm:text-sm text-[#C2B09E] leading-relaxed">
-          Lengkapi data berikut untuk mengaktifkan kartu keanggotaan perpustakaan Anda.
+          Lengkapi identitas siswa di bawah ini untuk mengaktifkan keanggotaan perpustakaan.
         </p>
       </div>
 
@@ -97,7 +106,7 @@ export default function RegisterPage() {
           label="Nama Lengkap"
           value={name}
           onChange={setName}
-          placeholder="Nama sesuai kartu pelajar"
+          placeholder="Nama lengkap sesuai data sekolah"
           error={fieldErrors.name}
         />
 
@@ -107,7 +116,7 @@ export default function RegisterPage() {
             label="NIS / Kode Anggota"
             value={memberCode}
             onChange={setMemberCode}
-            placeholder="Nomor induk siswa"
+            placeholder="Nomor Induk Siswa"
             error={fieldErrors.member_code}
           />
           <AuthField
@@ -116,7 +125,6 @@ export default function RegisterPage() {
             value={className}
             onChange={setClassName}
             placeholder="Contoh: XII RPL 1"
-            required={false}
             error={fieldErrors.class_name}
           />
         </div>
@@ -134,7 +142,7 @@ export default function RegisterPage() {
           />
           <AuthField
             id="reg-phone"
-            label="Nomor Telepon"
+            label="Nomor Telepon (Opsional)"
             type="tel"
             value={phone}
             onChange={setPhone}
@@ -177,16 +185,16 @@ export default function RegisterPage() {
             </>
           ) : (
             <>
-              Daftar & Verifikasi Email <ArrowRight size={16} />
+              Daftar & Kirim Kode Verifikasi <ArrowRight size={16} />
             </>
           )}
         </button>
       </form>
 
       <p className="mt-6 text-center text-xs text-[#C2B09E]">
-        Sudah memiliki akun?{" "}
+        Sudah terdaftar sebagai anggota?{" "}
         <Link href="/login" className="font-semibold text-[#E9DCCB] hover:text-[#C87E4F] underline">
-          Masuk Sekarang
+          Masuk ke Sistem
         </Link>
       </p>
     </AuthShell>

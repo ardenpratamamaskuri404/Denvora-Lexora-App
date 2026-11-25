@@ -1,3 +1,8 @@
+/**
+ * @module app/otp/page
+ * @description Halaman verifikasi kode OTP 6 digit untuk aktivasi email dan pemulihan akses akun.
+ */
+
 "use client";
 
 import { Suspense, useEffect, useRef, useState } from "react";
@@ -225,7 +230,7 @@ function OtpContent() {
               rel="noreferrer"
               className="inline-flex items-center gap-1 text-[#C87E4F] hover:underline"
             >
-              Periksa Kotak Masuk <ExternalLink size={12} />
+              Buka Kotak Masuk Email <ExternalLink size={12} />
             </a>
           </div>
         </form>
