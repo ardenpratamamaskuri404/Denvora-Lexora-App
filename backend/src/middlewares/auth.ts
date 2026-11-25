@@ -42,7 +42,7 @@ export async function authMiddleware(
     }
 
     const [rows] = await pool.execute<UserRow[]>(
-      'SELECT id, name, username, role, member_code, class_name, phone, is_active FROM users WHERE id = ? LIMIT 1',
+      'SELECT id, name, email, username, role, member_code, class_name, phone, is_active, is_verified FROM users WHERE id = ? LIMIT 1',
       [decoded.id]
     );
 

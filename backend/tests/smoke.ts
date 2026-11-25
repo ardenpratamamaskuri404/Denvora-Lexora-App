@@ -9,6 +9,7 @@ import fs from 'node:fs/promises';
 import http from 'node:http';
 import path from 'node:path';
 import { app } from '../src/app';
+import { pool } from '../src/config/db';
 
 interface ApiResult {
   status: number;
@@ -69,11 +70,13 @@ async function runSmokeTests(): Promise<void> {
     const docsRes = await fetch(`${baseUrl}/api-docs/`);
     assert.equal(docsRes.status, 200, 'Swagger UI /api-docs harus merespons 200');
 
-    // 2. Register Siswa (role harus dikunci 'siswa')
+    // 2. Register Siswa (role dikunci 'siswa') + Verifikasi OTP Mailpit
     const uniq = Date.now().toString().slice(-6);
+    const regEmail = `smoke_${uniq}@denvora.local`;
     const reg = await request(baseUrl, 'POST', '/api/auth/register', {
       body: {
         name: 'Uji Siswa Smoke',
+        email: regEmail,
         username: `smoke_${uniq}`,
         password: 'Password123!',
         member_code: `NIS-${uniq}`,
@@ -84,6 +87,20 @@ async function runSmokeTests(): Promise<void> {
     assert.equal(reg.status, 201, `Register gagal: ${reg.raw}`);
     const regUser = (reg.body.data as { user: { role: string } }).user;
     assert.equal(regUser.role, 'siswa', 'Registrasi publik wajib terkunci sebagai siswa');
+
+    const mailList = (await (
+      await fetch(`http://127.0.0.1:8025/api/v1/messages?query=${encodeURIComponent(regEmail)}`)
+    ).json()) as { messages?: Array<{ Snippet?: string; Subject?: string }> };
+    const otpMatch = mailList.messages?.[0]?.Subject?.match(/(\d{6})/);
+    assert.ok(otpMatch?.[1], 'Email OTP registrasi tidak ditemukan di Mailpit lokal');
+
+    const verifyReg = await request(baseUrl, 'POST', '/api/auth/otp/verify', {
+      body: { email: regEmail, otp: otpMatch[1], purpose: 'register' },
+    });
+    assert.equal(verifyReg.status, 200, `Verifikasi OTP registrasi gagal: ${verifyReg.raw}`);
+
+    const loginReg = await loginAs(baseUrl, `smoke_${uniq}`, 'Password123!');
+    assert.ok(loginReg, 'Login setelah verifikasi OTP gagal');
 
     // 3. Login 3 Role & Penolakan Akun Nonaktif
     const adminCookie = await loginAs(baseUrl, 'admin', 'Admin123!');
@@ -115,7 +132,7 @@ async function runSmokeTests(): Promise<void> {
     const booksRes = await request(
       baseUrl,
       'GET',
-      '/api/siswa/books?search=Pemrograman&availability=available',
+      '/api/siswa/books?search=Algoritma&availability=available',
       { cookie: siswaCookie }
     );
     assert.equal(booksRes.status, 200);
@@ -124,7 +141,7 @@ async function runSmokeTests(): Promise<void> {
 
     const outOfStock = await request(baseUrl, 'POST', '/api/siswa/transactions/borrow', {
       cookie: siswaCookie,
-      body: { book_id: 2 },
+      body: { book_id: 5 },
     });
     assert.equal(outOfStock.status, 409, 'Buku stok 0 harus ditolak 409');
 
@@ -169,6 +186,7 @@ async function runSmokeTests(): Promise<void> {
     console.log('ALL_BACKEND_SMOKE_TESTS_PASSED');
   } finally {
     await new Promise<void>((resolve) => server.close(() => resolve()));
+    await pool.end();
   }
 }
 

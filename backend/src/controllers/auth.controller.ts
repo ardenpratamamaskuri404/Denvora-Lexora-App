@@ -1,12 +1,13 @@
 /**
  * @module controllers/auth.controller
- * @description Handler HTTP untuk registrasi siswa, login, logout, dan profil pengguna sesi.
+ * @description Handler HTTP untuk registrasi siswa, login, OTP Mailpit, logout, dan profil sesi.
  */
 
 import type { NextFunction, Request, Response } from 'express';
 import { env } from '../config/env';
 import { sendSuccess } from '../utils/response';
 import * as authService from '../services/auth.service';
+import * as otpService from '../services/otp.service';
 
 export async function register(
   req: Request,
@@ -15,7 +16,12 @@ export async function register(
 ): Promise<void> {
   try {
     const user = await authService.registerSiswa(req.body);
-    sendSuccess(res, 201, 'Pendaftaran anggota berhasil. Silakan login.', { user });
+    sendSuccess(
+      res,
+      201,
+      'Pendaftaran berhasil. Silakan cek kotak masuk Mailpit Anda untuk kode OTP 6 digit.',
+      { user, mailpit_url: env.mailpitUrl }
+    );
   } catch (err) {
     next(err);
   }
@@ -35,6 +41,50 @@ export async function login(
       path: '/',
     });
     sendSuccess(res, 200, 'Login berhasil', { user });
+  } catch (err) {
+    next(err);
+  }
+}
+
+export async function sendOtp(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  try {
+    const { email, purpose } = req.body;
+    await otpService.requestOtpByEmail(email, purpose);
+    sendSuccess(res, 200, 'Kode OTP 6 digit telah dikirim ke kotak masuk Mailpit Anda.', {
+      email,
+      purpose,
+      mailpit_url: env.mailpitUrl,
+    });
+  } catch (err) {
+    next(err);
+  }
+}
+
+export async function verifyOtp(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  try {
+    const { email, otp, purpose } = req.body;
+    const { user, token } = await otpService.verifyOtpCode({ email, otp, purpose });
+    if (token) {
+      res.cookie(env.cookieName, token, {
+        httpOnly: true,
+        sameSite: 'lax',
+        maxAge: env.sessionTtlMs,
+        path: '/',
+      });
+    }
+    const msg =
+      purpose === 'login'
+        ? 'Verifikasi OTP berhasil, selamat datang!'
+        : 'Akun Anda berhasil diverifikasi. Silakan login.';
+    sendSuccess(res, 200, msg, { user });
   } catch (err) {
     next(err);
   }

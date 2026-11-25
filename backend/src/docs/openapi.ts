@@ -39,16 +39,17 @@ export const openApiSpec = {
     '/auth/register': {
       post: {
         tags: ['Auth'],
-        summary: 'Daftar anggota baru (role dikunci siswa)',
+        summary: 'Daftar anggota baru (role dikunci siswa, kirim OTP Mailpit)',
         requestBody: {
           required: true,
           content: {
             'application/json': {
               schema: {
                 type: 'object',
-                required: ['name', 'username', 'password', 'member_code'],
+                required: ['name', 'email', 'username', 'password', 'member_code'],
                 properties: {
                   name: { type: 'string', example: 'Budi Santoso' },
+                  email: { type: 'string', example: 'budi@denvora.local' },
                   username: { type: 'string', example: 'budi_rpl' },
                   password: { type: 'string', example: 'Rahasia123!' },
                   member_code: { type: 'string', example: '2025010' },
@@ -59,7 +60,52 @@ export const openApiSpec = {
             },
           },
         },
-        responses: { 201: { description: 'Anggota berhasil didaftarkan' } },
+        responses: { 201: { description: 'Anggota berhasil didaftarkan & OTP dikirim ke Mailpit' } },
+      },
+    },
+    '/auth/otp/send': {
+      post: {
+        tags: ['Auth'],
+        summary: 'Kirim kode OTP 6 digit ke Mailpit lokal (register atau login)',
+        requestBody: {
+          required: true,
+          content: {
+            'application/json': {
+              schema: {
+                type: 'object',
+                required: ['email', 'purpose'],
+                properties: {
+                  email: { type: 'string', example: 'siswa1@denvora.local' },
+                  purpose: { type: 'string', enum: ['register', 'login'] },
+                },
+              },
+            },
+          },
+        },
+        responses: { 200: { description: 'OTP berhasil dikirim ke Mailpit' } },
+      },
+    },
+    '/auth/otp/verify': {
+      post: {
+        tags: ['Auth'],
+        summary: 'Verifikasi kode OTP 6 digit dari Mailpit',
+        requestBody: {
+          required: true,
+          content: {
+            'application/json': {
+              schema: {
+                type: 'object',
+                required: ['email', 'otp', 'purpose'],
+                properties: {
+                  email: { type: 'string', example: 'siswa1@denvora.local' },
+                  otp: { type: 'string', example: '123456' },
+                  purpose: { type: 'string', enum: ['register', 'login'] },
+                },
+              },
+            },
+          },
+        },
+        responses: { 200: { description: 'OTP terverifikasi' } },
       },
     },
     '/auth/login': {
