@@ -42,17 +42,17 @@ export async function listUsersByRole(
   items: UserListRow[];
   meta: { page: number; limit: number; total: number; totalPages: number };
 }> {
-  const conditions: string[] = ['u.role = ?'];
+  const conditions: string[] = ['role = ?'];
   const params: Array<string | number> = [role];
 
   if (query.search) {
-    conditions.push('(u.name LIKE ? OR u.username LIKE ? OR COALESCE(u.member_code, "") LIKE ?)');
+    conditions.push('(name LIKE ? OR username LIKE ? OR member_code LIKE ?)');
     const kw = `%${query.search}%`;
     params.push(kw, kw, kw);
   }
 
   if (query.is_active === '1' || query.is_active === '0') {
-    conditions.push('u.is_active = ?');
+    conditions.push('is_active = ?');
     params.push(Number(query.is_active));
   }
 
@@ -60,20 +60,17 @@ export async function listUsersByRole(
   const offset = (query.page - 1) * query.limit;
 
   const [countRows] = await pool.query<RowDataPacket[]>(
-    `SELECT COUNT(*) AS total FROM users u ${whereClause}`,
+    `SELECT COUNT(*) AS total FROM users ${whereClause}`,
     params
   );
   const total = Number(countRows[0].total);
 
   const [rows] = await pool.query<UserListRow[]>(
-    `SELECT u.id, u.name, u.username, u.role, u.member_code, u.class_name, u.phone,
-            u.is_active, u.created_at, u.updated_at,
-            SUM(CASE WHEN t.status = 'borrowed' THEN 1 ELSE 0 END) AS active_borrows
-     FROM users u
-     LEFT JOIN transactions t ON t.user_id = u.id
+    `SELECT id, name, username, role, member_code, class_name, phone,
+            is_active, created_at, updated_at
+     FROM users
      ${whereClause}
-     GROUP BY u.id
-     ORDER BY u.id DESC
+     ORDER BY id DESC
      LIMIT ? OFFSET ?`,
     [...params, query.limit, offset]
   );
@@ -97,19 +94,22 @@ export async function getUserByIdAndRole(
   role: 'siswa' | 'petugas'
 ): Promise<UserListRow> {
   const [rows] = await pool.execute<UserListRow[]>(
-    `SELECT u.id, u.name, u.username, u.role, u.member_code, u.class_name, u.phone,
-            u.is_active, u.created_at, u.updated_at,
-            SUM(CASE WHEN t.status = 'borrowed' THEN 1 ELSE 0 END) AS active_borrows
-     FROM users u
-     LEFT JOIN transactions t ON t.user_id = u.id
-     WHERE u.id = ? AND u.role = ?
-     GROUP BY u.id
+    `SELECT id, name, username, role, member_code, class_name, phone,
+            is_active, created_at, updated_at
+     FROM users
+     WHERE id = ? AND role = ?
      LIMIT 1`,
     [id, role]
   );
   if (rows.length === 0) {
     throw new AppError(404, role === 'siswa' ? 'Anggota tidak ditemukan' : 'Petugas tidak ditemukan');
   }
+
+  const [activeRows] = await pool.execute<RowDataPacket[]>(
+    "SELECT COUNT(*) AS total FROM transactions WHERE user_id = ? AND status = 'borrowed'",
+    [id]
+  );
+  rows[0].active_borrows = Number(activeRows[0].total || 0);
   return rows[0];
 }
 
