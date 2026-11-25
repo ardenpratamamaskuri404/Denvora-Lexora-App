@@ -12,6 +12,7 @@ import { openApiSpec } from './docs/openapi';
 import { sendSuccess, sendError } from './utils/response';
 import { notFoundHandler, errorHandler } from './middlewares/errorHandler';
 import { authRouter } from './routes/auth.routes';
+import { publicCatalogRouter } from './routes/publicCatalog.routes';
 import { siswaRouter } from './routes/siswa.routes';
 import { petugasRouter } from './routes/petugas.routes';
 import { adminRouter } from './routes/admin.routes';
@@ -42,6 +43,7 @@ app.get('/api/health', async (_req, res) => {
 });
 
 app.use('/api/auth', authRouter);
+app.use('/api/catalog', publicCatalogRouter);
 app.use('/api/siswa', siswaRouter);
 app.use('/api/petugas', petugasRouter);
 app.use('/api/admin', adminRouter);

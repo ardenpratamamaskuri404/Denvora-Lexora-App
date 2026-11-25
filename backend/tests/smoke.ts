@@ -63,9 +63,13 @@ async function runSmokeTests(): Promise<void> {
   const baseUrl = `http://127.0.0.1:${address.port}`;
 
   try {
-    // 1. Health & Swagger UI
+    // 1. Health, Public Catalog Search & Swagger UI
     const health = await request(baseUrl, 'GET', '/api/health');
     assert.equal(health.status, 200, `Health gagal: ${health.raw}`);
+
+    const pubSearch = await request(baseUrl, 'GET', '/api/catalog/books?search=Laskar&limit=5');
+    assert.equal(pubSearch.status, 200, `Public catalog search gagal: ${pubSearch.raw}`);
+    assert.ok((pubSearch.body.data as unknown[]).length > 0, 'Public search harus menemukan Laskar Pelangi');
 
     const docsRes = await fetch(`${baseUrl}/api-docs/`);
     assert.equal(docsRes.status, 200, 'Swagger UI /api-docs harus merespons 200');
