@@ -53,6 +53,8 @@
 | Method | Endpoint | Akses | Deskripsi |
 |---|---|---|---|
 | `GET` | `/health` | Publik | Cek status server & koneksi database MySQL. |
+| `GET` | `/catalog/books` | Publik | Pencarian katalog buku baca-saja secara *live* (`search`, `category_id`, `availability`, `limit`). |
+| `GET` | `/catalog/categories` | Publik | Daftar kategori buku publik. |
 | `POST` | `/auth/register` | Publik | Pendaftaran anggota baru (**role dikunci `siswa`**) dan kirim OTP ke Mailpit. |
 | `POST` | `/auth/login` | Publik | Validasi `username`/`email` & `password`, set cookie sesi `HttpOnly`. |
 | `POST` | `/auth/otp/send` | Publik | Kirim / kirim ulang OTP 6 digit ke Mailpit (`register` atau `login`). |
