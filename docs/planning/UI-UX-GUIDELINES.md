@@ -91,7 +91,7 @@ Tema warna **Denvora Lexora** terkunci pada palet **Cream Mocha (Krem & Cokelat 
    - Gunakan animasi tenang (`150ms–550ms`, kurva cubic-bezier `[0.22, 1, 0.36, 1]` / `easeOut`) dengan transform GPU (`transform-gpu`), tanpa `bounce` berlebihan atau loop kasar.
    - Parallax hero, bagian *CERITA*, dan transisi antar-section bersifat dua arah (*scroll* naik maupun turun) memakai `useScroll` + `useSpring` (`stiffness: 180, damping: 32`) + `whileInView={{ opacity: 1, y: 0 }}` (`viewport={{ once: false, amount: 0.2 }}`), ditambah partikel bintang & cahaya lembut (`AmbientSparkles`) bernuansa Cream Mocha, tanpa library pihak ketiga seperti `lenis` atau `gsap`.
 4. **Mode Gelap & Terang (`Theme Toggle`):**
-   - Tombol ikon Bulan/Matahari tersedia di sebelah tombol `Masuk` pada `LandingNavbar` (`localStorage` key `denvora-theme`), mengaktifkan class `.dark` dan token CSS Dark Espresso Mocha (`#18110C`, `#241913`, `#2E2017`, `#C87E4F`, `#F6EFE6`) di `globals.css`.
+   - Tombol ikon Bulan/Matahari tersedia di sebelah tombol `Masuk` pada `LandingNavbar` (`localStorage` key `denvora-theme`), mengaktifkan class `.dark` dan token CSS Dark Espresso Mocha (`#18110C`, `#241913`, `#2E2017`, `#C87E4F`, `#F6EFE6`) di `globals.css`. Pilihan mode ini tersinkron otomatis ke seluruh rute termasuk `/login`, `/register`, `/otp`, dan dashboard peran.
 4. **Buttons:**
    - *Primary:* Latar `#A8643A`, teks `#F6EFE6`, hover `#8E512D`.
    - *Secondary:* Border `#A8643A` atau `#8C7B6B`, teks `#2B1D14`, latar transparan/`#FBF7F1`.
