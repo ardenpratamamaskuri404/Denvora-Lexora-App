@@ -138,3 +138,27 @@ INSERT INTO `transactions` (`id`, `transaction_code`, `user_id`, `book_id`, `pro
   (1, 'TRX-20261120-0001', 3, 3, NULL, '2026-11-20', '2026-11-27', NULL, 'borrowed', 'Pinjaman mandiri via katalog siswa'),
   (2, 'TRX-20261110-0002', 5, 2, 2, '2026-11-10', '2026-11-17', NULL, 'borrowed', 'Diproses oleh petugas (uji status terlambat)'),
   (3, 'TRX-20261105-0003', 3, 4, 1, '2026-11-05', '2026-11-12', '2026-11-11', 'returned', 'Dikembalikan tepat waktu');
+
+-- =============================================================================
+-- Query Verifikasi Data (SELECT)
+-- =============================================================================
+SELECT `id`, `name`, `username`, `role`, `member_code`, `class_name`, `is_active`
+FROM `users`
+ORDER BY `id` ASC;
+
+SELECT `id`, `name`, `created_at`
+FROM `categories`
+ORDER BY `id` ASC;
+
+SELECT `b`.`id`, `b`.`book_code`, `b`.`title`, `b`.`author`, `c`.`name` AS `category`,
+       `b`.`stock_total`, `b`.`stock_available`, `b`.`shelf_location`
+FROM `books` `b`
+INNER JOIN `categories` `c` ON `c`.`id` = `b`.`category_id`
+ORDER BY `b`.`id` ASC;
+
+SELECT `t`.`id`, `t`.`transaction_code`, `u`.`name` AS `member_name`, `b`.`title` AS `book_title`,
+       `t`.`borrow_date`, `t`.`due_date`, `t`.`return_date`, `t`.`status`
+FROM `transactions` `t`
+INNER JOIN `users` `u` ON `u`.`id` = `t`.`user_id`
+INNER JOIN `books` `b` ON `b`.`id` = `t`.`book_id`
+ORDER BY `t`.`id` ASC;

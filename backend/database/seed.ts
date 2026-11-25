@@ -9,7 +9,7 @@ import mysql from 'mysql2/promise';
 import { env } from '../src/config/env';
 
 async function runSeed(): Promise<void> {
-  const sqlPath = path.resolve(__dirname, '../../database/perpustakaan.sql');
+  const sqlPath = path.resolve(__dirname, '../../database/schema.sql');
   const sql = await fs.readFile(sqlPath, 'utf8');
 
   const connection = await mysql.createConnection({
