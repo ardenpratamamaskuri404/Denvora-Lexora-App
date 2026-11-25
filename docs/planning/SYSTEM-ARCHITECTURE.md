@@ -58,7 +58,8 @@ Denvora Lexora memisahkan presentation layer, business logic layer, dan data sto
 | | `zod` | Validasi skema request body, query, dan params yang tegas dan terstruktur. |
 | | `cors` | Mengatur izin origin `http://localhost:3000` dengan dukungan kredensial. |
 | | `swagger-ui-express` | Dokumentasi REST API interaktif lokal di `/api-docs` menggunakan file OpenAPI lokal tanpa internet (`RECOMMENDATION`). |
-| | Node `crypto` & `fs/promises` (built-in) | Penandatanganan token sesi HMAC-SHA256 dan akses file lokal (CSV export & log) **tanpa menambah dependensi eksternal yang tidak perlu**. |
+| | `nodemailer` + Mailpit lokal | Pengiriman email OTP 6 digit ke SMTP Mailpit Laragon (`127.0.0.1:1025` & Web UI `http://127.0.0.1:8025`) secara 100% offline. |
+| | Node `crypto` & `fs/promises` (built-in) | Penandatanganan token sesi HMAC-SHA256, hashing OTP, dan akses file lokal (CSV export & log) **tanpa ketergantungan cloud**. |
 | **Database** | MySQL + MySQL Workbench | RDBMS lokal yang stabil, mudah diekspor ke `.sql` untuk deliverable UKK. |
 
 ---
@@ -119,8 +120,9 @@ sistem-peminjaman-buku/
 │   │   │   ├── fitur/page.tsx            # Halaman Layanan Perpustakaan (/fitur)
 │   │   │   ├── alur/page.tsx             # Halaman Panduan Peminjaman (/alur)
 │   │   │   ├── tentang/page.tsx          # Halaman Tentang Kami & FAQ (/tentang)
-│   │   │   ├── login/page.tsx            # Halaman Login terpadu (sesuai flowmap)
-│   │   │   ├── register/page.tsx         # Daftar Anggota khusus Siswa
+│   │   │   ├── login/page.tsx            # Halaman Login kurva split-card (/login)
+│   │   │   ├── register/page.tsx         # Daftar Anggota khusus Siswa + kirim OTP (/register)
+│   │   │   ├── otp/page.tsx              # Verifikasi OTP 6 digit via Mailpit (/otp)
 │   │   │   ├── admin/                    # Dashboard, Buku, Anggota, Petugas, Transaksi, Laporan
 │   │   │   ├── petugas/                  # Dashboard Petugas, Buku, Transaksi, Daftar Anggota
 │   │   │   └── siswa/                    # Dashboard Siswa, Katalog & Pinjam, Pengembalian

@@ -53,19 +53,24 @@
 | Method | Endpoint | Akses | Deskripsi |
 |---|---|---|---|
 | `GET` | `/health` | Publik | Cek status server & koneksi database MySQL. |
-| `POST` | `/auth/register` | Publik | Pendaftaran anggota baru (**role dikunci `siswa`**). |
-| `POST` | `/auth/login` | Publik | Validasi `username` & `password`, set cookie sesi `HttpOnly`. |
+| `POST` | `/auth/register` | Publik | Pendaftaran anggota baru (**role dikunci `siswa`**) dan kirim OTP ke Mailpit. |
+| `POST` | `/auth/login` | Publik | Validasi `username`/`email` & `password`, set cookie sesi `HttpOnly`. |
+| `POST` | `/auth/otp/send` | Publik | Kirim / kirim ulang OTP 6 digit ke Mailpit (`register` atau `login`). |
+| `POST` | `/auth/otp/verify` | Publik | Verifikasi kode OTP 6 digit dari Mailpit (aktifkan akun / terbitkan cookie sesi). |
 | `POST` | `/auth/logout` | Authenticated | Menghapus cookie sesi. |
 | `GET` | `/auth/me` | Authenticated | Mengambil profil pengguna yang sedang login. |
 
 ### Detail Request & Validasi Auth
 - **`POST /auth/register`**
-  - Body: `{ name, username, password, member_code, class_name?, phone? }`
-  - Validasi `Zod`: `name` min 3 char, `username` min 4 char alfanumerik/underscore, `password` min 6 char, `member_code` wajib.
-  - Aturan: `role` **diabaikan jika dikirim client** dan selalu di-hardcode `'siswa'` di backend.
+  - Body: `{ name, email, username, password, member_code, class_name?, phone? }`
+  - Validasi `Zod`: `name` min 3 char, `email` valid, `username` min 4 char alfanumerik/underscore, `password` min 6 char, `member_code` min 3 char wajib.
+  - Aturan: `role` **diabaikan jika dikirim client**, selalu di-hardcode `'siswa'` (`is_verified = 0`), dan mengirim OTP 6 digit ke Mailpit (`127.0.0.1:1025`).
 - **`POST /auth/login`**
-  - Body: `{ username, password }`
-  - Response `200`: `{ user: { id, name, username, role, member_code } }` + Set-Cookie `denvora_session`.
+  - Body: `{ username, password }` (menerima username atau email).
+  - Response `200`: `{ user: { id, name, email, username, role, member_code, is_verified } }` + Set-Cookie `denvora_session`.
+- **`POST /auth/otp/send` & `POST /auth/otp/verify`**
+  - `send`: `{ email, purpose: 'register' | 'login' }` → mengirim OTP 6 digit ke Mailpit (berlaku 10 menit).
+  - `verify`: `{ email, otp: '6 digit', purpose: 'register' | 'login' }` → verifikasi hash OTP; jika `login`, langsung set cookie sesi `HttpOnly`.
 
 ---
 

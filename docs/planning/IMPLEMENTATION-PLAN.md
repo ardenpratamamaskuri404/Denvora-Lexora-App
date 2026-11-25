@@ -117,5 +117,5 @@ Agar penilai dapat memverifikasi secara langsung tanpa menebak-nebak, berikut pe
 |---|---|---|
 | **Sprint 1** | `database/schema.sql`, REST API Express TypeScript + RBAC 3 Role + Zod + Swagger UI + Smoke Test | Selesai (`0c2c769`–`df61c4f`), menunggu eksekusi seed saat MySQL aktif |
 | **Sprint 2** | Setup Next.js 16 (Webpack) Cream Mocha, Multi-page Landing (`/`, `/fitur`, `/alur`, `/tentang`), 4 aset 3D SVG khusus, Dark/Light mode toggle, GPU smooth scroll parallax & Footer 4 kolom | Selesai & terverifikasi lint/typecheck/build |
-| **Sprint 3** | Halaman Auth (`/login`, `/register`), API Client + Auth Context, dan Dashboard + CRUD Siswa, Petugas, & Admin | Berikutnya |
+| **Sprint 3** | Auth end-to-end (`/login`, `/register`, `/otp` kurva split-card + integrasi Mailpit SMTP `nodemailer` & tabel `otp_verifications`), portal sesi peran (`/siswa`, `/petugas`, `/admin`), serta Dashboard + CRUD penuh tiap peran | Auth & OTP Mailpit selesai + teruji; Dashboard CRUD lanjutan berikutnya |
 | **Sprint 4** | Uji integrasi full-stack (MySQL aktif), verifikasi `TEST-PLAN.md`, JSDoc, dan paket akhir `docs/ukk-submission/` | Terjadwal |

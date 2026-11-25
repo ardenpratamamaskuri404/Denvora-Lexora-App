@@ -96,6 +96,7 @@ erDiagram
 |---|---|---|---|
 | `id` | `INT UNSIGNED` | `PK, AUTO_INCREMENT` | ID unik pengguna |
 | `name` | `VARCHAR(100)` | `NOT NULL` | Nama lengkap |
+| `email` | `VARCHAR(120)` | `NULL, UNIQUE` | Email lokal/sekolah untuk verifikasi OTP Mailpit |
 | `username` | `VARCHAR(50)` | `NOT NULL, UNIQUE` | Username untuk login |
 | `password_hash` | `VARCHAR(255)` | `NOT NULL` | Hash bcrypt dari password |
 | `role` | `ENUM('admin','petugas','siswa')` | `NOT NULL, DEFAULT 'siswa'` | Hak akses pengguna |
@@ -103,6 +104,7 @@ erDiagram
 | `class_name` | `VARCHAR(50)` | `NULL` | Kelas siswa (mis. `XII RPL 1`) |
 | `phone` | `VARCHAR(20)` | `NULL` | Nomor kontak siswa/petugas |
 | `is_active` | `TINYINT(1)` | `NOT NULL, DEFAULT 1` | Status akun (`1` = aktif, `0` = nonaktif) |
+| `is_verified` | `TINYINT(1)` | `NOT NULL, DEFAULT 1` | Status verifikasi email OTP (`0` sebelum verifikasi register, `1` setelah terverifikasi) |
 | `created_at` | `TIMESTAMP` | `DEFAULT CURRENT_TIMESTAMP` | Waktu pembuatan |
 | `updated_at` | `TIMESTAMP` | `DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP` | Waktu pembaruan |
 
