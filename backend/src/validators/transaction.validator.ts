@@ -12,18 +12,31 @@ export const siswaBorrowSchema = z.object({
   notes: z.string().trim().max(255).optional().nullable(),
 });
 
-export const staffCreateTransactionSchema = z.object({
-  user_id: z.coerce.number().int().positive('Anggota peminjam wajib dipilih'),
-  book_id: z.coerce.number().int().positive('Buku wajib dipilih'),
-  borrow_date: z.string().regex(isoDateRegex, 'Format tanggal YYYY-MM-DD').optional(),
-  due_date: z.string().regex(isoDateRegex, 'Format tanggal YYYY-MM-DD').optional(),
-  notes: z.string().trim().max(255).optional().nullable(),
-});
+export const staffCreateTransactionSchema = z
+  .object({
+    user_id: z.coerce.number().int().positive('Anggota peminjam wajib dipilih'),
+    book_id: z.coerce.number().int().positive('Buku wajib dipilih'),
+    borrow_date: z.string().regex(isoDateRegex, 'Format tanggal YYYY-MM-DD').optional(),
+    due_date: z.string().regex(isoDateRegex, 'Format tanggal YYYY-MM-DD').optional(),
+    notes: z.string().trim().max(255).optional().nullable(),
+  })
+  .refine(
+    (data) => !data.borrow_date || !data.due_date || data.due_date >= data.borrow_date,
+    {
+      message: 'Tanggal jatuh tempo tidak boleh lebih awal dari tanggal pinjam',
+      path: ['due_date'],
+    }
+  );
 
 export const staffUpdateTransactionSchema = z.object({
   status: z.enum(['borrowed', 'returned']).optional(),
   due_date: z.string().regex(isoDateRegex, 'Format tanggal YYYY-MM-DD').optional(),
-  return_date: z.string().regex(isoDateRegex, 'Format tanggal YYYY-MM-DD').optional().nullable(),
+  return_date: z
+    .string()
+    .regex(isoDateRegex, 'Format tanggal YYYY-MM-DD')
+    .optional()
+    .nullable()
+    .or(z.literal('')),
   notes: z.string().trim().max(255).optional().nullable(),
 });
 

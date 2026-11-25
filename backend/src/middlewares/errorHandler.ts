@@ -9,6 +9,8 @@ import { appendLog } from '../utils/fileHelper';
 
 interface HttpError extends Error {
   statusCode?: number;
+  status?: number;
+  type?: string;
   code?: string;
   errors?: ValidationIssue[];
 }
@@ -23,12 +25,16 @@ export function notFoundHandler(req: Request, res: Response): Response {
 /**
  * Global error handler middleware Express.
  */
-export async function errorHandler(
+export function errorHandler(
   err: HttpError,
   req: Request,
   res: Response,
   _next: NextFunction
-): Promise<Response> {
+): Response {
+  if (err.type === 'entity.parse.failed') {
+    return sendError(res, 400, 'Format body JSON tidak valid');
+  }
+
   if (err.code === 'ER_DUP_ENTRY') {
     return sendError(res, 409, 'Data sudah terdaftar (duplikasi nilai unik)');
   }
@@ -37,11 +43,11 @@ export async function errorHandler(
     return sendError(res, 409, 'Data tidak dapat dihapus karena masih terkait dengan data lain');
   }
 
-  const statusCode = err.statusCode || 500;
+  const statusCode = err.statusCode || err.status || 500;
   const message = statusCode >= 500 ? 'Terjadi kesalahan pada server' : err.message;
 
   if (statusCode >= 500) {
-    await appendLog('ERROR', `${req.method} ${req.originalUrl}`, err.message || 'Unknown error');
+    void appendLog('ERROR', `${req.method} ${req.originalUrl}`, err.message || 'Unknown error');
   }
 
   return sendError(res, statusCode, message, err.errors);

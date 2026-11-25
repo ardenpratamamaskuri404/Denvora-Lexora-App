@@ -179,7 +179,7 @@ export async function updateTransactionByStaff(
     await connection.beginTransaction();
 
     const [trxRows] = await connection.execute<RowDataPacket[]>(
-      'SELECT id, book_id, status, due_date, return_date, notes FROM transactions WHERE id = ? FOR UPDATE',
+      'SELECT id, book_id, status, borrow_date, due_date, return_date, notes FROM transactions WHERE id = ? FOR UPDATE',
       [trxId]
     );
     if (trxRows.length === 0) {
@@ -187,6 +187,10 @@ export async function updateTransactionByStaff(
     }
 
     const current = trxRows[0];
+    const nextDueDate = input.due_date ?? current.due_date;
+    if (nextDueDate < current.borrow_date) {
+      throw new AppError(400, 'Tanggal jatuh tempo tidak boleh lebih awal dari tanggal pinjam');
+    }
     const nextStatus = input.status ?? current.status;
 
     if (current.status === 'borrowed' && nextStatus === 'returned') {
@@ -219,7 +223,7 @@ export async function updateTransactionByStaff(
        WHERE id = ?`,
       [
         nextStatus,
-        input.due_date ?? current.due_date,
+        nextDueDate,
         nextReturnDate,
         input.notes !== undefined ? input.notes : current.notes,
         staffId,
