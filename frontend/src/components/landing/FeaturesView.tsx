@@ -33,21 +33,21 @@ const PREVIEW_CARDS = [
   {
     tag: "Pendaftaran",
     title: "Aktivasi Kartu Anggota",
-    image: "/images/denvora-register-web.svg",
+    image: "/images/fitur-aktivasi-kartu.svg",
     tilt: "md:-rotate-2",
     tone: "bg-[var(--surface-elevated)]",
   },
   {
     tag: "Portal Baca",
     title: "Akses Akun Perpustakaan",
-    image: "/images/denvora-login-web.svg",
+    image: "/images/fitur-portal-baca.svg",
     tilt: "md:rotate-0 md:-translate-y-2",
     tone: "bg-[var(--bg-surface)]",
   },
   {
     tag: "Koleksi Rak",
     title: "Eksplorasi & Peminjaman",
-    image: "/images/denvora-landing-hero.svg",
+    image: "/images/fitur-eksplorasi-pinjam.svg",
     tilt: "md:rotate-2",
     tone: "bg-[var(--surface-elevated)]",
   },
@@ -92,11 +92,11 @@ export function FeaturesView() {
               </div>
               <div className="relative h-56 w-full border-t border-[var(--border-subtle)]">
                 <Image
-                  src="/images/denvora-landing-hero.svg"
-                  alt="Koleksi Perpustakaan Denvora Lexora"
-                  width={640}
-                  height={360}
-                  className="h-full w-full object-cover object-right"
+                  src="/images/fitur-katalog-terpadu.svg"
+                  alt="Ilustrasi 3D Layanan Terpadu Denvora Lexora"
+                  width={800}
+                  height={520}
+                  className="h-full w-full object-cover object-center"
                 />
               </div>
             </motion.div>
