@@ -11,6 +11,10 @@ import { checkConnection } from './config/db';
 import { openApiSpec } from './docs/openapi';
 import { sendSuccess, sendError } from './utils/response';
 import { notFoundHandler, errorHandler } from './middlewares/errorHandler';
+import { authRouter } from './routes/auth.routes';
+import { siswaRouter } from './routes/siswa.routes';
+import { petugasRouter } from './routes/petugas.routes';
+import { adminRouter } from './routes/admin.routes';
 
 export const app = express();
 
@@ -36,6 +40,11 @@ app.get('/api/health', async (_req, res) => {
     return sendError(res, 503, `Server aktif, database belum terhubung: ${message}`);
   }
 });
+
+app.use('/api/auth', authRouter);
+app.use('/api/siswa', siswaRouter);
+app.use('/api/petugas', petugasRouter);
+app.use('/api/admin', adminRouter);
 
 app.use(notFoundHandler);
 app.use(errorHandler);
