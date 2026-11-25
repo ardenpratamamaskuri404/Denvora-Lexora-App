@@ -20,7 +20,7 @@ function OtpContent() {
   const [digits, setDigits] = useState<string[]>(["", "", "", "", "", ""]);
   const [cooldown, setCooldown] = useState(initialEmail ? 45 : 0);
   const [infoMsg, setInfoMsg] = useState(
-    initialEmail ? `Kode OTP 6 digit telah dikirim ke ${initialEmail}.` : ""
+    initialEmail ? `Kode verifikasi 6 digit telah dikirimkan ke ${initialEmail}.` : ""
   );
   const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
@@ -49,7 +49,7 @@ function OtpContent() {
       setCooldown(45);
       setInfoMsg(res.message);
     } catch (err) {
-      setErrorMsg(err instanceof ApiRequestError ? err.message : "Gagal mengirim OTP.");
+      setErrorMsg(err instanceof ApiRequestError ? err.message : "Gagal mengirim kode verifikasi.");
     } finally {
       setLoading(false);
     }
@@ -88,7 +88,7 @@ function OtpContent() {
     setErrorMsg("");
     const code = digits.join("");
     if (code.length !== 6) {
-      setErrorMsg("Masukkan 6 digit kode OTP dari Mailpit.");
+      setErrorMsg("Lengkapi 6 digit kode verifikasi terlebih dahulu.");
       return;
     }
 
@@ -111,17 +111,19 @@ function OtpContent() {
   return (
     <AuthShell
       illustrationSrc="/images/denvora-otp-web.svg"
-      illustrationAlt="Ilustrasi 3D Verifikasi OTP Mailpit Denvora Lexora"
+      illustrationAlt="Ilustrasi 3D Verifikasi OTP Denvora Lexora"
     >
-      <div className="mb-5">
+      <div className="mb-6">
         <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#C87E4F]">
-          Verifikasi Mailpit Lokal
+          {purpose === "register" ? "Aktivasi Keanggotaan" : "Pemulihan Akses Akun"}
         </p>
-        <h1 className="font-editorial mt-1.5 text-2xl sm:text-3xl font-bold text-[#F6EFE6]">
-          {purpose === "register" ? "Verifikasi Akun Baru" : "Masuk dengan Kode OTP"}
+        <h1 className="font-editorial mt-1.5 text-3xl sm:text-4xl font-bold text-[#F6EFE6]">
+          {purpose === "register" ? "Verifikasi Alamat Email" : "Lupa Password"}
         </h1>
-        <p className="mt-1.5 text-xs text-[#C2B09E] leading-relaxed">
-          Periksa pesan masuk pada kotak surat lokal Mailpit Anda untuk melihat kode 6 digit.
+        <p className="mt-2 text-xs sm:text-sm text-[#C2B09E] leading-relaxed">
+          {purpose === "register"
+            ? "Masukkan 6 digit kode verifikasi yang telah dikirimkan ke kotak masuk email Anda."
+            : "Masukkan alamat email terdaftar Anda untuk menerima kode verifikasi masuk 6 digit."}
         </p>
       </div>
 
@@ -142,11 +144,11 @@ function OtpContent() {
         <form onSubmit={handleSendOtp} className="space-y-4">
           <AuthField
             id="otp-email"
-            label="Email Terdaftar"
+            label="Alamat Email"
             type="email"
             value={email}
             onChange={setEmail}
-            placeholder="siswa1@denvora.local"
+            placeholder="Masukkan alamat email terdaftar"
             autoComplete="email"
           />
           <button
@@ -154,20 +156,20 @@ function OtpContent() {
             disabled={loading}
             className="h-11 w-full rounded-full bg-gradient-to-r from-[#C87E4F] to-[#A8643A] text-sm font-bold text-[#FBF7F1] shadow-md flex items-center justify-center gap-2 disabled:opacity-60 cursor-pointer"
           >
-            {loading ? <Loader2 size={16} className="animate-spin" /> : "Kirim Kode OTP ke Mailpit"}
+            {loading ? <Loader2 size={16} className="animate-spin" /> : "Kirim Kode Verifikasi"}
           </button>
         </form>
       ) : (
         <form onSubmit={handleVerifyOtp} className="space-y-5">
           <div>
             <div className="flex items-center justify-between text-xs text-[#C2B09E] mb-2">
-              <span>Kode OTP untuk <strong className="text-[#F6EFE6]">{email}</strong></span>
+              <span>Dikirim ke <strong className="text-[#F6EFE6]">{email}</strong></span>
               <button
                 type="button"
                 onClick={() => setStep("email")}
                 className="text-[#C87E4F] hover:underline cursor-pointer"
               >
-                Ganti Email
+                Ubah Email
               </button>
             </div>
             <div className="grid grid-cols-6 gap-2 sm:gap-2.5">
@@ -201,7 +203,7 @@ function OtpContent() {
               </>
             ) : (
               <>
-                Verifikasi OTP <ArrowRight size={16} />
+                Verifikasi Sekarang <ArrowRight size={16} />
               </>
             )}
           </button>
@@ -223,16 +225,16 @@ function OtpContent() {
               rel="noreferrer"
               className="inline-flex items-center gap-1 text-[#C87E4F] hover:underline"
             >
-              Buka Mailpit Web <ExternalLink size={12} />
+              Periksa Kotak Masuk <ExternalLink size={12} />
             </a>
           </div>
         </form>
       )}
 
       <p className="mt-6 border-t border-[#8C7B6B]/25 pt-5 text-center text-xs text-[#C2B09E]">
-        Kembali ke halaman{" "}
+        Kembali ke{" "}
         <Link href="/login" className="font-semibold text-[#E9DCCB] hover:text-[#C87E4F] underline">
-          Masuk dengan Password
+          Halaman Masuk
         </Link>
       </p>
     </AuthShell>

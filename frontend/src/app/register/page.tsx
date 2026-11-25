@@ -24,10 +24,10 @@ export default function RegisterPage() {
   function validateForm(): boolean {
     const errs: Record<string, string> = {};
     if (name.trim().length < 3) errs.name = "Nama minimal 3 karakter";
-    if (memberCode.trim().length < 3) errs.member_code = "NIS minimal 3 karakter";
+    if (memberCode.trim().length < 3) errs.member_code = "NIS / Kode anggota minimal 3 karakter";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) errs.email = "Format email tidak valid";
     if (!/^[a-zA-Z0-9_]{4,50}$/.test(username.trim())) {
-      errs.username = "Min 4 karakter (huruf, angka, atau _)";
+      errs.username = "Minimal 4 karakter (huruf, angka, atau _)";
     }
     if (password.length < 6) errs.password = "Password minimal 6 karakter";
 
@@ -61,7 +61,7 @@ export default function RegisterPage() {
         setFieldErrors(mapped);
         setGeneralError(err.message);
       } else {
-        setGeneralError("Pendaftaran gagal. Pastikan server backend aktif.");
+        setGeneralError("Pendaftaran gagal diproses. Silakan coba kembali.");
       }
     } finally {
       setLoading(false);
@@ -73,13 +73,16 @@ export default function RegisterPage() {
       illustrationSrc="/images/denvora-register-web.svg"
       illustrationAlt="Ilustrasi 3D Pendaftaran Anggota Denvora Lexora"
     >
-      <div className="mb-5">
+      <div className="mb-6">
         <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#C87E4F]">
-          Keanggotaan Siswa Baru
+          Pendaftaran Anggota Perpustakaan
         </p>
-        <h1 className="font-editorial mt-1 text-2xl sm:text-3xl font-bold text-[#F6EFE6]">
+        <h1 className="font-editorial mt-1.5 text-3xl sm:text-4xl font-bold text-[#F6EFE6]">
           Daftar Anggota
         </h1>
+        <p className="mt-2 text-xs sm:text-sm text-[#C2B09E] leading-relaxed">
+          Lengkapi data berikut untuk mengaktifkan kartu keanggotaan perpustakaan Anda.
+        </p>
       </div>
 
       {generalError && (
@@ -104,7 +107,7 @@ export default function RegisterPage() {
             label="NIS / Kode Anggota"
             value={memberCode}
             onChange={setMemberCode}
-            placeholder="Contoh: 2025010"
+            placeholder="Nomor induk siswa"
             error={fieldErrors.member_code}
           />
           <AuthField
@@ -121,21 +124,21 @@ export default function RegisterPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
           <AuthField
             id="reg-email"
-            label="Email (untuk OTP Mailpit)"
+            label="Alamat Email"
             type="email"
             value={email}
             onChange={setEmail}
-            placeholder="nama@denvora.local"
+            placeholder="nama@sekolah.sch.id"
             autoComplete="email"
             error={fieldErrors.email}
           />
           <AuthField
             id="reg-phone"
-            label="Nomor HP"
+            label="Nomor Telepon"
             type="tel"
             value={phone}
             onChange={setPhone}
-            placeholder="08xxxxxxxxxx"
+            placeholder="Nomor ponsel aktif"
             required={false}
             error={fieldErrors.phone}
           />
@@ -147,7 +150,7 @@ export default function RegisterPage() {
             label="Username"
             value={username}
             onChange={setUsername}
-            placeholder="Min. 4 karakter"
+            placeholder="Minimal 4 karakter"
             autoComplete="username"
             error={fieldErrors.username}
           />
@@ -157,7 +160,7 @@ export default function RegisterPage() {
             type="password"
             value={password}
             onChange={setPassword}
-            placeholder="Min. 6 karakter"
+            placeholder="Minimal 6 karakter"
             autoComplete="new-password"
             error={fieldErrors.password}
           />
@@ -170,18 +173,18 @@ export default function RegisterPage() {
         >
           {loading ? (
             <>
-              <Loader2 size={16} className="animate-spin" /> Mengirim OTP Mailpit...
+              <Loader2 size={16} className="animate-spin" /> Memproses Pendaftaran...
             </>
           ) : (
             <>
-              Daftar & Kirim OTP <ArrowRight size={16} />
+              Daftar & Verifikasi Email <ArrowRight size={16} />
             </>
           )}
         </button>
       </form>
 
-      <p className="mt-5 text-center text-xs text-[#C2B09E]">
-        Sudah terdaftar sebagai anggota?{" "}
+      <p className="mt-6 text-center text-xs text-[#C2B09E]">
+        Sudah memiliki akun?{" "}
         <Link href="/login" className="font-semibold text-[#E9DCCB] hover:text-[#C87E4F] underline">
           Masuk Sekarang
         </Link>
