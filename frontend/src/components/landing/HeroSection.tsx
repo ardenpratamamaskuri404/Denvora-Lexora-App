@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useSpring, useTransform } from "motion/react";
 import { BookOpen, LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -21,22 +21,28 @@ export function HeroSection() {
     offset: ["start start", "end start"],
   });
 
-  const bgY = useTransform(scrollYProgress, [0, 1], [0, 96]);
-  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.05]);
-  const textY = useTransform(scrollYProgress, [0, 1], [0, 42]);
-  const textOpacity = useTransform(scrollYProgress, [0, 0.78], [1, 0.25]);
-  const waveY = useTransform(scrollYProgress, [0, 1], [0, -22]);
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 85,
+    damping: 24,
+    mass: 0.5,
+  });
+
+  const bgY = useTransform(smoothProgress, [0, 1], [0, 72]);
+  const bgScale = useTransform(smoothProgress, [0, 1], [1, 1.04]);
+  const textY = useTransform(smoothProgress, [0, 1], [0, 28]);
+  const textOpacity = useTransform(smoothProgress, [0, 0.85], [1, 0.35]);
+  const waveY = useTransform(smoothProgress, [0, 1], [0, -18]);
 
   return (
     <>
       <section
         id="beranda"
         ref={heroRef}
-        className="relative min-h-[78svh] sm:min-h-[82svh] w-full overflow-hidden bg-[var(--bg-surface)] pt-32 pb-28 sm:pt-36 sm:pb-32 flex items-center transition-colors"
+        className="relative min-h-[calc(100svh-120px)] sm:min-h-[calc(100svh-104px)] w-full overflow-hidden bg-[var(--bg-surface)] pt-24 pb-20 sm:pt-28 sm:pb-24 flex items-center transition-colors"
       >
         <motion.div
           style={{ y: bgY, scale: bgScale }}
-          className="pointer-events-none absolute inset-0 will-change-transform"
+          className="pointer-events-none absolute inset-x-0 bottom-0 top-10 sm:top-6 will-change-transform"
         >
           <Image
             src="/images/denvora-landing-hero.svg"
@@ -44,15 +50,15 @@ export function HeroSection() {
             width={1920}
             height={1080}
             priority
-            className="h-full w-full object-cover object-[70%_35%] sm:object-[right_30%] dark:opacity-55"
+            className="h-full w-full object-cover object-[74%_28%] sm:object-[right_22%] dark:opacity-55"
           />
-          <div className="absolute inset-0 bg-[#F6EFE6]/84 dark:bg-[#18110C]/75 sm:bg-transparent sm:bg-gradient-to-r sm:from-[#F6EFE6]/95 sm:via-[#F6EFE6]/64 sm:to-transparent dark:sm:from-[#18110C]/95 dark:sm:via-[#18110C]/65 dark:sm:to-transparent" />
+          <div className="absolute inset-0 bg-[#F6EFE6]/85 dark:bg-[#18110C]/78 sm:bg-transparent sm:bg-gradient-to-r sm:from-[#F6EFE6]/95 sm:via-[#F6EFE6]/55 sm:to-transparent dark:sm:from-[#18110C]/95 dark:sm:via-[#18110C]/65 dark:sm:to-transparent" />
         </motion.div>
 
         <div className="relative z-10 mx-auto w-full max-w-6xl px-6">
           <motion.div
             style={{ y: textY, opacity: textOpacity }}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, ease: "easeOut" }}
             className="max-w-xl"
@@ -61,7 +67,7 @@ export function HeroSection() {
               Perpustakaan Sekolah Digital
             </p>
 
-            <h1 className="font-editorial mt-3 text-4xl font-bold leading-[1.12] tracking-tight text-[var(--text-primary)] sm:text-5xl lg:text-6xl">
+            <h1 className="font-editorial mt-2.5 text-4xl font-bold leading-[1.12] tracking-tight text-[var(--text-primary)] sm:text-5xl lg:text-[3.4rem]">
               Temukan Buku,{" "}
               <span className="text-[var(--accent-primary)]">Tumbuhkan Wawasan.</span>
             </h1>
@@ -72,7 +78,7 @@ export function HeroSection() {
               langsung, dan kelola peminjaman buku Anda dengan tertib.
             </p>
 
-            <div className="mt-8 flex flex-wrap items-center gap-3.5">
+            <div className="mt-7 flex flex-wrap items-center gap-3.5">
               <Button asChild size="pill">
                 <Link href="/register">
                   <BookOpen size={17} strokeWidth={1.75} />
@@ -91,7 +97,7 @@ export function HeroSection() {
 
         <motion.div
           style={{ y: waveY }}
-          className="pointer-events-none absolute -bottom-8 left-0 z-10 w-full will-change-transform"
+          className="pointer-events-none absolute -bottom-7 left-0 z-10 w-full will-change-transform"
         >
           <Image
             src="/images/wave-divider.svg"
@@ -108,36 +114,36 @@ export function HeroSection() {
             className="hidden dark:block w-full h-16 sm:h-24 md:h-28"
           >
             <path
-              d="M0 46 C240 122, 480 128, 760 66 C1030 6, 1255 24, 1440 72 L1440 160 L0 160 Z"
-              fill="#4A3528"
-              fillOpacity="0.55"
-            />
-            <path
-              d="M0 64 C265 130, 520 128, 785 74 C1045 20, 1265 36, 1440 84 L1440 160 L0 160 Z"
+              d="M0 38 C210 112, 430 118, 700 62 C970 6, 1220 18, 1440 76 L1440 160 L0 160 Z"
               fill="#241913"
-              fillOpacity="0.92"
+              fillOpacity="0.82"
             />
             <path
-              d="M0 64 C265 130, 520 128, 785 74 C1045 20, 1265 36, 1440 84"
+              d="M0 58 C245 128, 495 130, 760 72 C1025 14, 1255 34, 1440 88 L1440 160 L0 160 Z"
+              fill="#C87E4F"
+              fillOpacity="0.28"
+            />
+            <path
+              d="M0 58 C245 128, 495 130, 760 72 C1025 14, 1255 34, 1440 88"
               stroke="#C87E4F"
-              strokeOpacity="0.55"
-              strokeWidth="2.5"
+              strokeOpacity="0.82"
+              strokeWidth="3.5"
               fill="none"
             />
             <path
-              d="M0 84 C290 142, 540 138, 800 90 C1060 42, 1275 56, 1440 98 L1440 160 L0 160 Z"
-              fill="#2E2017"
+              d="M0 78 C270 140, 520 138, 790 88 C1055 38, 1270 52, 1440 100 L1440 160 L0 160 Z"
+              fill="#18110C"
             />
           </svg>
-          <div className="h-8 w-full bg-[var(--surface-elevated)]" />
+          <div className="h-7 w-full bg-[var(--bg-primary)]" />
         </motion.div>
       </section>
 
-      <section className="relative z-20 border-b border-[var(--border-subtle)] bg-[var(--surface-elevated)] py-6 sm:py-7 px-6 transition-colors">
-        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-6 md:grid-cols-4">
+      <section className="relative z-20 border-b border-[var(--border-subtle)] bg-[var(--bg-primary)] py-5 sm:py-6 px-6 transition-colors">
+        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-5 md:grid-cols-4">
           {HIGHLIGHTS.map((item) => (
             <div key={item.label} className="text-center md:text-left">
-              <p className="font-editorial text-xl sm:text-2xl font-bold text-[var(--text-primary)] tabular-nums">
+              <p className="font-editorial text-lg sm:text-xl font-bold text-[var(--text-primary)] tabular-nums">
                 {item.value}
               </p>
               <p className="mt-0.5 text-xs font-medium text-[var(--text-muted)]">{item.label}</p>

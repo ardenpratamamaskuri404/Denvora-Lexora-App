@@ -1,27 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 160" width="1440" height="160" preserveAspectRatio="none" fill="none">
   <path
-    d="M0 46 C240 122, 480 128, 760 66 C1030 6, 1255 24, 1440 72 L1440 160 L0 160 Z"
-    fill="#D7C7B4"
-    fill-opacity="0.55"
-  />
-  <path
-    d="M0 64 C265 130, 520 128, 785 74 C1045 20, 1265 36, 1440 84 L1440 160 L0 160 Z"
+    d="M0 38 C210 112, 430 118, 700 62 C970 6, 1220 18, 1440 76 L1440 160 L0 160 Z"
     fill="#E9DCCB"
-    fill-opacity="0.92"
+    fill-opacity="0.72"
   />
   <path
-    d="M0 64 C265 130, 520 128, 785 74 C1045 20, 1265 36, 1440 84"
+    d="M0 58 C245 128, 495 130, 760 72 C1025 14, 1255 34, 1440 88 L1440 160 L0 160 Z"
+    fill="#A8643A"
+    fill-opacity="0.22"
+  />
+  <path
+    d="M0 58 C245 128, 495 130, 760 72 C1025 14, 1255 34, 1440 88"
     stroke="#A8643A"
-    stroke-opacity="0.45"
-    stroke-width="2.5"
+    stroke-opacity="0.75"
+    stroke-width="3.5"
   />
   <path
-    d="M0 84 C290 142, 540 138, 800 90 C1060 42, 1275 56, 1440 98 L1440 160 L0 160 Z"
-    fill="#FBF7F1"
+    d="M0 78 C270 140, 520 138, 790 88 C1055 38, 1270 52, 1440 100 L1440 160 L0 160 Z"
+    fill="#F6EFE6"
   />
   <path
-    d="M0 84 C290 142, 540 138, 800 90 C1060 42, 1275 56, 1440 98"
+    d="M0 78 C270 140, 520 138, 790 88 C1055 38, 1270 52, 1440 100"
     stroke="#D7C7B4"
-    stroke-width="1.5"
+    stroke-width="2"
   />
 </svg>

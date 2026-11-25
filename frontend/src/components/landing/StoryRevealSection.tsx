@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useSpring, useTransform } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -14,19 +14,25 @@ export function StoryRevealSection() {
     offset: ["start start", "end end"],
   });
 
-  const leftWordX = useTransform(scrollYProgress, [0, 0.58], ["0vw", "-30vw"]);
-  const rightWordX = useTransform(scrollYProgress, [0, 0.58], ["0vw", "30vw"]);
-  const wordOpacity = useTransform(scrollYProgress, [0.3, 0.72], [1, 0]);
-  const frameScale = useTransform(scrollYProgress, [0.04, 0.68], [0.46, 1]);
-  const frameRadius = useTransform(scrollYProgress, [0.04, 0.68], [32, 20]);
-  const captionOpacity = useTransform(scrollYProgress, [0.55, 0.88], [0, 1]);
-  const captionY = useTransform(scrollYProgress, [0.55, 0.88], [28, 0]);
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 85,
+    damping: 24,
+    mass: 0.5,
+  });
+
+  const leftWordX = useTransform(smoothProgress, [0, 0.58], ["0vw", "-26vw"]);
+  const rightWordX = useTransform(smoothProgress, [0, 0.58], ["0vw", "26vw"]);
+  const wordOpacity = useTransform(smoothProgress, [0.3, 0.72], [1, 0]);
+  const frameScale = useTransform(smoothProgress, [0.04, 0.68], [0.5, 1]);
+  const frameRadius = useTransform(smoothProgress, [0.04, 0.68], [32, 20]);
+  const captionOpacity = useTransform(smoothProgress, [0.52, 0.86], [0, 1]);
+  const captionY = useTransform(smoothProgress, [0.52, 0.86], [24, 0]);
 
   return (
     <section
       id="cerita"
       ref={containerRef}
-      className="relative h-[210vh] bg-[var(--bg-surface)] transition-colors"
+      className="relative h-[185vh] bg-[var(--bg-surface)] transition-colors"
     >
       <div className="sticky top-0 flex h-[100svh] w-full flex-col items-center justify-center overflow-hidden px-4 py-16">
         <div className="relative flex w-full max-w-5xl items-center justify-center">
