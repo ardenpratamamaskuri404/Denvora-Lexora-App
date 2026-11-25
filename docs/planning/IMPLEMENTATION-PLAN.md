@@ -22,7 +22,7 @@
 
 ### Prioritas 3 — Debugging, Pengujian & Paket Pengumpulan UKK
 1. Pengujian menyeluruh mengacu `TEST-PLAN.md` (dalam kondisi offline localhost).
-2. Ekspor final `database/perpustakaan.sql` dari MySQL / MySQL Workbench.
+2. Ekspor final `database/schema.sql` dari MySQL / MySQL Workbench.
 3. Penyusunan paket dokumen di `docs/ukk-submission/` (ERD, deskripsi program, dokumentasi fungsi, log debugging, laporan evaluasi singkat).
 
 ---
@@ -58,7 +58,7 @@
 | **Jam 01:45 – 04:15** | 2,5 jam | Backend REST API | Auth + RBAC (`admin`, `petugas`, `siswa`), validasi Zod, CRUD Buku/Anggota/Petugas, Transaksi pinjam-kembali atomik, pencarian, ekspor CSV + log file. |
 | **Jam 04:15 – 07:00** | 2 jam 45 menit | Frontend UI & Integrasi | Terapkan brand identity Denvora Lexora, halaman Login & Daftar, Dashboard & menu Siswa, Dashboard & menu Admin, serta Dashboard Petugas. |
 | **Jam 07:00 – 08:00** | 60 menit | Debugging & Testing | Jalankan semua skenario `TEST-PLAN.md` secara offline, perbaiki bug, catat temuan debugging. |
-| **Jam 08:00 – 09:00** | 60 menit | Dokumentasi & Finalisasi | Generate dokumentasi JSDoc, ekspor final `perpustakaan.sql`, susun laporan evaluasi & dokumen UKK di pengolah kata / `docs/ukk-submission/`, cek kelengkapan folder proyek. |
+| **Jam 08:00 – 09:00** | 60 menit | Dokumentasi & Finalisasi | Generate dokumentasi JSDoc, ekspor final `schema.sql`, susun laporan evaluasi & dokumen UKK di pengolah kata / `docs/ukk-submission/`, cek kelengkapan folder proyek. |
 
 ---
 
@@ -102,7 +102,7 @@ Agar penilai dapat memverifikasi secara langsung tanpa menebak-nebak, berikut pe
 ## 5. Checklist Deliverables Pengumpulan UKK (SPK-4/4)
 
 - [ ] **1. Folder proyek aplikasi lengkap:** `frontend/` + `backend/` (tanpa `node_modules` saat zip pengumpulan jika dibatasi ukuran, atau lengkap siap jalan lokal).
-- [ ] **2. Database `.sql`:** `database/perpustakaan.sql` (DDL + seed data uji).
+- [ ] **2. Database `.sql`:** `database/schema.sql` (DDL + seed data uji).
 - [ ] **3.a. Dokumentasi ERD:** Diekspor/dirapikan dari `DATABASE-ERD.md` & MySQL Workbench.
 - [ ] **3.b. Deskripsi program:** Ringkasan sistem, arsitektur, alur kerja Admin/Petugas/Siswa, dan cara menjalankan.
 - [ ] **3.c. Dokumentasi fungsi/prosedur:** Hasil generate JSDoc + tabel fungsi utama.

@@ -145,7 +145,7 @@ sistem-peminjaman-buku/
 │   ├── .env.example
 │   └── package.json
 ├── database/
-│   └── perpustakaan.sql                  # Schema + seed siap import MySQL Workbench
+│   └── schema.sql                        # Schema + seed siap import MySQL Workbench
 ├── docs/
 │   ├── assets/denvora-lexora-logo.png
 │   ├── architecture/                     # Diagram pendukung arsitektur
@@ -182,7 +182,7 @@ NEXT_PUBLIC_API_URL=http://localhost:5000/api
 ```
 
 ### Langkah Menjalankan
-1. Import `database/perpustakaan.sql` ke MySQL (via MySQL Workbench atau CLI `mysql`).
+1. Import `database/schema.sql` ke MySQL (via MySQL Workbench atau CLI `mysql`).
 2. Jalankan backend:
    ```bash
    cd backend && npm install && npm run dev

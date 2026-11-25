@@ -2,7 +2,7 @@
 
 **DBMS:** MySQL 8.0 / MariaDB (Kompatibel penuh dengan MySQL Workbench)  
 **Nama Basis Data:** `denvora_lexora`  
-**File Deliverable SQL:** `database/perpustakaan.sql`  
+**File Deliverable SQL:** `database/schema.sql`  
 
 ---
 
