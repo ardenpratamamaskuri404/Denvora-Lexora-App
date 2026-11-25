@@ -2,6 +2,7 @@ import { LandingNavbar } from "@/components/landing/LandingNavbar";
 import { HeroSection } from "@/components/landing/HeroSection";
 import { StoryRevealSection } from "@/components/landing/StoryRevealSection";
 import { ExplorePillarsSection } from "@/components/landing/ExplorePillarsSection";
+import { HomeExtraSections } from "@/components/landing/HomeExtraSections";
 import { SiteFooter } from "@/components/landing/SiteFooter";
 
 export default function HomePage() {
@@ -12,6 +13,7 @@ export default function HomePage() {
         <HeroSection />
         <StoryRevealSection />
         <ExplorePillarsSection />
+        <HomeExtraSections />
       </main>
       <SiteFooter />
     </div>

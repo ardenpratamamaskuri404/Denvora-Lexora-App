@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { LandingNavbar } from "@/components/landing/LandingNavbar";
 import { FeaturesView } from "@/components/landing/FeaturesView";
+import { FeaturesMoreSections } from "@/components/landing/FeaturesMoreSections";
 import { SiteFooter } from "@/components/landing/SiteFooter";
 
 export const metadata: Metadata = {
@@ -14,6 +15,7 @@ export default function FiturPage() {
       <LandingNavbar />
       <main className="flex-1">
         <FeaturesView />
+        <FeaturesMoreSections />
       </main>
       <SiteFooter />
     </div>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { LandingNavbar } from "@/components/landing/LandingNavbar";
 import { FlowView } from "@/components/landing/FlowView";
+import { FlowMoreSections } from "@/components/landing/FlowMoreSections";
 import { SiteFooter } from "@/components/landing/SiteFooter";
 
 export const metadata: Metadata = {
@@ -14,6 +15,7 @@ export default function AlurPage() {
       <LandingNavbar />
       <main className="flex-1">
         <FlowView />
+        <FlowMoreSections />
       </main>
       <SiteFooter />
     </div>
