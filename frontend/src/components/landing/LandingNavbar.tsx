@@ -93,10 +93,10 @@ export function LandingNavbar() {
       <nav
         aria-label="Navigasi utama"
         className={cn(
-          "mx-auto max-w-6xl border border-[var(--border-subtle)] bg-[var(--surface-elevated)]/95 shadow-[0_8px_28px_rgba(43,29,20,0.08)] backdrop-blur-md transition-colors",
+          "mx-auto max-w-[1440px] border border-[var(--border-subtle)] bg-[var(--surface-elevated)]/95 shadow-[0_8px_28px_rgba(43,29,20,0.08)] backdrop-blur-md transition-colors",
           mobileOpen
-            ? "rounded-3xl px-4 py-3.5 md:rounded-full md:px-5 md:py-2"
-            : "rounded-full px-3.5 sm:px-5 py-2"
+            ? "rounded-3xl px-4 py-3.5 md:rounded-full md:px-6 md:py-2"
+            : "rounded-full px-3.5 sm:px-6 py-2"
         )}
       >
         <div className="flex items-center justify-between gap-3 sm:gap-4">

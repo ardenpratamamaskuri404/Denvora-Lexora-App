@@ -59,7 +59,7 @@ export function HeroSection() {
 
         <AmbientSparkles className="z-[5]" />
 
-        <div className="relative z-10 mx-auto w-full max-w-6xl px-6">
+        <div className="relative z-10 mx-auto w-full max-w-[1440px] px-6 sm:px-10 lg:px-14">
           <motion.div
             style={{ y: textY }}
             initial={{ opacity: 0, y: 18 }}
@@ -143,8 +143,8 @@ export function HeroSection() {
         </motion.div>
       </section>
 
-      <section className="relative z-20 border-b border-[var(--border-subtle)] bg-[var(--bg-primary)] py-5 sm:py-6 px-6 transition-colors">
-        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-5 md:grid-cols-4">
+      <section className="relative z-20 border-b border-[var(--border-subtle)] bg-[var(--bg-primary)] py-5 sm:py-6 px-6 sm:px-10 lg:px-14 transition-colors">
+        <div className="mx-auto grid max-w-[1440px] grid-cols-2 gap-5 md:grid-cols-4">
           {HIGHLIGHTS.map((item, idx) => (
             <motion.div
               key={item.label}

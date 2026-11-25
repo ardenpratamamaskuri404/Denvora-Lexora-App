@@ -32,8 +32,8 @@ const SMOOTH_EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 export function AboutMoreSections() {
   return (
     <>
-      <section className="py-20 px-6 bg-[var(--bg-surface)]/80 border-t border-[var(--border-subtle)] transition-colors">
-        <div className="mx-auto max-w-5xl grid gap-8 md:grid-cols-2 items-start">
+      <section className="py-20 px-6 sm:px-10 lg:px-14 bg-[var(--bg-surface)]/80 border-t border-[var(--border-subtle)] transition-colors">
+        <div className="mx-auto max-w-[1440px] grid gap-8 md:grid-cols-2 items-start">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -86,8 +86,8 @@ export function AboutMoreSections() {
         </div>
       </section>
 
-      <section className="py-20 px-6 bg-[var(--bg-primary)] border-t border-[var(--border-subtle)] transition-colors">
-        <div className="mx-auto max-w-5xl">
+      <section className="py-20 px-6 sm:px-10 lg:px-14 bg-[var(--bg-primary)] border-t border-[var(--border-subtle)] transition-colors">
+        <div className="mx-auto max-w-[1440px]">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}

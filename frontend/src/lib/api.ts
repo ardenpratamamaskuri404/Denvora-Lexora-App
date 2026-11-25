@@ -3,7 +3,13 @@
  * @description Klien HTTP terpusat untuk komunikasi dengan REST API backend Denvora Lexora.
  */
 
-import type { ApiFieldError, ApiResponse, AuthUser, OtpPurpose } from "@/types/auth";
+import type {
+  ApiFieldError,
+  ApiResponse,
+  AuthUser,
+  CatalogBookItem,
+  OtpPurpose,
+} from "@/types/auth";
 
 export const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
@@ -117,4 +123,14 @@ export async function meApi() {
 /** Menghapus sesi aktif pengguna saat keluar dari sistem. */
 export async function logoutApi() {
   return apiRequest<null>("/auth/logout", { method: "POST" });
+}
+
+/** Mencari buku katalog publik secara live berdasarkan kata kunci. */
+export async function searchPublicBooksApi(search: string, limit = 5) {
+  const qs = new URLSearchParams();
+  if (search.trim()) qs.set("search", search.trim());
+  qs.set("limit", String(limit));
+  return apiRequest<CatalogBookItem[]>(`/catalog/books?${qs.toString()}`, {
+    method: "GET",
+  });
 }

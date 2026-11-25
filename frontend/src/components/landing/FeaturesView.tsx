@@ -57,9 +57,9 @@ const PREVIEW_CARDS = [
 export function FeaturesView() {
   return (
     <>
-      <section className="relative bg-[var(--bg-primary)] pt-32 pb-16 px-6 transition-colors overflow-hidden">
+      <section className="relative bg-[var(--bg-primary)] pt-32 pb-16 px-6 sm:px-10 lg:px-14 transition-colors overflow-hidden">
         <AmbientSparkles />
-        <div className="relative z-10 mx-auto max-w-6xl">
+        <div className="relative z-10 mx-auto max-w-[1440px]">
           <div className="max-w-2xl">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent-primary)]">
               Layanan Perpustakaan
@@ -129,8 +129,8 @@ export function FeaturesView() {
         </div>
       </section>
 
-      <section className="border-t border-[var(--border-subtle)] bg-[var(--bg-surface)]/75 py-20 px-6 transition-colors">
-        <div className="mx-auto max-w-6xl text-center">
+      <section className="border-t border-[var(--border-subtle)] bg-[var(--bg-surface)]/75 py-20 px-6 sm:px-10 lg:px-14 transition-colors">
+        <div className="mx-auto max-w-[1440px] text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent-primary)]">
             Kemudahan Anggota
           </p>

@@ -55,7 +55,7 @@ export function HomeExtraSections() {
       <section className="relative py-20 md:py-24 bg-[var(--bg-primary)] transition-colors overflow-hidden">
         <AmbientSparkles />
 
-        <div className="relative z-10 max-w-6xl mx-auto px-6">
+        <div className="relative z-10 max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -104,13 +104,13 @@ export function HomeExtraSections() {
         </div>
       </section>
 
-      <section className="py-20 px-6 bg-[var(--bg-surface)] transition-colors">
+      <section className="py-20 px-6 sm:px-10 lg:px-14 bg-[var(--bg-surface)] transition-colors">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.25 }}
           transition={{ duration: 0.5, ease: SMOOTH_EASE }}
-          className="mx-auto max-w-5xl rounded-3xl border border-[var(--border-subtle)] bg-[var(--surface-elevated)] p-8 sm:p-12 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-8"
+          className="mx-auto max-w-[1440px] rounded-3xl border border-[var(--border-subtle)] bg-[var(--surface-elevated)] p-8 sm:p-12 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-8"
         >
           <div className="max-w-xl">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent-primary)]">

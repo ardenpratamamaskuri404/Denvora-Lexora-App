@@ -21,7 +21,7 @@ export function BrandStorySection() {
     >
       <AmbientSparkles />
 
-      <div className="relative z-10 mx-auto max-w-6xl px-6">
+      <div className="relative z-10 mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-14">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
