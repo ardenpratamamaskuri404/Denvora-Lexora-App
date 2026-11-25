@@ -35,37 +35,37 @@ const PREVIEW_CARDS = [
     title: "Aktivasi Kartu Anggota",
     image: "/images/denvora-register-web.svg",
     tilt: "md:-rotate-2",
-    tone: "bg-[#FBF7F1]",
+    tone: "bg-[var(--surface-elevated)]",
   },
   {
     tag: "Portal Baca",
     title: "Akses Akun Perpustakaan",
     image: "/images/denvora-login-web.svg",
     tilt: "md:rotate-0 md:-translate-y-2",
-    tone: "bg-[#E9DCCB]",
+    tone: "bg-[var(--bg-surface)]",
   },
   {
     tag: "Koleksi Rak",
     title: "Eksplorasi & Peminjaman",
     image: "/images/denvora-landing-hero.svg",
     tilt: "md:rotate-2",
-    tone: "bg-[#FBF7F1]",
+    tone: "bg-[var(--surface-elevated)]",
   },
 ];
 
 export function FeaturesView() {
   return (
     <>
-      <section className="bg-[#F6EFE6] pt-32 pb-16 px-6">
+      <section className="bg-[var(--bg-primary)] pt-32 pb-16 px-6 transition-colors">
         <div className="mx-auto max-w-6xl">
           <div className="max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#A8643A]">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent-primary)]">
               Layanan Perpustakaan
             </p>
-            <h1 className="font-editorial mt-2 text-3xl font-bold text-[#2B1D14] sm:text-5xl">
+            <h1 className="font-editorial mt-2 text-3xl font-bold text-[var(--text-primary)] sm:text-5xl">
               Dirancang untuk kebiasaan membaca yang tertib.
             </h1>
-            <p className="mt-3 text-base text-[#8C7B6B] leading-relaxed">
+            <p className="mt-3 text-base text-[var(--text-muted)] leading-relaxed">
               Setiap layanan kami hadir agar siswa lebih mudah menemukan literatur bermutu
               dan proses pinjam-kembali berjalan nyaman setiap hari.
             </p>
@@ -76,21 +76,21 @@ export function FeaturesView() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="flex flex-col justify-between overflow-hidden rounded-2xl border border-[#D7C7B4] bg-[#E9DCCB] lg:row-span-2"
+              className="flex flex-col justify-between overflow-hidden rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] lg:row-span-2"
             >
               <div className="p-6">
-                <span className="inline-block rounded-full bg-[#A8643A] px-3 py-1 text-xs font-semibold text-[#F6EFE6]">
+                <span className="inline-block rounded-full bg-[var(--accent-primary)] px-3 py-1 text-xs font-semibold text-[#F6EFE6]">
                   Layanan Terpadu
                 </span>
-                <h2 className="font-editorial mt-4 text-2xl font-bold text-[#2B1D14]">
+                <h2 className="font-editorial mt-4 text-2xl font-bold text-[var(--text-primary)]">
                   Katalog terbuka, sirkulasi buku lebih teratur.
                 </h2>
-                <p className="mt-2 text-sm leading-relaxed text-[#2B1D14]/80">
+                <p className="mt-2 text-sm leading-relaxed text-[var(--text-primary)]/80">
                   Dari penelusuran judul buku hingga pencatatan pengembalian di ruang baca,
                   seluruh aktivitas literasi sekolah terangkum dengan rapi.
                 </p>
               </div>
-              <div className="relative h-56 w-full border-t border-[#D7C7B4]">
+              <div className="relative h-56 w-full border-t border-[var(--border-subtle)]">
                 <Image
                   src="/images/denvora-landing-hero.svg"
                   alt="Koleksi Perpustakaan Denvora Lexora"
@@ -110,15 +110,15 @@ export function FeaturesView() {
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.35, delay: idx * 0.06 }}
-                    className="rounded-2xl border border-[#D7C7B4] bg-[#FBF7F1] p-6 shadow-xs transition-colors hover:border-[#A8643A]/60"
+                    className="rounded-2xl border border-[var(--border-subtle)] bg-[var(--surface-elevated)] p-6 shadow-xs transition-colors hover:border-[var(--accent-primary)]/60"
                   >
-                    <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#E9DCCB] text-[#A8643A]">
+                    <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--bg-surface)] text-[var(--accent-primary)]">
                       <Icon size={20} strokeWidth={1.75} />
                     </div>
-                    <h3 className="font-editorial mt-4 text-lg font-bold text-[#2B1D14]">
+                    <h3 className="font-editorial mt-4 text-lg font-bold text-[var(--text-primary)]">
                       {item.title}
                     </h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-[#8C7B6B]">{item.desc}</p>
+                    <p className="mt-1.5 text-sm leading-relaxed text-[var(--text-muted)]">{item.desc}</p>
                   </motion.article>
                 );
               })}
@@ -127,12 +127,12 @@ export function FeaturesView() {
         </div>
       </section>
 
-      <section className="border-t border-[#D7C7B4] bg-[#E9DCCB]/60 py-20 px-6">
+      <section className="border-t border-[var(--border-subtle)] bg-[var(--bg-surface)]/75 py-20 px-6 transition-colors">
         <div className="mx-auto max-w-6xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#A8643A]">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent-primary)]">
             Kemudahan Anggota
           </p>
-          <h2 className="font-editorial mt-2 text-3xl font-bold text-[#2B1D14] sm:text-4xl">
+          <h2 className="font-editorial mt-2 text-3xl font-bold text-[var(--text-primary)] sm:text-4xl">
             Pengalaman Membaca dari Pendaftaran hingga Pengembalian
           </h2>
 
@@ -144,9 +144,9 @@ export function FeaturesView() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.25 }}
                 transition={{ duration: 0.4, delay: idx * 0.08 }}
-                className={`group rounded-2xl border border-[#D7C7B4] ${card.tone} p-4 shadow-[0_14px_32px_rgba(43,29,20,0.08)] transition-transform duration-200 ${card.tilt} md:hover:rotate-0 md:hover:-translate-y-2`}
+                className={`group rounded-2xl border border-[var(--border-subtle)] ${card.tone} p-4 shadow-[0_14px_32px_rgba(43,29,20,0.08)] transition-transform duration-200 ${card.tilt} md:hover:rotate-0 md:hover:-translate-y-2`}
               >
-                <div className="overflow-hidden rounded-xl border border-[#D7C7B4] bg-[#F6EFE6]">
+                <div className="overflow-hidden rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-primary)]">
                   <Image
                     src={card.image}
                     alt={card.title}
@@ -156,10 +156,10 @@ export function FeaturesView() {
                   />
                 </div>
                 <div className="pt-4 pb-1 text-left">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-[#A8643A]">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-[var(--accent-primary)]">
                     {card.tag}
                   </span>
-                  <h3 className="font-editorial mt-1 text-lg font-bold text-[#2B1D14]">
+                  <h3 className="font-editorial mt-1 text-lg font-bold text-[var(--text-primary)]">
                     {card.title}
                   </h3>
                 </div>

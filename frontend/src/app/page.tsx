@@ -31,24 +31,24 @@ const LIBRARY_PILLARS = [
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-[#F6EFE6] text-[#2B1D14] flex flex-col">
+    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] flex flex-col">
       <LandingNavbar />
       <main className="flex-1">
         <HeroSection />
         <StoryRevealSection />
 
-        <section className="py-16 md:py-24 bg-[#F6EFE6]">
+        <section className="py-16 md:py-24 bg-[var(--bg-primary)] transition-colors">
           <div className="max-w-6xl mx-auto px-6">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#A8643A]">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent-primary)]">
                   Pengalaman Membaca Lebih Nyaman
                 </p>
-                <h2 className="font-editorial mt-2 text-3xl md:text-4xl font-bold text-[#2B1D14]">
+                <h2 className="font-editorial mt-2 text-3xl md:text-4xl font-bold text-[var(--text-primary)]">
                   Semua Kebutuhan Literasi dalam Satu Tempat
                 </h2>
               </div>
-              <p className="text-sm text-[#8C7B6B] max-w-md leading-relaxed">
+              <p className="text-sm text-[var(--text-muted)] max-w-md leading-relaxed">
                 Dirancang untuk mendukung kebiasaan membaca siswa dan menjaga koleksi
                 perpustakaan tetap rapi dan terawat.
               </p>
@@ -61,18 +61,18 @@ export default function HomePage() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="group rounded-3xl bg-[#FBF7F1] border border-[#D7C7B4] p-7 shadow-xs hover:shadow-md hover:border-[#A8643A]/50 transition-all flex flex-col justify-between"
+                    className="group rounded-3xl bg-[var(--surface-elevated)] border border-[var(--border-subtle)] p-7 shadow-xs hover:shadow-md hover:border-[var(--accent-primary)]/50 transition-all flex flex-col justify-between"
                   >
                     <div>
-                      <div className="w-11 h-11 rounded-2xl bg-[#E9DCCB] text-[#A8643A] flex items-center justify-center mb-5 group-hover:bg-[#A8643A] group-hover:text-[#F6EFE6] transition-colors">
+                      <div className="w-11 h-11 rounded-2xl bg-[var(--bg-surface)] text-[var(--accent-primary)] flex items-center justify-center mb-5 group-hover:bg-[var(--accent-primary)] group-hover:text-[#F6EFE6] transition-colors">
                         <Icon className="w-5 h-5" />
                       </div>
-                      <h3 className="font-editorial text-xl font-bold text-[#2B1D14] mb-2">
+                      <h3 className="font-editorial text-xl font-bold text-[var(--text-primary)] mb-2">
                         {item.title}
                       </h3>
-                      <p className="text-sm text-[#8C7B6B] leading-relaxed">{item.desc}</p>
+                      <p className="text-sm text-[var(--text-muted)] leading-relaxed">{item.desc}</p>
                     </div>
-                    <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#A8643A] group-hover:translate-x-1 transition-transform">
+                    <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent-primary)] group-hover:translate-x-1 transition-transform">
                       {item.linkLabel} <ArrowRight className="w-4 h-4" />
                     </span>
                   </Link>

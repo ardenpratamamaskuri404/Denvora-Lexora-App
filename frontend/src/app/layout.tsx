@@ -7,14 +7,19 @@ export const metadata: Metadata = {
     "Where Knowledge Finds Its Way. Temukan koleksi buku, pantau ketersediaan rak, dan nikmati layanan peminjaman perpustakaan yang tertib.",
 };
 
+const THEME_INIT_SCRIPT = `(function(){try{var t=localStorage.getItem('denvora-theme');if(t==='dark'){document.documentElement.classList.add('dark');}}catch(e){}})();`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id">
-      <body className="min-h-screen antialiased bg-[#F6EFE6] text-[#2B1D14]">
+    <html lang="id" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+      </head>
+      <body className="min-h-screen antialiased bg-[var(--bg-primary)] text-[var(--text-primary)]">
         {children}
       </body>
     </html>

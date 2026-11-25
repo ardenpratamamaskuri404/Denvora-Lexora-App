@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --bg-primary: #F6EFE6;
   --bg-surface: #E9DCCB;
@@ -35,6 +37,35 @@
   --radius: 0.75rem;
 }
 
+.dark {
+  --bg-primary: #18110C;
+  --bg-surface: #241913;
+  --surface-elevated: #2E2017;
+  --text-primary: #F6EFE6;
+  --accent-primary: #C87E4F;
+  --accent-hover: #A8643A;
+  --text-muted: #C2B09E;
+  --border-subtle: #4A3528;
+
+  --background: #18110C;
+  --foreground: #F6EFE6;
+  --card: #2E2017;
+  --card-foreground: #F6EFE6;
+  --popover: #2E2017;
+  --popover-foreground: #F6EFE6;
+  --primary: #C87E4F;
+  --primary-foreground: #18110C;
+  --secondary: #241913;
+  --secondary-foreground: #F6EFE6;
+  --muted: #241913;
+  --muted-foreground: #C2B09E;
+  --accent: #241913;
+  --accent-foreground: #F6EFE6;
+  --border: #4A3528;
+  --input: #4A3528;
+  --ring: #C87E4F;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -67,6 +98,7 @@ body {
   color: var(--text-primary);
   font-family: var(--font-sans);
   overflow-x: hidden;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .font-editorial {

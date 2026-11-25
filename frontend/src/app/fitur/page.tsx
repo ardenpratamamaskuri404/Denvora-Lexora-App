@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function FiturPage() {
   return (
-    <div className="min-h-screen bg-[#F6EFE6] text-[#2B1D14] flex flex-col">
+    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] flex flex-col">
       <LandingNavbar />
       <main className="flex-1">
         <FeaturesView />

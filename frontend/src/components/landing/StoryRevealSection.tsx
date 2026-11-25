@@ -26,20 +26,20 @@ export function StoryRevealSection() {
     <section
       id="cerita"
       ref={containerRef}
-      className="relative h-[210vh] bg-[#E9DCCB]"
+      className="relative h-[210vh] bg-[var(--bg-surface)] transition-colors"
     >
       <div className="sticky top-0 flex h-[100svh] w-full flex-col items-center justify-center overflow-hidden px-4 py-16">
         <div className="relative flex w-full max-w-5xl items-center justify-center">
           <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center gap-1 sm:gap-2 select-none">
             <motion.span
               style={{ x: leftWordX, opacity: wordOpacity }}
-              className="font-editorial text-5xl font-bold tracking-wider text-[#A8643A] sm:text-7xl md:text-8xl"
+              className="font-editorial text-5xl font-bold tracking-wider text-[var(--accent-primary)] sm:text-7xl md:text-8xl"
             >
               CER
             </motion.span>
             <motion.span
               style={{ x: rightWordX, opacity: wordOpacity }}
-              className="font-editorial text-5xl font-bold tracking-wider text-[#A8643A] sm:text-7xl md:text-8xl"
+              className="font-editorial text-5xl font-bold tracking-wider text-[var(--accent-primary)] sm:text-7xl md:text-8xl"
             >
               ITA
             </motion.span>
@@ -47,9 +47,9 @@ export function StoryRevealSection() {
 
           <motion.div
             style={{ scale: frameScale, borderRadius: frameRadius }}
-            className="relative z-10 w-full max-w-4xl overflow-hidden border-2 border-[#D7C7B4] bg-[#FBF7F1] shadow-[0_28px_70px_rgba(43,29,20,0.2)]"
+            className="relative z-10 w-full max-w-4xl overflow-hidden border-2 border-[var(--border-subtle)] bg-[var(--surface-elevated)] shadow-[0_28px_70px_rgba(43,29,20,0.2)]"
           >
-            <div className="relative aspect-[4/3] sm:aspect-[16/9] w-full overflow-hidden bg-[#F6EFE6]">
+            <div className="relative aspect-[4/3] sm:aspect-[16/9] w-full overflow-hidden bg-[var(--bg-primary)]">
               <video
                 src="/videos/denvora-landing-welcome.mp4"
                 autoPlay

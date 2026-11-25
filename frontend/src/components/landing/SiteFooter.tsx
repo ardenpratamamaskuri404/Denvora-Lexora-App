@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { BookOpen, Clock, Compass, HelpCircle } from "lucide-react";
@@ -39,7 +40,7 @@ function FooterColumn({
       <ul className="mt-4 space-y-2.5 text-sm text-[#E9DCCB]/80">
         {items.map((item) => (
           <li key={item.label}>
-            <Link href={item.href} className="transition-colors hover:text-[#A8643A]">
+            <Link href={item.href} className="transition-colors hover:text-[#C87E4F]">
               {item.label}
             </Link>
           </li>
@@ -60,8 +61,28 @@ export function SiteFooter() {
   }
 
   return (
-    <footer className="bg-[#2B1D14] text-[#F6EFE6] border-t border-[#8C7B6B]/30">
+    <footer className="bg-[#2B1D14] dark:bg-[#120C08] text-[#F6EFE6] border-t border-[#8C7B6B]/30">
       <div className="mx-auto max-w-6xl px-6 py-14">
+        <div className="mb-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#8C7B6B]/25 pb-8">
+          <Link
+            href="/"
+            aria-label="Beranda Denvora Lexora"
+            className="inline-flex w-fit items-center overflow-hidden h-12 sm:h-14 rounded-2xl bg-[#FBF7F1] px-4 shadow-xs"
+          >
+            <Image
+              src="/images/denvora-lexora-logo.png"
+              alt="Logo Denvora Lexora"
+              width={320}
+              height={213}
+              className="h-[80px] sm:h-[90px] w-auto object-contain mix-blend-multiply"
+            />
+          </Link>
+          <p className="text-sm text-[#E9DCCB]/80 max-w-md">
+            Ruang literasi digital sekolah untuk mengakses katalog bacaan dan layanan
+            peminjaman buku dengan nyaman.
+          </p>
+        </div>
+
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <FooterColumn title="Navigasi" items={NAV_LINKS} />
           <FooterColumn title="Layanan Anggota" items={MEMBER_LINKS} />
@@ -92,7 +113,7 @@ export function SiteFooter() {
                 onChange={(e) => setKeyword(e.target.value)}
                 placeholder="Judul atau penulis..."
                 aria-label="Cari judul buku atau penulis"
-                className="h-10 w-full min-w-0 rounded-md border border-[#8C7B6B]/60 bg-transparent px-3 text-sm text-[#F6EFE6] placeholder:text-[#8C7B6B] focus:border-[#A8643A] focus:outline-none"
+                className="h-10 w-full min-w-0 rounded-md border border-[#8C7B6B]/60 bg-transparent px-3 text-sm text-[#F6EFE6] placeholder:text-[#8C7B6B] focus:border-[#C87E4F] focus:outline-none"
               />
               <button
                 type="submit"
@@ -103,16 +124,16 @@ export function SiteFooter() {
             </form>
 
             <div className="mt-5 flex items-center gap-4 text-[#E9DCCB]/80">
-              <Link href="/" aria-label="Beranda Denvora Lexora" className="hover:text-[#A8643A]">
+              <Link href="/" aria-label="Beranda Denvora Lexora" className="hover:text-[#C87E4F]">
                 <BookOpen size={17} strokeWidth={1.75} />
               </Link>
-              <Link href="/fitur" aria-label="Layanan Perpustakaan" className="hover:text-[#A8643A]">
+              <Link href="/fitur" aria-label="Layanan Perpustakaan" className="hover:text-[#C87E4F]">
                 <Compass size={17} strokeWidth={1.75} />
               </Link>
-              <Link href="/alur" aria-label="Panduan Peminjaman" className="hover:text-[#A8643A]">
+              <Link href="/alur" aria-label="Panduan Peminjaman" className="hover:text-[#C87E4F]">
                 <Clock size={17} strokeWidth={1.75} />
               </Link>
-              <Link href="/tentang" aria-label="Tentang & FAQ" className="hover:text-[#A8643A]">
+              <Link href="/tentang" aria-label="Tentang & FAQ" className="hover:text-[#C87E4F]">
                 <HelpCircle size={17} strokeWidth={1.75} />
               </Link>
             </div>

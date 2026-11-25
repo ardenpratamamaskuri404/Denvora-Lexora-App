@@ -4,7 +4,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "motion/react";
-import { ArrowDown, BookOpen, LogIn } from "lucide-react";
+import { BookOpen, LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const HIGHLIGHTS = [
@@ -21,18 +21,18 @@ export function HeroSection() {
     offset: ["start start", "end start"],
   });
 
-  const bgY = useTransform(scrollYProgress, [0, 1], [0, 110]);
-  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.06]);
-  const textY = useTransform(scrollYProgress, [0, 1], [0, 48]);
-  const textOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0.25]);
-  const waveY = useTransform(scrollYProgress, [0, 1], [0, -24]);
+  const bgY = useTransform(scrollYProgress, [0, 1], [0, 96]);
+  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.05]);
+  const textY = useTransform(scrollYProgress, [0, 1], [0, 42]);
+  const textOpacity = useTransform(scrollYProgress, [0, 0.78], [1, 0.25]);
+  const waveY = useTransform(scrollYProgress, [0, 1], [0, -22]);
 
   return (
     <>
       <section
         id="beranda"
         ref={heroRef}
-        className="relative min-h-[92svh] w-full overflow-hidden bg-[#E9DCCB] pt-28 pb-36 flex items-center"
+        className="relative min-h-[78svh] sm:min-h-[82svh] w-full overflow-hidden bg-[var(--bg-surface)] pt-32 pb-28 sm:pt-36 sm:pb-32 flex items-center transition-colors"
       >
         <motion.div
           style={{ y: bgY, scale: bgScale }}
@@ -44,9 +44,9 @@ export function HeroSection() {
             width={1920}
             height={1080}
             priority
-            className="h-full w-full object-cover object-center sm:object-right"
+            className="h-full w-full object-cover object-[70%_35%] sm:object-[right_30%] dark:opacity-55"
           />
-          <div className="absolute inset-0 bg-[#F6EFE6]/82 sm:bg-transparent sm:bg-gradient-to-r sm:from-[#F6EFE6]/95 sm:via-[#F6EFE6]/62 sm:to-transparent" />
+          <div className="absolute inset-0 bg-[#F6EFE6]/84 dark:bg-[#18110C]/75 sm:bg-transparent sm:bg-gradient-to-r sm:from-[#F6EFE6]/95 sm:via-[#F6EFE6]/64 sm:to-transparent dark:sm:from-[#18110C]/95 dark:sm:via-[#18110C]/65 dark:sm:to-transparent" />
         </motion.div>
 
         <div className="relative z-10 mx-auto w-full max-w-6xl px-6">
@@ -57,16 +57,16 @@ export function HeroSection() {
             transition={{ duration: 0.45, ease: "easeOut" }}
             className="max-w-xl"
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#A8643A]">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent-primary)]">
               Perpustakaan Sekolah Digital
             </p>
 
-            <h1 className="font-editorial mt-3 text-4xl font-bold leading-[1.12] tracking-tight text-[#2B1D14] sm:text-5xl lg:text-6xl">
+            <h1 className="font-editorial mt-3 text-4xl font-bold leading-[1.12] tracking-tight text-[var(--text-primary)] sm:text-5xl lg:text-6xl">
               Temukan Buku,{" "}
-              <span className="text-[#A8643A]">Tumbuhkan Wawasan.</span>
+              <span className="text-[var(--accent-primary)]">Tumbuhkan Wawasan.</span>
             </h1>
 
-            <p className="mt-4 text-base leading-relaxed text-[#2B1D14]/85 sm:text-lg">
+            <p className="mt-4 text-base leading-relaxed text-[var(--text-primary)]/85 sm:text-lg">
               <strong>Denvora Lexora</strong> — <em>Where Knowledge Finds Its Way.</em>{" "}
               Jelajahi ribuan bahan bacaan sekolah, periksa ketersediaan rak secara
               langsung, dan kelola peminjaman buku Anda dengan tertib.
@@ -89,15 +89,6 @@ export function HeroSection() {
           </motion.div>
         </div>
 
-        <a
-          href="#cerita"
-          aria-label="Gulir ke bagian cerita"
-          className="absolute bottom-20 sm:bottom-24 left-1/2 z-20 -translate-x-1/2 inline-flex flex-col items-center gap-1 rounded-full border border-[#D7C7B4] bg-[#FBF7F1]/95 px-5 py-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#2B1D14] shadow-sm transition-colors hover:bg-[#E9DCCB]"
-        >
-          <span>Gulir ke Bawah</span>
-          <ArrowDown size={14} strokeWidth={1.75} className="text-[#A8643A]" />
-        </a>
-
         <motion.div
           style={{ y: waveY }}
           className="pointer-events-none absolute -bottom-8 left-0 z-10 w-full will-change-transform"
@@ -108,20 +99,48 @@ export function HeroSection() {
             aria-hidden="true"
             width={1440}
             height={160}
-            className="block w-full h-20 sm:h-28 md:h-32 object-fill"
+            className="block dark:hidden w-full h-16 sm:h-24 md:h-28 object-fill"
           />
-          <div className="h-8 w-full bg-[#FBF7F1]" />
+          <svg
+            viewBox="0 0 1440 160"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+            className="hidden dark:block w-full h-16 sm:h-24 md:h-28"
+          >
+            <path
+              d="M0 46 C240 122, 480 128, 760 66 C1030 6, 1255 24, 1440 72 L1440 160 L0 160 Z"
+              fill="#4A3528"
+              fillOpacity="0.55"
+            />
+            <path
+              d="M0 64 C265 130, 520 128, 785 74 C1045 20, 1265 36, 1440 84 L1440 160 L0 160 Z"
+              fill="#241913"
+              fillOpacity="0.92"
+            />
+            <path
+              d="M0 64 C265 130, 520 128, 785 74 C1045 20, 1265 36, 1440 84"
+              stroke="#C87E4F"
+              strokeOpacity="0.55"
+              strokeWidth="2.5"
+              fill="none"
+            />
+            <path
+              d="M0 84 C290 142, 540 138, 800 90 C1060 42, 1275 56, 1440 98 L1440 160 L0 160 Z"
+              fill="#2E2017"
+            />
+          </svg>
+          <div className="h-8 w-full bg-[var(--surface-elevated)]" />
         </motion.div>
       </section>
 
-      <section className="relative z-20 border-b border-[#D7C7B4] bg-[#FBF7F1] py-7 px-6">
+      <section className="relative z-20 border-b border-[var(--border-subtle)] bg-[var(--surface-elevated)] py-6 sm:py-7 px-6 transition-colors">
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-6 md:grid-cols-4">
           {HIGHLIGHTS.map((item) => (
             <div key={item.label} className="text-center md:text-left">
-              <p className="font-editorial text-2xl font-bold text-[#2B1D14] tabular-nums">
+              <p className="font-editorial text-xl sm:text-2xl font-bold text-[var(--text-primary)] tabular-nums">
                 {item.value}
               </p>
-              <p className="mt-0.5 text-xs font-medium text-[#8C7B6B]">{item.label}</p>
+              <p className="mt-0.5 text-xs font-medium text-[var(--text-muted)]">{item.label}</p>
             </div>
           ))}
         </div>

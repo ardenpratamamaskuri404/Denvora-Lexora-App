@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { Menu, Moon, Sun, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -15,9 +15,35 @@ const NAV_LINKS = [
   { label: "Tentang Kami", href: "/tentang" },
 ];
 
+function toggleColorTheme() {
+  const root = document.documentElement;
+  const isDark = root.classList.toggle("dark");
+  try {
+    localStorage.setItem("denvora-theme", isDark ? "dark" : "light");
+  } catch {
+    // Abaikan jika penyimpanan lokal dibatasi browser.
+  }
+}
+
+function ThemeToggleButton() {
+  return (
+    <button
+      type="button"
+      onClick={toggleColorTheme}
+      aria-label="Ubah mode gelap atau terang"
+      title="Mode Gelap / Terang"
+      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--border-subtle)] bg-[var(--surface-elevated)] text-[var(--text-primary)] transition-colors hover:bg-[var(--bg-surface)] hover:text-[var(--accent-primary)] cursor-pointer shrink-0"
+    >
+      <Moon size={16} strokeWidth={1.75} className="block dark:hidden" />
+      <Sun size={16} strokeWidth={1.75} className="hidden dark:block" />
+    </button>
+  );
+}
+
 function AuthButtons({ mobile = false }: { mobile?: boolean }) {
   return (
-    <div className={mobile ? "flex gap-2 pt-2" : "hidden md:flex items-center gap-2.5 shrink-0"}>
+    <div className={mobile ? "flex items-center gap-2 pt-2" : "hidden md:flex items-center gap-2.5 shrink-0"}>
+      <ThemeToggleButton />
       <Button
         asChild
         variant="outline"
@@ -45,21 +71,25 @@ export function LandingNavbar() {
     <header className="fixed top-4 inset-x-0 z-50 px-4">
       <nav
         aria-label="Navigasi utama"
-        className="mx-auto max-w-6xl rounded-full border border-[#D7C7B4] bg-[#FBF7F1]/95 px-4 py-2.5 shadow-[0_8px_28px_rgba(43,29,20,0.08)] backdrop-blur-sm"
+        className="mx-auto max-w-6xl rounded-full border border-[var(--border-subtle)] bg-[var(--surface-elevated)]/95 px-4 sm:px-5 py-2 shadow-[0_8px_28px_rgba(43,29,20,0.08)] backdrop-blur-sm transition-colors"
       >
         <div className="flex items-center justify-between gap-4">
-          <Link href="/" aria-label="Beranda Denvora Lexora" className="flex items-center shrink-0 pl-1">
+          <Link
+            href="/"
+            aria-label="Beranda Denvora Lexora"
+            className="flex items-center shrink-0 overflow-hidden h-11 sm:h-12 rounded-full dark:bg-[#FBF7F1] dark:px-3"
+          >
             <Image
               src="/images/denvora-lexora-logo.png"
               alt="Denvora Lexora — Where Knowledge Finds Its Way."
-              width={240}
-              height={160}
+              width={320}
+              height={213}
               priority
-              className="h-10 sm:h-11 w-auto object-contain mix-blend-multiply"
+              className="h-[74px] sm:h-[84px] w-auto object-contain mix-blend-multiply"
             />
           </Link>
 
-          <ul className="hidden md:flex items-center gap-2 text-sm font-medium text-[#2B1D14]">
+          <ul className="hidden md:flex items-center gap-2 text-sm font-medium text-[var(--text-primary)]">
             {NAV_LINKS.map((item) => {
               const active = pathname === item.href;
               return (
@@ -69,8 +99,8 @@ export function LandingNavbar() {
                     className={cn(
                       "rounded-full px-4 py-1.5 transition-colors duration-150",
                       active
-                        ? "bg-[#E9DCCB] font-semibold text-[#A8643A]"
-                        : "hover:bg-[#E9DCCB]/60 hover:text-[#A8643A]"
+                        ? "bg-[var(--bg-surface)] font-semibold text-[var(--accent-primary)]"
+                        : "hover:bg-[var(--bg-surface)]/65 hover:text-[var(--accent-primary)]"
                     )}
                   >
                     {item.label}
@@ -82,19 +112,22 @@ export function LandingNavbar() {
 
           <AuthButtons />
 
-          <button
-            type="button"
-            aria-label={mobileOpen ? "Tutup menu" : "Buka menu"}
-            aria-expanded={mobileOpen}
-            onClick={() => setMobileOpen((prev) => !prev)}
-            className="md:hidden inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#D7C7B4] text-[#2B1D14] hover:bg-[#E9DCCB]"
-          >
-            {mobileOpen ? <X size={18} strokeWidth={1.75} /> : <Menu size={18} strokeWidth={1.75} />}
-          </button>
+          <div className="md:hidden flex items-center gap-2">
+            <ThemeToggleButton />
+            <button
+              type="button"
+              aria-label={mobileOpen ? "Tutup menu" : "Buka menu"}
+              aria-expanded={mobileOpen}
+              onClick={() => setMobileOpen((prev) => !prev)}
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--border-subtle)] text-[var(--text-primary)] hover:bg-[var(--bg-surface)]"
+            >
+              {mobileOpen ? <X size={18} strokeWidth={1.75} /> : <Menu size={18} strokeWidth={1.75} />}
+            </button>
+          </div>
         </div>
 
         {mobileOpen && (
-          <div className="md:hidden mt-3 pt-3 pb-2 border-t border-[#D7C7B4] flex flex-col gap-1.5">
+          <div className="md:hidden mt-3 pt-3 pb-2 border-t border-[var(--border-subtle)] flex flex-col gap-1.5">
             {NAV_LINKS.map((item) => {
               const active = pathname === item.href;
               return (
@@ -105,8 +138,8 @@ export function LandingNavbar() {
                   className={cn(
                     "px-3 py-2 rounded-lg text-sm font-medium",
                     active
-                      ? "bg-[#E9DCCB] font-semibold text-[#A8643A]"
-                      : "text-[#2B1D14] hover:bg-[#E9DCCB]/60"
+                      ? "bg-[var(--bg-surface)] font-semibold text-[var(--accent-primary)]"
+                      : "text-[var(--text-primary)] hover:bg-[var(--bg-surface)]/60"
                   )}
                 >
                   {item.label}

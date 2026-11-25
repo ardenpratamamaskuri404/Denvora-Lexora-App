@@ -4,24 +4,27 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#A8643A] focus-visible:ring-offset-2 focus-visible:ring-offset-[#F6EFE6] disabled:pointer-events-none disabled:opacity-50 cursor-pointer",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-sm font-semibold transition-all duration-150 disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] focus-visible:ring-offset-2 cursor-pointer",
   {
     variants: {
       variant: {
-        default: "bg-[#A8643A] text-[#F6EFE6] hover:bg-[#8E512D] shadow-xs",
-        secondary:
-          "bg-[#E9DCCB] text-[#2B1D14] hover:bg-[#DFCEB9] border border-[#D7C7B4]",
+        default:
+          "bg-[var(--accent-primary)] text-[#F6EFE6] hover:bg-[var(--accent-hover)] shadow-sm",
         outline:
-          "border border-[#A8643A] bg-[#FBF7F1] text-[#2B1D14] hover:bg-[#E9DCCB]",
-        ghost: "text-[#2B1D14] hover:bg-[#E9DCCB]/70",
-        destructive: "bg-[#9E3B33] text-[#F6EFE6] hover:bg-[#832F28]",
+          "border border-[var(--border-subtle)] bg-[var(--surface-elevated)] text-[var(--text-primary)] hover:bg-[var(--bg-surface)]",
+        secondary:
+          "bg-[var(--bg-surface)] text-[var(--text-primary)] hover:bg-[var(--border-subtle)]",
+        ghost:
+          "text-[var(--text-primary)] hover:bg-[var(--bg-surface)]/70",
+        destructive:
+          "bg-[#9E3B33] text-[#F6EFE6] hover:bg-[#822F28]",
       },
       size: {
         default: "h-10 px-5 py-2",
         sm: "h-9 px-3.5 text-xs",
-        lg: "h-11 px-7 text-base",
-        pill: "h-11 px-7 rounded-full text-sm font-semibold",
-        icon: "h-9 w-9",
+        lg: "h-12 px-7 text-base",
+        pill: "h-11 rounded-full px-6 text-sm",
+        icon: "h-10 w-10",
       },
     },
     defaultVariants: {
@@ -37,20 +40,16 @@ export interface ButtonProps
   asChild?: boolean;
 }
 
-export function Button({
-  className,
-  variant,
-  size,
-  asChild = false,
-  ...props
-}: ButtonProps) {
-  const Comp = asChild ? Slot : "button";
-  return (
-    <Comp
-      className={cn(buttonVariants({ variant, size, className }))}
-      {...props}
-    />
-  );
-}
-
-export { buttonVariants };
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, size, asChild = false, ...props }, ref) => {
+    const Comp = asChild ? Slot : "button";
+    return (
+      <Comp
+        ref={ref}
+        className={cn(buttonVariants({ variant, size, className }))}
+        {...props}
+      />
+    );
+  }
+);
+Button.displayName = "Button";
