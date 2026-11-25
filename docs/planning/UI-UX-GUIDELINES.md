@@ -113,10 +113,10 @@ Tema warna **Denvora Lexora** terkunci pada palet **Cream Mocha (Krem & Cokelat 
 - **Halaman Tentang Kami (`/tentang`):** Profil Denvora Lexora, FAQ akordeon interaktif, visi & misi literasi, serta jam operasional & zona baca (`AboutMoreSections`).
 
 ### A. Authentication Pages (`/login`, `/register`, `/otp`)
-- *Split-card layout* dengan kurva gelombang S-curve Cream Mocha di sisi kiri (latar `#FBF7F1`, logo **Denvora Lexora**, tombol kembali ke Beranda, dan ilustrasi 3D `denvora-login-web.svg`, `denvora-register-web.svg`, atau `denvora-otp-web.svg`) menyatu ke panel gradien espresso gelap (`#3F2719` → `#2B1D14` → `#1A100A`) berisi form pil di kanan (`AuthShell` & `AuthField`).
-- **Halaman Login (`/login`):** Tab jalur *Siswa* dan *Admin / Petugas* (sesuai flowmap SPK-3/4), input `Username atau Email`, `Password` (dengan ikon mata), tautan **"Masuk dengan Kode OTP Email?"** menuju `/otp`, dan tautan **"Daftar Anggota"** menuju `/register`.
-- **Halaman Daftar Anggota (`/register`):** Form Nama Lengkap, NIS/Kode Anggota, Kelas, Email (untuk OTP Mailpit), Nomor HP, Username, Password. Role dikunci `Siswa`; setelah submit mengarah ke `/otp`.
-- **Halaman Verifikasi OTP (`/otp`):** Input 6 kotak digit angka OTP (mendukung paste & auto-advance), hitung mundur kirim ulang kode, serta tautan langsung ke **Mailpit Web UI lokal (`http://127.0.0.1:8025`)**.
+- *Full-viewport curved split layout* (`min-h-screen w-full`): sisi kiri penuh berlatar `#FBF7F1` (logo **Denvora Lexora**, tombol ringkas `← Beranda`, dan ilustrasi 3D `denvora-login-web.svg`, `denvora-register-web.svg`, atau `denvora-otp-web.svg`) dengan garis gelombang S-curve menyatu ke panel kanan penuh gradien espresso (`#3F2719` → `#2B1D14` → `#1A100A`).
+- **Halaman Login (`/login`):** Satu formulir masuk terpadu (*Username atau Email* & *Password* dengan ikon mata) bagi seluruh pengguna tanpa tab pemisah peran di layar masuk, disertai tautan **"Lupa Password?"** menuju `/otp?purpose=login` dan **"Daftar Anggota"** menuju `/register`.
+- **Halaman Daftar Anggota (`/register`):** Form Nama Lengkap, NIS/Kode Anggota, Kelas, Alamat Email (untuk OTP Mailpit), Nomor Telepon, Username, Password. Role dikunci `Siswa`; setelah submit mengarah ke `/otp`.
+- **Halaman Verifikasi OTP (`/otp`):** Input 6 kotak digit angka OTP (mendukung paste & auto-advance), hitung mundur kirim ulang kode, serta tautan periksa kotak masuk Mailpit lokal (`http://127.0.0.1:8025`).
 
 ### B. Admin Dashboard (`/admin/*`)
 - **Ringkasan Dashboard:** 4 kartu metrik utama + daftar pinjaman aktif terbaru + akses cepat ke 3 menu utama flowmap (*Kelola Data Buku*, *Transaksi*, *Kelola Anggota*) plus menu *Kelola Petugas* & *Ekspor Laporan*.
