@@ -8,9 +8,10 @@ npm-debug.log*
 !.env.example
 !.env.local.example
 
-# Next.js build outputs
+# Build outputs
 frontend/.next/
 frontend/out/
+backend/dist/
 
 # Backend runtime generated files
 backend/logs/*.log
