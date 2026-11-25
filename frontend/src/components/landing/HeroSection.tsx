@@ -30,8 +30,8 @@ export function HeroSection() {
     restDelta: 0.0005,
   });
 
-  const bgY = useTransform(smoothProgress, [0, 1], [0, 56]);
-  const bgScale = useTransform(smoothProgress, [0, 1], [1, 1.03]);
+  const bgY = useTransform(smoothProgress, [0, 1], [0, 24]);
+  const bgScale = useTransform(smoothProgress, [0, 1], [1.02, 1.06]);
   const textY = useTransform(smoothProgress, [0, 1], [0, 22]);
   const waveY = useTransform(smoothProgress, [0, 1], [0, -14]);
 
@@ -40,11 +40,11 @@ export function HeroSection() {
       <section
         id="beranda"
         ref={heroRef}
-        className="relative min-h-[calc(100svh-120px)] sm:min-h-[calc(100svh-104px)] w-full overflow-hidden bg-[var(--bg-surface)] pt-24 pb-20 sm:pt-28 sm:pb-24 flex items-center transition-colors"
+        className="relative min-h-[94svh] sm:min-h-[100svh] w-full overflow-hidden bg-[var(--bg-surface)] pt-32 pb-28 sm:pt-36 sm:pb-32 flex items-center transition-colors"
       >
         <motion.div
           style={{ y: bgY, scale: bgScale }}
-          className="pointer-events-none absolute inset-x-0 bottom-0 top-10 sm:top-6 transform-gpu will-change-transform"
+          className="pointer-events-none absolute -top-6 inset-x-0 bottom-0 transform-gpu will-change-transform"
         >
           <Image
             src="/images/denvora-landing-hero.svg"
@@ -52,9 +52,9 @@ export function HeroSection() {
             width={1920}
             height={1080}
             priority
-            className="h-full w-full object-cover object-[74%_28%] sm:object-[right_22%] dark:brightness-[0.92] dark:contrast-[1.06]"
+            className="h-full w-full object-cover object-center lg:object-right dark:brightness-[0.92] dark:contrast-[1.06]"
           />
-          <div className="absolute inset-0 bg-[#F6EFE6]/85 dark:bg-[#18110C]/55 sm:bg-transparent sm:bg-gradient-to-r sm:from-[#F6EFE6]/95 sm:via-[#F6EFE6]/55 sm:to-transparent dark:sm:from-[#18110C]/96 dark:sm:via-[#18110C]/62 dark:sm:via-45% dark:sm:to-transparent" />
+          <div className="absolute inset-0 bg-[#F6EFE6]/82 dark:bg-[#18110C]/55 sm:bg-transparent sm:bg-gradient-to-r sm:from-[#F6EFE6]/92 sm:via-[#F6EFE6]/45 sm:via-45% sm:to-transparent dark:sm:from-[#18110C]/95 dark:sm:via-[#18110C]/58 dark:sm:via-45% dark:sm:to-transparent" />
         </motion.div>
 
         <AmbientSparkles className="z-[5]" />
