@@ -14,6 +14,7 @@ interface AuthFieldProps {
   autoComplete?: string;
   required?: boolean;
   maxLength?: number;
+  compact?: boolean;
 }
 
 export function AuthField({
@@ -27,6 +28,7 @@ export function AuthField({
   autoComplete,
   required = true,
   maxLength,
+  compact = false,
 }: AuthFieldProps) {
   const [showPassword, setShowPassword] = useState(false);
   const isPassword = type === "password";
@@ -36,7 +38,9 @@ export function AuthField({
     <div>
       <label
         htmlFor={id}
-        className="block text-xs font-medium tracking-wide text-[#E9DCCB] mb-1.5 pl-1"
+        className={`block font-medium tracking-wide text-[#E9DCCB] pl-1 ${
+          compact ? "text-[11px] mb-1" : "text-xs mb-1.5"
+        }`}
       >
         {label}
       </label>
@@ -50,7 +54,9 @@ export function AuthField({
           autoComplete={autoComplete}
           required={required}
           maxLength={maxLength}
-          className="h-11 w-full rounded-full border border-[#8C7B6B]/45 bg-[#1B110B]/70 px-4 text-sm text-[#F6EFE6] placeholder:text-[#C2B09E]/55 focus:border-[#C87E4F] focus:outline-none focus:ring-2 focus:ring-[#C87E4F]/30 transition-all pr-11"
+          className={`w-full rounded-full border border-[#8C7B6B]/45 bg-[#1B110B]/70 px-4 text-[#F6EFE6] placeholder:text-[#C2B09E]/55 focus:border-[#C87E4F] focus:outline-none focus:ring-2 focus:ring-[#C87E4F]/30 transition-all pr-10 ${
+            compact ? "h-9.5 text-[13px]" : "h-10.5 text-sm"
+          }`}
         />
         {isPassword && (
           <button
@@ -59,11 +65,11 @@ export function AuthField({
             aria-label={showPassword ? "Sembunyikan password" : "Lihat password"}
             className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#C2B09E] hover:text-[#F6EFE6] cursor-pointer"
           >
-            {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+            {showPassword ? <EyeOff size={15} /> : <Eye size={15} />}
           </button>
         )}
       </div>
-      {error && <p className="mt-1 pl-2 text-xs text-[#F39B8F]">{error}</p>}
+      {error && <p className="mt-0.5 pl-2 text-[11px] text-[#F39B8F]">{error}</p>}
     </div>
   );
 }

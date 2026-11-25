@@ -93,18 +93,18 @@ export function LandingNavbar() {
       <nav
         aria-label="Navigasi utama"
         className={cn(
-          "mx-auto max-w-[1440px] border border-[var(--border-subtle)] bg-[var(--surface-elevated)]/95 shadow-[0_8px_28px_rgba(43,29,20,0.08)] backdrop-blur-md transition-colors",
+          "mx-auto max-w-4xl border border-[var(--border-subtle)] bg-[var(--surface-elevated)]/95 shadow-[0_8px_28px_rgba(43,29,20,0.08)] backdrop-blur-md transition-colors",
           mobileOpen
-            ? "rounded-3xl px-4 py-3.5 md:rounded-full md:px-6 md:py-2"
-            : "rounded-full px-3.5 sm:px-6 py-2"
+            ? "rounded-3xl px-4 py-3.5 md:rounded-full md:px-4 md:py-1.5"
+            : "rounded-full px-3.5 sm:px-4 py-1.5"
         )}
       >
-        <div className="flex items-center justify-between gap-3 sm:gap-4">
+        <div className="flex items-center justify-between gap-2 sm:gap-3">
           <Link
             href="/"
             aria-label="Beranda Denvora Lexora"
             onClick={() => setMobileOpen(false)}
-            className="flex items-center shrink-0 overflow-hidden h-10 sm:h-12 rounded-full dark:bg-[#FBF7F1] dark:px-3"
+            className="flex items-center shrink-0 overflow-hidden h-10 sm:h-11 rounded-full dark:bg-[#FBF7F1] dark:px-3"
           >
             <Image
               src="/images/denvora-lexora-logo.png"
@@ -112,11 +112,11 @@ export function LandingNavbar() {
               width={320}
               height={213}
               priority
-              className="h-[66px] sm:h-[82px] w-auto object-contain mix-blend-multiply"
+              className="h-[64px] sm:h-[76px] w-auto object-contain mix-blend-multiply"
             />
           </Link>
 
-          <ul className="hidden md:flex items-center gap-2 text-sm font-medium text-[var(--text-primary)]">
+          <ul className="hidden md:flex items-center gap-1 text-sm font-medium text-[var(--text-primary)]">
             {NAV_LINKS.map((item) => {
               const active = pathname === item.href;
               return (
@@ -124,7 +124,7 @@ export function LandingNavbar() {
                   <Link
                     href={item.href}
                     className={cn(
-                      "rounded-full px-4 py-1.5 transition-colors duration-150",
+                      "whitespace-nowrap rounded-full px-3 lg:px-3.5 py-1.5 transition-colors duration-150",
                       active
                         ? "bg-[var(--bg-surface)] font-semibold text-[var(--accent-primary)]"
                         : "hover:bg-[var(--bg-surface)]/65 hover:text-[var(--accent-primary)]"

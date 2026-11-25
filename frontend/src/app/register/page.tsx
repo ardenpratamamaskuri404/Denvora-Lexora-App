@@ -82,26 +82,27 @@ export default function RegisterPage() {
       illustrationSrc="/images/denvora-register-web.svg"
       illustrationAlt="Ilustrasi 3D Pendaftaran Anggota Denvora Lexora"
     >
-      <div className="mb-6">
+      <div className="mb-3.5">
         <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#C87E4F]">
           Pendaftaran Anggota Siswa
         </p>
-        <h1 className="font-editorial mt-1.5 text-3xl sm:text-4xl font-bold text-[#F6EFE6]">
+        <h1 className="font-editorial mt-1 text-2xl sm:text-[1.75rem] font-bold text-[#F6EFE6]">
           Daftar Anggota
         </h1>
-        <p className="mt-2 text-xs sm:text-sm text-[#C2B09E] leading-relaxed">
+        <p className="mt-1 text-xs text-[#C2B09E] leading-relaxed">
           Lengkapi identitas siswa di bawah ini untuk mengaktifkan keanggotaan perpustakaan.
         </p>
       </div>
 
       {generalError && (
-        <div className="mb-4 rounded-2xl border border-[#9E3B33] bg-[#9E3B33]/25 px-4 py-2.5 text-xs text-[#FAD5D1]">
+        <div className="mb-3 rounded-2xl border border-[#9E3B33] bg-[#9E3B33]/25 px-3.5 py-2 text-xs text-[#FAD5D1]">
           {generalError}
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-3.5">
+      <form onSubmit={handleSubmit} className="space-y-2.5">
         <AuthField
+          compact
           id="reg-name"
           label="Nama Lengkap"
           value={name}
@@ -110,8 +111,9 @@ export default function RegisterPage() {
           error={fieldErrors.name}
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
           <AuthField
+            compact
             id="reg-nis"
             label="NIS / Kode Anggota"
             value={memberCode}
@@ -120,6 +122,7 @@ export default function RegisterPage() {
             error={fieldErrors.member_code}
           />
           <AuthField
+            compact
             id="reg-class"
             label="Kelas"
             value={className}
@@ -129,8 +132,9 @@ export default function RegisterPage() {
           />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
           <AuthField
+            compact
             id="reg-email"
             label="Alamat Email"
             type="email"
@@ -141,6 +145,7 @@ export default function RegisterPage() {
             error={fieldErrors.email}
           />
           <AuthField
+            compact
             id="reg-phone"
             label="Nomor Telepon (Opsional)"
             type="tel"
@@ -152,8 +157,9 @@ export default function RegisterPage() {
           />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
           <AuthField
+            compact
             id="reg-username"
             label="Username"
             value={username}
@@ -163,6 +169,7 @@ export default function RegisterPage() {
             error={fieldErrors.username}
           />
           <AuthField
+            compact
             id="reg-password"
             label="Password"
             type="password"
@@ -177,7 +184,7 @@ export default function RegisterPage() {
         <button
           type="submit"
           disabled={loading}
-          className="mt-2 h-11 w-full rounded-full bg-gradient-to-r from-[#C87E4F] to-[#A8643A] hover:from-[#D08A5C] hover:to-[#B56E42] text-sm font-bold text-[#FBF7F1] shadow-md transition-all flex items-center justify-center gap-2 disabled:opacity-60 cursor-pointer"
+          className="mt-1.5 h-10 w-full rounded-full bg-gradient-to-r from-[#C87E4F] to-[#A8643A] hover:from-[#D08A5C] hover:to-[#B56E42] text-sm font-bold text-[#FBF7F1] shadow-md transition-all flex items-center justify-center gap-2 disabled:opacity-60 cursor-pointer"
         >
           {loading ? (
             <>
@@ -191,7 +198,7 @@ export default function RegisterPage() {
         </button>
       </form>
 
-      <p className="mt-6 text-center text-xs text-[#C2B09E]">
+      <p className="mt-3.5 border-t border-[#8C7B6B]/25 pt-3 text-center text-xs text-[#C2B09E]">
         Sudah terdaftar sebagai anggota?{" "}
         <Link href="/login" className="font-semibold text-[#E9DCCB] hover:text-[#C87E4F] underline">
           Masuk ke Sistem

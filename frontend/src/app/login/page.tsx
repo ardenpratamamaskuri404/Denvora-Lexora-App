@@ -69,32 +69,32 @@ function LoginFormContent() {
       illustrationSrc="/images/denvora-login-web.svg"
       illustrationAlt="Ilustrasi 3D Portal Masuk Denvora Lexora"
     >
-      <div className="mb-7">
+      <div className="mb-5">
         <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#C87E4F]">
           Sistem Perpustakaan Sekolah Digital
         </p>
-        <h1 className="font-editorial mt-1.5 text-3xl sm:text-4xl font-bold text-[#F6EFE6]">
+        <h1 className="font-editorial mt-1 text-2xl sm:text-3xl font-bold text-[#F6EFE6]">
           Masuk ke Sistem
         </h1>
-        <p className="mt-2 text-xs sm:text-sm text-[#C2B09E] leading-relaxed">
+        <p className="mt-1.5 text-xs sm:text-sm text-[#C2B09E] leading-relaxed">
           Masukkan username dan password akun perpustakaan Anda untuk melanjutkan.
         </p>
       </div>
 
       {verifiedNotice && (
-        <div className="mb-5 flex items-center gap-2 rounded-2xl border border-[#2F6B48] bg-[#2F6B48]/25 px-4 py-2.5 text-xs text-[#D5F2DF]">
+        <div className="mb-4 flex items-center gap-2 rounded-2xl border border-[#2F6B48] bg-[#2F6B48]/25 px-3.5 py-2 text-xs text-[#D5F2DF]">
           <CheckCircle2 size={15} className="shrink-0" />
           <span>Keanggotaan Anda telah aktif. Silakan masuk menggunakan username dan password.</span>
         </div>
       )}
 
       {errorMsg && (
-        <div className="mb-5 rounded-2xl border border-[#9E3B33] bg-[#9E3B33]/25 px-4 py-2.5 text-xs text-[#FAD5D1]">
+        <div className="mb-4 rounded-2xl border border-[#9E3B33] bg-[#9E3B33]/25 px-3.5 py-2 text-xs text-[#FAD5D1]">
           {errorMsg}
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-3.5">
         <AuthField
           id="login-username"
           label="Username"
@@ -126,7 +126,7 @@ function LoginFormContent() {
         <button
           type="submit"
           disabled={loading}
-          className="h-11 w-full rounded-full bg-gradient-to-r from-[#C87E4F] to-[#A8643A] hover:from-[#D08A5C] hover:to-[#B56E42] text-sm font-bold text-[#FBF7F1] shadow-md transition-all flex items-center justify-center gap-2 disabled:opacity-60 cursor-pointer"
+          className="h-10.5 w-full rounded-full bg-gradient-to-r from-[#C87E4F] to-[#A8643A] hover:from-[#D08A5C] hover:to-[#B56E42] text-sm font-bold text-[#FBF7F1] shadow-md transition-all flex items-center justify-center gap-2 disabled:opacity-60 cursor-pointer"
         >
           {loading ? (
             <>
@@ -140,7 +140,7 @@ function LoginFormContent() {
         </button>
       </form>
 
-      <div className="mt-7 border-t border-[#8C7B6B]/25 pt-5 text-center text-xs text-[#C2B09E]">
+      <div className="mt-5 border-t border-[#8C7B6B]/25 pt-4 text-center text-xs text-[#C2B09E]">
         <p>
           Belum terdaftar sebagai anggota?{" "}
           <Link href="/register" className="font-semibold text-[#E9DCCB] hover:text-[#C87E4F] underline">

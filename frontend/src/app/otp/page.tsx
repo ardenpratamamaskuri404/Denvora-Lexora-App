@@ -118,14 +118,14 @@ function OtpContent() {
       illustrationSrc="/images/denvora-otp-web.svg"
       illustrationAlt="Ilustrasi 3D Verifikasi OTP Denvora Lexora"
     >
-      <div className="mb-6">
+      <div className="mb-4">
         <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#C87E4F]">
           {purpose === "register" ? "Aktivasi Keanggotaan" : "Pemulihan Akses Akun"}
         </p>
-        <h1 className="font-editorial mt-1.5 text-3xl sm:text-4xl font-bold text-[#F6EFE6]">
+        <h1 className="font-editorial mt-1 text-2xl sm:text-3xl font-bold text-[#F6EFE6]">
           {purpose === "register" ? "Verifikasi Alamat Email" : "Lupa Password"}
         </h1>
-        <p className="mt-2 text-xs sm:text-sm text-[#C2B09E] leading-relaxed">
+        <p className="mt-1.5 text-xs sm:text-sm text-[#C2B09E] leading-relaxed">
           {purpose === "register"
             ? "Masukkan 6 digit kode verifikasi yang telah dikirimkan ke kotak masuk email Anda."
             : "Masukkan alamat email terdaftar Anda untuk menerima kode verifikasi masuk 6 digit."}
@@ -133,20 +133,20 @@ function OtpContent() {
       </div>
 
       {infoMsg && (
-        <div className="mb-4 flex items-start gap-2 rounded-2xl border border-[#A8643A]/60 bg-[#A8643A]/20 px-4 py-2.5 text-xs text-[#F6EFE6]">
+        <div className="mb-3.5 flex items-start gap-2 rounded-2xl border border-[#A8643A]/60 bg-[#A8643A]/20 px-3.5 py-2 text-xs text-[#F6EFE6]">
           <MailCheck size={15} className="shrink-0 mt-0.5 text-[#C87E4F]" />
           <span>{infoMsg}</span>
         </div>
       )}
 
       {errorMsg && (
-        <div className="mb-4 rounded-2xl border border-[#9E3B33] bg-[#9E3B33]/25 px-4 py-2.5 text-xs text-[#FAD5D1]">
+        <div className="mb-3.5 rounded-2xl border border-[#9E3B33] bg-[#9E3B33]/25 px-3.5 py-2 text-xs text-[#FAD5D1]">
           {errorMsg}
         </div>
       )}
 
       {step === "email" ? (
-        <form onSubmit={handleSendOtp} className="space-y-4">
+        <form onSubmit={handleSendOtp} className="space-y-3.5">
           <AuthField
             id="otp-email"
             label="Alamat Email"
@@ -159,13 +159,13 @@ function OtpContent() {
           <button
             type="submit"
             disabled={loading}
-            className="h-11 w-full rounded-full bg-gradient-to-r from-[#C87E4F] to-[#A8643A] text-sm font-bold text-[#FBF7F1] shadow-md flex items-center justify-center gap-2 disabled:opacity-60 cursor-pointer"
+            className="h-10.5 w-full rounded-full bg-gradient-to-r from-[#C87E4F] to-[#A8643A] text-sm font-bold text-[#FBF7F1] shadow-md flex items-center justify-center gap-2 disabled:opacity-60 cursor-pointer"
           >
             {loading ? <Loader2 size={16} className="animate-spin" /> : "Kirim Kode Verifikasi"}
           </button>
         </form>
       ) : (
-        <form onSubmit={handleVerifyOtp} className="space-y-5">
+        <form onSubmit={handleVerifyOtp} className="space-y-4">
           <div>
             <div className="flex items-center justify-between text-xs text-[#C2B09E] mb-2">
               <span>Dikirim ke <strong className="text-[#F6EFE6]">{email}</strong></span>
@@ -177,7 +177,7 @@ function OtpContent() {
                 Ubah Email
               </button>
             </div>
-            <div className="grid grid-cols-6 gap-2 sm:gap-2.5">
+            <div className="grid grid-cols-6 gap-2">
               {digits.map((digit, idx) => (
                 <input
                   key={idx}
@@ -191,7 +191,7 @@ function OtpContent() {
                   aria-label={`Digit OTP ${idx + 1}`}
                   onChange={(e) => handleDigitChange(idx, e.target.value)}
                   onKeyDown={(e) => handleKeyDown(idx, e)}
-                  className="h-12 sm:h-14 w-full rounded-2xl border border-[#8C7B6B]/50 bg-[#1B110B]/75 text-center font-mono text-xl font-bold text-[#F6EFE6] focus:border-[#C87E4F] focus:outline-none focus:ring-2 focus:ring-[#C87E4F]/30"
+                  className="h-11 sm:h-12 w-full rounded-2xl border border-[#8C7B6B]/50 bg-[#1B110B]/75 text-center font-mono text-lg sm:text-xl font-bold text-[#F6EFE6] focus:border-[#C87E4F] focus:outline-none focus:ring-2 focus:ring-[#C87E4F]/30"
                 />
               ))}
             </div>
@@ -200,7 +200,7 @@ function OtpContent() {
           <button
             type="submit"
             disabled={loading}
-            className="h-11 w-full rounded-full bg-gradient-to-r from-[#C87E4F] to-[#A8643A] text-sm font-bold text-[#FBF7F1] shadow-md flex items-center justify-center gap-2 disabled:opacity-60 cursor-pointer"
+            className="h-10.5 w-full rounded-full bg-gradient-to-r from-[#C87E4F] to-[#A8643A] text-sm font-bold text-[#FBF7F1] shadow-md flex items-center justify-center gap-2 disabled:opacity-60 cursor-pointer"
           >
             {loading ? (
               <>
@@ -236,7 +236,7 @@ function OtpContent() {
         </form>
       )}
 
-      <p className="mt-6 border-t border-[#8C7B6B]/25 pt-5 text-center text-xs text-[#C2B09E]">
+      <p className="mt-4 border-t border-[#8C7B6B]/25 pt-3.5 text-center text-xs text-[#C2B09E]">
         Kembali ke{" "}
         <Link href="/login" className="font-semibold text-[#E9DCCB] hover:text-[#C87E4F] underline">
           Halaman Masuk

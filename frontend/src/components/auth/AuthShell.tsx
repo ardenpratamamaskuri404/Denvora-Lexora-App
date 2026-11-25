@@ -22,8 +22,8 @@ export function AuthShell({
   children,
 }: AuthShellProps) {
   return (
-    <div className="min-h-screen w-full overflow-x-hidden bg-gradient-to-br from-[#3F2719] via-[#2B1D14] to-[#1A100A] dark:from-[#1B110B] dark:via-[#120B07] dark:to-[#090503] grid grid-cols-1 lg:grid-cols-12 transition-colors">
-      <div className="relative lg:col-span-6 text-[#2B1D14] dark:text-[#F6EFE6] flex flex-col justify-between p-6 sm:p-10 lg:pr-24">
+    <div className="min-h-dvh lg:h-dvh lg:overflow-hidden w-full overflow-x-hidden bg-gradient-to-br from-[#3F2719] via-[#2B1D14] to-[#1A100A] dark:from-[#1B110B] dark:via-[#120B07] dark:to-[#090503] grid grid-cols-1 lg:grid-cols-12 transition-colors">
+      <div className="relative lg:col-span-6 lg:h-full text-[#2B1D14] dark:text-[#F6EFE6] flex flex-col justify-between p-5 sm:p-6 lg:py-5 lg:pl-8 xl:pl-12 lg:pr-20 xl:pr-24">
         <div
           className="lg:hidden absolute inset-0 bg-[#FBF7F1] dark:bg-[#241913] transition-colors"
           aria-hidden="true"
@@ -51,11 +51,11 @@ export function AuthShell({
           />
         </svg>
 
-        <div className="relative z-10 flex items-center justify-between gap-4">
+        <div className="relative z-10 flex items-center justify-between gap-4 shrink-0">
           <Link
             href="/"
             aria-label="Kembali ke Beranda Denvora Lexora"
-            className="flex items-center overflow-hidden h-10 sm:h-12 rounded-full dark:bg-[#FBF7F1] dark:px-3.5"
+            className="flex items-center overflow-hidden h-9 sm:h-10 rounded-full dark:bg-[#FBF7F1] dark:px-3"
           >
             <Image
               src="/images/denvora-lexora-logo.png"
@@ -63,44 +63,45 @@ export function AuthShell({
               width={280}
               height={186}
               priority
-              className="h-[64px] sm:h-[82px] w-auto object-contain mix-blend-multiply"
+              className="h-[58px] sm:h-[68px] w-auto object-contain mix-blend-multiply"
             />
           </Link>
 
           <Link
             href="/"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#5D4C3F] dark:text-[#E9DCCB] hover:text-[#A8643A] dark:hover:text-[#C87E4F] transition-colors shrink-0"
+            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#5D4C3F] dark:text-[#E9DCCB] hover:text-[#A8643A] dark:hover:text-[#C87E4F] transition-colors shrink-0"
           >
-            <ArrowLeft size={16} strokeWidth={1.75} />
+            <ArrowLeft size={15} strokeWidth={1.75} />
             <span>Beranda</span>
           </Link>
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 14 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-          className="relative z-10 my-4 lg:my-6 flex items-center justify-center"
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          className="relative z-10 my-2 lg:my-0 flex-1 min-h-0 flex items-center justify-center"
         >
-          <div className="relative w-full max-w-[380px] sm:max-w-[470px] lg:max-w-[540px] aspect-[84/94]">
+          <div className="relative w-full max-w-[320px] sm:max-w-[400px] lg:max-w-[440px] lg:max-h-[calc(100dvh-120px)] aspect-[84/94]">
             <Image
-              src={illustrationSrc}
+              unoptimized
+              src={`${illustrationSrc}?v=3`}
               alt={illustrationAlt}
               width={840}
               height={940}
               priority
-              className="h-full w-full object-contain drop-shadow-[0_18px_36px_rgba(43,29,20,0.08)]"
+              className="h-full w-full max-h-full object-contain drop-shadow-[0_18px_36px_rgba(43,29,20,0.08)]"
             />
           </div>
         </motion.div>
 
-        <div className="relative z-10 flex items-center justify-between text-xs text-[#8C7B6B] dark:text-[#C2B09E] pt-2">
+        <div className="relative z-10 flex items-center justify-between text-[11px] text-[#8C7B6B] dark:text-[#C2B09E] pt-1 shrink-0">
           <span>© 2026 Denvora Lexora</span>
           <span>Where Knowledge Finds Its Way.</span>
         </div>
       </div>
 
-      <div className="relative lg:col-span-6 text-[#F6EFE6] p-7 sm:p-12 lg:p-14 flex flex-col justify-center">
+      <div className="relative lg:col-span-6 lg:h-full lg:overflow-y-auto text-[#F6EFE6] p-6 sm:p-8 lg:px-12 xl:px-14 lg:py-5 flex flex-col justify-center">
         <svg
           viewBox="0 0 600 44"
           preserveAspectRatio="none"
@@ -114,10 +115,10 @@ export function AuthShell({
         </svg>
 
         <motion.div
-          initial={{ opacity: 0, y: 14 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
-          className="relative z-10 w-full max-w-md mx-auto pt-4 lg:pt-0"
+          transition={{ duration: 0.4, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
+          className="relative z-10 w-full max-w-[440px] mx-auto pt-3 lg:pt-0"
         >
           {children}
         </motion.div>
