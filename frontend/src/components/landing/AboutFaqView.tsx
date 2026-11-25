@@ -3,8 +3,10 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "motion/react";
 import { Minus, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { AmbientSparkles } from "@/components/landing/AmbientSparkles";
 
 const FAQS = [
   {
@@ -30,8 +32,15 @@ export function AboutFaqView() {
 
   return (
     <>
-      <section className="bg-[var(--bg-primary)] pt-32 pb-16 px-6 transition-colors">
-        <div className="mx-auto max-w-5xl grid gap-10 md:grid-cols-[1fr_auto] items-center">
+      <section className="relative bg-[var(--bg-primary)] pt-32 pb-16 px-6 transition-colors overflow-hidden">
+        <AmbientSparkles />
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.2 }}
+          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          className="relative z-10 mx-auto max-w-5xl grid gap-10 md:grid-cols-[1fr_auto] items-center"
+        >
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent-primary)]">
               Tentang Denvora Lexora
@@ -63,7 +72,7 @@ export function AboutFaqView() {
               className="w-56 sm:w-64 h-auto object-contain mix-blend-multiply"
             />
           </div>
-        </div>
+        </motion.div>
       </section>
 
       <section id="faq" className="bg-[#A8643A] dark:bg-[var(--bg-surface)] py-20 px-6 text-[#F6EFE6] transition-colors">

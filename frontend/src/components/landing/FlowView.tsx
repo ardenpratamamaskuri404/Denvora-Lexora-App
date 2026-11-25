@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import { ArrowRight, RotateCw, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { AmbientSparkles } from "@/components/landing/AmbientSparkles";
 
 const STEPS = [
   {
@@ -54,8 +55,9 @@ export function FlowView() {
 
   return (
     <>
-      <section className="bg-[var(--bg-primary)] pt-32 pb-20 px-6 transition-colors">
-        <div className="mx-auto max-w-6xl">
+      <section className="relative bg-[var(--bg-primary)] pt-32 pb-20 px-6 transition-colors overflow-hidden">
+        <AmbientSparkles />
+        <div className="relative z-10 mx-auto max-w-6xl">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent-primary)]">
@@ -81,9 +83,10 @@ export function FlowView() {
             {STEPS.map((step, idx) => (
               <motion.div
                 key={step.num}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.35, delay: idx * 0.08 }}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{ duration: 0.42, delay: idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
                 className="flex items-start gap-4 rounded-2xl border border-[var(--border-subtle)] bg-[var(--surface-elevated)] p-6 shadow-xs"
               >
                 <span className="font-editorial flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[var(--accent-primary)] text-xl font-bold text-[#F6EFE6] tabular-nums">

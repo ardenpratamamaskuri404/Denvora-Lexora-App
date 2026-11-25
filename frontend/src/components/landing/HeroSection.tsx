@@ -6,6 +6,7 @@ import Link from "next/link";
 import { motion, useScroll, useSpring, useTransform } from "motion/react";
 import { BookOpen, LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { AmbientSparkles } from "@/components/landing/AmbientSparkles";
 
 const HIGHLIGHTS = [
   { value: "Koleksi Lengkap", label: "Fiksi, Sains, Sejarah & Referensi" },
@@ -55,6 +56,8 @@ export function HeroSection() {
           />
           <div className="absolute inset-0 bg-[#F6EFE6]/85 dark:bg-[#18110C]/78 sm:bg-transparent sm:bg-gradient-to-r sm:from-[#F6EFE6]/95 sm:via-[#F6EFE6]/55 sm:to-transparent dark:sm:from-[#18110C]/95 dark:sm:via-[#18110C]/65 dark:sm:to-transparent" />
         </motion.div>
+
+        <AmbientSparkles className="z-[5]" />
 
         <div className="relative z-10 mx-auto w-full max-w-6xl px-6">
           <motion.div
@@ -145,9 +148,9 @@ export function HeroSection() {
           {HIGHLIGHTS.map((item, idx) => (
             <motion.div
               key={item.label}
-              initial={{ opacity: 0, y: 14 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
+              viewport={{ once: false, amount: 0.35 }}
               transition={{ duration: 0.45, delay: idx * 0.06, ease: SMOOTH_EASE }}
               className="text-center md:text-left"
             >

@@ -1,8 +1,10 @@
 "use client";
 
+import { useRef } from "react";
 import Link from "next/link";
-import { motion } from "motion/react";
+import { motion, useScroll, useSpring, useTransform } from "motion/react";
 import { ArrowRight, BookMarked, Clock, ShieldCheck } from "lucide-react";
+import { AmbientSparkles } from "@/components/landing/AmbientSparkles";
 
 const LIBRARY_PILLARS = [
   {
@@ -31,13 +33,32 @@ const LIBRARY_PILLARS = [
 const SMOOTH_EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 export function ExplorePillarsSection() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 180,
+    damping: 32,
+    restDelta: 0.0005,
+  });
+
+  const gridY = useTransform(smoothProgress, [0, 1], [20, -18]);
+
   return (
-    <section className="py-20 md:py-24 bg-[var(--bg-primary)] transition-colors overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6">
+    <section
+      ref={sectionRef}
+      className="relative py-20 md:py-24 bg-[var(--bg-primary)] transition-colors overflow-hidden"
+    >
+      <AmbientSparkles />
+
+      <div className="relative z-10 max-w-6xl mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: false, amount: 0.25 }}
           transition={{ duration: 0.5, ease: SMOOTH_EASE }}
           className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12"
         >
@@ -55,7 +76,10 @@ export function ExplorePillarsSection() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <motion.div
+          style={{ y: gridY }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 transform-gpu will-change-transform"
+        >
           {LIBRARY_PILLARS.map((item, idx) => {
             const Icon = item.icon;
             return (
@@ -63,8 +87,8 @@ export function ExplorePillarsSection() {
                 key={item.href}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.25 }}
-                transition={{ duration: 0.5, delay: idx * 0.08, ease: SMOOTH_EASE }}
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{ duration: 0.48, delay: idx * 0.08, ease: SMOOTH_EASE }}
                 whileHover={{ y: -5 }}
                 className="transform-gpu"
               >
@@ -88,7 +112,7 @@ export function ExplorePillarsSection() {
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

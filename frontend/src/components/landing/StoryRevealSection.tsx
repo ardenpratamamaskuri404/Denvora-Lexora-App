@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, useScroll, useSpring, useTransform } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { AmbientSparkles } from "@/components/landing/AmbientSparkles";
 
 export function StoryRevealSection() {
   const containerRef = useRef<HTMLElement | null>(null);
@@ -35,11 +36,12 @@ export function StoryRevealSection() {
       className="relative h-[175vh] bg-[var(--bg-surface)] transition-colors"
     >
       <div className="sticky top-0 flex h-[100svh] w-full flex-col items-center justify-center overflow-hidden px-4 py-16">
+        <AmbientSparkles />
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: false, amount: 0.15 }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           className="relative flex w-full max-w-5xl items-center justify-center"
         >
           <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center gap-1 sm:gap-2 select-none">

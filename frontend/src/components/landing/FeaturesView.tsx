@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import { ArrowRight, BookOpen, Clock, Layers, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { AmbientSparkles } from "@/components/landing/AmbientSparkles";
 
 const BENTO_ITEMS = [
   {
@@ -56,8 +57,9 @@ const PREVIEW_CARDS = [
 export function FeaturesView() {
   return (
     <>
-      <section className="bg-[var(--bg-primary)] pt-32 pb-16 px-6 transition-colors">
-        <div className="mx-auto max-w-6xl">
+      <section className="relative bg-[var(--bg-primary)] pt-32 pb-16 px-6 transition-colors overflow-hidden">
+        <AmbientSparkles />
+        <div className="relative z-10 mx-auto max-w-6xl">
           <div className="max-w-2xl">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent-primary)]">
               Layanan Perpustakaan
@@ -142,7 +144,7 @@ export function FeaturesView() {
                 key={card.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.25 }}
+                viewport={{ once: false, amount: 0.2 }}
                 transition={{ duration: 0.4, delay: idx * 0.08 }}
                 className={`group rounded-2xl border border-[var(--border-subtle)] ${card.tone} p-4 shadow-[0_14px_32px_rgba(43,29,20,0.08)] transition-transform duration-200 ${card.tilt} md:hover:rotate-0 md:hover:-translate-y-2`}
               >
