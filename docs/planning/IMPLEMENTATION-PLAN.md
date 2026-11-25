@@ -74,7 +74,7 @@ Agar penilai dapat memverifikasi secara langsung tanpa menebak-nebak, berikut pe
 | **1.2** | Metode pengembangan program | Perencanaan bertahap di `docs/planning/` (*Waterfall/Iterative terstruktur*). |
 | **1.3** | Diagram & deskripsi program | Flowchart di `USER-FLOW.md`, ERD di `DATABASE-ERD.md`, deskripsi di `docs/ukk-submission/`. |
 | **1.4** | Menerapkan hasil pemodelan ke program | Tabel SQL & relasi FK sesuai persis dengan ERD; alur UI sesuai Flowchart. |
-| **1.5** | Mengeksekusi source code | Backend Express TS (`npm run dev` / `dist/server.js`) & Frontend Next.js (`npm run dev/start`) berjalan di localhost. |
+| **1.5** | Mengeksekusi source code | Backend Express TS (`npm run dev` / `npm start`) & Frontend Next.js (`npm run dev/start`) berjalan di localhost. |
 | **1.6** | Coding guidelines & best practices | Penamaan konsisten, pemisahan layer, Zod validation, prepared SQL statements, ESLint. |
 | **1.7** | Ukuran performansi dalam kode | Pool koneksi MySQL, `LIMIT/OFFSET` paginasi, indeks kolom pencarian, `SELECT` kolom spesifik. |
 | **1.8** | Tipe data & control program | Tipe SQL & TypeScript eksplisit (`INT`, `DATE`, `ENUM`, `boolean`), percabangan `if/else` status stok & role. |

@@ -52,7 +52,7 @@ Denvora Lexora memisahkan presentation layer, business logic layer, dan data sto
 | | `shadcn/ui` (Radix UI primitives) | Komponen aksesibel yang disalin lokal (`Button`, `Input`, `Dialog`, `Select`, `Table`, `Badge`, `Sheet`, dll.) dan dikustomisasi penuh ke tema Cream Mocha (`RECOMMENDATION`). |
 | | `motion` | 1 library animasi ringan untuk transisi modal, tab indicator, dan *scroll reveal* (`whileInView`) secara tenang tanpa `lenis`/`gsap` (`RECOMMENDATION`). |
 | | `lucide-react` | Paket ikon SVG lokal (ter-bundle di `node_modules` sekaligus ikon default `shadcn/ui`), tampil sempurna tanpa internet. |
-| **Backend** | Node.js + Express.js (TypeScript) | Runtime ringan dan *type-safe* untuk REST API lokal (`tsx` saat dev, kompilasi `tsc` ke `dist/`). |
+| **Backend** | Node.js + Express.js (TypeScript) | Runtime ringan dan *type-safe* untuk REST API lokal (`tsx` saat dev/start, validasi tipe via `tsc --noEmit`). |
 | | `mysql2/promise` | Koneksi pool async/await, mendukung *prepared statements* dan transaksi SQL. |
 | | `bcryptjs` | Hashing password aman secara lokal tanpa dependensi native compiler C++. |
 | | `zod` | Validasi skema request body, query, dan params yang tegas dan terstruktur. |
