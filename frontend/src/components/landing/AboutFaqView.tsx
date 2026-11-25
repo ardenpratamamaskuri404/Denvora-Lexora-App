@@ -32,14 +32,14 @@ export function AboutFaqView() {
 
   return (
     <>
-      <section className="relative bg-[var(--bg-primary)] pt-32 pb-16 px-6 sm:px-10 lg:px-14 transition-colors overflow-hidden">
+      <section className="relative bg-[var(--bg-primary)] pt-32 pb-16 px-6 transition-colors overflow-hidden">
         <AmbientSparkles />
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-          className="relative z-10 mx-auto max-w-[1440px] grid gap-10 md:grid-cols-[1fr_auto] items-center"
+          className="relative z-10 mx-auto max-w-5xl grid gap-10 md:grid-cols-[1fr_auto] items-center"
         >
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent-primary)]">

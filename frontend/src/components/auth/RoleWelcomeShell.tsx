@@ -99,7 +99,7 @@ function RoleWelcomeInner({ expectedRole, title, menus }: RoleWelcomeShellProps)
 
   return (
     <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] p-6">
-      <div className="mx-auto max-w-[1440px]">
+      <div className="mx-auto max-w-6xl">
         <header className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-[var(--border-subtle)] bg-[var(--surface-elevated)] px-6 py-4 shadow-xs">
           <Link href="/" className="flex items-center overflow-hidden h-10 rounded-full dark:bg-[#FBF7F1] dark:px-3">
             <Image

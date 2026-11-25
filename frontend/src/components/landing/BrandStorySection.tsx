@@ -21,11 +21,11 @@ export function BrandStorySection() {
     >
       <AmbientSparkles />
 
-      <div className="relative z-10 mx-auto max-w-[1440px] px-6 sm:px-10 lg:px-14">
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.25 }}
+          viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 0.5, ease: SMOOTH_EASE }}
           className="max-w-2xl mb-12"
         >
@@ -46,7 +46,7 @@ export function BrandStorySection() {
           <motion.div
             initial={{ opacity: 0, y: 22 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.5, ease: SMOOTH_EASE }}
             className="lg:col-span-7 rounded-3xl border border-[var(--border-subtle)] bg-[var(--surface-elevated)] p-7 sm:p-9 shadow-xs"
           >
@@ -93,7 +93,7 @@ export function BrandStorySection() {
           <motion.div
             initial={{ opacity: 0, y: 22 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.5, delay: 0.08, ease: SMOOTH_EASE }}
             className="lg:col-span-5 rounded-3xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-7 sm:p-9 flex flex-col justify-between shadow-xs"
           >

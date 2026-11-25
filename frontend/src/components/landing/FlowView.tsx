@@ -55,9 +55,9 @@ export function FlowView() {
 
   return (
     <>
-      <section className="relative bg-[var(--bg-primary)] pt-32 pb-20 px-6 sm:px-10 lg:px-14 transition-colors overflow-hidden">
+      <section className="relative bg-[var(--bg-primary)] pt-32 pb-20 px-6 transition-colors overflow-hidden">
         <AmbientSparkles />
-        <div className="relative z-10 mx-auto max-w-[1440px]">
+        <div className="relative z-10 mx-auto max-w-6xl">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent-primary)]">
@@ -85,7 +85,7 @@ export function FlowView() {
                 key={step.num}
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.2 }}
+                viewport={{ once: true, amount: 0.15 }}
                 transition={{ duration: 0.42, delay: idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
                 className="flex items-start gap-4 rounded-2xl border border-[var(--border-subtle)] bg-[var(--surface-elevated)] p-6 shadow-xs"
               >
@@ -106,8 +106,8 @@ export function FlowView() {
         </div>
       </section>
 
-      <section className="border-t border-[var(--border-subtle)] bg-[var(--bg-surface)]/80 py-20 px-6 sm:px-10 lg:px-14 transition-colors">
-        <div className="mx-auto max-w-[1440px]">
+      <section className="border-t border-[var(--border-subtle)] bg-[var(--bg-surface)]/80 py-20 px-6 transition-colors">
+        <div className="mx-auto max-w-6xl">
           <div className="text-center max-w-2xl mx-auto">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent-primary)]">
               Keunggulan Layanan

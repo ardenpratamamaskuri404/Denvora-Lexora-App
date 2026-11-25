@@ -32,12 +32,12 @@ const SMOOTH_EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 export function AboutMoreSections() {
   return (
     <>
-      <section className="py-20 px-6 sm:px-10 lg:px-14 bg-[var(--bg-surface)]/80 border-t border-[var(--border-subtle)] transition-colors">
-        <div className="mx-auto max-w-[1440px] grid gap-8 md:grid-cols-2 items-start">
+      <section className="py-20 px-6 bg-[var(--bg-surface)]/80 border-t border-[var(--border-subtle)] transition-colors">
+        <div className="mx-auto max-w-5xl grid gap-8 md:grid-cols-2 items-start">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.46, ease: SMOOTH_EASE }}
             className="rounded-3xl border border-[var(--border-subtle)] bg-[var(--surface-elevated)] p-8"
           >
@@ -59,7 +59,7 @@ export function AboutMoreSections() {
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.46, delay: 0.08, ease: SMOOTH_EASE }}
             className="rounded-3xl border border-[var(--border-subtle)] bg-[var(--surface-elevated)] p-8"
           >
@@ -86,12 +86,12 @@ export function AboutMoreSections() {
         </div>
       </section>
 
-      <section className="py-20 px-6 sm:px-10 lg:px-14 bg-[var(--bg-primary)] border-t border-[var(--border-subtle)] transition-colors">
-        <div className="mx-auto max-w-[1440px]">
+      <section className="py-20 px-6 bg-[var(--bg-primary)] border-t border-[var(--border-subtle)] transition-colors">
+        <div className="mx-auto max-w-5xl">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.25 }}
+            viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.46, ease: SMOOTH_EASE }}
             className="text-center max-w-2xl mx-auto mb-12"
           >
@@ -111,7 +111,7 @@ export function AboutMoreSections() {
                   key={item.title}
                   initial={{ opacity: 0, y: 18 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: false, amount: 0.2 }}
+                  viewport={{ once: true, amount: 0.15 }}
                   transition={{ duration: 0.42, delay: idx * 0.07, ease: SMOOTH_EASE }}
                   className="rounded-2xl border border-[var(--border-subtle)] bg-[var(--surface-elevated)] p-6"
                 >

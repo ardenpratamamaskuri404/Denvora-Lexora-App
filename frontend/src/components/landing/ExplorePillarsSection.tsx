@@ -36,11 +36,11 @@ export function ExplorePillarsSection() {
     <section className="relative py-20 md:py-24 bg-[var(--bg-surface)] transition-colors overflow-hidden">
       <AmbientSparkles />
 
-      <div className="relative z-10 max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14">
+      <div className="relative z-10 max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.25 }}
+          viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 0.5, ease: SMOOTH_EASE }}
           className="max-w-2xl mb-12"
         >
@@ -64,7 +64,7 @@ export function ExplorePillarsSection() {
                 key={item.href}
                 initial={{ opacity: 0, y: 22 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.2 }}
+                viewport={{ once: true, amount: 0.15 }}
                 transition={{ duration: 0.48, delay: idx * 0.08, ease: SMOOTH_EASE }}
                 whileHover={{ y: -5 }}
                 className="transform-gpu"
