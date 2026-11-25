@@ -14,6 +14,8 @@ const HIGHLIGHTS = [
   { value: "Akses Mudah", label: "Cari Judul & Kategori Seketika" },
 ];
 
+const SMOOTH_EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
 export function HeroSection() {
   const heroRef = useRef<HTMLElement | null>(null);
   const { scrollYProgress } = useScroll({
@@ -22,16 +24,15 @@ export function HeroSection() {
   });
 
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 85,
-    damping: 24,
-    mass: 0.5,
+    stiffness: 180,
+    damping: 32,
+    restDelta: 0.0005,
   });
 
-  const bgY = useTransform(smoothProgress, [0, 1], [0, 72]);
-  const bgScale = useTransform(smoothProgress, [0, 1], [1, 1.04]);
-  const textY = useTransform(smoothProgress, [0, 1], [0, 28]);
-  const textOpacity = useTransform(smoothProgress, [0, 0.85], [1, 0.35]);
-  const waveY = useTransform(smoothProgress, [0, 1], [0, -18]);
+  const bgY = useTransform(smoothProgress, [0, 1], [0, 56]);
+  const bgScale = useTransform(smoothProgress, [0, 1], [1, 1.03]);
+  const textY = useTransform(smoothProgress, [0, 1], [0, 22]);
+  const waveY = useTransform(smoothProgress, [0, 1], [0, -14]);
 
   return (
     <>
@@ -42,7 +43,7 @@ export function HeroSection() {
       >
         <motion.div
           style={{ y: bgY, scale: bgScale }}
-          className="pointer-events-none absolute inset-x-0 bottom-0 top-10 sm:top-6 will-change-transform"
+          className="pointer-events-none absolute inset-x-0 bottom-0 top-10 sm:top-6 transform-gpu will-change-transform"
         >
           <Image
             src="/images/denvora-landing-hero.svg"
@@ -57,11 +58,11 @@ export function HeroSection() {
 
         <div className="relative z-10 mx-auto w-full max-w-6xl px-6">
           <motion.div
-            style={{ y: textY, opacity: textOpacity }}
-            initial={{ opacity: 0, y: 16 }}
+            style={{ y: textY }}
+            initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, ease: "easeOut" }}
-            className="max-w-xl"
+            transition={{ duration: 0.6, ease: SMOOTH_EASE }}
+            className="max-w-xl transform-gpu will-change-transform"
           >
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent-primary)]">
               Perpustakaan Sekolah Digital
@@ -97,7 +98,7 @@ export function HeroSection() {
 
         <motion.div
           style={{ y: waveY }}
-          className="pointer-events-none absolute -bottom-7 left-0 z-10 w-full will-change-transform"
+          className="pointer-events-none absolute -bottom-7 left-0 z-10 w-full transform-gpu will-change-transform"
         >
           <Image
             src="/images/wave-divider.svg"
@@ -141,13 +142,20 @@ export function HeroSection() {
 
       <section className="relative z-20 border-b border-[var(--border-subtle)] bg-[var(--bg-primary)] py-5 sm:py-6 px-6 transition-colors">
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-5 md:grid-cols-4">
-          {HIGHLIGHTS.map((item) => (
-            <div key={item.label} className="text-center md:text-left">
+          {HIGHLIGHTS.map((item, idx) => (
+            <motion.div
+              key={item.label}
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.45, delay: idx * 0.06, ease: SMOOTH_EASE }}
+              className="text-center md:text-left"
+            >
               <p className="font-editorial text-lg sm:text-xl font-bold text-[var(--text-primary)] tabular-nums">
                 {item.value}
               </p>
               <p className="mt-0.5 text-xs font-medium text-[var(--text-muted)]">{item.label}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
