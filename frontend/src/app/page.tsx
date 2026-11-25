@@ -1,7 +1,8 @@
 import { LandingNavbar } from "@/components/landing/LandingNavbar";
 import { HeroSection } from "@/components/landing/HeroSection";
 import { StoryRevealSection } from "@/components/landing/StoryRevealSection";
-import { FeaturesAndFlowSection } from "@/components/landing/FeaturesAndFlowSection";
+import { ShowcaseAndStepsSection } from "@/components/landing/ShowcaseAndStepsSection";
+import { FlipCardsAndFaqSection } from "@/components/landing/FlipCardsAndFaqSection";
 
 export default function HomePage() {
   return (
@@ -10,7 +11,8 @@ export default function HomePage() {
       <main>
         <HeroSection />
         <StoryRevealSection />
-        <FeaturesAndFlowSection />
+        <ShowcaseAndStepsSection />
+        <FlipCardsAndFaqSection />
       </main>
     </div>
   );
