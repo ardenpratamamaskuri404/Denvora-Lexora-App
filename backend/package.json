@@ -2,11 +2,11 @@
   "name": "denvora-lexora-backend",
   "version": "1.0.0",
   "description": "Backend REST API (TypeScript) for Denvora Lexora Digital Library Management System",
-  "main": "dist/server.js",
+  "main": "src/server.ts",
   "scripts": {
-    "start": "node dist/server.js",
+    "start": "tsx src/server.ts",
     "dev": "tsx watch src/server.ts",
-    "build": "tsc",
+    "build": "tsc --noEmit",
     "typecheck": "tsc --noEmit",
     "seed": "tsx database/seed.ts",
     "test:smoke": "tsx tests/smoke.ts"
