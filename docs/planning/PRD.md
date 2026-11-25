@@ -49,7 +49,7 @@ Seluruh warga sekolah dan siswa/i serta pengelola perpustakaan sekolah:
 | F-06 | Pengembalian Buku (Diri Sendiri) | ✔ | ✘ | ✘ (kelola via CRUD Transaksi) |
 | F-07 | Lihat Riwayat Transaksi Pribadi | ✔ | ✘ | ✘ |
 | F-08 | CRUD Transaksi (Semua Anggota) | ✘ | ✔ | ✔ |
-| F-09 | CRUD Data Buku & Kategori | ✘ | ✔ | ✔ |
+| F-09 | CRUD Data Buku & Kategori | ✘ | ✔ (CRU; Delete khusus Admin) | ✔ |
 | F-10 | Lihat Data Anggota (Read-only) | ✘ | ✔ | ✔ |
 | F-11 | CRUD Kelola Anggota (Siswa) | ✘ | ✘ | ✔ |
 | F-12 | CRUD Kelola Akun Petugas (`RECOMMENDATION`) | ✘ | ✘ | ✔ |

@@ -11,11 +11,11 @@
 Denvora Lexora memisahkan presentation layer, business logic layer, dan data storage layer secara tegas ke dalam proyek dan direktori yang berbeda:
 
 ```text
-+-----------------------------------+
-|        Frontend (Next.js)         |
-|  React · Tailwind CSS · Lucide    |
-|  Port: http://localhost:3000      |
-+-----------------+-----------------+
++---------------------------------------+
+|          Frontend (Next.js)           |
+| React · Tailwind · shadcn/ui · Motion |
+| Lucide · Port: http://localhost:3000  |
++-------------------+-------------------+
                   |
                   | HTTP REST API (JSON) + Cookie / Bearer Token
                   v
@@ -96,10 +96,11 @@ Dibagi ke dalam pola **Routes → Middlewares → Controllers → Services → D
 4. Setiap request selanjutnya dari frontend menyertakan `credentials: 'include'` sehingga cookie terkirim otomatis ke Express.js.
 5. Saat `POST /api/auth/logout`, backend membersihkan cookie sesi.
 
-### Alur Otorisasi (RBAC 3 Role)
-- **`admin`:** Kendali penuh atas `/api/books`, `/api/categories`, `/api/members`, `/api/staff` (`petugas`), `/api/transactions`, dan `/api/reports`.
-- **`petugas` (`RECOMMENDATION`):** Akses ke `/api/books`, `/api/categories`, `/api/transactions`, `/api/reports`, dan `GET /api/members` (read-only). Ditolak (`403`) pada mutasi anggota (`POST/PUT/DELETE /api/members`) dan manajemen staf (`/api/staff`).
-- **`siswa`:** Akses ke `GET /api/books`, `GET /api/categories`, serta transaksi miliknya sendiri (`/api/transactions/my`, `POST /api/transactions/borrow`, `PATCH /api/transactions/:id/return`). Ditolak (`403`) pada endpoint manajemen admin/petugas.
+### Alur Otorisasi (RBAC 3 Role — Namespace Per Peran)
+Setiap peran memiliki namespace endpoint masing-masing agar pemisahan hak akses jelas di API maupun log, sambil tetap berbagi controller/service yang sama di backend (tanpa duplikasi logika):
+- **`admin` (`/api/admin/*`):** Kendali penuh atas `/api/admin/books` (CRUD + Delete), `/api/admin/categories` (CRUD + Delete), `/api/admin/members` (CRUD), `/api/admin/staff` (CRUD `petugas`), `/api/admin/transactions` (CRUD), dan `/api/admin/reports/*`.
+- **`petugas` (`/api/petugas/*` — `RECOMMENDATION`):** Akses operasional harian ke `/api/petugas/books` (CRU tanpa Delete), `/api/petugas/categories` (CRU tanpa Delete), `/api/petugas/transactions` (CRUD), `/api/petugas/reports/*`, dan `GET /api/petugas/members` (read-only). Ditolak (`403`) jika mengakses `/api/admin/*` atau `/api/siswa/*`.
+- **`siswa` (`/api/siswa/*`):** Akses ke `GET /api/siswa/books`, `GET /api/siswa/categories`, serta transaksi miliknya sendiri (`GET /api/siswa/transactions`, `POST /api/siswa/transactions/borrow`, `PATCH /api/siswa/transactions/:id/return`). Ditolak (`403`) jika mengakses `/api/admin/*` atau `/api/petugas/*`.
 
 ---
 

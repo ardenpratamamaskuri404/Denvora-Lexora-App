@@ -3,6 +3,7 @@
 **Base URL (Lokal):** `http://localhost:5000/api`  
 **Format Data:** `application/json` (kecuali ekspor CSV: `text/csv`)  
 **Validasi Input:** `Zod`  
+**Konvensi Endpoint:** Dipisah per namespace peran (`/api/auth/*`, `/api/siswa/*`, `/api/petugas/*`, `/api/admin/*`) agar batas otorisasi RBAC eksplisit dan mudah diaudit, sementara di backend tetap memakai *shared services* agar tidak ada duplikasi logika.
 
 ---
 
@@ -35,27 +36,28 @@
 ```
 
 ### Kode Status HTTP yang Digunakan
-- `200 OK` — Permintaan berhasil (`GET`, `PUT`, `PATCH`, `DELETE`, `POST /login`).
-- `201 Created` — Data baru berhasil dibuat (`POST /register`, `POST /books`, `POST /transactions/borrow`, dll.).
+- `200 OK` — Permintaan berhasil (`GET`, `PUT`, `PATCH`, `DELETE`, `POST /auth/login`).
+- `201 Created` — Data baru berhasil dibuat.
 - `400 Bad Request` — Validasi `Zod` gagal atau aturan bisnis sederhana tidak terpenuhi.
 - `401 Unauthorized` — Belum login atau token sesi tidak valid/kedaluwarsa.
-- `403 Forbidden` — Role pengguna tidak berhak mengakses endpoint.
+- `403 Forbidden` — Role pengguna tidak berhak mengakses namespace/endpoint tersebut.
 - `404 Not Found` — Data tidak ditemukan.
 - `409 Conflict` — Duplikasi data unik (`username`, `book_code`, `member_code`), stok buku habis, atau transaksi sudah dikembalikan.
 - `500 Internal Server Error` — Kesalahan tak terduga server/database.
 
 ---
 
-## 2. Authentication & Authorization Endpoints
+## 2. Health Check & Authentication (`/api/health`, `/api/auth/*`)
 
 | Method | Endpoint | Akses | Deskripsi |
 |---|---|---|---|
+| `GET` | `/health` | Publik | Cek status server & koneksi database MySQL. |
 | `POST` | `/auth/register` | Publik | Pendaftaran anggota baru (**role dikunci `siswa`**). |
 | `POST` | `/auth/login` | Publik | Validasi `username` & `password`, set cookie sesi `HttpOnly`. |
 | `POST` | `/auth/logout` | Authenticated | Menghapus cookie sesi. |
 | `GET` | `/auth/me` | Authenticated | Mengambil profil pengguna yang sedang login. |
 
-### Detail Request & Validasi
+### Detail Request & Validasi Auth
 - **`POST /auth/register`**
   - Body: `{ name, username, password, member_code, class_name?, phone? }`
   - Validasi `Zod`: `name` min 3 char, `username` min 4 char alfanumerik/underscore, `password` min 6 char, `member_code` wajib.
@@ -66,34 +68,89 @@
 
 ---
 
-## 3. Categories Endpoints
+## 3. Query Pencarian Kondisi Tertentu (Berlaku di Semua Role)
 
-| Method | Endpoint | Akses | Deskripsi |
-|---|---|---|---|
-| `GET` | `/categories` | Authenticated (`admin`, `petugas`, `siswa`) | Daftar seluruh kategori buku. |
-| `POST` | `/categories` | `admin`, `petugas` | Tambah kategori baru (`{ name }`). |
-| `PUT` | `/categories/:id` | `admin`, `petugas` | Ubah nama kategori. |
-| `DELETE` | `/categories/:id` | `admin` | Hapus kategori (ditolak `409` jika masih dipakai buku). |
-
----
-
-## 4. Books Endpoints (CRUD Data Buku & Pencarian)
-
-| Method | Endpoint | Akses | Deskripsi |
-|---|---|---|---|
-| `GET` | `/books` | `admin`, `petugas`, `siswa` | List & pencarian buku dengan kondisi tertentu. |
-| `GET` | `/books/:id` | `admin`, `petugas`, `siswa` | Detail satu buku beserta nama kategori. |
-| `POST` | `/books` | `admin`, `petugas` | Tambah buku baru. |
-| `PUT` | `/books/:id` | `admin`, `petugas` | Ubah data buku. |
-| `DELETE` | `/books/:id` | `admin`, `petugas` | Hapus buku (ditolak `409` jika masih ada transaksi aktif). |
-
-### Query Pencarian Kondisi Tertentu (`GET /books`)
+### Pencarian Buku (`GET /siswa/books`, `GET /petugas/books`, `GET /admin/books`)
 - `search` — mencocokkan `title`, `author`, atau `book_code` (`LIKE %search%`).
 - `category_id` — filter berdasarkan kategori.
 - `availability` — `all` | `available` (`stock_available > 0`) | `empty` (`stock_available = 0`).
 - `page` & `limit` — paginasi (default `page=1`, `limit=10`).
 
-### Body `POST /books` & `PUT /books/:id`
+### Pencarian Transaksi (`GET /petugas/transactions`, `GET /admin/transactions`)
+- `search` — mencocokkan `transaction_code`, nama/NIS peminjam, atau judul buku.
+- `status` — `all` | `borrowed` | `returned`.
+- `date_from` & `date_to` — rentang tanggal `borrow_date`.
+- `overdue_only` — `true` untuk menampilkan pinjaman aktif yang melewati `due_date`.
+
+---
+
+## 4. Siswa Endpoints (`/api/siswa/*` — `requireRole('siswa')`)
+
+| Method | Endpoint | Deskripsi |
+|---|---|---|
+| `GET` | `/siswa/categories` | Daftar seluruh kategori buku untuk filter katalog. |
+| `GET` | `/siswa/books` | List & pencarian buku dengan kondisi tertentu. |
+| `GET` | `/siswa/books/:id` | Detail satu buku beserta nama kategori. |
+| `GET` | `/siswa/transactions` | Riwayat transaksi milik siswa yang login (`status`: `all`, `borrowed`, `returned`). |
+| `POST` | `/siswa/transactions/borrow` | Pinjam buku (`{ book_id, notes? }`). `user_id` diambil dari sesi login. |
+| `PATCH` | `/siswa/transactions/:id/return` | Kembalikan buku milik siswa itu sendiri (cek `trx.user_id === req.user.id`). |
+
+---
+
+## 5. Petugas Endpoints (`/api/petugas/*` — `requireRole('petugas')`, `RECOMMENDATION`)
+
+| Method | Endpoint | Deskripsi |
+|---|---|---|
+| `GET` | `/petugas/categories` | Daftar kategori buku. |
+| `POST` | `/petugas/categories` | Tambah kategori baru (`{ name }`). |
+| `PUT` | `/petugas/categories/:id` | Ubah nama kategori *(Delete kategori khusus Admin)*. |
+| `GET` | `/petugas/books` | List & pencarian buku dengan kondisi tertentu. |
+| `GET` | `/petugas/books/:id` | Detail buku. |
+| `POST` | `/petugas/books` | Tambah buku baru. |
+| `PUT` | `/petugas/books/:id` | Ubah data & stok buku *(Delete buku khusus Admin)*. |
+| `GET` | `/petugas/members` | Lihat & cari daftar anggota `siswa` (**read-only**). |
+| `GET` | `/petugas/members/:id` | Detail anggota & ringkasan pinjaman (**read-only**). |
+| `GET` | `/petugas/transactions` | List & filter seluruh transaksi. |
+| `GET` | `/petugas/transactions/:id` | Detail transaksi. |
+| `POST` | `/petugas/transactions` | Catat peminjaman baru untuk anggota (`{ user_id, book_id, borrow_date?, due_date?, notes? }`). |
+| `PUT` | `/petugas/transactions/:id` | Perbarui transaksi (tandai kembali, ubah `due_date`, `notes`). |
+| `DELETE` | `/petugas/transactions/:id` | Hapus catatan transaksi (jika masih `borrowed`, stok buku dipulihkan +1 secara atomik). |
+| `GET` | `/petugas/reports/summary` | Ringkasan statistik operasional perpustakaan. |
+| `GET` | `/petugas/reports/transactions/export` | Generate & unduh file `.csv` transaksi sesuai filter (PPsp 1.12). |
+
+---
+
+## 6. Admin Endpoints (`/api/admin/*` — `requireRole('admin')`)
+
+| Method | Endpoint | Deskripsi |
+|---|---|---|
+| `GET` | `/admin/categories` | Daftar kategori buku. |
+| `POST` | `/admin/categories` | Tambah kategori baru (`{ name }`). |
+| `PUT` | `/admin/categories/:id` | Ubah nama kategori. |
+| `DELETE` | `/admin/categories/:id` | Hapus kategori (ditolak `409` jika masih dipakai buku). |
+| `GET` | `/admin/books` | List & pencarian buku dengan kondisi tertentu. |
+| `GET` | `/admin/books/:id` | Detail buku. |
+| `POST` | `/admin/books` | Tambah buku baru. |
+| `PUT` | `/admin/books/:id` | Ubah data & stok buku. |
+| `DELETE` | `/admin/books/:id` | Hapus buku (ditolak `409` jika masih ada transaksi aktif). |
+| `GET` | `/admin/members` | List & cari anggota `siswa` (`search`, `is_active`). |
+| `GET` | `/admin/members/:id` | Detail anggota & ringkasan pinjaman. |
+| `POST` | `/admin/members` | Tambah akun anggota (`role` dikunci `'siswa'`). |
+| `PUT` | `/admin/members/:id` | Ubah data siswa, status `is_active`, atau reset password opsional. |
+| `DELETE` | `/admin/members/:id` | Hapus siswa (ditolak `409` jika masih punya pinjaman aktif). |
+| `GET` | `/admin/staff` | List akun `petugas` (`RECOMMENDATION`). |
+| `POST` | `/admin/staff` | Tambah akun `petugas` (`role` dikunci `'petugas'`). |
+| `PUT` | `/admin/staff/:id` | Ubah data atau status aktif `petugas`. |
+| `DELETE` | `/admin/staff/:id` | Hapus akun `petugas`. |
+| `GET` | `/admin/transactions` | List & filter seluruh transaksi. |
+| `GET` | `/admin/transactions/:id` | Detail transaksi. |
+| `POST` | `/admin/transactions` | Buat transaksi pinjam untuk anggota tertentu. |
+| `PUT` | `/admin/transactions/:id` | Perbarui status/catatan transaksi. |
+| `DELETE` | `/admin/transactions/:id` | Hapus transaksi (jika masih `borrowed`, stok buku dipulihkan +1 secara atomik). |
+| `GET` | `/admin/reports/summary` | Ringkasan statistik menyeluruh perpustakaan. |
+| `GET` | `/admin/reports/transactions/export` | Generate & unduh file `.csv` transaksi sesuai filter (PPsp 1.12). |
+
+### Body Contoh `POST /admin/books` & `POST /petugas/books`
 ```json
 {
   "book_code": "BK-001",
@@ -107,58 +164,3 @@
 }
 ```
 *(Saat `POST`, `stock_available` otomatis diset sama dengan `stock_total`. Saat `PUT`, `stock_total` tidak boleh lebih kecil dari jumlah eksemplar yang sedang dipinjam aktif).*
-
----
-
-## 5. Members & Staff Endpoints (Kelola Anggota & Petugas)
-
-### A. Kelola Anggota (`role = 'siswa'`)
-
-| Method | Endpoint | Akses | Deskripsi |
-|---|---|---|---|
-| `GET` | `/members` | `admin`, `petugas` (read-only) | List & cari anggota (`search` nama/username/NIS, `is_active`). |
-| `GET` | `/members/:id` | `admin`, `petugas` | Detail anggota & ringkasan pinjaman. |
-| `POST` | `/members` | `admin` saja | Tambah akun siswa oleh Admin. |
-| `PUT` | `/members/:id` | `admin` saja | Ubah data siswa / status `is_active` / reset password opsional. |
-| `DELETE` | `/members/:id` | `admin` saja | Hapus siswa (ditolak `409` jika punya transaksi aktif). |
-
-### B. Kelola Petugas (`role = 'petugas'`) — `RECOMMENDATION`
-
-| Method | Endpoint | Akses | Deskripsi |
-|---|---|---|---|
-| `GET` | `/staff` | `admin` saja | List akun petugas. |
-| `POST` | `/staff` | `admin` saja | Tambah akun petugas baru (`role` dikunci `'petugas'`). |
-| `PUT` | `/staff/:id` | `admin` saja | Ubah data atau status aktif petugas. |
-| `DELETE` | `/staff/:id` | `admin` saja | Hapus akun petugas. |
-
----
-
-## 6. Transactions Endpoints (Peminjaman, Pengembalian, CRUD Transaksi)
-
-### A. Endpoint Siswa (Sesuai Flowmap Siswa)
-
-| Method | Endpoint | Akses | Deskripsi |
-|---|---|---|---|
-| `GET` | `/transactions/my` | `siswa` | Riwayat transaksi milik siswa yang login (`status` filter: `all`, `borrowed`, `returned`). |
-| `POST` | `/transactions/borrow` | `siswa` | Pinjam buku (`{ book_id, notes? }`). `user_id` diambil dari sesi login. |
-| `PATCH` | `/transactions/:id/return` | `siswa` | Kembalikan buku milik siswa itu sendiri (cek kepemilikan `trx.user_id === req.user.id`). |
-
-### B. Endpoint Admin & Petugas (CRUD Transaksi)
-
-| Method | Endpoint | Akses | Deskripsi |
-|---|---|---|---|
-| `GET` | `/transactions` | `admin`, `petugas` | Semua transaksi + filter kondisi tertentu (`search`, `status`, `date_from`, `date_to`, `overdue_only`). |
-| `GET` | `/transactions/:id` | `admin`, `petugas` | Detail transaksi. |
-| `POST` | `/transactions` | `admin`, `petugas` | Buat transaksi pinjam untuk anggota tertentu (`{ user_id, book_id, borrow_date?, due_date?, notes? }`). |
-| `PUT` | `/transactions/:id` | `admin`, `petugas` | Perbarui transaksi (mis. ubah status menjadi `returned`, ubah `due_date`, `notes`). |
-| `DELETE` | `/transactions/:id` | `admin`, `petugas` | Hapus catatan transaksi (jika masih `borrowed`, stok buku dikembalikan +1 secara atomik). |
-
----
-
-## 7. Reports & Health Check Endpoints
-
-| Method | Endpoint | Akses | Deskripsi |
-|---|---|---|---|
-| `GET` | `/health` | Publik | Cek status server & koneksi database MySQL. |
-| `GET` | `/reports/summary` | `admin`, `petugas` | Ringkasan statistik (total judul, stok tersedia, pinjaman aktif, terlambat, total anggota). |
-| `GET` | `/reports/transactions/export` | `admin`, `petugas` | Generate & unduh file `.csv` transaksi sesuai filter tanggal/status (PPsp 1.12). |

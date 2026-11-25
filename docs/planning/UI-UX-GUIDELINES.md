@@ -104,7 +104,7 @@ Tema warna **Denvora Lexora** terkunci pada palet **Cream Mocha (Krem & Cokelat 
 ## 6. Spesifikasi Halaman Utama
 
 ### A. Authentication Pages (`/login` & `/register`)
-- Layout split sederhana atau kartu terpusat di atas `#F6EFE6` dengan logo **Denvora Lexora** dan slogan *"Where Knowledge Finds Its Way."*
+- *Split layout editorial* di atas `#F6EFE6` (panel identitas **Denvora Lexora**, logo, dan slogan *"Where Knowledge Finds Its Way."* di kiri; form autentikasi bersih di kanan).
 - **Halaman Login:** Tab/indikator jalur *Siswa* dan *Admin / Petugas* (sesuai flowmap SPK-3/4), input `Username`, input `Password` (dengan toggle tampilkan password dari `lucide-react`), pesan error jelas bila kredensial salah, dan tautan **"Daftar Anggota Baru"** untuk siswa.
 - **Halaman Daftar Anggota (`/register`):** Form Nama Lengkap, NIS/Kode Anggota, Kelas, Nomor HP, Username, Password. Tidak ada dropdown role (dikunci `Siswa`).
 

@@ -89,11 +89,11 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A["Dashboard Siswa -> Menu Peminjaman Buku"] --> B["Lihat Katalog Buku"]
+    A["Dashboard Siswa -> Menu Peminjaman Buku"] --> B["Lihat Katalog Buku (GET /api/siswa/books)"]
     B --> C["Cari / Filter Kondisi Tertentu (Judul, Penulis, Kategori, Stok Tersedia)"]
     C --> D["Pilih Buku dengan stock_available > 0"]
     D --> E["Klik Tombol Pinjam Buku + Konfirmasi"]
-    E --> F["POST /api/transactions/borrow"]
+    E --> F["POST /api/siswa/transactions/borrow"]
     F --> G{"Backend Cek Stok FOR UPDATE"}
     G -->|"Stok = 0"| H["Tampilkan Error: Stok Buku Habis"]
     G -->|"Stok > 0"| I["Kurangi stock_available - 1 & Catat Transaksi (status='borrowed', due_date +7 hari)"]
@@ -106,11 +106,11 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A["Dashboard Siswa -> Menu Pengembalian Buku"] --> B["GET /api/transactions/my?status=borrowed"]
+    A["Dashboard Siswa -> Menu Pengembalian Buku"] --> B["GET /api/siswa/transactions?status=borrowed"]
     B --> C{"Ada Buku yang Sedang Dipinjam?"}
     C -->|"Tidak"| D["Tampilkan Empty State: Tidak Ada Pinjaman Aktif"]
     C -->|"Ya"| E["Pilih Transaksi Buku yang Akan Dikembalikan"]
-    E --> F["Klik Kembalikan Buku -> PATCH /api/transactions/:id/return"]
+    E --> F["Klik Kembalikan Buku -> PATCH /api/siswa/transactions/:id/return"]
     F --> G{"Backend Cek Kepemilikan & Status == 'borrowed'"}
     G -->|"Gagal"| H["Tolak Aksi & Tampilkan Pesan Error"]
     G -->|"Valid"| I["Update status='returned', return_date=hari ini, Tambah stock_available + 1"]
@@ -125,9 +125,9 @@ flowchart TD
 flowchart TD
     A["Dashboard Admin/Petugas -> Menu Kelola Data Buku"] --> B["Tampilkan Tabel Buku + Filter Pencarian"]
     B --> C{"Pilih Aksi CRUD"}
-    C -->|"Create"| D["Isi Form Tambah Buku -> POST /api/books"]
-    C -->|"Update"| E["Ubah Data/Stok Buku -> PUT /api/books/:id"]
-    C -->|"Delete (Admin Only)"| F["Konfirmasi Hapus -> DELETE /api/books/:id"]
+    C -->|"Create"| D["Isi Form Tambah Buku -> POST /api/admin|petugas/books"]
+    C -->|"Update"| E["Ubah Data/Stok Buku -> PUT /api/admin|petugas/books/:id"]
+    C -->|"Delete (Admin Only)"| F["Konfirmasi Hapus -> DELETE /api/admin/books/:id"]
     F --> G{"Masih Ada Transaksi Aktif?"}
     G -->|"Ya"| H["Tolak (409 Conflict): Buku Sedang Dipinjam"]
     G -->|"Tidak"| I["Hapus Buku dari Database"]
@@ -142,7 +142,7 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A["Dashboard Admin -> Menu Kelola Anggota / Kelola Petugas"] --> B["Tampilkan Daftar Anggota (Siswa) atau Daftar Petugas"]
+    A["Dashboard Admin -> Menu Kelola Anggota / Kelola Petugas"] --> B["Tampilkan Daftar Anggota (/api/admin/members) atau Petugas (/api/admin/staff)"]
     B --> C{"Pilih Aksi"}
     C -->|"Create"| D["Tambah Akun (role='siswa' atau 'petugas')"]
     C -->|"Update"| E["Edit Data / Nonaktifkan Akun (is_active)"]
@@ -151,7 +151,7 @@ flowchart TD
     F -->|"Aman"| H["Hapus Akun dari Database"]
 ```
 
-*(Catatan: `Petugas` hanya memiliki akses **Read-only** melihat daftar anggota saat memproses peminjaman di meja layanan).*
+*(Catatan: `Petugas` hanya memiliki akses **Read-only** melihat daftar anggota via `GET /api/petugas/members` saat memproses peminjaman di meja layanan).*
 
 ---
 
@@ -161,8 +161,8 @@ flowchart TD
 flowchart TD
     A["Dashboard Admin/Petugas -> Menu Transaksi"] --> B["Filter Kondisi: Status, Tanggal Pinjam, Terlambat, atau Kata Kunci"]
     B --> C{"Pilih Aksi"}
-    C -->|"Catat Pinjam Baru"| D["Pilih Anggota & Buku Tersedia -> POST /api/transactions"]
-    C -->|"Update / Proses Kembali"| E["Ubah Status jadi 'returned' / Edit Catatan -> PUT /api/transactions/:id"]
-    C -->|"Hapus Transaksi"| F["Hapus & Pulihkan Stok jika masih 'borrowed' -> DELETE /api/transactions/:id"]
-    C -->|"Ekspor Laporan CSV (PPsp 1.12)"| G["GET /api/reports/transactions/export -> Generate & Unduh File .csv"]
+    C -->|"Catat Pinjam Baru"| D["Pilih Anggota & Buku Tersedia -> POST /api/admin|petugas/transactions"]
+    C -->|"Update / Proses Kembali"| E["Ubah Status jadi 'returned' / Edit Catatan -> PUT /api/admin|petugas/transactions/:id"]
+    C -->|"Hapus Transaksi"| F["Hapus & Pulihkan Stok jika masih 'borrowed' -> DELETE /api/admin|petugas/transactions/:id"]
+    C -->|"Ekspor Laporan CSV (PPsp 1.12)"| G["GET /api/admin|petugas/reports/transactions/export -> Generate & Unduh File .csv"]
 ```

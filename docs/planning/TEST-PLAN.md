@@ -46,34 +46,34 @@ Data berikut disiapkan dalam `database/perpustakaan.sql` dan `backend/database/s
 ### B. Otorisasi (RBAC 3 Role)
 | ID | Skenario | Langkah Uji | Expected Result |
 |---|---|---|---|
-| `TC-RBAC-01` | Siswa mencoba CRUD Buku/Anggota | Pakai sesi `siswa1`, panggil `POST /api/books` dan `GET /api/members`. | Status `403 Forbidden`, data DB tidak berubah. |
-| `TC-RBAC-02` | Petugas mencoba Kelola Anggota/Petugas | Pakai sesi `petugas1`, panggil `POST /api/members`, `DELETE /api/books/1`, dan `GET /api/staff`. | Status `403 Forbidden`, hanya `GET /api/members` yang diizinkan (`200 OK`). |
-| `TC-RBAC-03` | Siswa mengembalikan transaksi milik siswa lain | Pakai sesi `siswa1`, panggil `PATCH /api/transactions/:idLain/return`. | Status `403 Forbidden`. |
-| `TC-RBAC-04` | Akses tanpa login | Panggil `GET /api/transactions/my` tanpa cookie sesi. | Status `401 Unauthorized`. |
+| `TC-RBAC-01` | Siswa mencoba endpoint Admin/Petugas | Pakai sesi `siswa1`, panggil `POST /api/admin/books` dan `GET /api/petugas/members`. | Status `403 Forbidden`, data DB tidak berubah. |
+| `TC-RBAC-02` | Petugas mencoba akses khusus Admin atau Siswa | Pakai sesi `petugas1`, panggil `POST /api/admin/members`, `DELETE /api/admin/books/1`, `GET /api/admin/staff`, dan `POST /api/siswa/transactions/borrow`. | Status `403 Forbidden`; hanya namespace `/api/petugas/*` (`GET /api/petugas/members`, CRU buku, CRUD transaksi) yang diizinkan (`200 OK`). |
+| `TC-RBAC-03` | Siswa mengembalikan transaksi milik siswa lain | Pakai sesi `siswa1`, panggil `PATCH /api/siswa/transactions/:idLain/return`. | Status `403 Forbidden`. |
+| `TC-RBAC-04` | Akses tanpa login | Panggil `GET /api/siswa/transactions` tanpa cookie sesi. | Status `401 Unauthorized`. |
 
 ### C. CRUD Data Master (Buku & Anggota/Petugas)
 | ID | Skenario | Langkah Uji | Expected Result |
 |---|---|---|---|
-| `TC-CRUD-01` | Admin/Petugas tambah & edit buku | Input buku baru valid, lalu ubah judul & stok total. | Status `201` dan `200`, data terbarui di MySQL. |
-| `TC-CRUD-02` | Validasi input kosong/negatif | Kirim `stock_total: -2` atau `title: ""` ke `POST /api/books`. | Status `400 Bad Request` dari validasi `Zod`. |
-| `TC-CRUD-03` | Admin hapus buku yang sedang dipinjam | Hapus `BK-003` yang memiliki transaksi `borrowed`. | Status `409 Conflict`, penghapusan ditolak untuk jaga integritas relasi. |
-| `TC-CRUD-04` | Admin kelola Anggota & Petugas | Tambah, edit kelas/status, nonaktifkan anggota & tambah akun petugas baru. | Tersimpan dengan `role` tepat dan password ter-hash `bcryptjs`. |
+| `TC-CRUD-01` | Admin/Petugas tambah & edit buku | Input buku baru valid (`POST /api/admin|petugas/books`), lalu ubah judul & stok total (`PUT`). | Status `201` dan `200`, data terbarui di MySQL. |
+| `TC-CRUD-02` | Validasi input kosong/negatif | Kirim `stock_total: -2` atau `title: ""` ke `POST /api/admin/books`. | Status `400 Bad Request` dari validasi `Zod`. |
+| `TC-CRUD-03` | Admin hapus buku yang sedang dipinjam | Panggil `DELETE /api/admin/books/:id` untuk `BK-003` yang memiliki transaksi `borrowed`. | Status `409 Conflict`, penghapusan ditolak untuk jaga integritas relasi. |
+| `TC-CRUD-04` | Admin kelola Anggota & Petugas | Tambah, edit kelas/status, nonaktifkan anggota (`/api/admin/members`) & tambah akun petugas baru (`/api/admin/staff`). | Tersimpan dengan `role` tepat dan password ter-hash `bcryptjs`. |
 
 ### D. Peminjaman, Pengembalian & CRUD Transaksi
 | ID | Skenario | Langkah Uji | Expected Result |
 |---|---|---|---|
-| `TC-TRX-01` | Siswa meminjam buku tersedia (`BK-001`) | Klik Pinjam pada `BK-001`. | Status `201`, transaksi baru `status='borrowed'`, `due_date = +7 hari`, `BK-001.stock_available` turun dari `3` ke `2`. |
-| `TC-TRX-02` | Siswa meminjam buku stok habis (`BK-002`) | Panggil `POST /api/transactions/borrow` untuk `BK-002`. | Status `409 Conflict`, stok tetap `0`, tidak ada transaksi baru. |
-| `TC-TRX-03` | Siswa mengembalikan buku (`BK-003`) | Di menu Pengembalian, klik Kembalikan pada pinjaman `BK-003`. | Status `200`, transaksi berubah `status='returned'`, `return_date` terisi hari ini, `stock_available` naik dari `1` ke `2`. |
-| `TC-TRX-04` | Pengembalian ganda | Ulangi `PATCH /api/transactions/:id/return` pada transaksi yang sudah `returned`. | Status `409 Conflict`, stok tidak bertambah dua kali. |
-| `TC-TRX-05` | Admin/Petugas CRUD transaksi | Buat transaksi manual untuk `siswa1`, edit catatan, hapus transaksi uji. | Stok sinkron saat create/return/delete. |
+| `TC-TRX-01` | Siswa meminjam buku tersedia (`BK-001`) | Klik Pinjam pada `BK-001` (`POST /api/siswa/transactions/borrow`). | Status `201`, transaksi baru `status='borrowed'`, `due_date = +7 hari`, `BK-001.stock_available` turun dari `3` ke `2`. |
+| `TC-TRX-02` | Siswa meminjam buku stok habis (`BK-002`) | Panggil `POST /api/siswa/transactions/borrow` untuk `BK-002`. | Status `409 Conflict`, stok tetap `0`, tidak ada transaksi baru. |
+| `TC-TRX-03` | Siswa mengembalikan buku (`BK-003`) | Di menu Pengembalian, klik Kembalikan pada pinjaman `BK-003` (`PATCH /api/siswa/transactions/:id/return`). | Status `200`, transaksi berubah `status='returned'`, `return_date` terisi hari ini, `stock_available` naik dari `1` ke `2`. |
+| `TC-TRX-04` | Pengembalian ganda | Ulangi `PATCH /api/siswa/transactions/:id/return` pada transaksi yang sudah `returned`. | Status `409 Conflict`, stok tidak bertambah dua kali. |
+| `TC-TRX-05` | Admin/Petugas CRUD transaksi | Buat transaksi manual untuk `siswa1` (`/api/admin|petugas/transactions`), edit catatan, hapus transaksi uji. | Stok sinkron saat create/return/delete. |
 
 ### E. Pencarian Kondisi Tertentu & File Access
 | ID | Skenario | Langkah Uji | Expected Result |
 |---|---|---|---|
-| `TC-SRC-01` | Filter buku multi-kondisi | `GET /api/books?search=Web&availability=available&category_id=1`. | Hanya mengembalikan buku yang cocok semua filter. |
-| `TC-SRC-02` | Filter transaksi Admin/Petugas | Filter transaksi `status=borrowed` & rentang tanggal. | Menampilkan daftar pinjaman aktif dalam rentang tanggal tersebut. |
-| `TC-FILE-01` | Ekspor laporan CSV & File Log | Klik Unduh CSV (`GET /api/reports/transactions/export`) dan cek `backend/logs/app.log`. | File `.csv` valid terunduh dan dapat dibuka spreadsheet; log aktivitas tertulis di `backend/logs/app.log`. |
+| `TC-SRC-01` | Filter buku multi-kondisi | `GET /api/siswa/books?search=Web&availability=available&category_id=1`. | Hanya mengembalikan buku yang cocok semua filter. |
+| `TC-SRC-02` | Filter transaksi Admin/Petugas | Panggil `GET /api/admin|petugas/transactions?status=borrowed&date_from=...`. | Menampilkan daftar pinjaman aktif dalam rentang tanggal tersebut. |
+| `TC-FILE-01` | Ekspor laporan CSV & File Log | Klik Unduh CSV (`GET /api/admin|petugas/reports/transactions/export`) dan cek `backend/logs/app.log`. | File `.csv` valid terunduh dan dapat dibuka spreadsheet; log aktivitas tertulis di `backend/logs/app.log`. |
 
 ---
 
