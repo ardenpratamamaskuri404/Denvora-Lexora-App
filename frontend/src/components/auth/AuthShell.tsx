@@ -101,7 +101,7 @@ export function AuthShell({
         </div>
       </div>
 
-      <div className="relative lg:col-span-6 lg:h-full lg:overflow-y-auto text-[#F6EFE6] p-6 sm:p-8 lg:px-12 xl:px-14 lg:py-5 flex flex-col justify-center">
+      <div className="relative lg:col-span-6 lg:h-full lg:overflow-y-auto text-[#F6EFE6] p-6 sm:p-8 lg:px-10 xl:px-12 lg:py-5 flex flex-col justify-center">
         <svg
           viewBox="0 0 600 44"
           preserveAspectRatio="none"
@@ -118,7 +118,7 @@ export function AuthShell({
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
-          className="relative z-10 w-full max-w-[440px] mx-auto pt-3 lg:pt-0"
+          className="relative z-10 w-full max-w-[520px] mx-auto pt-3 lg:pt-0"
         >
           {children}
         </motion.div>

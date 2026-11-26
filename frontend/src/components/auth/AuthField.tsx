@@ -54,9 +54,9 @@ export function AuthField({
           autoComplete={autoComplete}
           required={required}
           maxLength={maxLength}
-          className={`w-full rounded-full border border-[#8C7B6B]/45 bg-[#1B110B]/70 px-4 text-[#F6EFE6] placeholder:text-[#C2B09E]/55 focus:border-[#C87E4F] focus:outline-none focus:ring-2 focus:ring-[#C87E4F]/30 transition-all pr-10 ${
-            compact ? "h-9.5 text-[13px]" : "h-10.5 text-sm"
-          }`}
+          className={`w-full rounded-full border border-[#8C7B6B]/45 bg-[#1B110B]/70 px-4 text-[#F6EFE6] placeholder:text-[#C2B09E]/55 focus:border-[#C87E4F] focus:outline-none focus:ring-2 focus:ring-[#C87E4F]/30 transition-all ${
+            isPassword ? "pr-10" : "pr-4"
+          } ${compact ? "h-9.5 text-[13px]" : "h-10.5 text-sm"}`}
         />
         {isPassword && (
           <button

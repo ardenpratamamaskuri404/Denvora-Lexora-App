@@ -111,53 +111,61 @@ export default function RegisterPage() {
           error={fieldErrors.name}
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-          <AuthField
-            compact
-            id="reg-nis"
-            label="NIS / Kode Anggota"
-            value={memberCode}
-            onChange={setMemberCode}
-            placeholder="Nomor Induk Siswa"
-            error={fieldErrors.member_code}
-          />
-          <AuthField
-            compact
-            id="reg-class"
-            label="Kelas"
-            value={className}
-            onChange={setClassName}
-            placeholder="Contoh: XII RPL 1"
-            error={fieldErrors.class_name}
-          />
+        <div className="grid grid-cols-1 sm:grid-cols-12 gap-3">
+          <div className="sm:col-span-7">
+            <AuthField
+              compact
+              id="reg-nis"
+              label="NIS / Kode Anggota"
+              value={memberCode}
+              onChange={setMemberCode}
+              placeholder="Nomor Induk Siswa"
+              error={fieldErrors.member_code}
+            />
+          </div>
+          <div className="sm:col-span-5">
+            <AuthField
+              compact
+              id="reg-class"
+              label="Kelas"
+              value={className}
+              onChange={setClassName}
+              placeholder="Contoh: XII RPL 1"
+              error={fieldErrors.class_name}
+            />
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-          <AuthField
-            compact
-            id="reg-email"
-            label="Alamat Email"
-            type="email"
-            value={email}
-            onChange={setEmail}
-            placeholder="nama@gmail.com / @sekolah.sch.id"
-            autoComplete="email"
-            error={fieldErrors.email}
-          />
-          <AuthField
-            compact
-            id="reg-phone"
-            label="Nomor Telepon (Opsional)"
-            type="tel"
-            value={phone}
-            onChange={setPhone}
-            placeholder="Nomor ponsel aktif"
-            required={false}
-            error={fieldErrors.phone}
-          />
+        <div className="grid grid-cols-1 sm:grid-cols-12 gap-3">
+          <div className="sm:col-span-7">
+            <AuthField
+              compact
+              id="reg-email"
+              label="Alamat Email"
+              type="email"
+              value={email}
+              onChange={setEmail}
+              placeholder="nama@gmail.com / @denvora.sch.id"
+              autoComplete="email"
+              error={fieldErrors.email}
+            />
+          </div>
+          <div className="sm:col-span-5">
+            <AuthField
+              compact
+              id="reg-phone"
+              label="Nomor Telepon (Opsional)"
+              type="tel"
+              value={phone}
+              onChange={setPhone}
+              placeholder="Nomor ponsel aktif"
+              required={false}
+              error={fieldErrors.phone}
+            />
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <AuthField
             compact
             id="reg-username"
