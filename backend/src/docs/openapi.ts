@@ -23,7 +23,8 @@ export const openApiSpec = {
   security: [{ cookieAuth: [] }, { bearerAuth: [] }],
   tags: [
     { name: 'Health', description: 'Status server dan database' },
-    { name: 'Auth', description: 'Registrasi siswa, login, logout, dan profil sesi' },
+    { name: 'Catalog', description: 'Katalog bacaan publik read-only (/api/catalog/*)' },
+    { name: 'Auth', description: 'Registrasi siswa, login, OTP Mailpit, logout, dan profil sesi' },
     { name: 'Siswa', description: 'Endpoint khusus role siswa (/api/siswa/*)' },
     { name: 'Petugas', description: 'Endpoint operasional petugas (/api/petugas/*)' },
     { name: 'Admin', description: 'Endpoint kendali penuh admin (/api/admin/*)' },
@@ -34,6 +35,27 @@ export const openApiSpec = {
         tags: ['Health'],
         summary: 'Cek kesehatan server & koneksi MySQL',
         responses: { 200: { description: 'Server dan DB sehat' } },
+      },
+    },
+    '/catalog/categories': {
+      get: {
+        tags: ['Catalog'],
+        summary: 'Daftar kategori publik',
+        responses: { 200: { description: 'OK' } },
+      },
+    },
+    '/catalog/books': {
+      get: {
+        tags: ['Catalog'],
+        summary: 'Pencarian katalog buku publik (live search footer)',
+        parameters: [
+          { name: 'search', in: 'query', schema: { type: 'string' }, description: 'Kata kunci judul, penulis, kode, atau rak' },
+          { name: 'category_id', in: 'query', schema: { type: 'integer' } },
+          { name: 'availability', in: 'query', schema: { type: 'string', enum: ['all', 'available', 'empty'], default: 'all' } },
+          { name: 'page', in: 'query', schema: { type: 'integer', default: 1 } },
+          { name: 'limit', in: 'query', schema: { type: 'integer', default: 10 } },
+        ],
+        responses: { 200: { description: 'OK' } },
       },
     },
     '/auth/register': {
@@ -154,7 +176,9 @@ export const openApiSpec = {
         parameters: [
           { name: 'search', in: 'query', schema: { type: 'string' } },
           { name: 'category_id', in: 'query', schema: { type: 'integer' } },
-          { name: 'availability', in: 'query', schema: { type: 'string', enum: ['all', 'available', 'empty'] } },
+          { name: 'availability', in: 'query', schema: { type: 'string', enum: ['all', 'available', 'empty'], default: 'all' } },
+          { name: 'page', in: 'query', schema: { type: 'integer', default: 1 } },
+          { name: 'limit', in: 'query', schema: { type: 'integer', default: 10 } },
         ],
         responses: { 200: { description: 'OK' } },
       },
@@ -168,7 +192,14 @@ export const openApiSpec = {
       },
     },
     '/siswa/transactions': {
-      get: { tags: ['Siswa'], summary: 'Riwayat transaksi milik siswa login', responses: { 200: { description: 'OK' } } },
+      get: {
+        tags: ['Siswa'],
+        summary: 'Riwayat transaksi milik siswa login',
+        parameters: [
+          { name: 'status', in: 'query', schema: { type: 'string', enum: ['all', 'borrowed', 'returned'], default: 'all' } },
+        ],
+        responses: { 200: { description: 'OK' } },
+      },
     },
     '/siswa/transactions/borrow': {
       post: {
