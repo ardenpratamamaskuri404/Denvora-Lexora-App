@@ -1,0 +1,229 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" role="img" aria-label="Ilustrasi Sambutan Pengunjung Repositori Denvora Lexora">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFFBF5"/>
+      <stop offset=".55" stop-color="#F6EFE6"/>
+      <stop offset="1" stop-color="#E9DCCB"/>
+    </linearGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#D08A5C"/>
+      <stop offset=".55" stop-color="#A8643A"/>
+      <stop offset="1" stop-color="#7A4524"/>
+    </linearGradient>
+    <linearGradient id="accSide" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6B3A1E"/>
+      <stop offset="1" stop-color="#8F532F"/>
+    </linearGradient>
+    <linearGradient id="cream" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFFAF2"/>
+      <stop offset="1" stop-color="#E9DCCB"/>
+    </linearGradient>
+    <linearGradient id="pages" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#E9DCCB"/>
+      <stop offset="1" stop-color="#FFF8EE"/>
+    </linearGradient>
+    <linearGradient id="dark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4A3426"/>
+      <stop offset="1" stop-color="#2B1D14"/>
+    </linearGradient>
+    <linearGradient id="muted" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#A5927F"/>
+      <stop offset="1" stop-color="#7B6A5A"/>
+    </linearGradient>
+    <linearGradient id="hl" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".38"/>
+      <stop offset=".5" stop-color="#fff" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".18"/>
+    </linearGradient>
+    <radialGradient id="skin" cx=".4" cy=".3" r=".85">
+      <stop offset="0" stop-color="#F7D3B3"/>
+      <stop offset=".6" stop-color="#E9AE86"/>
+      <stop offset="1" stop-color="#CF8F66"/>
+    </radialGradient>
+    <radialGradient id="skin2" cx=".4" cy=".3" r=".85">
+      <stop offset="0" stop-color="#E7B08A"/>
+      <stop offset=".6" stop-color="#CF9168"/>
+      <stop offset="1" stop-color="#AF7249"/>
+    </radialGradient>
+    <filter id="sh" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#2B1D14" flood-opacity=".2"/>
+    </filter>
+    <filter id="blur">
+      <feGaussianBlur stdDeviation="7"/>
+    </filter>
+    <clipPath id="cardClip">
+      <rect width="1200" height="420" rx="28"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#cardClip)">
+    <rect width="1200" height="420" rx="28" fill="url(#bg)"/>
+    <circle cx="940" cy="215" r="245" fill="#FBF5EC" opacity=".82"/>
+    <circle cx="940" cy="215" r="275" fill="none" stroke="#A8643A" stroke-opacity=".18" stroke-width="2.5" stroke-dasharray="4 12" stroke-linecap="round"/>
+
+    <!-- Floor band -->
+    <rect y="366" width="1200" height="54" fill="#D9C6AE" opacity=".7"/>
+    <rect y="366" width="1200" height="3" fill="#fff" opacity=".55"/>
+
+    <!-- Ambient Sparkles -->
+    <path d="M56 54Q56 66 68 66Q56 66 56 78Q56 66 44 66Q56 66 56 54Z" fill="#A8643A" opacity=".8"/>
+    <path d="M685 70Q685 80 695 80Q685 80 685 90Q685 80 675 80Q685 80 685 70Z" fill="#8C7B6B" opacity=".75"/>
+    <path d="M1142 62Q1142 74 1154 74Q1142 74 1142 86Q1142 74 1130 74Q1142 74 1142 62Z" fill="#A8643A" opacity=".8"/>
+    <circle cx="720" cy="290" r="5" fill="#8C7B6B" opacity=".45"/>
+    <circle cx="1138" cy="260" r="6" fill="#A8643A" opacity=".4"/>
+
+    <!-- Left Welcome Text Copy -->
+    <rect x="58" y="58" width="266" height="30" rx="15" fill="#E9DCCB" stroke="#D7C7B4"/>
+    <text x="74" y="77" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" letter-spacing="1.6" fill="#A8643A">
+      SELAMAT DATANG DI REPOSITORI
+    </text>
+
+    <text x="58" y="136" font-family="Georgia, 'Times New Roman', serif" font-size="38" font-weight="700" fill="#2B1D14">
+      Salam Hangat untuk Setiap
+    </text>
+    <text x="58" y="182" font-family="Georgia, 'Times New Roman', serif" font-size="38" font-weight="700" fill="#A8643A">
+      Pembaca &amp; Pengunjung.
+    </text>
+
+    <text x="58" y="224" font-family="system-ui, -apple-system, sans-serif" font-size="15.5" fill="#5D4C3F">
+      Terima kasih telah meluangkan waktu menjelajahi Denvora Lexora.
+    </text>
+    <text x="58" y="248" font-family="system-ui, -apple-system, sans-serif" font-size="15.5" fill="#5D4C3F">
+      Di sini tersimpan arsitektur sistem, skema basis data MySQL, dan kode sumber
+    </text>
+    <text x="58" y="272" font-family="system-ui, -apple-system, sans-serif" font-size="15.5" fill="#5D4C3F">
+      portal perpustakaan digital sekolah yang dirancang tertib &amp; efisien.
+    </text>
+
+    <!-- Tech & Architecture Badges -->
+    <g transform="translate(58 304)">
+      <rect width="142" height="34" rx="17" fill="#2B1D14"/>
+      <text x="71" y="21" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#F6EFE6">Next.js 16 + React</text>
+
+      <rect x="152" width="162" height="34" rx="17" fill="#A8643A"/>
+      <text x="233" y="21" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#F6EFE6">Express TypeScript API</text>
+
+      <rect x="324" width="168" height="34" rx="17" fill="#FBF7F1" stroke="#D7C7B4"/>
+      <text x="408" y="21" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#2B1D14">MySQL + Mailpit OTP</text>
+    </g>
+
+    <!-- Floating Decorative Books -->
+    <g filter="url(#sh)" transform="translate(722 72) rotate(-14) scale(0.15)">
+      <rect x="16" y="16" width="300" height="400" rx="20" fill="url(#pages)"/>
+      <rect width="300" height="400" rx="22" fill="url(#acc)"/>
+      <path d="M22 0H44V400H22A22 22 0 0 1 0 378V22A22 22 0 0 1 22 0Z" fill="url(#accSide)"/>
+      <circle cx="175" cy="200" r="58" fill="none" stroke="#F6EFE6" stroke-width="6"/>
+      <path d="M175 160L205 200L175 240L145 200Z" fill="#F6EFE6"/>
+      <rect width="300" height="400" rx="22" fill="url(#hl)"/>
+    </g>
+    <g filter="url(#sh)" transform="translate(1088 86) rotate(12) scale(0.14)">
+      <rect x="16" y="16" width="300" height="400" rx="20" fill="url(#pages)"/>
+      <rect width="300" height="400" rx="22" fill="url(#acc)"/>
+      <path d="M22 0H44V400H22A22 22 0 0 1 0 378V22A22 22 0 0 1 22 0Z" fill="url(#accSide)"/>
+      <circle cx="175" cy="200" r="58" fill="none" stroke="#F6EFE6" stroke-width="6"/>
+      <path d="M175 160L205 200L175 240L145 200Z" fill="#F6EFE6"/>
+      <rect width="300" height="400" rx="22" fill="url(#hl)"/>
+    </g>
+
+    <!-- Welcome Speech Bubble Badge -->
+    <g filter="url(#sh)" transform="translate(866 44)">
+      <rect width="150" height="40" rx="20" fill="#FBF7F1" stroke="#D7C7B4" stroke-width="1.5"/>
+      <path d="M66 40L75 50L84 40Z" fill="#FBF7F1"/>
+      <text x="75" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#A8643A">
+        Halo &amp; Selamat Datang!
+      </text>
+    </g>
+
+    <!-- Center Welcome Display Book Stack -->
+    <g filter="url(#sh)" transform="translate(765 20) scale(0.42)">
+      <rect x="210" y="758" width="420" height="36" fill="url(#pages)"/>
+      <rect x="200" y="746" width="440" height="15" rx="7" fill="url(#acc)"/>
+      <rect x="200" y="794" width="440" height="15" rx="7" fill="url(#acc)"/>
+      <rect x="232" y="700" width="376" height="34" fill="url(#pages)"/>
+      <rect x="222" y="688" width="396" height="14" rx="7" fill="url(#dark)"/>
+      <rect x="222" y="732" width="396" height="14" rx="7" fill="url(#dark)"/>
+    </g>
+
+    <!-- Left Character (Ibu / Mbak Pustakawati Berkacamata - Waving Welcome) -->
+    <g transform="translate(835 376) scale(0.55)">
+      <ellipse cy="4" rx="95" ry="13" fill="#2B1D14" opacity=".25" filter="url(#blur)"/>
+      <rect x="-32" y="-112" width="26" height="90" rx="12" fill="url(#skin)"/>
+      <rect x="6" y="-112" width="26" height="90" rx="12" fill="url(#skin)"/>
+      <ellipse cx="-20" cy="-13" rx="27" ry="13" fill="url(#dark)"/>
+      <ellipse cx="20" cy="-13" rx="27" ry="13" fill="url(#dark)"/>
+      <path d="M-64 -214L64 -214L92 -104Q0 -84 -92 -104Z" fill="url(#cream)" stroke="#D9C6AE" stroke-width="2"/>
+      <path d="M-10 -214L-24 -96M30 -214L44 -96" stroke="#C9B49A" stroke-width="3" opacity=".6"/>
+      <rect x="-62" y="-405" width="124" height="205" rx="40" fill="url(#acc)"/>
+      <rect x="-62" y="-405" width="124" height="205" rx="40" fill="url(#hl)"/>
+      <rect x="-16" y="-432" width="32" height="40" rx="14" fill="#C98A60"/>
+      <ellipse cy="-402" rx="32" ry="12" fill="#F6EFE6"/>
+      <path d="M0 -340L12 -326L0 -312L-12 -326Z" fill="#F6EFE6"/>
+      <!-- Left waving hand -->
+      <path d="M-58 -378Q-112 -435 -102 -492" stroke="#9A5A33" stroke-width="30" stroke-linecap="round" fill="none"/>
+      <circle cx="-102" cy="-496" r="16" fill="url(#skin)"/>
+      <!-- Right welcoming arm -->
+      <path d="M58 -378Q95 -312 118 -276" stroke="#9A5A33" stroke-width="30" stroke-linecap="round" fill="none"/>
+      <circle cx="118" cy="-274" r="16" fill="url(#skin)"/>
+      <g transform="translate(0 -470) scale(.57) translate(-400 -335)">
+        <path d="M296 330C296 220 340 188 400 188C460 188 504 220 504 330C504 385 500 425 490 448L310 448C300 425 296 385 296 330Z" fill="url(#dark)"/>
+        <circle cx="308" cy="348" r="17" fill="#DB9D74"/><circle cx="492" cy="348" r="17" fill="#DB9D74"/>
+        <ellipse cx="400" cy="335" rx="95" ry="104" fill="url(#skin)"/>
+        <circle cx="336" cy="388" r="17" fill="#D0705A" opacity=".28"/><circle cx="464" cy="388" r="17" fill="#D0705A" opacity=".28"/>
+        <path d="M304 332C298 232 345 198 402 198C462 198 506 232 497 332C482 292 455 266 422 260C395 290 350 292 304 332Z" fill="url(#dark)"/>
+        <path d="M316 266Q400 196 484 266" stroke="#A8643A" stroke-width="13" stroke-linecap="round" fill="none"/>
+        <path d="M344 302Q362 292 380 300M420 300Q438 292 456 302" stroke="#2B1D14" stroke-width="5" stroke-linecap="round" fill="none"/>
+        <circle cx="362" cy="342" r="31" fill="#fff" fill-opacity=".2" stroke="#2B1D14" stroke-width="6"/>
+        <circle cx="438" cy="342" r="31" fill="#fff" fill-opacity=".2" stroke="#2B1D14" stroke-width="6"/>
+        <path d="M393 338Q400 330 407 338" stroke="#2B1D14" stroke-width="5" fill="none"/>
+        <ellipse cx="367" cy="345" rx="7" ry="9" fill="#2B1D14"/>
+        <ellipse cx="443" cy="345" rx="7" ry="9" fill="#2B1D14"/>
+        <circle cx="370" cy="341" r="2.6" fill="#fff"/>
+        <circle cx="446" cy="341" r="2.6" fill="#fff"/>
+        <path d="M400 364Q394 378 403 380" stroke="#B9794F" stroke-width="4" stroke-linecap="round" fill="none"/>
+        <path d="M368 394Q400 430 432 394Q400 404 368 394Z" fill="#8A3B2A"/>
+      </g>
+    </g>
+
+    <!-- Right Character (Bapak / Mas Pustakawan - Holding Denvora Book & Waving) -->
+    <g transform="translate(1038 376) scale(0.55)">
+      <ellipse cy="4" rx="95" ry="13" fill="#2B1D14" opacity=".25" filter="url(#blur)"/>
+      <rect x="-54" y="-215" width="50" height="190" rx="18" fill="url(#muted)"/>
+      <rect x="4" y="-215" width="50" height="190" rx="18" fill="url(#muted)"/>
+      <ellipse cx="-30" cy="-12" rx="31" ry="14" fill="url(#dark)"/>
+      <ellipse cx="30" cy="-12" rx="31" ry="14" fill="url(#dark)"/>
+      <rect x="-68" y="-405" width="136" height="205" rx="40" fill="url(#dark)"/>
+      <rect x="-68" y="-405" width="136" height="205" rx="40" fill="url(#hl)" opacity=".6"/>
+      <rect x="-17" y="-432" width="34" height="40" rx="14" fill="#B97D54"/>
+      <path d="M-30 -405L0 -345L30 -405Z" fill="#F6EFE6"/>
+      <circle cy="-322" r="5" fill="#A8643A"/><circle cy="-284" r="5" fill="#A8643A"/><circle cy="-246" r="5" fill="#A8643A"/>
+      <!-- Right waving hand -->
+      <path d="M62 -378Q114 -432 104 -490" stroke="#3A281C" stroke-width="30" stroke-linecap="round" fill="none"/>
+      <circle cx="104" cy="-494" r="16" fill="url(#skin2)"/>
+      <!-- Left arm holding welcome book -->
+      <path d="M-62 -378Q-95 -290 -62 -236" stroke="#3A281C" stroke-width="30" stroke-linecap="round" fill="none"/>
+      <g transform="translate(-96 -340) scale(.33)">
+        <rect x="16" y="16" width="300" height="400" rx="20" fill="url(#pages)"/>
+        <rect width="300" height="400" rx="22" fill="url(#acc)"/>
+        <path d="M22 0H44V400H22A22 22 0 0 1 0 378V22A22 22 0 0 1 22 0Z" fill="url(#accSide)"/>
+        <circle cx="175" cy="200" r="58" fill="none" stroke="#F6EFE6" stroke-width="6"/>
+        <path d="M175 160L205 200L175 240L145 200Z" fill="#F6EFE6"/>
+        <rect width="300" height="400" rx="22" fill="url(#hl)"/>
+      </g>
+      <circle cx="-62" cy="-236" r="16" fill="url(#skin2)"/>
+      <g transform="translate(0 -470) scale(.57) translate(-400 -335)">
+        <circle cx="308" cy="348" r="17" fill="#B97D54"/><circle cx="492" cy="348" r="17" fill="#B97D54"/>
+        <ellipse cx="400" cy="335" rx="95" ry="104" fill="url(#skin2)"/>
+        <circle cx="336" cy="388" r="16" fill="#C0624A" opacity=".22"/><circle cx="464" cy="388" r="16" fill="#C0624A" opacity=".22"/>
+        <path d="M304 300C288 200 340 146 404 150C470 154 512 204 496 300C486 258 468 236 438 230C400 250 340 250 304 300Z" fill="url(#dark)"/>
+        <path d="M340 302Q362 288 386 298M414 298Q438 288 460 302" stroke="#2B1D14" stroke-width="7" stroke-linecap="round" fill="none"/>
+        <ellipse cx="357" cy="345" rx="7" ry="9" fill="#2B1D14"/><ellipse cx="433" cy="345" rx="7" ry="9" fill="#2B1D14"/>
+        <circle cx="360" cy="341" r="2.6" fill="#fff"/><circle cx="436" cy="341" r="2.6" fill="#fff"/>
+        <path d="M400 364Q394 378 403 380" stroke="#B9794F" stroke-width="4" stroke-linecap="round" fill="none"/>
+        <path d="M368 394Q400 430 432 394Q400 404 368 394Z" fill="#8A3B2A"/>
+        <path d="M376 396Q400 406 424 396Q400 410 376 396Z" fill="#fff"/>
+      </g>
+    </g>
+  </g>
+
+  <rect width="1200" height="420" rx="28" fill="none" stroke="#D7C7B4" stroke-width="2"/>
+</svg>

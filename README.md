@@ -1,15 +1,14 @@
 <p align="center">
-  <img src="docs/assets/denvora-lexora-logo.png" alt="Logo Denvora Lexora" width="160" />
-</p>
-
-<h1 align="center">Denvora Lexora</h1>
-
-<p align="center">
-  <em>"Where Knowledge Finds Its Way."</em>
+  <img src="docs/assets/denvora-readme-logo.png" alt="Denvora Lexora — Where Knowledge Finds Its Way." width="360" />
 </p>
 
 <p align="center">
+  <em>"Where Knowledge Finds Its Way."</em><br/>
   Sistem Informasi Peminjaman Buku &amp; Manajemen Perpustakaan Sekolah Digital berbasis arsitektur <em>client–server</em> terpisah.
+</p>
+
+<p align="center">
+  <img src="docs/assets/denvora-readme-welcome.svg" alt="Selamat Datang di Repositori Denvora Lexora" width="100%" />
 </p>
 
 ---
@@ -69,7 +68,7 @@ sistem-peminjaman-buku/
 ├── frontend/          # Antarmuka Next.js 16, React 19, Tailwind CSS v4
 ├── backend/           # Layanan REST API Express.js TypeScript, Zod, OpenAPI (/api-docs)
 ├── database/          # Skema relasional MySQL & data awal (schema.sql)
-└── docs/              # Artefak arsitektur, ERD, dan dokumentasi perencanaan
+└── docs/              # Artefak arsitektur, ERD, aset visual, dan perencanaan
 ```
 
 ---
