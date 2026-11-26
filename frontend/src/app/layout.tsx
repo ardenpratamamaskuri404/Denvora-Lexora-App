@@ -19,7 +19,7 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
       </head>
-      <body className="min-h-screen antialiased bg-[var(--bg-primary)] text-[var(--text-primary)]">
+      <body className="min-h-screen antialiased bg-(--bg-primary) text-(--text-primary)">
         {children}
       </body>
     </html>

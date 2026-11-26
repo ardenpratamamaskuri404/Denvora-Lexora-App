@@ -37,7 +37,7 @@ function ThemeToggleButton() {
       onClick={toggleColorTheme}
       aria-label="Ubah mode gelap atau terang"
       title="Mode Gelap / Terang"
-      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--border-subtle)] bg-[var(--surface-elevated)] text-[var(--text-primary)] transition-colors hover:bg-[var(--bg-surface)] hover:text-[var(--accent-primary)] cursor-pointer shrink-0"
+      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-(--border-subtle) bg-(--surface-elevated) text-(--text-primary) transition-colors hover:bg-(--bg-surface) hover:text-(--accent-primary) cursor-pointer shrink-0"
     >
       <Moon size={16} strokeWidth={1.75} className="block dark:hidden" />
       <Sun size={16} strokeWidth={1.75} className="hidden dark:block" />
@@ -56,7 +56,7 @@ function AuthButtons({
     <div
       className={
         mobile
-          ? "grid grid-cols-2 gap-2.5 pt-3 border-t border-[var(--border-subtle)]"
+          ? "grid grid-cols-2 gap-2.5 pt-3 border-t border-(--border-subtle)"
           : "hidden md:flex items-center gap-2.5 shrink-0"
       }
     >
@@ -93,7 +93,7 @@ export function LandingNavbar() {
       <nav
         aria-label="Navigasi utama"
         className={cn(
-          "mx-auto max-w-4xl border border-[var(--border-subtle)] bg-[var(--surface-elevated)]/95 shadow-[0_8px_28px_rgba(43,29,20,0.08)] backdrop-blur-md transition-colors",
+          "mx-auto max-w-4xl border border-(--border-subtle) bg-(--surface-elevated)/95 shadow-[0_8px_28px_rgba(43,29,20,0.08)] backdrop-blur-md transition-colors",
           mobileOpen
             ? "rounded-3xl px-4 py-3.5 md:rounded-full md:px-4 md:py-1.5"
             : "rounded-full px-3.5 sm:px-4 py-1.5"
@@ -116,7 +116,7 @@ export function LandingNavbar() {
             />
           </Link>
 
-          <ul className="hidden md:flex items-center gap-1 text-sm font-medium text-[var(--text-primary)]">
+          <ul className="hidden md:flex items-center gap-1 text-sm font-medium text-(--text-primary)">
             {NAV_LINKS.map((item) => {
               const active = pathname === item.href;
               return (
@@ -126,8 +126,8 @@ export function LandingNavbar() {
                     className={cn(
                       "whitespace-nowrap rounded-full px-3 lg:px-3.5 py-1.5 transition-colors duration-150",
                       active
-                        ? "bg-[var(--bg-surface)] font-semibold text-[var(--accent-primary)]"
-                        : "hover:bg-[var(--bg-surface)]/65 hover:text-[var(--accent-primary)]"
+                        ? "bg-(--bg-surface) font-semibold text-(--accent-primary)"
+                        : "hover:bg-(--bg-surface)/65 hover:text-(--accent-primary)"
                     )}
                   >
                     {item.label}
@@ -146,7 +146,7 @@ export function LandingNavbar() {
               aria-label={mobileOpen ? "Tutup menu" : "Buka menu"}
               aria-expanded={mobileOpen}
               onClick={() => setMobileOpen((prev) => !prev)}
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--border-subtle)] bg-[var(--surface-elevated)] text-[var(--text-primary)] hover:bg-[var(--bg-surface)] cursor-pointer"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-(--border-subtle) bg-(--surface-elevated) text-(--text-primary) hover:bg-(--bg-surface) cursor-pointer"
             >
               {mobileOpen ? <X size={18} strokeWidth={1.75} /> : <Menu size={18} strokeWidth={1.75} />}
             </button>
@@ -154,7 +154,7 @@ export function LandingNavbar() {
         </div>
 
         {mobileOpen && (
-          <div className="md:hidden mt-3 pt-3 border-t border-[var(--border-subtle)] flex flex-col gap-1.5">
+          <div className="md:hidden mt-3 pt-3 border-t border-(--border-subtle) flex flex-col gap-1.5">
             {NAV_LINKS.map((item) => {
               const active = pathname === item.href;
               return (
@@ -165,8 +165,8 @@ export function LandingNavbar() {
                   className={cn(
                     "px-3.5 py-2.5 rounded-xl text-sm font-medium transition-colors",
                     active
-                      ? "bg-[var(--bg-surface)] font-semibold text-[var(--accent-primary)]"
-                      : "text-[var(--text-primary)] hover:bg-[var(--bg-surface)]/60"
+                      ? "bg-(--bg-surface) font-semibold text-(--accent-primary)"
+                      : "text-(--text-primary) hover:bg-(--bg-surface)/60"
                   )}
                 >
                   {item.label}

@@ -52,7 +52,7 @@ const SMOOTH_EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 export function HomeExtraSections() {
   return (
     <>
-      <section className="relative py-20 md:py-24 bg-[var(--bg-primary)] transition-colors overflow-hidden">
+      <section className="relative py-20 md:py-24 bg-(--bg-primary) transition-colors overflow-hidden">
         <AmbientSparkles />
 
         <div className="relative z-10 max-w-6xl mx-auto px-6">
@@ -63,13 +63,13 @@ export function HomeExtraSections() {
             transition={{ duration: 0.5, ease: SMOOTH_EASE }}
             className="max-w-2xl mb-12"
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent-primary)]">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-(--accent-primary)">
               Ragam Koleksi Perpustakaan
             </p>
-            <h2 className="font-editorial mt-2 text-3xl md:text-4xl font-bold text-[var(--text-primary)]">
+            <h2 className="font-editorial mt-2 text-3xl md:text-4xl font-bold text-(--text-primary)">
               Jelajahi Rak Berdasarkan Minat Baca
             </h2>
-            <p className="mt-3 text-sm md:text-base text-[var(--text-muted)] leading-relaxed">
+            <p className="mt-3 text-sm md:text-base text-(--text-muted) leading-relaxed">
               Setiap judul dikelompokkan rapi menurut bidang pengetahuan agar siswa mudah
               menemukan bacaan pelajaran maupun hiburan yang bermutu.
             </p>
@@ -86,15 +86,15 @@ export function HomeExtraSections() {
                   viewport={{ once: false, amount: 0.08 }}
                   transition={{ duration: 0.45, delay: idx * 0.05, ease: SMOOTH_EASE }}
                   whileHover={{ y: -4 }}
-                  className="rounded-2xl border border-[var(--border-subtle)] bg-[var(--surface-elevated)] p-6 shadow-xs transition-colors hover:border-[var(--accent-primary)]/50 transform-gpu"
+                  className="rounded-2xl border border-(--border-subtle) bg-(--surface-elevated) p-6 shadow-xs transition-colors hover:border-(--accent-primary)/50 transform-gpu"
                 >
-                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--bg-surface)] text-[var(--accent-primary)]">
+                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-(--bg-surface) text-(--accent-primary)">
                     <Icon size={19} strokeWidth={1.75} />
                   </div>
-                  <h3 className="font-editorial mt-4 text-lg font-bold text-[var(--text-primary)]">
+                  <h3 className="font-editorial mt-4 text-lg font-bold text-(--text-primary)">
                     {item.title}
                   </h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-[var(--text-muted)]">
+                  <p className="mt-1.5 text-sm leading-relaxed text-(--text-muted)">
                     {item.desc}
                   </p>
                 </motion.div>
@@ -104,22 +104,22 @@ export function HomeExtraSections() {
         </div>
       </section>
 
-      <section className="py-20 px-6 bg-[var(--bg-surface)] transition-colors">
+      <section className="py-20 px-6 bg-(--bg-surface) transition-colors">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.08 }}
           transition={{ duration: 0.5, ease: SMOOTH_EASE }}
-          className="mx-auto max-w-5xl rounded-3xl border border-[var(--border-subtle)] bg-[var(--surface-elevated)] p-8 sm:p-12 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-8"
+          className="mx-auto max-w-5xl rounded-3xl border border-(--border-subtle) bg-(--surface-elevated) p-8 sm:p-12 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-8"
         >
           <div className="max-w-xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent-primary)]">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-(--accent-primary)">
               Siap Membaca Hari Ini?
             </p>
-            <h2 className="font-editorial mt-2 text-2xl sm:text-4xl font-bold text-[var(--text-primary)]">
+            <h2 className="font-editorial mt-2 text-2xl sm:text-4xl font-bold text-(--text-primary)">
               Mulai Jelajahi Koleksi Buku Sekolah Sekarang
             </h2>
-            <p className="mt-3 text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
+            <p className="mt-3 text-sm sm:text-base text-(--text-muted) leading-relaxed">
               Daftarkan keanggotaan Anda dalam hitungan menit atau masuk ke portal anggota
               untuk memeriksa ketersediaan buku di rak.
             </p>

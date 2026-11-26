@@ -88,9 +88,9 @@ function RoleWelcomeInner({ expectedRole, title, menus }: RoleWelcomeShellProps)
 
   if (loading || !user) {
     return (
-      <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] flex items-center justify-center">
-        <div className="flex items-center gap-2.5 text-sm text-[var(--text-muted)]">
-          <Loader2 size={18} className="animate-spin text-[var(--accent-primary)]" />
+      <div className="min-h-screen bg-(--bg-primary) text-(--text-primary) flex items-center justify-center">
+        <div className="flex items-center gap-2.5 text-sm text-(--text-muted)">
+          <Loader2 size={18} className="animate-spin text-(--accent-primary)" />
           Memuat sesi portal...
         </div>
       </div>
@@ -98,9 +98,9 @@ function RoleWelcomeInner({ expectedRole, title, menus }: RoleWelcomeShellProps)
   }
 
   return (
-    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] p-6">
+    <div className="min-h-screen bg-(--bg-primary) text-(--text-primary) p-6">
       <div className="mx-auto max-w-6xl">
-        <header className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-[var(--border-subtle)] bg-[var(--surface-elevated)] px-6 py-4 shadow-xs">
+        <header className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-(--border-subtle) bg-(--surface-elevated) px-6 py-4 shadow-xs">
           <Link href="/" className="flex items-center overflow-hidden h-10 rounded-full dark:bg-[#FBF7F1] dark:px-3">
             <Image
               src="/images/denvora-lexora-logo.png"
@@ -111,7 +111,7 @@ function RoleWelcomeInner({ expectedRole, title, menus }: RoleWelcomeShellProps)
             />
           </Link>
           <div className="flex items-center gap-3">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--bg-surface)] px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-[var(--accent-primary)]">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-(--bg-surface) px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-(--accent-primary)">
               <ShieldCheck size={14} /> {user.role}
             </span>
             <Button variant="outline" size="sm" onClick={handleLogout} disabled={loggingOut}>
@@ -122,14 +122,14 @@ function RoleWelcomeInner({ expectedRole, title, menus }: RoleWelcomeShellProps)
         </header>
 
         <main className="mt-8 space-y-6">
-          <section className="rounded-3xl border border-[var(--border-subtle)] bg-[var(--surface-elevated)] p-7 sm:p-8 shadow-xs">
-            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent-primary)]">
+          <section className="rounded-3xl border border-(--border-subtle) bg-(--surface-elevated) p-7 sm:p-8 shadow-xs">
+            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-(--accent-primary)">
               <UserCheck size={14} /> Sesi Aktif Terautentikasi
             </div>
-            <h1 className="font-editorial mt-2 text-3xl font-bold text-[var(--text-primary)]">
+            <h1 className="font-editorial mt-2 text-3xl font-bold text-(--text-primary)">
               {title} — Halo, {user.name}
             </h1>
-            <p className="mt-2 text-sm text-[var(--text-muted)]">
+            <p className="mt-2 text-sm text-(--text-muted)">
               Username: <strong>{user.username}</strong>
               {user.email ? ` · Email: ${user.email}` : ""}
               {user.member_code ? ` · NIS: ${user.member_code}` : ""}
@@ -140,12 +140,12 @@ function RoleWelcomeInner({ expectedRole, title, menus }: RoleWelcomeShellProps)
               {menus.map((menu) => (
                 <div
                   key={menu}
-                  className="rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-5"
+                  className="rounded-2xl border border-(--border-subtle) bg-(--bg-primary) p-5"
                 >
-                  <div className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--bg-surface)] text-[var(--accent-primary)] mb-3">
+                  <div className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-(--bg-surface) text-(--accent-primary) mb-3">
                     <BookOpen size={17} />
                   </div>
-                  <h2 className="font-editorial text-lg font-bold text-[var(--text-primary)]">
+                  <h2 className="font-editorial text-lg font-bold text-(--text-primary)">
                     {menu}
                   </h2>
                 </div>
@@ -153,30 +153,30 @@ function RoleWelcomeInner({ expectedRole, title, menus }: RoleWelcomeShellProps)
             </div>
           </section>
 
-          <section className="rounded-3xl border border-[var(--border-subtle)] bg-[var(--surface-elevated)] p-7 sm:p-8 shadow-xs">
+          <section className="rounded-3xl border border-(--border-subtle) bg-(--surface-elevated) p-7 sm:p-8 shadow-xs">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
               <div>
-                <h2 className="font-editorial text-xl font-bold text-[var(--text-primary)]">
+                <h2 className="font-editorial text-xl font-bold text-(--text-primary)">
                   Pencarian Katalog Langsung
                 </h2>
-                <p className="text-xs text-[var(--text-muted)]">
+                <p className="text-xs text-(--text-muted)">
                   Menampilkan koleksi buku real-time dari basis data perpustakaan.
                 </p>
               </div>
               <div className="relative w-full sm:w-80">
-                <Search size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[var(--text-muted)]" />
+                <Search size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-(--text-muted)" />
                 <input
                   type="text"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   placeholder="Cari judul, pengarang, kode..."
-                  className="h-10 w-full rounded-full border border-[var(--border-subtle)] bg-[var(--bg-primary)] pl-10 pr-4 text-sm text-[var(--text-primary)] focus:border-[var(--accent-primary)] focus:outline-none"
+                  className="h-10 w-full rounded-full border border-(--border-subtle) bg-(--bg-primary) pl-10 pr-4 text-sm text-(--text-primary) focus:border-(--accent-primary) focus:outline-none"
                 />
               </div>
             </div>
 
             {books.length === 0 ? (
-              <p className="text-sm text-[var(--text-muted)]">
+              <p className="text-sm text-(--text-muted)">
                 Tidak ada buku yang sesuai dengan kata kunci tersebut.
               </p>
             ) : (
@@ -184,19 +184,19 @@ function RoleWelcomeInner({ expectedRole, title, menus }: RoleWelcomeShellProps)
                 {books.map((book) => (
                   <div
                     key={book.id}
-                    className="rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-4 flex flex-col justify-between gap-2"
+                    className="rounded-2xl border border-(--border-subtle) bg-(--bg-primary) p-4 flex flex-col justify-between gap-2"
                   >
                     <div>
-                      <span className="font-mono text-[11px] font-semibold text-[var(--accent-primary)]">
+                      <span className="font-mono text-[11px] font-semibold text-(--accent-primary)">
                         {book.book_code} · {book.category_name}
                       </span>
-                      <h3 className="font-editorial mt-1 text-base font-bold text-[var(--text-primary)]">
+                      <h3 className="font-editorial mt-1 text-base font-bold text-(--text-primary)">
                         {book.title}
                       </h3>
-                      <p className="text-xs text-[var(--text-muted)]">{book.author}</p>
+                      <p className="text-xs text-(--text-muted)">{book.author}</p>
                     </div>
-                    <div className="flex items-center justify-between pt-2 border-t border-[var(--border-subtle)] text-xs">
-                      <span className="text-[var(--text-muted)]">
+                    <div className="flex items-center justify-between pt-2 border-t border-(--border-subtle) text-xs">
+                      <span className="text-(--text-muted)">
                         {book.shelf_location || "Rak Utama"}
                       </span>
                       <span

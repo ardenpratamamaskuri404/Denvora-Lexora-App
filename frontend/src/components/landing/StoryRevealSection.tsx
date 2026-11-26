@@ -33,7 +33,7 @@ export function StoryRevealSection() {
     <section
       id="cerita"
       ref={containerRef}
-      className="relative h-[175vh] bg-[var(--bg-surface)] transition-colors"
+      className="relative h-[175vh] bg-(--bg-surface) transition-colors"
     >
       <div className="sticky top-0 flex h-[100svh] w-full flex-col items-center justify-center overflow-hidden px-4 py-16">
         <AmbientSparkles />
@@ -47,13 +47,13 @@ export function StoryRevealSection() {
           <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center gap-1 sm:gap-2 select-none">
             <motion.span
               style={{ x: leftWordX, opacity: wordOpacity }}
-              className="font-editorial text-5xl font-bold tracking-wider text-[var(--accent-primary)] sm:text-7xl md:text-8xl transform-gpu will-change-transform"
+              className="font-editorial text-5xl font-bold tracking-wider text-(--accent-primary) sm:text-7xl md:text-8xl transform-gpu will-change-transform"
             >
               CER
             </motion.span>
             <motion.span
               style={{ x: rightWordX, opacity: wordOpacity }}
-              className="font-editorial text-5xl font-bold tracking-wider text-[var(--accent-primary)] sm:text-7xl md:text-8xl transform-gpu will-change-transform"
+              className="font-editorial text-5xl font-bold tracking-wider text-(--accent-primary) sm:text-7xl md:text-8xl transform-gpu will-change-transform"
             >
               ITA
             </motion.span>
@@ -61,9 +61,9 @@ export function StoryRevealSection() {
 
           <motion.div
             style={{ scale: frameScale, y: frameY }}
-            className="relative z-10 w-full max-w-5xl overflow-hidden rounded-3xl border-2 border-[var(--border-subtle)] bg-[var(--surface-elevated)] shadow-[0_28px_70px_rgba(43,29,20,0.2)] transform-gpu will-change-transform"
+            className="relative z-10 w-full max-w-5xl overflow-hidden rounded-3xl border-2 border-(--border-subtle) bg-(--surface-elevated) shadow-[0_28px_70px_rgba(43,29,20,0.2)] transform-gpu will-change-transform"
           >
-            <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden bg-[var(--bg-primary)]">
+            <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden bg-(--bg-primary)">
               <video
                 src="/videos/denvora-landing-welcome.mp4"
                 autoPlay

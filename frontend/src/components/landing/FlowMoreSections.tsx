@@ -51,7 +51,7 @@ const SMOOTH_EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 export function FlowMoreSections() {
   return (
     <>
-      <section className="py-20 px-6 bg-[var(--bg-primary)] border-t border-[var(--border-subtle)] transition-colors">
+      <section className="py-20 px-6 bg-(--bg-primary) border-t border-(--border-subtle) transition-colors">
         <div className="mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
@@ -60,10 +60,10 @@ export function FlowMoreSections() {
             transition={{ duration: 0.48, ease: SMOOTH_EASE }}
             className="max-w-2xl mb-12"
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent-primary)]">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-(--accent-primary)">
               Tahap Pengembalian
             </p>
-            <h2 className="font-editorial mt-2 text-3xl font-bold text-[var(--text-primary)] sm:text-4xl">
+            <h2 className="font-editorial mt-2 text-3xl font-bold text-(--text-primary) sm:text-4xl">
               Mengembalikan Buku Sama Mudahnya
             </h2>
           </motion.div>
@@ -76,15 +76,15 @@ export function FlowMoreSections() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false, amount: 0.08 }}
                 transition={{ duration: 0.42, delay: idx * 0.06, ease: SMOOTH_EASE }}
-                className="rounded-2xl border border-[var(--border-subtle)] bg-[var(--surface-elevated)] p-6"
+                className="rounded-2xl border border-(--border-subtle) bg-(--surface-elevated) p-6"
               >
-                <span className="font-editorial text-2xl font-bold text-[var(--accent-primary)] tabular-nums">
+                <span className="font-editorial text-2xl font-bold text-(--accent-primary) tabular-nums">
                   {item.num}
                 </span>
-                <h3 className="font-editorial mt-3 text-lg font-bold text-[var(--text-primary)]">
+                <h3 className="font-editorial mt-3 text-lg font-bold text-(--text-primary)">
                   {item.title}
                 </h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-[var(--text-muted)]">
+                <p className="mt-1.5 text-sm leading-relaxed text-(--text-muted)">
                   {item.desc}
                 </p>
               </motion.div>
@@ -93,7 +93,7 @@ export function FlowMoreSections() {
         </div>
       </section>
 
-      <section className="py-20 px-6 bg-[var(--bg-surface)]/75 border-t border-[var(--border-subtle)] transition-colors">
+      <section className="py-20 px-6 bg-(--bg-surface)/75 border-t border-(--border-subtle) transition-colors">
         <div className="mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
@@ -102,10 +102,10 @@ export function FlowMoreSections() {
             transition={{ duration: 0.48, ease: SMOOTH_EASE }}
             className="text-center max-w-2xl mx-auto mb-12"
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent-primary)]">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-(--accent-primary)">
               Ketentuan Singkat
             </p>
-            <h2 className="font-editorial mt-2 text-3xl font-bold text-[var(--text-primary)] sm:text-4xl">
+            <h2 className="font-editorial mt-2 text-3xl font-bold text-(--text-primary) sm:text-4xl">
               Tertib Membaca, Nyaman untuk Semua
             </h2>
           </motion.div>
@@ -120,15 +120,15 @@ export function FlowMoreSections() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: false, amount: 0.08 }}
                   transition={{ duration: 0.42, delay: idx * 0.07, ease: SMOOTH_EASE }}
-                  className="rounded-2xl border border-[var(--border-subtle)] bg-[var(--surface-elevated)] p-7"
+                  className="rounded-2xl border border-(--border-subtle) bg-(--surface-elevated) p-7"
                 >
-                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--bg-surface)] text-[var(--accent-primary)]">
+                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-(--bg-surface) text-(--accent-primary)">
                     <Icon size={20} strokeWidth={1.75} />
                   </div>
-                  <h3 className="font-editorial mt-4 text-xl font-bold text-[var(--text-primary)]">
+                  <h3 className="font-editorial mt-4 text-xl font-bold text-(--text-primary)">
                     {rule.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-[var(--text-muted)]">
+                  <p className="mt-2 text-sm leading-relaxed text-(--text-muted)">
                     {rule.desc}
                   </p>
                 </motion.div>

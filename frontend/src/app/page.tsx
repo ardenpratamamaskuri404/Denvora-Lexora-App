@@ -8,7 +8,7 @@ import { SiteFooter } from "@/components/landing/SiteFooter";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] flex flex-col">
+    <div className="min-h-screen bg-(--bg-primary) text-(--text-primary) flex flex-col">
       <LandingNavbar />
       <main className="flex-1">
         <HeroSection />

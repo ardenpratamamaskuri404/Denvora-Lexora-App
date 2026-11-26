@@ -40,7 +40,7 @@ export function HeroSection() {
       <section
         id="beranda"
         ref={heroRef}
-        className="relative min-h-[94svh] sm:min-h-[100svh] w-full overflow-hidden bg-[var(--bg-surface)] pt-32 pb-28 sm:pt-36 sm:pb-32 flex items-center transition-colors"
+        className="relative min-h-[94svh] sm:min-h-[100svh] w-full overflow-hidden bg-(--bg-surface) pt-32 pb-28 sm:pt-36 sm:pb-32 flex items-center transition-colors"
       >
         <motion.div
           style={{ y: bgY, scale: bgScale }}
@@ -67,16 +67,16 @@ export function HeroSection() {
             transition={{ duration: 0.6, ease: SMOOTH_EASE }}
             className="max-w-xl transform-gpu will-change-transform"
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent-primary)]">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-(--accent-primary)">
               Perpustakaan Sekolah Digital
             </p>
 
-            <h1 className="font-editorial mt-2.5 text-3xl font-bold leading-[1.15] tracking-tight text-[var(--text-primary)] sm:text-5xl lg:text-[3.4rem]">
+            <h1 className="font-editorial mt-2.5 text-3xl font-bold leading-[1.15] tracking-tight text-(--text-primary) sm:text-5xl lg:text-[3.4rem]">
               Temukan Buku,{" "}
-              <span className="text-[var(--accent-primary)]">Tumbuhkan Wawasan.</span>
+              <span className="text-(--accent-primary)">Tumbuhkan Wawasan.</span>
             </h1>
 
-            <p className="mt-4 text-base leading-relaxed text-[var(--text-primary)]/85 sm:text-lg">
+            <p className="mt-4 text-base leading-relaxed text-(--text-primary)/85 sm:text-lg">
               <strong>Denvora Lexora</strong> — <em>Where Knowledge Finds Its Way.</em>{" "}
               Jelajahi ribuan bahan bacaan sekolah, periksa ketersediaan rak secara
               langsung, dan kelola peminjaman buku Anda dengan tertib.
@@ -139,11 +139,11 @@ export function HeroSection() {
               fill="#18110C"
             />
           </svg>
-          <div className="h-7 w-full bg-[var(--bg-primary)]" />
+          <div className="h-7 w-full bg-(--bg-primary)" />
         </motion.div>
       </section>
 
-      <section className="relative z-20 border-b border-[var(--border-subtle)] bg-[var(--bg-primary)] py-5 sm:py-6 px-6 transition-colors">
+      <section className="relative z-20 border-b border-(--border-subtle) bg-(--bg-primary) py-5 sm:py-6 px-6 transition-colors">
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-5 md:grid-cols-4">
           {HIGHLIGHTS.map((item, idx) => (
             <motion.div
@@ -154,10 +154,10 @@ export function HeroSection() {
               transition={{ duration: 0.45, delay: idx * 0.06, ease: SMOOTH_EASE }}
               className="text-center md:text-left"
             >
-              <p className="font-editorial text-lg sm:text-xl font-bold text-[var(--text-primary)] tabular-nums">
+              <p className="font-editorial text-lg sm:text-xl font-bold text-(--text-primary) tabular-nums">
                 {item.value}
               </p>
-              <p className="mt-0.5 text-xs font-medium text-[var(--text-muted)]">{item.label}</p>
+              <p className="mt-0.5 text-xs font-medium text-(--text-muted)">{item.label}</p>
             </motion.div>
           ))}
         </div>

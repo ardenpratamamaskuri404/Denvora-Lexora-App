@@ -33,7 +33,7 @@ const SMOOTH_EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 export function ExplorePillarsSection() {
   return (
-    <section className="relative py-20 md:py-24 bg-[var(--bg-surface)] transition-colors overflow-hidden">
+    <section className="relative py-20 md:py-24 bg-(--bg-surface) transition-colors overflow-hidden">
       <AmbientSparkles />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6">
@@ -44,13 +44,13 @@ export function ExplorePillarsSection() {
           transition={{ duration: 0.5, ease: SMOOTH_EASE }}
           className="max-w-2xl mb-12"
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent-primary)]">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-(--accent-primary)">
             Pengalaman Membaca Lebih Nyaman
           </p>
-          <h2 className="font-editorial mt-2 text-3xl md:text-4xl font-bold text-[var(--text-primary)]">
+          <h2 className="font-editorial mt-2 text-3xl md:text-4xl font-bold text-(--text-primary)">
             Semua Kebutuhan Literasi dalam Satu Tempat
           </h2>
-          <p className="mt-3 text-sm md:text-base text-[var(--text-muted)] leading-relaxed">
+          <p className="mt-3 text-sm md:text-base text-(--text-muted) leading-relaxed">
             Dirancang untuk mendukung kebiasaan membaca siswa dan menjaga koleksi
             perpustakaan tetap rapi dan terawat.
           </p>
@@ -71,18 +71,18 @@ export function ExplorePillarsSection() {
               >
                 <Link
                   href={item.href}
-                  className="group h-full rounded-3xl bg-[var(--surface-elevated)] border border-[var(--border-subtle)] p-7 shadow-xs hover:shadow-md hover:border-[var(--accent-primary)]/50 transition-all flex flex-col justify-between"
+                  className="group h-full rounded-3xl bg-(--surface-elevated) border border-(--border-subtle) p-7 shadow-xs hover:shadow-md hover:border-(--accent-primary)/50 transition-all flex flex-col justify-between"
                 >
                   <div>
-                    <div className="w-11 h-11 rounded-2xl bg-[var(--bg-primary)] text-[var(--accent-primary)] flex items-center justify-center mb-5 group-hover:bg-[var(--accent-primary)] group-hover:text-[#F6EFE6] transition-colors">
+                    <div className="w-11 h-11 rounded-2xl bg-(--bg-primary) text-(--accent-primary) flex items-center justify-center mb-5 group-hover:bg-(--accent-primary) group-hover:text-[#F6EFE6] transition-colors">
                       <Icon className="w-5 h-5" />
                     </div>
-                    <h3 className="font-editorial text-xl font-bold text-[var(--text-primary)] mb-2">
+                    <h3 className="font-editorial text-xl font-bold text-(--text-primary) mb-2">
                       {item.title}
                     </h3>
-                    <p className="text-sm text-[var(--text-muted)] leading-relaxed">{item.desc}</p>
+                    <p className="text-sm text-(--text-muted) leading-relaxed">{item.desc}</p>
                   </div>
-                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent-primary)] group-hover:translate-x-1 transition-transform">
+                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-(--accent-primary) group-hover:translate-x-1 transition-transform">
                     {item.linkLabel} <ArrowRight className="w-4 h-4" />
                   </span>
                 </Link>

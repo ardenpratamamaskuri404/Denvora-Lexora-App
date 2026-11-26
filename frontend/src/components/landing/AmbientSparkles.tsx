@@ -35,12 +35,12 @@ export function AmbientSparkles({ className = "" }: { className?: string }) {
       <motion.div
         animate={{ x: [0, 28, -12, 0], y: [0, -18, 14, 0], opacity: [0.35, 0.55, 0.35] }}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -top-16 left-[12%] h-64 w-64 rounded-full bg-[var(--accent-primary)]/14 blur-3xl transform-gpu"
+        className="absolute -top-16 left-[12%] h-64 w-64 rounded-full bg-(--accent-primary)/14 blur-3xl transform-gpu"
       />
       <motion.div
         animate={{ x: [0, -24, 16, 0], y: [0, 20, -12, 0], opacity: [0.28, 0.48, 0.28] }}
         transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-8 right-[14%] h-72 w-72 rounded-full bg-[var(--accent-primary)]/12 blur-3xl transform-gpu"
+        className="absolute bottom-8 right-[14%] h-72 w-72 rounded-full bg-(--accent-primary)/12 blur-3xl transform-gpu"
       />
 
       {PARTICLES.map((p, idx) => (
@@ -60,7 +60,7 @@ export function AmbientSparkles({ className = "" }: { className?: string }) {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute transform-gpu will-change-transform text-[var(--accent-primary)]"
+          className="absolute transform-gpu will-change-transform text-(--accent-primary)"
         >
           {p.kind === "star" ? (
             <svg width={p.size} height={p.size} viewBox="0 0 24 24" fill="currentColor">
@@ -69,7 +69,7 @@ export function AmbientSparkles({ className = "" }: { className?: string }) {
           ) : (
             <span
               style={{ width: p.size * 0.55, height: p.size * 0.55 }}
-              className="block rounded-full bg-[var(--accent-primary)]/70 shadow-[0_0_10px_var(--accent-primary)]"
+              className="block rounded-full bg-(--accent-primary)/70 shadow-[0_0_10px_var(--accent-primary)]"
             />
           )}
         </motion.div>

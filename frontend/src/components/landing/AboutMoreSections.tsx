@@ -32,25 +32,25 @@ const SMOOTH_EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 export function AboutMoreSections() {
   return (
     <>
-      <section className="py-20 px-6 bg-[var(--bg-surface)]/80 border-t border-[var(--border-subtle)] transition-colors">
+      <section className="py-20 px-6 bg-(--bg-surface)/80 border-t border-(--border-subtle) transition-colors">
         <div className="mx-auto max-w-5xl grid gap-8 md:grid-cols-2 items-start">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.08 }}
             transition={{ duration: 0.46, ease: SMOOTH_EASE }}
-            className="rounded-3xl border border-[var(--border-subtle)] bg-[var(--surface-elevated)] p-8"
+            className="rounded-3xl border border-(--border-subtle) bg-(--surface-elevated) p-8"
           >
-            <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--bg-surface)] text-[var(--accent-primary)] mb-4">
+            <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-(--bg-surface) text-(--accent-primary) mb-4">
               <Compass size={20} strokeWidth={1.75} />
             </div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent-primary)]">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-(--accent-primary)">
               Visi Literasi
             </p>
-            <h2 className="font-editorial mt-2 text-2xl font-bold text-[var(--text-primary)]">
+            <h2 className="font-editorial mt-2 text-2xl font-bold text-(--text-primary)">
               Menjadikan Membaca Bagian dari Keseharian Sekolah
             </h2>
-            <p className="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">
+            <p className="mt-3 text-sm leading-relaxed text-(--text-muted)">
               Kami percaya akses buku yang tertata rapi membuka rasa ingin tahu siswa lebih
               luas dan menciptakan budaya belajar yang mandiri sepanjang tahun ajaran.
             </p>
@@ -61,21 +61,21 @@ export function AboutMoreSections() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.08 }}
             transition={{ duration: 0.46, delay: 0.08, ease: SMOOTH_EASE }}
-            className="rounded-3xl border border-[var(--border-subtle)] bg-[var(--surface-elevated)] p-8"
+            className="rounded-3xl border border-(--border-subtle) bg-(--surface-elevated) p-8"
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent-primary)]">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-(--accent-primary)">
               Misi Perpustakaan
             </p>
-            <h2 className="font-editorial mt-2 text-2xl font-bold text-[var(--text-primary)]">
+            <h2 className="font-editorial mt-2 text-2xl font-bold text-(--text-primary)">
               Komitmen Pelayanan Kami
             </h2>
             <ul className="mt-4 space-y-3">
               {MISSIONS.map((item, idx) => (
                 <li
                   key={item}
-                  className="flex items-start gap-3 text-sm leading-relaxed text-[var(--text-muted)]"
+                  className="flex items-start gap-3 text-sm leading-relaxed text-(--text-muted)"
                 >
-                  <span className="font-editorial inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--accent-primary)] text-xs font-bold text-[#F6EFE6] tabular-nums">
+                  <span className="font-editorial inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-(--accent-primary) text-xs font-bold text-[#F6EFE6] tabular-nums">
                     {idx + 1}
                   </span>
                   <span>{item}</span>
@@ -86,7 +86,7 @@ export function AboutMoreSections() {
         </div>
       </section>
 
-      <section className="py-20 px-6 bg-[var(--bg-primary)] border-t border-[var(--border-subtle)] transition-colors">
+      <section className="py-20 px-6 bg-(--bg-primary) border-t border-(--border-subtle) transition-colors">
         <div className="mx-auto max-w-5xl">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
@@ -95,10 +95,10 @@ export function AboutMoreSections() {
             transition={{ duration: 0.46, ease: SMOOTH_EASE }}
             className="text-center max-w-2xl mx-auto mb-12"
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent-primary)]">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-(--accent-primary)">
               Lingkungan Perpustakaan
             </p>
-            <h2 className="font-editorial mt-2 text-3xl font-bold text-[var(--text-primary)] sm:text-4xl">
+            <h2 className="font-editorial mt-2 text-3xl font-bold text-(--text-primary) sm:text-4xl">
               Kenyamanan Membaca di Sekolah
             </h2>
           </motion.div>
@@ -113,15 +113,15 @@ export function AboutMoreSections() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: false, amount: 0.08 }}
                   transition={{ duration: 0.42, delay: idx * 0.07, ease: SMOOTH_EASE }}
-                  className="rounded-2xl border border-[var(--border-subtle)] bg-[var(--surface-elevated)] p-6"
+                  className="rounded-2xl border border-(--border-subtle) bg-(--surface-elevated) p-6"
                 >
-                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--bg-surface)] text-[var(--accent-primary)]">
+                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-(--bg-surface) text-(--accent-primary)">
                     <Icon size={19} strokeWidth={1.75} />
                   </div>
-                  <h3 className="font-editorial mt-4 text-lg font-bold text-[var(--text-primary)]">
+                  <h3 className="font-editorial mt-4 text-lg font-bold text-(--text-primary)">
                     {item.title}
                   </h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-[var(--text-muted)]">
+                  <p className="mt-1.5 text-sm leading-relaxed text-(--text-muted)">
                     {item.desc}
                   </p>
                 </motion.div>

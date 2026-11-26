@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function AlurPage() {
   return (
-    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] flex flex-col">
+    <div className="min-h-screen bg-(--bg-primary) text-(--text-primary) flex flex-col">
       <LandingNavbar />
       <main className="flex-1">
         <FlowView />

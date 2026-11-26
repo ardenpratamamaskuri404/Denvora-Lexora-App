@@ -32,7 +32,7 @@ export function AboutFaqView() {
 
   return (
     <>
-      <section className="relative bg-[var(--bg-primary)] pt-32 pb-16 px-6 transition-colors overflow-hidden">
+      <section className="relative bg-(--bg-primary) pt-32 pb-16 px-6 transition-colors overflow-hidden">
         <AmbientSparkles />
         <motion.div
           initial={{ opacity: 0, y: 18 }}
@@ -42,13 +42,13 @@ export function AboutFaqView() {
           className="relative z-10 mx-auto max-w-5xl grid gap-10 md:grid-cols-[1fr_auto] items-center"
         >
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent-primary)]">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-(--accent-primary)">
               Tentang Denvora Lexora
             </p>
-            <h1 className="font-editorial mt-2 text-3xl font-bold text-[var(--text-primary)] sm:text-5xl">
+            <h1 className="font-editorial mt-2 text-3xl font-bold text-(--text-primary) sm:text-5xl">
               Where Knowledge Finds Its Way.
             </h1>
-            <p className="mt-4 text-base leading-relaxed text-[var(--text-primary)]/80">
+            <p className="mt-4 text-base leading-relaxed text-(--text-primary)/80">
               <strong>Denvora Lexora</strong> hadir sebagai pusat literasi digital sekolah
               yang membantu siswa menemukan referensi belajar, menumbuhkan kebiasaan membaca,
               serta menjaga keteraturan koleksi perpustakaan setiap hari.
@@ -63,7 +63,7 @@ export function AboutFaqView() {
             </div>
           </div>
 
-          <div className="mx-auto rounded-2xl border border-[var(--border-subtle)] bg-[#FBF7F1] px-7 py-5 shadow-xs">
+          <div className="mx-auto rounded-2xl border border-(--border-subtle) bg-[#FBF7F1] px-7 py-5 shadow-xs">
             <Image
               src="/images/denvora-lexora-logo.png"
               alt="Logo Denvora Lexora"
@@ -75,7 +75,7 @@ export function AboutFaqView() {
         </motion.div>
       </section>
 
-      <section id="faq" className="bg-[#A8643A] dark:bg-[var(--bg-surface)] py-20 px-6 text-[#F6EFE6] transition-colors">
+      <section id="faq" className="bg-[#A8643A] dark:bg-(--bg-surface) py-20 px-6 text-[#F6EFE6] transition-colors">
         <div className="mx-auto max-w-4xl">
           <h2 className="font-editorial text-center text-3xl font-bold sm:text-4xl">
             Pertanyaan yang Sering Diajukan
@@ -87,21 +87,21 @@ export function AboutFaqView() {
               return (
                 <div
                   key={item.q}
-                  className="overflow-hidden rounded-xl border border-[var(--border-subtle)] bg-[var(--surface-elevated)] text-[var(--text-primary)]"
+                  className="overflow-hidden rounded-xl border border-(--border-subtle) bg-(--surface-elevated) text-(--text-primary)"
                 >
                   <button
                     type="button"
                     aria-expanded={isOpen}
                     onClick={() => setOpenFaq(isOpen ? null : idx)}
-                    className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left font-semibold cursor-pointer hover:bg-[var(--bg-surface)]/60"
+                    className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left font-semibold cursor-pointer hover:bg-(--bg-surface)/60"
                   >
                     <span className="text-sm sm:text-base">{item.q}</span>
-                    <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--accent-primary)] text-[#F6EFE6]">
+                    <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-(--accent-primary) text-[#F6EFE6]">
                       {isOpen ? <Minus size={15} /> : <Plus size={15} />}
                     </span>
                   </button>
                   {isOpen && (
-                    <div className="border-t border-[var(--border-subtle)] px-5 py-4 text-sm leading-relaxed text-[var(--text-muted)]">
+                    <div className="border-t border-(--border-subtle) px-5 py-4 text-sm leading-relaxed text-(--text-muted)">
                       {item.a}
                     </div>
                   )}

@@ -30,19 +30,19 @@ const FLIP_CARDS = [
     frontTitle: "KATALOG RAPI & MUDAH DIJELAJAHI",
     backText:
       "Koleksi bacaan dikelompokkan berdasarkan bidang studi, literasi fiksi, dan referensi agar siswa menemukan buku incaran lebih cepat.",
-    bg: "bg-[var(--surface-elevated)]",
+    bg: "bg-(--surface-elevated)",
   },
   {
     frontTitle: "PENCATATAN TERTIB & JELAS",
     backText:
       "Setiap peminjaman memiliki tanggal ambil serta batas pengembalian yang tertera jelas di riwayat keanggotaan masing-masing.",
-    bg: "bg-[var(--bg-surface)]",
+    bg: "bg-(--bg-surface)",
   },
   {
     frontTitle: "PELAYANAN PERPUSTAKAAN PRAKTIS",
     backText:
       "Anggota dan pustakawan dapat memantau ketersediaan buku serta merapikan sirkulasi harian tanpa antrean panjang.",
-    bg: "bg-[var(--surface-elevated)]",
+    bg: "bg-(--surface-elevated)",
   },
 ];
 
@@ -55,18 +55,18 @@ export function FlowView() {
 
   return (
     <>
-      <section className="relative bg-[var(--bg-primary)] pt-32 pb-20 px-6 transition-colors overflow-hidden">
+      <section className="relative bg-(--bg-primary) pt-32 pb-20 px-6 transition-colors overflow-hidden">
         <AmbientSparkles />
         <div className="relative z-10 mx-auto max-w-6xl">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent-primary)]">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-(--accent-primary)">
                 Panduan Peminjaman
               </p>
-              <h1 className="font-editorial mt-2 text-4xl font-bold tracking-tight text-[var(--text-primary)] sm:text-5xl">
+              <h1 className="font-editorial mt-2 text-4xl font-bold tracking-tight text-(--text-primary) sm:text-5xl">
                 Tiga Langkah Mudah
               </h1>
-              <p className="mt-2 text-sm text-[var(--text-muted)] sm:text-base max-w-xl leading-relaxed">
+              <p className="mt-2 text-sm text-(--text-muted) sm:text-base max-w-xl leading-relaxed">
                 Dari pendaftaran kartu anggota hingga pengembalian buku, seluruh tahap
                 dibuat ringkas agar Anda bisa langsung menikmati koleksi bacaan.
               </p>
@@ -87,16 +87,16 @@ export function FlowView() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false, amount: 0.08 }}
                 transition={{ duration: 0.42, delay: idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
-                className="flex items-start gap-4 rounded-2xl border border-[var(--border-subtle)] bg-[var(--surface-elevated)] p-6 shadow-xs"
+                className="flex items-start gap-4 rounded-2xl border border-(--border-subtle) bg-(--surface-elevated) p-6 shadow-xs"
               >
-                <span className="font-editorial flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[var(--accent-primary)] text-xl font-bold text-[#F6EFE6] tabular-nums">
+                <span className="font-editorial flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-(--accent-primary) text-xl font-bold text-[#F6EFE6] tabular-nums">
                   {step.num}
                 </span>
                 <div>
-                  <h2 className="font-editorial text-lg font-bold text-[var(--text-primary)]">
+                  <h2 className="font-editorial text-lg font-bold text-(--text-primary)">
                     {step.title}
                   </h2>
-                  <p className="mt-1.5 text-sm leading-relaxed text-[var(--text-muted)]">
+                  <p className="mt-1.5 text-sm leading-relaxed text-(--text-muted)">
                     {step.desc}
                   </p>
                 </div>
@@ -106,13 +106,13 @@ export function FlowView() {
         </div>
       </section>
 
-      <section className="border-t border-[var(--border-subtle)] bg-[var(--bg-surface)]/80 py-20 px-6 transition-colors">
+      <section className="border-t border-(--border-subtle) bg-(--bg-surface)/80 py-20 px-6 transition-colors">
         <div className="mx-auto max-w-6xl">
           <div className="text-center max-w-2xl mx-auto">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent-primary)]">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-(--accent-primary)">
               Keunggulan Layanan
             </p>
-            <h2 className="font-editorial mt-2 text-3xl font-bold text-[var(--text-primary)] sm:text-4xl">
+            <h2 className="font-editorial mt-2 text-3xl font-bold text-(--text-primary) sm:text-4xl">
               Mengapa Membaca Bersama Denvora Lexora
             </h2>
           </div>
@@ -126,7 +126,7 @@ export function FlowView() {
                   type="button"
                   onClick={() => toggleFlip(idx)}
                   aria-pressed={isFlipped}
-                  className="group relative h-64 w-full text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)] rounded-2xl"
+                  className="group relative h-64 w-full text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-primary) rounded-2xl"
                 >
                   <motion.div
                     animate={{ rotateY: isFlipped ? 180 : 0 }}
@@ -136,12 +136,12 @@ export function FlowView() {
                   >
                     <div
                       style={{ backfaceVisibility: "hidden" }}
-                      className={`absolute inset-0 flex flex-col justify-between rounded-2xl border border-[var(--border-subtle)] ${card.bg} p-7 shadow-sm`}
+                      className={`absolute inset-0 flex flex-col justify-between rounded-2xl border border-(--border-subtle) ${card.bg} p-7 shadow-sm`}
                     >
-                      <h3 className="font-editorial text-xl font-bold leading-snug text-[var(--text-primary)]">
+                      <h3 className="font-editorial text-xl font-bold leading-snug text-(--text-primary)">
                         {card.frontTitle}
                       </h3>
-                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[var(--accent-primary)] text-[#F6EFE6] transition-transform duration-150 group-hover:translate-x-1">
+                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-(--accent-primary) text-[#F6EFE6] transition-transform duration-150 group-hover:translate-x-1">
                         <ArrowRight size={17} strokeWidth={1.75} />
                       </span>
                     </div>
@@ -151,7 +151,7 @@ export function FlowView() {
                         backfaceVisibility: "hidden",
                         transform: "rotateY(180deg)",
                       }}
-                      className="absolute inset-0 flex flex-col justify-between rounded-2xl border border-[var(--accent-primary)] bg-[#2B1D14] dark:bg-[#120C08] p-7 text-[#F6EFE6] shadow-md"
+                      className="absolute inset-0 flex flex-col justify-between rounded-2xl border border-(--accent-primary) bg-[#2B1D14] dark:bg-[#120C08] p-7 text-[#F6EFE6] shadow-md"
                     >
                       <p className="text-sm leading-relaxed text-[#F6EFE6]/90">
                         {card.backText}
