@@ -22,7 +22,7 @@ async function runSeed(): Promise<void> {
 
   try {
     await connection.query(sql);
-    console.log('Seed database denvora_lexora berhasil dijalankan.');
+    console.log('Seed database db_denvora_lexora berhasil dijalankan.');
   } finally {
     await connection.end();
   }

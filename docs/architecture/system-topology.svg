@@ -99,7 +99,7 @@
     <text x="826" y="149" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#F6EFE6">
       3. Data Layer (MySQL)
     </text>
-    <text x="826" y="192" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#2B1D14">Schema: denvora_lexora (127.0.0.1:3306)</text>
+    <text x="826" y="192" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#2B1D14">Schema: db_denvora_lexora (127.0.0.1:3306)</text>
     <text x="826" y="218" font-family="system-ui, sans-serif" font-size="12" fill="#5D4C3F">• users (admin, petugas, siswa)</text>
     <text x="826" y="240" font-family="system-ui, sans-serif" font-size="12" fill="#5D4C3F">• categories (klasifikasi buku)</text>
     <text x="826" y="262" font-family="system-ui, sans-serif" font-size="12" fill="#5D4C3F">• books (kode, stok total &amp; tersedia)</text>

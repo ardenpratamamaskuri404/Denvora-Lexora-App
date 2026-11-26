@@ -29,7 +29,7 @@
 
 ## 2. Urutan Teknis Pengembangan
 
-1. **Database:** Buat database `denvora_lexora` → jalankan DDL tabel & indeks → isi data awal kategori, buku, user (`admin`, `petugas`, `siswa`) → verifikasi relasi di MySQL Workbench.
+1. **Database:** Buat database `db_denvora_lexora` → jalankan DDL tabel & indeks → isi data awal kategori, buku, user (`admin`, `petugas`, `siswa`) → verifikasi relasi di MySQL Workbench.
 2. **Backend:**
    - Init Express.js (TypeScript) + `mysql2/promise` pool + `cors` + `errorHandler`.
    - Implementasi `utils/token.ts`, `utils/response.ts`, `utils/fileHelper.ts`.
@@ -54,7 +54,7 @@
 | Rentang Waktu | Durasi | Fase | Target Selesai |
 |---|---|---|---|
 | **Jam 00:00 – 00:45** | 45 menit | Pemeriksaan & Setup | Cek Node.js, MySQL/Laragon, buat struktur folder, init Express & Next.js, konfigurasi `.env`. |
-| **Jam 00:45 – 01:45** | 60 menit | Database & Pemodelan | Buat database `denvora_lexora`, tabel + FK, seed data uji, cek relasi di MySQL Workbench, ekspor awal `.sql`. |
+| **Jam 00:45 – 01:45** | 60 menit | Database & Pemodelan | Buat database `db_denvora_lexora`, tabel + FK, seed data uji, cek relasi di MySQL Workbench, ekspor awal `.sql`. |
 | **Jam 01:45 – 04:15** | 2,5 jam | Backend REST API | Auth + RBAC (`admin`, `petugas`, `siswa`), validasi Zod, CRUD Buku/Anggota/Petugas, Transaksi pinjam-kembali atomik, pencarian, ekspor CSV + log file. |
 | **Jam 04:15 – 07:00** | 2 jam 45 menit | Frontend UI & Integrasi | Terapkan brand identity Denvora Lexora, halaman Login & Daftar, Dashboard & menu Siswa, Dashboard & menu Admin, serta Dashboard Petugas. |
 | **Jam 07:00 – 08:00** | 60 menit | Debugging & Testing | Jalankan semua skenario `TEST-PLAN.md` secara offline, perbaiki bug, catat temuan debugging. |

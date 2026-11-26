@@ -30,7 +30,7 @@ Denvora Lexora memisahkan presentation layer, business logic layer, dan data sto
                   v
 +-----------------------------------+
 |          Database (MySQL)         |
-|  Schema: denvora_lexora           |
+|  Schema: db_denvora_lexora           |
 |  Port: 127.0.0.1:3306             |
 +-----------------------------------+
 ```
@@ -176,7 +176,7 @@ DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_USER=root
 DB_PASSWORD=
-DB_NAME=denvora_lexora
+DB_NAME=db_denvora_lexora
 SESSION_SECRET=ganti_dengan_secret_acak_lokal
 FRONTEND_ORIGIN=http://localhost:3000
 ```

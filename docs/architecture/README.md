@@ -29,7 +29,7 @@ flowchart LR
     end
 
     API --> Backend Layers
-    SVC -->|mysql2/promise Pool + Row Lock| DB[("MySQL 8.0 / MariaDB\ndenvora_lexora\n127.0.0.1:3306")]
+    SVC -->|mysql2/promise Pool + Row Lock| DB[("MySQL 8.0 / MariaDB\ndb_denvora_lexora\n127.0.0.1:3306")]
     SVC -->|nodemailer SMTP| MP["Mailpit Local SMTP\n127.0.0.1:1025\nUI :8025"]
     SVC -->|fs/promises| FS["File Lokal\nbackend/logs & backend/exports"]
 ```

@@ -1,6 +1,6 @@
 # Entity Relationship Diagram (ERD) — Denvora Lexora
 
-Skema basis data relasional MySQL (`denvora_lexora`) mengacu langsung pada [schema.sql](../../database/schema.sql) dengan 5 tabel utama berelasi `InnoDB` (*utf8mb4*).
+Skema basis data relasional MySQL (`db_denvora_lexora`) mengacu langsung pada [schema.sql](../../database/schema.sql) dengan 5 tabel utama berelasi `InnoDB` (*utf8mb4*).
 
 ## Diagram Relasi Entitas
 

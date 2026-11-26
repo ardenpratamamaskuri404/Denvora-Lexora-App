@@ -1,7 +1,7 @@
 # Database Design & ERD — Denvora Lexora
 
 **DBMS:** MySQL 8.0 / MariaDB (Kompatibel penuh dengan MySQL Workbench)  
-**Nama Basis Data:** `denvora_lexora`  
+**Nama Basis Data:** `db_denvora_lexora`  
 **File Deliverable SQL:** `database/schema.sql`  
 
 ---

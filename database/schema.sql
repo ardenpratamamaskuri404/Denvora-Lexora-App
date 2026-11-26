@@ -4,11 +4,11 @@
 -- UKK RPL Paket 4 (KM25.4.1.1)
 -- =============================================================================
 
-CREATE DATABASE IF NOT EXISTS `denvora_lexora`
+CREATE DATABASE IF NOT EXISTS `db_denvora_lexora`
   CHARACTER SET utf8mb4
   COLLATE utf8mb4_unicode_ci;
 
-USE `denvora_lexora`;
+USE `db_denvora_lexora`;
 
 SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `otp_verifications`;
