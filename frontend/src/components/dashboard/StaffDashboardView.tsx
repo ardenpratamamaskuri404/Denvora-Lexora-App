@@ -1,6 +1,6 @@
 /**
  * @module components/dashboard/StaffDashboardView
- * @description Portal dashboard terpadu untuk Petugas dan Admin dengan pemisahan hak akses RBAC.
+ * @description Portal dashboard terpadu untuk Petugas dan Admin dengan navigasi terkelompok bergaya shadcn/ui.
  */
 
 "use client";
@@ -8,9 +8,9 @@
 import { Suspense, useCallback, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
-  BarChart3,
+  ArrowLeftRight,
   BookOpen,
-  ClipboardList,
+  LayoutDashboard,
   Loader2,
   ShieldCheck,
   Users,
@@ -30,20 +30,31 @@ interface StaffDashboardViewProps {
 }
 
 function getStaffNavItems(role: "admin" | "petugas"): PortalNavItem[] {
-  const base: PortalNavItem[] = [
-    { id: "overview", label: "Ringkasan & Laporan", icon: BarChart3 },
-    { id: "books", label: "Katalog Buku & Kategori", icon: BookOpen },
-    { id: "transactions", label: "Transaksi Peminjaman", icon: ClipboardList },
+  const items: PortalNavItem[] = [
+    { id: "overview", group: "Utama", label: "Dashboard Utama", icon: LayoutDashboard },
+    { id: "books", group: "Master Data", label: "Koleksi Buku & Kategori", icon: BookOpen },
     {
       id: "members",
-      label: role === "admin" ? "Kelola Anggota Siswa" : "Daftar Anggota Siswa",
+      group: "Master Data",
+      label: role === "admin" ? "Keanggotaan Siswa" : "Daftar Anggota Siswa",
       icon: Users,
     },
   ];
   if (role === "admin") {
-    base.push({ id: "staff", label: "Kelola Akun Petugas", icon: ShieldCheck });
+    items.push({
+      id: "staff",
+      group: "Master Data",
+      label: "Akun Petugas Layanan",
+      icon: ShieldCheck,
+    });
   }
-  return base;
+  items.push({
+    id: "transactions",
+    group: "Transaksi",
+    label: "Sirkulasi (Pinjam-Kembali)",
+    icon: ArrowLeftRight,
+  });
+  return items;
 }
 
 function StaffDashboardInner({ expectedRole }: StaffDashboardViewProps) {
@@ -116,7 +127,13 @@ function StaffDashboardInner({ expectedRole }: StaffDashboardViewProps) {
       activeTab={activeTab}
       onSelectTab={setActiveTab}
     >
-      {activeTab === "overview" && <ReportsOverviewPanel prefix={prefix} summary={summary} />}
+      {activeTab === "overview" && (
+        <ReportsOverviewPanel
+          prefix={prefix}
+          summary={summary}
+          onNavigateTab={setActiveTab}
+        />
+      )}
       {activeTab === "books" && (
         <CatalogBooksPanel
           role={expectedRole}

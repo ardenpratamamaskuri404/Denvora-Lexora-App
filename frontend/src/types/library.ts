@@ -43,6 +43,11 @@ export interface CategoryStatItem {
   copies_available: number;
 }
 
+export interface DailyBorrowPoint {
+  date: string;
+  count: number;
+}
+
 export interface LibrarySummary {
   total_titles: number;
   total_copies: number;
@@ -52,6 +57,7 @@ export interface LibrarySummary {
   total_members: number;
   total_staff: number;
   categories_breakdown: CategoryStatItem[];
+  recent_borrows_7d: DailyBorrowPoint[];
 }
 
 export interface BookPayload {

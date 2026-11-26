@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Splash from "@/components/Splash/Splash";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -20,6 +21,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
       </head>
       <body className="min-h-screen antialiased bg-(--bg-primary) text-(--text-primary)">
+        <Splash />
         {children}
       </body>
     </html>
