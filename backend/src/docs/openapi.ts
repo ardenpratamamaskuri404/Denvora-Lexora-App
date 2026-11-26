@@ -71,7 +71,7 @@ export const openApiSpec = {
                 required: ['name', 'email', 'username', 'password', 'member_code'],
                 properties: {
                   name: { type: 'string', example: 'Budi Santoso' },
-                  email: { type: 'string', example: 'budi@denvora.local' },
+                  email: { type: 'string', example: 'budi@denvora.sch.id' },
                   username: { type: 'string', example: 'budi_rpl' },
                   password: { type: 'string', example: 'Rahasia123!' },
                   member_code: { type: 'string', example: '2025010' },
@@ -97,7 +97,7 @@ export const openApiSpec = {
                 type: 'object',
                 required: ['email', 'purpose'],
                 properties: {
-                  email: { type: 'string', example: 'siswa1@denvora.local' },
+                  email: { type: 'string', example: 'siswa1@denvora.sch.id' },
                   purpose: { type: 'string', enum: ['register', 'login'] },
                 },
               },
@@ -119,7 +119,7 @@ export const openApiSpec = {
                 type: 'object',
                 required: ['email', 'otp', 'purpose'],
                 properties: {
-                  email: { type: 'string', example: 'siswa1@denvora.local' },
+                  email: { type: 'string', example: 'siswa1@denvora.sch.id' },
                   otp: { type: 'string', example: '123456' },
                   purpose: { type: 'string', enum: ['register', 'login'] },
                 },

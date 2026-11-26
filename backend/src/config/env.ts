@@ -19,7 +19,7 @@ export const env = {
   smtp: {
     host: process.env.SMTP_HOST || '127.0.0.1',
     port: Number(process.env.SMTP_PORT || 1025),
-    from: process.env.SMTP_FROM || 'Denvora Lexora <no-reply@denvora.local>',
+    from: process.env.SMTP_FROM || 'Denvora Lexora <no-reply@denvora.sch.id>',
   },
   mailpitUrl: process.env.MAILPIT_URL || 'http://127.0.0.1:8025',
   sessionSecret: process.env.SESSION_SECRET || 'dev_fallback_secret_change_in_env',

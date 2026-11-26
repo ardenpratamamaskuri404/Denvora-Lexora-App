@@ -136,11 +136,11 @@ CREATE TABLE `otp_verifications` (
 -- =============================================================================
 
 INSERT INTO `users` (`id`, `name`, `email`, `username`, `password_hash`, `role`, `member_code`, `class_name`, `phone`, `is_active`, `is_verified`) VALUES
-  (1, 'Arden Administrator', 'admin@denvora.local', 'admin', '$2a$10$LdvA.IQjZPDfPAkbegJpCevkADJ5XY.1xPMYmoqRp3rv.WBQL5rAq', 'admin', NULL, 'Kepala Perpustakaan', '081100000001', 1, 1),
-  (2, 'Rina Pustakawan', 'petugas1@denvora.local', 'petugas1', '$2a$10$TwRVw5GEst6oNAxAaU5mzuIUelQloZ6/RpPM8.tOdyKLA/j73BOvu', 'petugas', NULL, 'Petugas Layanan', '081100000002', 1, 1),
-  (3, 'Nadia Permata', 'siswa1@denvora.local', 'siswa1', '$2a$10$7huA2PSeBnpn7NPV5Iz5Se6ehme9lT7q/DBhgn2DQLbZHl4JyaY7O', 'siswa', '2025001', 'XII RPL 1', '081200000001', 1, 1),
-  (4, 'Dimas Pratama', 'siswa_nonaktif@denvora.local', 'siswa_nonaktif', '$2a$10$7huA2PSeBnpn7NPV5Iz5Se6ehme9lT7q/DBhgn2DQLbZHl4JyaY7O', 'siswa', '2025002', 'XI RPL 2', '081200000002', 0, 1),
-  (5, 'Salsa Aulia', 'siswa2@denvora.local', 'siswa2', '$2a$10$7huA2PSeBnpn7NPV5Iz5Se6ehme9lT7q/DBhgn2DQLbZHl4JyaY7O', 'siswa', '2025003', 'XII RPL 2', '081200000003', 1, 1);
+  (1, 'Arden Administrator', 'admin@denvora.sch.id', 'admin', '$2a$10$LdvA.IQjZPDfPAkbegJpCevkADJ5XY.1xPMYmoqRp3rv.WBQL5rAq', 'admin', NULL, 'Kepala Perpustakaan', '081100000001', 1, 1),
+  (2, 'Rina Pustakawan', 'petugas1@denvora.sch.id', 'petugas1', '$2a$10$TwRVw5GEst6oNAxAaU5mzuIUelQloZ6/RpPM8.tOdyKLA/j73BOvu', 'petugas', NULL, 'Petugas Layanan', '081100000002', 1, 1),
+  (3, 'Nadia Permata', 'siswa1@denvora.sch.id', 'siswa1', '$2a$10$7huA2PSeBnpn7NPV5Iz5Se6ehme9lT7q/DBhgn2DQLbZHl4JyaY7O', 'siswa', '2025001', 'XII RPL 1', '081200000001', 1, 1),
+  (4, 'Dimas Pratama', 'siswa_nonaktif@denvora.sch.id', 'siswa_nonaktif', '$2a$10$7huA2PSeBnpn7NPV5Iz5Se6ehme9lT7q/DBhgn2DQLbZHl4JyaY7O', 'siswa', '2025002', 'XI RPL 2', '081200000002', 0, 1),
+  (5, 'Salsa Aulia', 'siswa2@denvora.sch.id', 'siswa2', '$2a$10$7huA2PSeBnpn7NPV5Iz5Se6ehme9lT7q/DBhgn2DQLbZHl4JyaY7O', 'siswa', '2025003', 'XII RPL 2', '081200000003', 1, 1);
 
 INSERT INTO `categories` (`id`, `name`) VALUES
   (1, 'Teknologi & Pemrograman'),

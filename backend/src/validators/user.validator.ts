@@ -7,6 +7,14 @@ import { z } from 'zod';
 
 const baseUserFields = {
   name: z.string().trim().min(3, 'Nama minimal 3 karakter').max(100),
+  email: z
+    .string()
+    .trim()
+    .email('Format email tidak valid')
+    .max(120)
+    .optional()
+    .nullable()
+    .or(z.literal('')),
   username: z
     .string()
     .trim()

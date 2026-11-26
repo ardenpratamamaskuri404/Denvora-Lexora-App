@@ -28,6 +28,7 @@ export function UserFormModal({
   const label = isMember ? "Anggota Siswa" : "Petugas";
 
   const [name, setName] = useState(editingUser?.name || "");
+  const [email, setEmail] = useState(editingUser?.email || "");
   const [username, setUsername] = useState(editingUser?.username || "");
   const [password, setPassword] = useState("");
   const [memberCode, setMemberCode] = useState(editingUser?.member_code || "");
@@ -48,6 +49,7 @@ export function UserFormModal({
 
     const payload: UserManagePayload = {
       name: name.trim(),
+      email: email.trim() ? email.trim().toLowerCase() : null,
       username: username.trim(),
       class_name: className.trim() || null,
       phone: phone.trim() || null,
@@ -98,16 +100,28 @@ export function UserFormModal({
         )}
 
         <form onSubmit={handleSubmit} className="mt-4 space-y-3">
-          <label className="block text-xs font-medium text-(--text-primary)">
-            Nama Lengkap
-            <input
-              required
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Nama lengkap"
-              className="mt-1 h-10 w-full rounded-xl border border-(--border-subtle) bg-(--bg-primary) px-3 text-sm text-(--text-primary) focus:border-(--accent-primary) focus:outline-none"
-            />
-          </label>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <label className="block text-xs font-medium text-(--text-primary)">
+              Nama Lengkap
+              <input
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Nama lengkap"
+                className="mt-1 h-10 w-full rounded-xl border border-(--border-subtle) bg-(--bg-primary) px-3 text-sm text-(--text-primary) focus:border-(--accent-primary) focus:outline-none"
+              />
+            </label>
+            <label className="block text-xs font-medium text-(--text-primary)">
+              Alamat Email (Opsional)
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="nama@gmail.com / @denvora.sch.id"
+                className="mt-1 h-10 w-full rounded-xl border border-(--border-subtle) bg-(--bg-primary) px-3 text-sm text-(--text-primary) focus:border-(--accent-primary) focus:outline-none"
+              />
+            </label>
+          </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <label className="block text-xs font-medium text-(--text-primary)">

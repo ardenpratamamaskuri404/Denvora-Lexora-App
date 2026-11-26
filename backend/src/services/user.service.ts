@@ -24,6 +24,7 @@ export interface UserQuery {
 
 export interface ManageUserInput {
   name: string;
+  email?: string | null;
   username: string;
   password?: string;
   member_code?: string | null;
@@ -46,9 +47,9 @@ export async function listUsersByRole(
   const params: Array<string | number> = [role];
 
   if (query.search) {
-    conditions.push('(name LIKE ? OR username LIKE ? OR member_code LIKE ?)');
+    conditions.push('(name LIKE ? OR username LIKE ? OR email LIKE ? OR member_code LIKE ?)');
     const kw = `%${query.search}%`;
-    params.push(kw, kw, kw);
+    params.push(kw, kw, kw, kw);
   }
 
   if (query.is_active === '1' || query.is_active === '0') {
@@ -66,8 +67,8 @@ export async function listUsersByRole(
   const total = Number(countRows[0].total);
 
   const [rows] = await pool.query<UserListRow[]>(
-    `SELECT id, name, username, role, member_code, class_name, phone,
-            is_active, created_at, updated_at
+    `SELECT id, name, email, username, role, member_code, class_name, phone,
+            is_active, is_verified, created_at, updated_at
      FROM users
      ${whereClause}
      ORDER BY id DESC
@@ -94,8 +95,8 @@ export async function getUserByIdAndRole(
   role: 'siswa' | 'petugas'
 ): Promise<UserListRow> {
   const [rows] = await pool.execute<UserListRow[]>(
-    `SELECT id, name, username, role, member_code, class_name, phone,
-            is_active, created_at, updated_at
+    `SELECT id, name, email, username, role, member_code, class_name, phone,
+            is_active, is_verified, created_at, updated_at
      FROM users
      WHERE id = ? AND role = ?
      LIMIT 1`,
@@ -122,12 +123,14 @@ export async function createUserByRole(
 ): Promise<UserListRow> {
   const passwordHash = await bcrypt.hash(input.password, 10);
   const memberCode = role === 'siswa' ? input.member_code || null : null;
+  const cleanEmail = input.email?.trim() ? input.email.trim().toLowerCase() : null;
 
   const [result] = await pool.execute<ResultSetHeader>(
-    `INSERT INTO users (name, username, password_hash, role, member_code, class_name, phone, is_active)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+    `INSERT INTO users (name, email, username, password_hash, role, member_code, class_name, phone, is_active, is_verified)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 1)`,
     [
       input.name,
+      cleanEmail,
       input.username,
       passwordHash,
       role,
@@ -151,9 +154,11 @@ export async function updateUserByRole(
 ): Promise<UserListRow> {
   await getUserByIdAndRole(id, role);
   const memberCode = role === 'siswa' ? input.member_code || null : null;
+  const cleanEmail = input.email?.trim() ? input.email.trim().toLowerCase() : null;
 
   const setClauses = [
     'name = ?',
+    'email = ?',
     'username = ?',
     'member_code = ?',
     'class_name = ?',
@@ -162,6 +167,7 @@ export async function updateUserByRole(
   ];
   const params: Array<string | number | null> = [
     input.name,
+    cleanEmail,
     input.username,
     memberCode,
     input.class_name || null,

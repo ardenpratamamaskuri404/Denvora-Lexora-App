@@ -100,6 +100,7 @@ export interface StaffUpdateTransactionPayload {
 
 export interface UserManagePayload {
   name: string;
+  email?: string | null;
   username: string;
   password?: string;
   member_code?: string;

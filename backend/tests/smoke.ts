@@ -74,9 +74,9 @@ async function runSmokeTests(): Promise<void> {
     const docsRes = await fetch(`${baseUrl}/api-docs/`);
     assert.equal(docsRes.status, 200, 'Swagger UI /api-docs harus merespons 200');
 
-    // 2. Register Siswa (role dikunci 'siswa') + Verifikasi OTP Mailpit
+    // 2. Register Siswa (role dikunci 'siswa', dukung domain sekolah .sch.id & umum) + Verifikasi OTP Mailpit
     const uniq = Date.now().toString().slice(-6);
-    const regEmail = `smoke_${uniq}@denvora.local`;
+    const regEmail = `smoke_${uniq}@denvora.sch.id`;
     const reg = await request(baseUrl, 'POST', '/api/auth/register', {
       body: {
         name: 'Uji Siswa Smoke',
@@ -103,13 +103,13 @@ async function runSmokeTests(): Promise<void> {
     });
     assert.equal(verifyReg.status, 200, `Verifikasi OTP registrasi gagal: ${verifyReg.raw}`);
 
-    const loginReg = await loginAs(baseUrl, `smoke_${uniq}`, 'Password123!');
-    assert.ok(loginReg, 'Login setelah verifikasi OTP gagal');
+    const loginReg = await loginAs(baseUrl, regEmail, 'Password123!');
+    assert.ok(loginReg, 'Login via email .sch.id setelah verifikasi OTP gagal');
 
-    // 3. Login 3 Role & Penolakan Akun Nonaktif
+    // 3. Login 3 Role (termasuk via email .sch.id) & Penolakan Akun Nonaktif
     const adminCookie = await loginAs(baseUrl, 'admin', 'Admin123!');
     const petugasCookie = await loginAs(baseUrl, 'petugas1', 'Petugas123!');
-    const siswaCookie = await loginAs(baseUrl, 'siswa1', 'Siswa123!');
+    const siswaCookie = await loginAs(baseUrl, 'siswa1@denvora.sch.id', 'Siswa123!');
 
     const nonaktif = await request(baseUrl, 'POST', '/api/auth/login', {
       body: { username: 'siswa_nonaktif', password: 'Siswa123!' },
@@ -186,6 +186,25 @@ async function runSmokeTests(): Promise<void> {
 
     const logContent = await fs.readFile(path.resolve(__dirname, '../logs/app.log'), 'utf8');
     assert.ok(logContent.includes('transaction.borrow'), 'app.log harus mencatat aktivitas');
+
+    // 7. Admin CRUD Anggota dengan email @gmail.com (bersihkan setelah uji)
+    const gmailCreate = await request(baseUrl, 'POST', '/api/admin/members', {
+      cookie: adminCookie,
+      body: {
+        name: 'Uji Email Gmail',
+        email: `uji_${uniq}@gmail.com`,
+        username: `gmail_${uniq}`,
+        password: 'Password123!',
+        member_code: `GM-${uniq}`,
+        class_name: 'XI RPL 1',
+      },
+    });
+    assert.equal(gmailCreate.status, 201, `Create member @gmail.com gagal: ${gmailCreate.raw}`);
+    const gmailId = (gmailCreate.body.data as { id: number }).id;
+    const gmailDel = await request(baseUrl, 'DELETE', `/api/admin/members/${gmailId}`, {
+      cookie: adminCookie,
+    });
+    assert.equal(gmailDel.status, 200);
 
     console.log('ALL_BACKEND_SMOKE_TESTS_PASSED');
   } finally {

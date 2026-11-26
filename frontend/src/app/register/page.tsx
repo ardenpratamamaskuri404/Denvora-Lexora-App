@@ -140,7 +140,7 @@ export default function RegisterPage() {
             type="email"
             value={email}
             onChange={setEmail}
-            placeholder="nama@sekolah.sch.id"
+            placeholder="nama@gmail.com / @sekolah.sch.id"
             autoComplete="email"
             error={fieldErrors.email}
           />

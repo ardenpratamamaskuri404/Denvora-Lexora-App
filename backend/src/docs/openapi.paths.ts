@@ -85,6 +85,7 @@ const updateTrxBody = jsonBody({
 
 const baseUserProps = {
   name: { type: 'string', example: 'Nadia Permata' },
+  email: { type: 'string', example: 'nadia@denvora.sch.id' },
   username: { type: 'string', example: 'nadia_rpl' },
   password: { type: 'string', example: 'Rahasia123!' },
   class_name: { type: 'string', example: 'XII RPL 1' },
