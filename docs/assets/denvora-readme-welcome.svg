@@ -73,8 +73,8 @@
     <circle cx="1138" cy="260" r="6" fill="#A8643A" opacity=".4"/>
 
     <!-- Left Welcome Text Copy -->
-    <rect x="58" y="58" width="266" height="30" rx="15" fill="#E9DCCB" stroke="#D7C7B4"/>
-    <text x="74" y="77" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" letter-spacing="1.6" fill="#A8643A">
+    <rect x="58" y="56" width="286" height="32" rx="16" fill="#E9DCCB" stroke="#D7C7B4"/>
+    <text x="201" y="76" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" letter-spacing="1.6" fill="#A8643A">
       SELAMAT DATANG DI REPOSITORI
     </text>
 
@@ -97,18 +97,18 @@
 
     <!-- Tech & Architecture Badges -->
     <g transform="translate(58 304)">
-      <rect width="142" height="34" rx="17" fill="#2B1D14"/>
-      <text x="71" y="21" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#F6EFE6">Next.js 16 + React</text>
+      <rect width="156" height="36" rx="18" fill="#2B1D14"/>
+      <text x="78" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#F6EFE6">Next.js 16 + React</text>
 
-      <rect x="152" width="162" height="34" rx="17" fill="#A8643A"/>
-      <text x="233" y="21" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#F6EFE6">Express TypeScript API</text>
+      <rect x="168" width="184" height="36" rx="18" fill="#A8643A"/>
+      <text x="260" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#F6EFE6">Express TypeScript API</text>
 
-      <rect x="324" width="168" height="34" rx="17" fill="#FBF7F1" stroke="#D7C7B4"/>
-      <text x="408" y="21" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#2B1D14">MySQL + Mailpit OTP</text>
+      <rect x="364" width="176" height="36" rx="18" fill="#FBF7F1" stroke="#D7C7B4"/>
+      <text x="452" y="22" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#2B1D14">MySQL + Mailpit OTP</text>
     </g>
 
     <!-- Floating Decorative Books -->
-    <g filter="url(#sh)" transform="translate(722 72) rotate(-14) scale(0.15)">
+    <g filter="url(#sh)" transform="translate(708 68) rotate(-14) scale(0.15)">
       <rect x="16" y="16" width="300" height="400" rx="20" fill="url(#pages)"/>
       <rect width="300" height="400" rx="22" fill="url(#acc)"/>
       <path d="M22 0H44V400H22A22 22 0 0 1 0 378V22A22 22 0 0 1 22 0Z" fill="url(#accSide)"/>
@@ -116,7 +116,7 @@
       <path d="M175 160L205 200L175 240L145 200Z" fill="#F6EFE6"/>
       <rect width="300" height="400" rx="22" fill="url(#hl)"/>
     </g>
-    <g filter="url(#sh)" transform="translate(1088 86) rotate(12) scale(0.14)">
+    <g filter="url(#sh)" transform="translate(1108 82) rotate(12) scale(0.14)">
       <rect x="16" y="16" width="300" height="400" rx="20" fill="url(#pages)"/>
       <rect width="300" height="400" rx="22" fill="url(#acc)"/>
       <path d="M22 0H44V400H22A22 22 0 0 1 0 378V22A22 22 0 0 1 22 0Z" fill="url(#accSide)"/>
@@ -126,10 +126,11 @@
     </g>
 
     <!-- Welcome Speech Bubble Badge -->
-    <g filter="url(#sh)" transform="translate(866 44)">
-      <rect width="150" height="40" rx="20" fill="#FBF7F1" stroke="#D7C7B4" stroke-width="1.5"/>
-      <path d="M66 40L75 50L84 40Z" fill="#FBF7F1"/>
-      <text x="75" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#A8643A">
+    <g filter="url(#sh)" transform="translate(836 22)">
+      <rect width="204" height="42" rx="21" fill="#FBF7F1" stroke="#D7C7B4" stroke-width="1.5"/>
+      <path d="M93 41L102 52L111 41Z" fill="#FBF7F1"/>
+      <path d="M93 42L102 52L111 42" fill="none" stroke="#D7C7B4" stroke-width="1.5" stroke-linejoin="round"/>
+      <text x="102" y="26" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13.5" font-weight="700" fill="#A8643A">
         Halo &amp; Selamat Datang!
       </text>
     </g>
