@@ -1,11 +1,5 @@
-import { RoleWelcomeShell } from "@/components/auth/RoleWelcomeShell";
+import { SiswaDashboardView } from "@/components/dashboard/SiswaDashboardView";
 
 export default function SiswaDashboardPage() {
-  return (
-    <RoleWelcomeShell
-      expectedRole="siswa"
-      title="Dashboard Siswa"
-      menus={["Peminjaman Buku", "Pengembalian Buku"]}
-    />
-  );
+  return <SiswaDashboardView />;
 }

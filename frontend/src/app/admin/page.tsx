@@ -1,11 +1,5 @@
-import { RoleWelcomeShell } from "@/components/auth/RoleWelcomeShell";
+import { StaffDashboardView } from "@/components/dashboard/StaffDashboardView";
 
 export default function AdminDashboardPage() {
-  return (
-    <RoleWelcomeShell
-      expectedRole="admin"
-      title="Dashboard Admin"
-      menus={["Kelola Data Buku", "Transaksi", "Kelola Anggota & Petugas"]}
-    />
-  );
+  return <StaffDashboardView expectedRole="admin" />;
 }
