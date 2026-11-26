@@ -4,9 +4,10 @@ import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll, useSpring, useTransform } from "motion/react";
-import { BookOpen, LogIn } from "lucide-react";
+import { BookOpen, ChevronDown, LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AmbientSparkles } from "@/components/landing/AmbientSparkles";
+import { useSplashReveal } from "@/lib/useSplashReveal";
 
 const HIGHLIGHTS = [
   { value: "Koleksi Lengkap", label: "Fiksi, Sains, Sejarah & Referensi" },
@@ -19,6 +20,7 @@ const SMOOTH_EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 export function HeroSection() {
   const heroRef = useRef<HTMLElement | null>(null);
+  const revealed = useSplashReveal();
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"],
@@ -35,6 +37,10 @@ export function HeroSection() {
   const textY = useTransform(smoothProgress, [0, 1], [0, 22]);
   const waveY = useTransform(smoothProgress, [0, 1], [0, -14]);
 
+  function scrollToStory() {
+    document.getElementById("cerita")?.scrollIntoView({ behavior: "smooth" });
+  }
+
   return (
     <>
       <section
@@ -46,14 +52,21 @@ export function HeroSection() {
           style={{ y: bgY, scale: bgScale }}
           className="pointer-events-none absolute -top-6 inset-x-0 bottom-0 transform-gpu will-change-transform"
         >
-          <Image
-            src="/images/denvora-landing-hero.svg"
-            alt="Ilustrasi Perpustakaan Digital Denvora Lexora"
-            width={1920}
-            height={1080}
-            priority
-            className="h-full w-full object-cover object-center lg:object-right dark:brightness-[0.92] dark:contrast-[1.06]"
-          />
+          <motion.div
+            initial={false}
+            animate={revealed ? { opacity: 1, scale: 1 } : { opacity: 0.55, scale: 1.06 }}
+            transition={{ duration: 0.95, ease: SMOOTH_EASE }}
+            className="h-full w-full"
+          >
+            <Image
+              src="/images/denvora-landing-hero.svg"
+              alt="Ilustrasi Perpustakaan Digital Denvora Lexora"
+              width={1920}
+              height={1080}
+              priority
+              className="h-full w-full object-cover object-center lg:object-right dark:brightness-[0.92] dark:contrast-[1.06]"
+            />
+          </motion.div>
           <div className="absolute inset-0 bg-[#F6EFE6]/82 dark:bg-[#18110C]/55 sm:bg-transparent sm:bg-gradient-to-r sm:from-[#F6EFE6]/92 sm:via-[#F6EFE6]/45 sm:via-45% sm:to-transparent dark:sm:from-[#18110C]/95 dark:sm:via-[#18110C]/58 dark:sm:via-45% dark:sm:to-transparent" />
         </motion.div>
 
@@ -62,27 +75,44 @@ export function HeroSection() {
         <div className="relative z-10 mx-auto w-full max-w-6xl px-6">
           <motion.div
             style={{ y: textY }}
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: SMOOTH_EASE }}
             className="max-w-xl transform-gpu will-change-transform"
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-(--accent-primary)">
+            <motion.p
+              initial={false}
+              animate={revealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+              transition={{ duration: 0.5, delay: 0.08, ease: SMOOTH_EASE }}
+              className="text-xs font-semibold uppercase tracking-[0.18em] text-(--accent-primary)"
+            >
               Perpustakaan Sekolah Digital
-            </p>
+            </motion.p>
 
-            <h1 className="font-editorial mt-2.5 text-3xl font-bold leading-[1.15] tracking-tight text-(--text-primary) sm:text-5xl lg:text-[3.4rem]">
+            <motion.h1
+              initial={false}
+              animate={revealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 }}
+              transition={{ duration: 0.6, delay: 0.16, ease: SMOOTH_EASE }}
+              className="font-editorial mt-2.5 text-3xl font-bold leading-[1.15] tracking-tight text-(--text-primary) sm:text-5xl lg:text-[3.4rem]"
+            >
               Temukan Buku,{" "}
               <span className="text-(--accent-primary)">Tumbuhkan Wawasan.</span>
-            </h1>
+            </motion.h1>
 
-            <p className="mt-4 text-base leading-relaxed text-(--text-primary)/85 sm:text-lg">
+            <motion.p
+              initial={false}
+              animate={revealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
+              transition={{ duration: 0.55, delay: 0.25, ease: SMOOTH_EASE }}
+              className="mt-4 text-base leading-relaxed text-(--text-primary)/85 sm:text-lg"
+            >
               <strong>Denvora Lexora</strong> — <em>Where Knowledge Finds Its Way.</em>{" "}
               Jelajahi ribuan bahan bacaan sekolah, periksa ketersediaan rak secara
               langsung, dan kelola peminjaman buku Anda dengan tertib.
-            </p>
+            </motion.p>
 
-            <div className="mt-7 flex flex-wrap items-center gap-3.5">
+            <motion.div
+              initial={false}
+              animate={revealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+              transition={{ duration: 0.5, delay: 0.34, ease: SMOOTH_EASE }}
+              className="mt-7 flex flex-wrap items-center gap-3.5"
+            >
               <Button asChild size="pill">
                 <Link href="/register">
                   <BookOpen size={17} strokeWidth={1.75} />
@@ -95,7 +125,25 @@ export function HeroSection() {
                   Masuk ke Sistem
                 </Link>
               </Button>
-            </div>
+            </motion.div>
+
+            <motion.button
+              type="button"
+              onClick={scrollToStory}
+              initial={false}
+              animate={revealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+              transition={{ duration: 0.5, delay: 0.45, ease: SMOOTH_EASE }}
+              className="mt-9 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-(--text-muted) hover:text-(--accent-primary) transition-colors cursor-pointer"
+            >
+              <span>Gulir untuk Menjelajah</span>
+              <motion.span
+                animate={{ y: [0, 4, 0] }}
+                transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+                className="inline-flex"
+              >
+                <ChevronDown size={15} />
+              </motion.span>
+            </motion.button>
           </motion.div>
         </div>
 

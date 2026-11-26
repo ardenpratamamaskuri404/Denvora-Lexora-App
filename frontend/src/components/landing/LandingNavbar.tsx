@@ -9,8 +9,10 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { motion } from "motion/react";
 import { Menu, Moon, Sun, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useSplashReveal } from "@/lib/useSplashReveal";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
@@ -87,11 +89,15 @@ function AuthButtons({
 export function LandingNavbar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const revealed = useSplashReveal();
 
   return (
     <header className="fixed top-3 sm:top-4 inset-x-0 z-50 px-3 sm:px-4">
-      <nav
+      <motion.nav
         aria-label="Navigasi utama"
+        initial={false}
+        animate={revealed ? { opacity: 1, y: 0 } : { opacity: 0, y: -18 }}
+        transition={{ duration: 0.55, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
         className={cn(
           "mx-auto max-w-4xl border border-(--border-subtle) bg-(--surface-elevated)/95 shadow-[0_8px_28px_rgba(43,29,20,0.08)] backdrop-blur-md transition-colors",
           mobileOpen
@@ -176,7 +182,7 @@ export function LandingNavbar() {
             <AuthButtons mobile onNavigate={() => setMobileOpen(false)} />
           </div>
         )}
-      </nav>
+      </motion.nav>
     </header>
   );
 }

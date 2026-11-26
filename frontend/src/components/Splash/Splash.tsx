@@ -72,13 +72,21 @@ export default function Splash({ minDuration = 4300, once = false, ready = true,
   // setelah animasi pintu selesai, hapus dari DOM
   useEffect(() => {
     if (phase !== "leave") return;
+    const revealId = setTimeout(() => {
+      window.dispatchEvent(new CustomEvent("denvora:splash-leaving"));
+    }, 280);
     const id = setTimeout(() => {
       try { sessionStorage.setItem("dl-splash", "1"); } catch {}
       document.documentElement.style.overflow = "";
+      (window as unknown as { __denvoraSplashDone?: boolean }).__denvoraSplashDone = true;
+      window.dispatchEvent(new CustomEvent("denvora:splash-done"));
       setPhase("gone");
       doneRef.current?.();
     }, 1100);
-    return () => clearTimeout(id);
+    return () => {
+      clearTimeout(revealId);
+      clearTimeout(id);
+    };
   }, [phase]);
 
   if (phase === "gone") return null;
@@ -94,19 +102,21 @@ export default function Splash({ minDuration = 4300, once = false, ready = true,
       </button>
       <div className={styles.stage}>
         <div className={styles.glow} />
-        <div className={styles.logo}>
-          <span className={styles.ring} />
-          <span className={`${styles.ring} ${styles.ring2}`} />
-          <img className={styles.mark} src="/splash/logo-mark.png" alt="Denvora Lexora" />
-          <img className={styles.star} src="/splash/logo-star.png" alt="" />
-          <img className={styles.divider} src="/splash/logo-divider.png" alt="" />
-          <img className={styles.denvora} src="/splash/logo-denvora.png" alt="" />
-          <img className={styles.lexora} src="/splash/logo-lexora.png" alt="" />
-          <img className={styles.tagline} src="/splash/logo-tagline.png" alt="Where Knowledge Finds Its Way." />
-          <div className={styles.spark} aria-hidden="true">
-            {SPARKS.map(([dx, dy, s], i) => (
-              <i key={i} style={{ "--dx": dx, "--dy": dy, "--s": s } as React.CSSProperties} />
-            ))}
+        <div className={styles.logoFrame}>
+          <div className={styles.logo}>
+            <span className={styles.ring} />
+            <span className={`${styles.ring} ${styles.ring2}`} />
+            <img className={styles.mark} src="/splash/logo-mark.png" alt="Denvora Lexora" />
+            <img className={styles.star} src="/splash/logo-star.png" alt="" />
+            <img className={styles.divider} src="/splash/logo-divider.png" alt="" />
+            <img className={styles.denvora} src="/splash/logo-denvora.png" alt="" />
+            <img className={styles.lexora} src="/splash/logo-lexora.png" alt="" />
+            <img className={styles.tagline} src="/splash/logo-tagline.png" alt="Where Knowledge Finds Its Way." />
+            <div className={styles.spark} aria-hidden="true">
+              {SPARKS.map(([dx, dy, s], i) => (
+                <i key={i} style={{ "--dx": dx, "--dy": dy, "--s": s } as React.CSSProperties} />
+              ))}
+            </div>
           </div>
         </div>
         <div className={styles.progress}>

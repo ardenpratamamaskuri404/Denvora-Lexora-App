@@ -4,6 +4,9 @@
   position: fixed; inset: 0; z-index: 9999; display: grid; place-items: center; overflow: hidden;
   font-family: inherit;
 }
+:global(.dark) .splash {
+  --bg: #18110C; --surface: #2E2017; --text: #F6EFE6; --accent: #C87E4F; --muted: #C2B09E;
+}
 .splash::before, .splash::after {
   content: ""; position: absolute; top: 0; bottom: 0; width: 50.3%; background: var(--bg);
   transition: transform .95s cubic-bezier(.77, 0, .18, 1) .3s;
@@ -23,7 +26,19 @@
   background: radial-gradient(circle at center, rgba(168,100,58,.14) 0, rgba(233,220,203,.35) 14%, rgba(246,239,230,0) 34%);
   animation: fade 1.2s ease both;
 }
+:global(.dark) .glow {
+  background: radial-gradient(circle at center, rgba(200,126,79,.22) 0, rgba(46,32,23,.42) 16%, rgba(24,17,12,0) 36%);
+}
+.logoFrame { position: relative; }
+:global(.dark) .logoFrame {
+  background: #FBF7F1;
+  border: 1px solid rgba(215,199,180,.5);
+  border-radius: clamp(20px, 3vw, 32px);
+  padding: clamp(14px, 2.4vw, 28px) clamp(18px, 3.2vw, 40px);
+  box-shadow: 0 24px 64px rgba(0,0,0,.48);
+}
 .logo { position: relative; width: min(82vw, 900px); aspect-ratio: 1363/436; }
+:global(.dark) .logo { width: min(76vw, 820px); }
 .logo img { position: absolute; display: block; user-select: none; -webkit-user-drag: none; }
 .mark    { left: 0.000%; top: 0.000%; width: 31.475%; height: 93.119%; animation: markIn 1.15s cubic-bezier(.22, 1, .36, 1) .25s both; }
 .star    { left: 14.160%; top: 16.743%; width: 4.989%; height: 16.514%; animation: starIn .9s cubic-bezier(.34, 1.56, .64, 1) 1.05s both, twinkle 2.2s ease-in-out 2.1s infinite;
