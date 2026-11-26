@@ -32,6 +32,10 @@ export async function getLibrarySummary(): Promise<{
     copies_total: number;
     copies_available: number;
   }>;
+  recent_borrows_7d: Array<{
+    date: string;
+    count: number;
+  }>;
 }> {
   const [categoryStats] = await pool.execute<CategoryBookStat[]>(
     `SELECT c.name AS category_name,
@@ -68,6 +72,28 @@ export async function getLibrarySummary(): Promise<{
      FROM users`
   );
 
+  const [dailyRows] = await pool.execute<RowDataPacket[]>(
+    `SELECT DATE_FORMAT(borrow_date, '%Y-%m-%d') AS day_key, COUNT(*) AS total
+     FROM transactions
+     WHERE borrow_date >= DATE_SUB(CURDATE(), INTERVAL 6 DAY)
+     GROUP BY DATE_FORMAT(borrow_date, '%Y-%m-%d')
+     ORDER BY day_key ASC`
+  );
+
+  const countByDay = new Map(
+    dailyRows.map((row) => [String(row.day_key), Number(row.total || 0)])
+  );
+  const recentBorrows7d: Array<{ date: string; count: number }> = [];
+  for (let offset = 6; offset >= 0; offset -= 1) {
+    const dt = new Date();
+    dt.setDate(dt.getDate() - offset);
+    const yyyy = dt.getFullYear();
+    const mm = String(dt.getMonth() + 1).padStart(2, '0');
+    const dd = String(dt.getDate()).padStart(2, '0');
+    const key = `${yyyy}-${mm}-${dd}`;
+    recentBorrows7d.push({ date: key, count: countByDay.get(key) ?? 0 });
+  }
+
   return {
     ...bookTotals,
     active_borrows: Number(trxStats[0].active_borrows || 0),
@@ -80,6 +106,7 @@ export async function getLibrarySummary(): Promise<{
       copies_total: Number(c.copies_total),
       copies_available: Number(c.copies_available),
     })),
+    recent_borrows_7d: recentBorrows7d,
   };
 }
 
