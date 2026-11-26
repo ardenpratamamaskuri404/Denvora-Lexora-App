@@ -1,111 +1,106 @@
 <p align="center">
-  <img src="docs/assets/denvora-lexora-logo.png" alt="Logo Denvora Lexora" width="180" />
+  <img src="docs/assets/denvora-lexora-logo.png" alt="Logo Denvora Lexora" width="160" />
 </p>
 
 <h1 align="center">Denvora Lexora</h1>
 
 <p align="center">
-  <em>"Where Knowledge Finds Its Way."</em><br/>
-  <strong>Sistem Informasi Peminjaman Buku &amp; Manajemen Perpustakaan Sekolah Digital (100% Localhost Offline)</strong>
+  <em>"Where Knowledge Finds Its Way."</em>
+</p>
+
+<p align="center">
+  Sistem Informasi Peminjaman Buku &amp; Manajemen Perpustakaan Sekolah Digital berbasis arsitektur <em>client–server</em> terpisah.
 </p>
 
 ---
 
-## Tentang Denvora Lexora
+## Ringkasan Proyek
 
-**Denvora Lexora** adalah sistem informasi perpustakaan digital sekolah berbasis *client–server* terpisah (Frontend **Next.js** + Backend **Express TypeScript REST API** + Database **MySQL**) yang dirancang untuk mengelola katalog buku, pendaftaran anggota, verifikasi OTP email lokal (**Mailpit**), serta sirkulasi peminjaman dan pengembalian buku dengan tiga hak akses (*RBAC*: **Admin**, **Petugas**, dan **Siswa**).
+**Denvora Lexora** dirancang untuk mendigitalisasi tata kelola perpustakaan sekolah secara tertib, terstruktur, dan dapat beroperasi penuh pada lingkungan **localhost offline**. Sistem memisahkan lapisan antarmuka (**Next.js App Router**), layanan REST API (**Express.js TypeScript**), serta basis data relasional (**MySQL**) dengan penerapan kontrol akses berbasis peran (*Role-Based Access Control*): **Administrator**, **Petugas Layanan**, dan **Anggota Siswa**.
 
----
-
-## Filosofi Nama: Dari Mana "Denvora Lexora" Berasal?
-
-Nama **Denvora Lexora** (*Built with Vision, Driven by Innovation, Where Knowledge Finds Its Way*) lahir dari perpaduan identitas penggagasnya dengan semangat literasi modern:
-
-### 1. `denvora.` — Identitas Penggagas & Nilai Karya
-- **`Den`** diambil langsung dari nama penggagas/pengembangnya, **Arden Pratama Maskuri**.
-- **`VORA`** merupakan akronim dari empat pilar prinsip pengembangan karya digital:
-
-| Huruf | Prinsip | Makna |
-| :---: | :--- | :--- |
-| **V** | **Vision** | Membangun dengan tujuan dan arah yang jelas. |
-| **O** | **Originality** | Berpikir kreatif, autentik, dan berbeda. |
-| **R** | **Reliability** | Menjaga ketertiban, keamanan data, dan kepercayaan pengguna. |
-| **A** | **Advancement** | Terus bertumbuh, belajar, dan berinovasi. |
-
-### 2. `Lexora` — Ruang Literasi & Pengetahuan
-- **`Lex`** berasal dari akar kata *Lexis* dan *Lexicon* yang berarti himpunan kata, buku, serta khazanah pengetahuan manusia.
-- **`Ora`** melambangkan *aura* dan cakrawala terbuka.
-- **`Lexora`** bermakna ruang bercahaya tempat setiap pembaca menemukan buku yang tepat.
+### Kapabilitas Utama
+- **Katalog &amp; Pencarian Kondisi Tertentu:** Penelusuran judul, penulis, kode buku, rak, filter kategori, serta status ketersediaan stok secara *real-time*.
+- **Sirkulasi Transaksi Atomik:** Pencatatan peminjaman dan pengembalian buku menggunakan penguncian baris basis data (`FOR UPDATE`) untuk menjaga akurasi stok.
+- **Autentikasi &amp; Verifikasi Email Lokal:** Manajemen sesi berbasis *cookie* `HttpOnly` bertanda tangan HMAC-SHA256 dan verifikasi OTP 6 digit melalui layanan SMTP lokal (**Mailpit**).
+- **Manajemen Data &amp; Pelaporan:** Pengelolaan koleksi buku, kategori, data anggota, staf, deteksi keterlambatan pengembalian, serta ekspor laporan transaksi ke format CSV.
 
 ---
 
-## Branch & Alur Pengembangan Git
+## Filosofi Identitas
 
-Repositori ini menggunakan dua branch utama agar pengembangan tetap rapi dan aman:
+Nama **Denvora Lexora** memadukan identitas pemrakarsa dengan visi literasi digital modern:
 
-| Branch | Peran | Keterangan |
+- **`Den`** — Diambil dari nama pemrakarsa sistem, **Arden Pratama Maskuri**.
+- **`VORA`** — Akronim dari empat prinsip rekayasa perangkat lunak:
+  - **V — Vision:** Pengembangan yang terarah dan memiliki tujuan yang jelas.
+  - **O — Originality:** Pendekatan desain yang autentik dan terstruktur.
+  - **R — Reliability:** Menjaga konsistensi data, keamanan akses, serta keandalan layanan.
+  - **A — Advancement:** Berorientasi pada perbaikan dan inovasi berkelanjutan.
+- **`Lexora`** — Gabungan kata **Lex** (*Lexis* / *Lexicon*, khazanah kata dan pustaka ilmu) dan **Ora** (*aura* / cakrawala terbuka), yang melambangkan ruang literasi yang memudahkan setiap pembaca menemukan pengetahuan yang tepat.
+
+---
+
+## Strategi Branch &amp; Alur Pengembangan
+
+Repositori menggunakan model dua branch utama untuk menjaga stabilitas kode:
+
+| Branch | Peran | Deskripsi |
 | :--- | :--- | :--- |
-| `main` | **Stabil / Rilis** | Berisi versi stabil yang siap untuk demonstrasi dan submisi akhir. |
-| `develop` *(Aktif)* | **Pengembangan** | Branch kerja harian berbasis sprint (Landing Multi-Page, Auth Kurva Split + OTP Mailpit, Live Search Katalog, Dashboard Peran, hingga dokumentasi teknis) sebelum di-*merge* ke `main`. |
+| `main` | **Rilis Stabil** | Menyimpan kode terverifikasi yang siap untuk demonstrasi dan rilis akhir. |
+| `develop` | **Pengembangan Aktif** | Branch utama pengerjaan fitur bertahap sebelum melalui proses tinjauan dan penggabungan ke `main`. |
 
 ```bash
-# Beralih ke branch pengembangan aktif
 git checkout develop
 ```
 
 ---
 
-## Arsitektur & Dokumentasi
+## Arsitektur &amp; Struktur Repositori
 
-Dokumentasi arsitektur, relasi basis data, dan perencanaan sprint tersedia lengkap di repositori ini:
+Dokumentasi teknis, rancangan relasional basis data, dan spesifikasi endpoint tersedia pada direktori dokumentasi:
 
-- [Ringkasan Arsitektur & Matriks RBAC](docs/architecture/README.md)
-- [Diagram Topologi Sistem (SVG)](docs/architecture/system-topology.svg)
-- [Entity Relationship Diagram (ERD 5 Tabel MySQL)](docs/architecture/erd-database.md)
-- [Dokumen Perencanaan & Spesifikasi API](docs/planning/API-SPECIFICATION.md)
+- [Dokumentasi Arsitektur &amp; Matriks RBAC](docs/architecture/README.md)
+- [Diagram Topologi Sistem](docs/architecture/system-topology.svg)
+- [Entity Relationship Diagram (ERD)](docs/architecture/erd-database.md)
+- [Spesifikasi REST API](docs/planning/API-SPECIFICATION.md)
 
-| Lapisan | Teknologi | Port / Lokasi |
-| :--- | :--- | :--- |
-| **Frontend** | Next.js 16, React 19, Tailwind CSS v4, Motion, Lucide | `http://localhost:3000` (`frontend/`) |
-| **Backend API** | Express.js, TypeScript, Zod, bcryptjs, Nodemailer, Swagger UI | `http://localhost:5000` (`backend/`, `/api-docs`) |
-| **Database** | MySQL 8.0+ / MariaDB (`mysql2/promise`) | `127.0.0.1:3306` (`database/schema.sql`) |
-| **Email Lokal** | Mailpit SMTP (OTP Verifikasi & Lupa Password Offline) | SMTP `:1025` · Web Inbox `http://127.0.0.1:8025` |
-
----
-
-## Menjalankan Secara Lokal (Offline)
-
-1. **Siapkan Database MySQL:**
-   Impor [database/schema.sql](database/schema.sql) ke server MySQL lokal (misal via Laragon / MySQL Workbench).
-
-2. **Jalankan Backend (`http://localhost:5000`):**
-   ```bash
-   cd backend
-   npm install
-   # Salin .env.example menjadi .env lalu sesuaikan DB & SESSION_SECRET
-   npm run dev
-   ```
-   Perintah verifikasi: `npm run typecheck`, `npm run seed`, dan `npm run test:smoke`.
-
-3. **Jalankan Frontend (`http://localhost:3000`):**
-   ```bash
-   cd frontend
-   npm install
-   # Salin .env.local.example menjadi .env.local (NEXT_PUBLIC_API_URL=http://localhost:5000/api)
-   npm run dev
-   ```
-   Perintah verifikasi: `npx tsc --noEmit` dan `npm run lint`.
-
-### Akun Uji Standar (Seed `schema.sql`)
-
-| Peran | Username | Password |
-| :--- | :--- | :--- |
-| **Admin** | `admin` | `Admin123!` |
-| **Petugas** | `petugas1` | `Petugas123!` |
-| **Siswa** | `siswa1` | `Siswa123!` |
+```text
+sistem-peminjaman-buku/
+├── frontend/          # Antarmuka Next.js 16, React 19, Tailwind CSS v4
+├── backend/           # Layanan REST API Express.js TypeScript, Zod, OpenAPI (/api-docs)
+├── database/          # Skema relasional MySQL & data awal (schema.sql)
+└── docs/              # Artefak arsitektur, ERD, dan dokumentasi perencanaan
+```
 
 ---
 
-## License
+## Panduan Instalasi Lokal
 
-All Rights Reserved. See [LICENSE](LICENSE).
+### 1. Basis Data (MySQL)
+Impor skema [database/schema.sql](database/schema.sql) ke server MySQL lokal (Laragon / MySQL Workbench). Untuk mengisi atau mengatur ulang data uji melalui skrip, jalankan `npm run seed` pada direktori `backend` dan kelola kredensial secara terpisah sesuai kebutuhan administrator lokal.
+
+### 2. Backend REST API
+```bash
+cd backend
+npm install
+cp .env.example .env    # Sesuaikan konfigurasi MySQL, SESSION_SECRET, dan SMTP Mailpit lokal
+npm run dev             # Berjalan pada http://localhost:5000 (Swagger UI: /api-docs)
+```
+
+### 3. Frontend Aplikasi
+```bash
+cd frontend
+npm install
+cp .env.local.example .env.local   # Pastikan NEXT_PUBLIC_API_URL mengarah ke backend lokal
+npm run dev                        # Berjalan pada http://localhost:3000
+```
+
+### 4. Perintah Verifikasi
+- **Frontend:** `npx tsc --noEmit` dan `npm run lint`
+- **Backend:** `npm run typecheck` dan `npm run test:smoke`
+
+---
+
+## Lisensi
+
+Seluruh hak cipta dilindungi undang-undang. Lihat berkas [LICENSE](LICENSE).
