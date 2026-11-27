@@ -43,11 +43,7 @@ function LoginFormContent() {
       }
       const searchQ = searchParams.get("search");
       const target = getDashboardPath(user.role);
-      router.push(
-        searchQ && user.role === "siswa"
-          ? `${target}?search=${encodeURIComponent(searchQ)}`
-          : target
-      );
+      router.push(searchQ ? `${target}?search=${encodeURIComponent(searchQ)}` : target);
     } catch (err) {
       if (err instanceof ApiRequestError) {
         const emailDetail = err.errors.find((item) => item.field === "email")?.message;
@@ -97,7 +93,7 @@ function LoginFormContent() {
       <form onSubmit={handleSubmit} className="space-y-3.5">
         <AuthField
           id="login-username"
-          label="Username"
+          label="Username atau Email"
           value={username}
           onChange={setUsername}
           placeholder="Masukkan username atau alamat email"

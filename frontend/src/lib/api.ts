@@ -8,11 +8,21 @@ import type {
   ApiResponse,
   AuthUser,
   CatalogBookItem,
+  NotificationFeed,
   OtpPurpose,
 } from "@/types/auth";
 
 export const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+
+export const ASSET_BASE_URL = API_BASE_URL.replace(/\/api\/?$/, "");
+
+/** Mengubah path asset (/uploads/... atau /covers/...) menjadi URL siap tampil. */
+export function resolveBookCoverUrl(coverUrl?: string | null): string | null {
+  if (!coverUrl) return null;
+  if (coverUrl.startsWith("/uploads/")) return `${ASSET_BASE_URL}${coverUrl}`;
+  return coverUrl;
+}
 
 /** Representasi error terstruktur yang dikembalikan oleh REST API. */
 export class ApiRequestError extends Error {
@@ -24,6 +34,19 @@ export class ApiRequestError extends Error {
     this.status = status;
     this.errors = errors;
   }
+}
+
+/** Mengubah error API/validasi menjadi pesan ringkas yang mudah dipahami pengguna. */
+export function formatApiError(err: unknown, fallback: string): string {
+  if (!(err instanceof ApiRequestError)) return fallback;
+  if (err.errors.length > 0) {
+    const details = err.errors.map((item) => item.message).filter(Boolean).join(" · ");
+    if (details && (err.message === "Validasi input gagal" || !err.message)) {
+      return details;
+    }
+    return details ? `${err.message}: ${details}` : err.message;
+  }
+  return err.message || fallback;
 }
 
 /**
@@ -133,4 +156,33 @@ export async function searchPublicBooksApi(search: string, limit = 5) {
   return apiRequest<CatalogBookItem[]>(`/catalog/books?${qs.toString()}`, {
     method: "GET",
   });
+}
+
+/** Memperbarui data profil akun milik pengguna yang sedang aktif. */
+export async function updateProfileApi(payload: {
+  name: string;
+  email?: string | null;
+  class_name?: string | null;
+  phone?: string | null;
+}) {
+  return apiRequest<{ user: AuthUser }>("/auth/profile", {
+    method: "PUT",
+    body: JSON.stringify(payload),
+  });
+}
+
+/** Mengubah password pengguna setelah memverifikasi password saat ini. */
+export async function changePasswordApi(payload: {
+  current_password: string;
+  new_password: string;
+}) {
+  return apiRequest<null>("/auth/password", {
+    method: "PUT",
+    body: JSON.stringify(payload),
+  });
+}
+
+/** Mengambil umpan notifikasi real-time sesuai peran akun aktif. */
+export async function fetchNotificationsApi() {
+  return apiRequest<NotificationFeed>("/auth/notifications", { method: "GET" });
 }

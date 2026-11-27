@@ -7,7 +7,7 @@
 
 import { useState } from "react";
 import { Loader2, X } from "lucide-react";
-import { ApiRequestError } from "@/lib/api";
+import { formatApiError } from "@/lib/api";
 import { createUserApi, updateUserApi } from "@/lib/portalApi";
 import type { PortalMemberItem, UserManagePayload, UserResourceKind } from "@/types/library";
 
@@ -65,7 +65,7 @@ export function UserFormModal({
         : await createUserApi(kind, payload);
       onSaved(res.message);
     } catch (err) {
-      setErrorMsg(err instanceof ApiRequestError ? err.message : `Gagal menyimpan ${label}.`);
+      setErrorMsg(formatApiError(err, `Gagal menyimpan ${label}.`));
     } finally {
       setSubmitting(false);
     }

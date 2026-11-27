@@ -32,6 +32,21 @@ export interface CatalogBookItem {
   stock_total: number;
   stock_available: number;
   shelf_location: string | null;
+  description?: string | null;
+  cover_url?: string | null;
+}
+
+export interface PortalNotificationItem {
+  id: string;
+  level: "danger" | "warning" | "info";
+  title: string;
+  message: string;
+  targetTab: string;
+}
+
+export interface NotificationFeed {
+  unreadCount: number;
+  items: PortalNotificationItem[];
 }
 
 export interface ApiFieldError {

@@ -25,7 +25,6 @@ export function SiswaLoansPanel({ refreshSignal = 0, onReturned }: SiswaLoansPan
   const [errorMsg, setErrorMsg] = useState("");
 
   const loadLoans = useCallback(async () => {
-    setLoading(true);
     setErrorMsg("");
     try {
       const data = await fetchMyTransactionsApi(statusFilter);

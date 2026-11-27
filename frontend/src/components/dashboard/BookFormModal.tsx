@@ -1,14 +1,15 @@
 /**
  * @module components/dashboard/BookFormModal
- * @description Modal formulir tambah dan ubah data buku beserta validasi input katalog.
+ * @description Modal formulir tambah/ubah buku lengkap dengan unggah sampul gambar lokal dan deskripsi buku.
  */
 
 "use client";
 
 import { useState } from "react";
 import { Loader2, X } from "lucide-react";
-import { ApiRequestError } from "@/lib/api";
+import { formatApiError } from "@/lib/api";
 import { createBookApi, updateBookApi } from "@/lib/portalApi";
+import { BookCoverUploader } from "@/components/dashboard/BookCoverUploader";
 import type { CatalogBookItem } from "@/types/auth";
 import type { BookPayload, CategoryItem, StaffRolePrefix } from "@/types/library";
 
@@ -37,6 +38,9 @@ export function BookFormModal({
   );
   const [stockTotal, setStockTotal] = useState(String(editingBook?.stock_total ?? 5));
   const [shelfLocation, setShelfLocation] = useState(editingBook?.shelf_location || "");
+  const [description, setDescription] = useState(editingBook?.description || "");
+  const [coverUrl, setCoverUrl] = useState(editingBook?.cover_url || "");
+  const [uploadingCover, setUploadingCover] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
@@ -53,6 +57,8 @@ export function BookFormModal({
       category_id: Number(categoryId),
       stock_total: Number(stockTotal),
       shelf_location: shelfLocation.trim() || null,
+      description: description.trim() || null,
+      cover_url: coverUrl.trim() || null,
     };
 
     if (!payload.book_code || !payload.title || !payload.author || !payload.publisher) {
@@ -71,9 +77,7 @@ export function BookFormModal({
         : await createBookApi(prefix, payload);
       onSaved(res.message);
     } catch (err) {
-      setErrorMsg(
-        err instanceof ApiRequestError ? err.message : "Gagal menyimpan data buku."
-      );
+      setErrorMsg(formatApiError(err, "Gagal menyimpan data buku."));
     } finally {
       setSubmitting(false);
     }
@@ -81,7 +85,7 @@ export function BookFormModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/55 p-4 backdrop-blur-xs">
-      <div className="w-full max-w-lg rounded-3xl border border-(--border-subtle) bg-(--surface-elevated) p-6 shadow-xl">
+      <div className="w-full max-w-xl rounded-3xl border border-(--border-subtle) bg-(--surface-elevated) p-6 shadow-xl max-h-[92vh] overflow-y-auto">
         <div className="flex items-center justify-between border-b border-(--border-subtle) pb-3.5">
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-(--accent-primary)">
@@ -108,6 +112,14 @@ export function BookFormModal({
         )}
 
         <form onSubmit={handleSubmit} className="mt-4 space-y-3">
+          <BookCoverUploader
+            prefix={prefix}
+            coverUrl={coverUrl}
+            onChange={setCoverUrl}
+            onError={setErrorMsg}
+            onUploadingChange={setUploadingCover}
+          />
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <label className="block text-xs font-medium text-(--text-primary)">
               Kode Buku
@@ -206,6 +218,18 @@ export function BookFormModal({
             </label>
           </div>
 
+          <label className="block text-xs font-medium text-(--text-primary)">
+            Deskripsi / Sinopsis Buku
+            <textarea
+              rows={3}
+              maxLength={2000}
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="Ringkasan isi atau sinopsis buku agar siswa mudah memilih bacaan..."
+              className="mt-1 w-full rounded-xl border border-(--border-subtle) bg-(--bg-primary) p-3 text-sm text-(--text-primary) focus:border-(--accent-primary) focus:outline-none"
+            />
+          </label>
+
           <div className="flex justify-end gap-2.5 pt-3 border-t border-(--border-subtle)">
             <button
               type="button"
@@ -216,11 +240,11 @@ export function BookFormModal({
             </button>
             <button
               type="submit"
-              disabled={submitting}
+              disabled={submitting || uploadingCover}
               className="h-10 rounded-full bg-(--accent-primary) hover:bg-(--accent-hover) px-5 text-xs font-bold text-[#F6EFE6] inline-flex items-center gap-1.5 disabled:opacity-60 cursor-pointer"
             >
               {submitting && <Loader2 size={14} className="animate-spin" />}
-              {editingBook ? "Simpan Perubahan" : "Simpan Buku"}
+              {editingBook ? "Simpan Perubahan" : "Tambah Buku"}
             </button>
           </div>
         </form>

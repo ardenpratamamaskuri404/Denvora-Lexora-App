@@ -1,13 +1,15 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll, useSpring, useTransform } from "motion/react";
-import { BookOpen, ChevronDown, LogIn } from "lucide-react";
+import { BookOpen, ChevronDown, LayoutDashboard, LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AmbientSparkles } from "@/components/landing/AmbientSparkles";
+import { meApi } from "@/lib/api";
 import { useSplashReveal } from "@/lib/useSplashReveal";
+import { getDashboardPath, type AuthUser } from "@/types/auth";
 
 const HIGHLIGHTS = [
   { value: "Koleksi Lengkap", label: "Fiksi, Sains, Sejarah & Referensi" },
@@ -21,6 +23,20 @@ const SMOOTH_EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 export function HeroSection() {
   const heroRef = useRef<HTMLElement | null>(null);
   const revealed = useSplashReveal();
+  const [authUser, setAuthUser] = useState<AuthUser | null>(null);
+
+  useEffect(() => {
+    let active = true;
+    meApi()
+      .then((res) => {
+        if (active && res.data?.user) setAuthUser(res.data.user);
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"],
@@ -113,18 +129,41 @@ export function HeroSection() {
               transition={{ duration: 0.5, delay: 0.34, ease: SMOOTH_EASE }}
               className="mt-7 flex flex-wrap items-center gap-3.5"
             >
-              <Button asChild size="pill">
-                <Link href="/register">
-                  <BookOpen size={17} strokeWidth={1.75} />
-                  Daftar Anggota
-                </Link>
-              </Button>
-              <Button asChild variant="outline" size="pill">
-                <Link href="/login">
-                  <LogIn size={17} strokeWidth={1.75} />
-                  Masuk ke Sistem
-                </Link>
-              </Button>
+              {authUser ? (
+                <>
+                  <Button asChild size="pill">
+                    <Link href={getDashboardPath(authUser.role)}>
+                      <LayoutDashboard size={17} strokeWidth={1.75} />
+                      Kembali ke Dashboard
+                    </Link>
+                  </Button>
+                  <Button asChild variant="outline" size="pill">
+                    <Link
+                      href={`${getDashboardPath(authUser.role)}?tab=${
+                        authUser.role === "siswa" ? "catalog" : "books"
+                      }`}
+                    >
+                      <BookOpen size={17} strokeWidth={1.75} />
+                      Jelajahi Katalog
+                    </Link>
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button asChild size="pill">
+                    <Link href="/register">
+                      <BookOpen size={17} strokeWidth={1.75} />
+                      Daftar Anggota
+                    </Link>
+                  </Button>
+                  <Button asChild variant="outline" size="pill">
+                    <Link href="/login">
+                      <LogIn size={17} strokeWidth={1.75} />
+                      Masuk ke Sistem
+                    </Link>
+                  </Button>
+                </>
+              )}
             </motion.div>
 
             <motion.button

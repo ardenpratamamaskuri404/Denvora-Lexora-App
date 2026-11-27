@@ -1,19 +1,21 @@
 /**
  * @module components/dashboard/CatalogBooksPanel
- * @description Panel katalog buku dengan pencarian kondisi tertentu, paginasi, aksi pinjam Siswa, dan CRUD Admin/Petugas.
+ * @description Panel katalog buku dengan pencarian kondisi tertentu, detail sampul/deskripsi, aksi pinjam Siswa, dan CRUD Admin/Petugas.
  */
 
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
 import { BookPlus, CheckCircle2, Loader2, Search } from "lucide-react";
-import { ApiRequestError } from "@/lib/api";
+import { formatApiError } from "@/lib/api";
 import {
   borrowBySiswaApi,
   deleteBookApi,
   fetchBooksApi,
   fetchCategoriesApi,
 } from "@/lib/portalApi";
+import { broadcastPortalSync } from "@/lib/useRealtimeSync";
+import { BookDetailModal } from "@/components/dashboard/BookDetailModal";
 import { BookFormModal } from "@/components/dashboard/BookFormModal";
 import { BookCatalogTable } from "@/components/dashboard/BookCatalogTable";
 import { CategoryManagerCard } from "@/components/dashboard/CategoryManagerCard";
@@ -24,12 +26,14 @@ import type { CategoryItem, PortalRolePrefix, StaffRolePrefix } from "@/types/li
 interface CatalogBooksPanelProps {
   role: UserRole;
   initialSearch?: string;
+  refreshSignal?: number;
   onCatalogChanged?: () => void;
 }
 
 export function CatalogBooksPanel({
   role,
   initialSearch = "",
+  refreshSignal = 0,
   onCatalogChanged,
 }: CatalogBooksPanelProps) {
   const prefix: PortalRolePrefix = `/${role}`;
@@ -50,18 +54,17 @@ export function CatalogBooksPanel({
   const [errorMsg, setErrorMsg] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const [editingBook, setEditingBook] = useState<CatalogBookItem | null>(null);
+  const [detailBook, setDetailBook] = useState<CatalogBookItem | null>(null);
 
   const loadCategories = useCallback(async () => {
     try {
-      const list = await fetchCategoriesApi(prefix);
-      setCategories(list);
+      setCategories(await fetchCategoriesApi(prefix));
     } catch {
       // Abaikan kegagalan awal agar katalog tetap termuat.
     }
   }, [prefix]);
 
   const loadBooks = useCallback(async () => {
-    setLoading(true);
     setErrorMsg("");
     try {
       const res = await fetchBooksApi(prefix, {
@@ -74,7 +77,7 @@ export function CatalogBooksPanel({
       setBooks(res.items);
       if (res.meta) setMeta(res.meta);
     } catch (err) {
-      setErrorMsg(err instanceof ApiRequestError ? err.message : "Gagal memuat katalog buku.");
+      setErrorMsg(formatApiError(err, "Gagal memuat katalog buku."));
     } finally {
       setLoading(false);
     }
@@ -85,14 +88,14 @@ export function CatalogBooksPanel({
       void loadCategories();
     }, 0);
     return () => clearTimeout(timer);
-  }, [loadCategories]);
+  }, [loadCategories, refreshSignal]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       void loadBooks();
-    }, 180);
+    }, 150);
     return () => clearTimeout(timer);
-  }, [loadBooks]);
+  }, [loadBooks, refreshSignal]);
 
   async function handleBorrow(book: CatalogBookItem) {
     setBusyBookId(book.id);
@@ -101,10 +104,12 @@ export function CatalogBooksPanel({
     try {
       const res = await borrowBySiswaApi(book.id);
       setNotice(`${res.message} — "${book.title}" (batas kembali 7 hari).`);
+      setDetailBook(null);
       await loadBooks();
+      broadcastPortalSync("borrow");
       onCatalogChanged?.();
     } catch (err) {
-      setErrorMsg(err instanceof ApiRequestError ? err.message : "Gagal meminjam buku.");
+      setErrorMsg(formatApiError(err, "Gagal meminjam buku."));
     } finally {
       setBusyBookId(null);
     }
@@ -119,9 +124,10 @@ export function CatalogBooksPanel({
       const res = await deleteBookApi(book.id);
       setNotice(res.message);
       await loadBooks();
+      broadcastPortalSync("book-delete");
       onCatalogChanged?.();
     } catch (err) {
-      setErrorMsg(err instanceof ApiRequestError ? err.message : "Gagal menghapus buku.");
+      setErrorMsg(formatApiError(err, "Gagal menghapus buku."));
     } finally {
       setBusyBookId(null);
     }
@@ -138,6 +144,7 @@ export function CatalogBooksPanel({
             setNotice(msg);
             void loadCategories();
             void loadBooks();
+            broadcastPortalSync("category");
             onCatalogChanged?.();
           }}
         />
@@ -150,7 +157,7 @@ export function CatalogBooksPanel({
               Katalog &amp; Pencarian Koleksi Buku
             </h2>
             <p className="text-xs text-(--text-muted)">
-              Menampilkan {meta.total} judul buku · filter kategori &amp; ketersediaan stok.
+              Menampilkan {meta.total} judul buku · klik sampul atau judul untuk melihat deskripsi lengkap.
             </p>
           </div>
 
@@ -168,13 +175,9 @@ export function CatalogBooksPanel({
           )}
         </div>
 
-        {/* Pencarian Kondisi Tertentu */}
         <div className="grid grid-cols-1 sm:grid-cols-12 gap-3">
           <div className="sm:col-span-6 relative">
-            <Search
-              size={15}
-              className="absolute left-3.5 top-1/2 -translate-y-1/2 text-(--text-muted)"
-            />
+            <Search size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-(--text-muted)" />
             <input
               type="text"
               value={search}
@@ -182,45 +185,41 @@ export function CatalogBooksPanel({
                 setSearch(e.target.value);
                 setPage(1);
               }}
-              placeholder="Cari kode buku, judul, pengarang, atau rak..."
+              placeholder="Cari kode, judul, penulis, penerbit, atau rak..."
               className="h-10 w-full rounded-full border border-(--border-subtle) bg-(--bg-primary) pl-9 pr-4 text-sm text-(--text-primary) focus:border-(--accent-primary) focus:outline-none"
             />
           </div>
 
-          <div className="sm:col-span-3">
-            <select
-              aria-label="Filter kategori buku"
-              value={categoryId}
-              onChange={(e) => {
-                setCategoryId(e.target.value);
-                setPage(1);
-              }}
-              className="h-10 w-full rounded-full border border-(--border-subtle) bg-(--bg-primary) px-3.5 text-sm text-(--text-primary) focus:border-(--accent-primary) focus:outline-none"
-            >
-              <option value="">Semua Kategori</option>
-              {categories.map((cat) => (
-                <option key={cat.id} value={cat.id}>
-                  {cat.name}
-                </option>
-              ))}
-            </select>
-          </div>
+          <select
+            aria-label="Filter kategori buku"
+            value={categoryId}
+            onChange={(e) => {
+              setCategoryId(e.target.value);
+              setPage(1);
+            }}
+            className="sm:col-span-3 h-10 rounded-full border border-(--border-subtle) bg-(--bg-primary) px-3.5 text-sm text-(--text-primary) focus:border-(--accent-primary) focus:outline-none"
+          >
+            <option value="">Semua Kategori</option>
+            {categories.map((cat) => (
+              <option key={cat.id} value={cat.id}>
+                {cat.name}
+              </option>
+            ))}
+          </select>
 
-          <div className="sm:col-span-3">
-            <select
-              aria-label="Filter ketersediaan stok"
-              value={availability}
-              onChange={(e) => {
-                setAvailability(e.target.value as "all" | "available" | "empty");
-                setPage(1);
-              }}
-              className="h-10 w-full rounded-full border border-(--border-subtle) bg-(--bg-primary) px-3.5 text-sm text-(--text-primary) focus:border-(--accent-primary) focus:outline-none"
-            >
-              <option value="all">Semua Status Stok</option>
-              <option value="available">Tersedia di Rak</option>
-              <option value="empty">Stok Habis</option>
-            </select>
-          </div>
+          <select
+            aria-label="Filter ketersediaan stok"
+            value={availability}
+            onChange={(e) => {
+              setAvailability(e.target.value as "all" | "available" | "empty");
+              setPage(1);
+            }}
+            className="sm:col-span-3 h-10 rounded-full border border-(--border-subtle) bg-(--bg-primary) px-3.5 text-sm text-(--text-primary) focus:border-(--accent-primary) focus:outline-none"
+          >
+            <option value="all">Semua Status Stok</option>
+            <option value="available">Tersedia di Rak</option>
+            <option value="empty">Stok Habis</option>
+          </select>
         </div>
 
         {notice && (
@@ -251,6 +250,7 @@ export function CatalogBooksPanel({
             role={role}
             allowDelete={allowDelete}
             busyBookId={busyBookId}
+            onViewDetail={setDetailBook}
             onBorrow={handleBorrow}
             onEdit={(book) => {
               setEditingBook(book);
@@ -273,8 +273,19 @@ export function CatalogBooksPanel({
             setModalOpen(false);
             setNotice(msg);
             void loadBooks();
+            broadcastPortalSync("book-save");
             onCatalogChanged?.();
           }}
+        />
+      )}
+
+      {detailBook && (
+        <BookDetailModal
+          book={detailBook}
+          role={role}
+          busy={busyBookId === detailBook.id}
+          onClose={() => setDetailBook(null)}
+          onBorrow={handleBorrow}
         />
       )}
     </div>

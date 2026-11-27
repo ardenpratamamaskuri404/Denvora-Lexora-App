@@ -59,6 +59,18 @@ export async function deleteCategoryApi(id: number) {
   return apiRequest<null>(`/admin/categories/${id}`, { method: "DELETE" });
 }
 
+/** Mengunggah gambar cover buku ke penyimpanan lokal backend (offline localhost). */
+export async function uploadBookCoverApi(
+  prefix: StaffRolePrefix,
+  filename: string,
+  dataUrl: string
+) {
+  return apiRequest<{ cover_url: string }>(`${prefix}/books/cover`, {
+    method: "POST",
+    body: JSON.stringify({ filename, data_url: dataUrl }),
+  });
+}
+
 /** Mengambil daftar buku terpaginasi beserta filter pencarian kondisi tertentu. */
 export async function fetchBooksApi(
   prefix: PortalRolePrefix,
@@ -240,7 +252,9 @@ export async function downloadTransactionsCsvApi(
   const url = URL.createObjectURL(blob);
   const anchor = document.createElement("a");
   anchor.href = url;
-  anchor.download = `laporan-transaksi-${new Date().toISOString().slice(0, 10)}.csv`;
+  const dt = new Date();
+  const stamp = `${dt.getFullYear()}-${String(dt.getMonth() + 1).padStart(2, "0")}-${String(dt.getDate()).padStart(2, "0")}`;
+  anchor.download = `laporan-transaksi-${stamp}.csv`;
   document.body.appendChild(anchor);
   anchor.click();
   anchor.remove();

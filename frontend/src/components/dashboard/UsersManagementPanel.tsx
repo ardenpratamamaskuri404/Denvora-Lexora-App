@@ -22,6 +22,7 @@ interface UsersManagementPanelProps {
   prefix: StaffRolePrefix;
   kind: UserResourceKind;
   readOnly: boolean;
+  refreshSignal?: number;
   onChanged?: () => void;
 }
 
@@ -29,6 +30,7 @@ export function UsersManagementPanel({
   prefix,
   kind,
   readOnly,
+  refreshSignal = 0,
   onChanged,
 }: UsersManagementPanelProps) {
   const isMember = kind === "members";
@@ -48,7 +50,6 @@ export function UsersManagementPanel({
   const [errorMsg, setErrorMsg] = useState("");
 
   const loadUsers = useCallback(async () => {
-    setLoading(true);
     setErrorMsg("");
     try {
       const res = await fetchUsersApi(prefix, kind, {
@@ -69,9 +70,9 @@ export function UsersManagementPanel({
   useEffect(() => {
     const timer = setTimeout(() => {
       void loadUsers();
-    }, 180);
+    }, 150);
     return () => clearTimeout(timer);
-  }, [loadUsers]);
+  }, [loadUsers, refreshSignal]);
 
   async function handleDelete(item: PortalMemberItem) {
     if (!window.confirm(`Hapus akun ${item.name} (@${item.username})?`)) return;

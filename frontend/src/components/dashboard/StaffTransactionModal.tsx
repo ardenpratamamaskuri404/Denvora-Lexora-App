@@ -7,7 +7,7 @@
 
 import { useEffect, useState } from "react";
 import { Loader2, X } from "lucide-react";
-import { ApiRequestError } from "@/lib/api";
+import { formatApiError } from "@/lib/api";
 import {
   createStaffTransactionApi,
   fetchBooksApi,
@@ -22,10 +22,13 @@ interface StaffTransactionModalProps {
   onCreated: (message: string) => void;
 }
 
-function addDaysIso(days: number): string {
+function addDaysLocal(days: number): string {
   const dt = new Date();
   dt.setDate(dt.getDate() + days);
-  return dt.toISOString().slice(0, 10);
+  const y = dt.getFullYear();
+  const m = String(dt.getMonth() + 1).padStart(2, "0");
+  const d = String(dt.getDate()).padStart(2, "0");
+  return `${y}-${m}-${d}`;
 }
 
 export function StaffTransactionModal({
@@ -37,8 +40,8 @@ export function StaffTransactionModal({
   const [books, setBooks] = useState<CatalogBookItem[]>([]);
   const [userId, setUserId] = useState("");
   const [bookId, setBookId] = useState("");
-  const [borrowDate, setBorrowDate] = useState(addDaysIso(0));
-  const [dueDate, setDueDate] = useState(addDaysIso(7));
+  const [borrowDate, setBorrowDate] = useState(addDaysLocal(0));
+  const [dueDate, setDueDate] = useState(addDaysLocal(7));
   const [notes, setNotes] = useState("");
   const [loadingData, setLoadingData] = useState(true);
   const [submitting, setSubmitting] = useState(false);
@@ -78,9 +81,7 @@ export function StaffTransactionModal({
       });
       onCreated(res.message);
     } catch (err) {
-      setErrorMsg(
-        err instanceof ApiRequestError ? err.message : "Gagal mencatat transaksi peminjaman."
-      );
+      setErrorMsg(formatApiError(err, "Gagal mencatat transaksi peminjaman."));
     } finally {
       setSubmitting(false);
     }

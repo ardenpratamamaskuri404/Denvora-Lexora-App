@@ -1,19 +1,22 @@
 /**
  * @module components/landing/LandingNavbar
- * @description Navbar utama mengambang responsif dengan menu per halaman, toggle tema, dan akses Auth.
+ * @description Navbar utama mengambang responsif yang beradaptasi untuk tamu maupun pengguna terautentikasi (tombol kembali ke Dashboard).
  */
 
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "motion/react";
 import { Menu, Moon, Sun, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { LandingUserMenu } from "@/components/landing/LandingUserMenu";
+import { logoutApi, meApi } from "@/lib/api";
 import { useSplashReveal } from "@/lib/useSplashReveal";
 import { cn } from "@/lib/utils";
+import type { AuthUser } from "@/types/auth";
 
 const NAV_LINKS = [
   { label: "Beranda", href: "/" },
@@ -47,7 +50,7 @@ function ThemeToggleButton() {
   );
 }
 
-function AuthButtons({
+function GuestAuthButtons({
   mobile = false,
   onNavigate,
 }: {
@@ -59,10 +62,9 @@ function AuthButtons({
       className={
         mobile
           ? "grid grid-cols-2 gap-2.5 pt-3 border-t border-(--border-subtle)"
-          : "hidden md:flex items-center gap-2.5 shrink-0"
+          : "flex items-center gap-2.5 shrink-0"
       }
     >
-      {!mobile && <ThemeToggleButton />}
       <Button
         asChild
         variant="outline"
@@ -89,7 +91,27 @@ function AuthButtons({
 export function LandingNavbar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [authUser, setAuthUser] = useState<AuthUser | null>(null);
   const revealed = useSplashReveal();
+
+  useEffect(() => {
+    let active = true;
+    meApi()
+      .then((res) => {
+        if (active && res.data?.user) setAuthUser(res.data.user);
+      })
+      .catch(() => {
+        if (active) setAuthUser(null);
+      });
+    return () => {
+      active = false;
+    };
+  }, [pathname]);
+
+  async function handleLogout() {
+    await logoutApi().catch(() => {});
+    setAuthUser(null);
+  }
 
   return (
     <header className="fixed top-3 sm:top-4 inset-x-0 z-50 px-3 sm:px-4">
@@ -99,7 +121,7 @@ export function LandingNavbar() {
         animate={revealed ? { opacity: 1, y: 0 } : { opacity: 0, y: -18 }}
         transition={{ duration: 0.55, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
         className={cn(
-          "mx-auto max-w-4xl border border-(--border-subtle) bg-(--surface-elevated)/95 shadow-[0_8px_28px_rgba(43,29,20,0.08)] backdrop-blur-md transition-colors",
+          "mx-auto max-w-5xl border border-(--border-subtle) bg-(--surface-elevated)/95 shadow-[0_8px_28px_rgba(43,29,20,0.08)] backdrop-blur-md transition-colors",
           mobileOpen
             ? "rounded-3xl px-4 py-3.5 md:rounded-full md:px-4 md:py-1.5"
             : "rounded-full px-3.5 sm:px-4 py-1.5"
@@ -143,7 +165,14 @@ export function LandingNavbar() {
             })}
           </ul>
 
-          <AuthButtons />
+          <div className="hidden md:flex items-center gap-2.5 shrink-0">
+            <ThemeToggleButton />
+            {authUser ? (
+              <LandingUserMenu user={authUser} onLogout={handleLogout} />
+            ) : (
+              <GuestAuthButtons />
+            )}
+          </div>
 
           <div className="md:hidden flex items-center gap-2 shrink-0">
             <ThemeToggleButton />
@@ -179,7 +208,16 @@ export function LandingNavbar() {
                 </Link>
               );
             })}
-            <AuthButtons mobile onNavigate={() => setMobileOpen(false)} />
+            {authUser ? (
+              <LandingUserMenu
+                user={authUser}
+                mobile
+                onNavigate={() => setMobileOpen(false)}
+                onLogout={handleLogout}
+              />
+            ) : (
+              <GuestAuthButtons mobile onNavigate={() => setMobileOpen(false)} />
+            )}
           </div>
         )}
       </motion.nav>

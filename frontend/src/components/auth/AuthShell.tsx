@@ -13,12 +13,14 @@ import { motion } from "motion/react";
 interface AuthShellProps {
   illustrationSrc: string;
   illustrationAlt: string;
+  wideForm?: boolean;
   children: React.ReactNode;
 }
 
 export function AuthShell({
   illustrationSrc,
   illustrationAlt,
+  wideForm = false,
   children,
 }: AuthShellProps) {
   return (
@@ -118,7 +120,9 @@ export function AuthShell({
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
-          className="relative z-10 w-full max-w-[520px] mx-auto pt-3 lg:pt-0"
+          className={`relative z-10 w-full mx-auto pt-3 lg:pt-0 ${
+            wideForm ? "max-w-[560px]" : "max-w-[500px]"
+          }`}
         >
           {children}
         </motion.div>

@@ -15,6 +15,7 @@ import {
   updateStaffTransactionApi,
 } from "@/lib/portalApi";
 import { PaginationBar } from "@/components/dashboard/PaginationBar";
+import { StaffTransactionEditModal } from "@/components/dashboard/StaffTransactionEditModal";
 import { StaffTransactionModal } from "@/components/dashboard/StaffTransactionModal";
 import { TransactionTable } from "@/components/dashboard/TransactionTable";
 import type { PaginationMeta } from "@/types/auth";
@@ -22,11 +23,13 @@ import type { StaffRolePrefix, TransactionItem } from "@/types/library";
 
 interface StaffTransactionsPanelProps {
   prefix: StaffRolePrefix;
+  refreshSignal?: number;
   onChanged?: () => void;
 }
 
 export function StaffTransactionsPanel({
   prefix,
+  refreshSignal = 0,
   onChanged,
 }: StaffTransactionsPanelProps) {
   const [items, setItems] = useState<TransactionItem[]>([]);
@@ -41,11 +44,11 @@ export function StaffTransactionsPanel({
   const [loading, setLoading] = useState(true);
   const [busyId, setBusyId] = useState<number | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const [editingTrx, setEditingTrx] = useState<TransactionItem | null>(null);
   const [notice, setNotice] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
 
   const loadTransactions = useCallback(async () => {
-    setLoading(true);
     setErrorMsg("");
     try {
       const res = await fetchAllTransactionsApi(prefix, {
@@ -69,9 +72,9 @@ export function StaffTransactionsPanel({
   useEffect(() => {
     const timer = setTimeout(() => {
       void loadTransactions();
-    }, 180);
+    }, 150);
     return () => clearTimeout(timer);
-  }, [loadTransactions]);
+  }, [loadTransactions, refreshSignal]);
 
   async function handleMarkReturned(trx: TransactionItem) {
     setBusyId(trx.id);
@@ -245,6 +248,7 @@ export function StaffTransactionsPanel({
         <TransactionTable
           items={items}
           busyId={busyId}
+          onEdit={setEditingTrx}
           onMarkReturned={handleMarkReturned}
           onDelete={handleDelete}
         />
@@ -258,6 +262,20 @@ export function StaffTransactionsPanel({
           onClose={() => setModalOpen(false)}
           onCreated={(msg) => {
             setModalOpen(false);
+            setNotice(msg);
+            void loadTransactions();
+            onChanged?.();
+          }}
+        />
+      )}
+
+      {editingTrx && (
+        <StaffTransactionEditModal
+          prefix={prefix}
+          transaction={editingTrx}
+          onClose={() => setEditingTrx(null)}
+          onUpdated={(msg) => {
+            setEditingTrx(null);
             setNotice(msg);
             void loadTransactions();
             onChanged?.();

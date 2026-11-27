@@ -69,6 +69,8 @@ export interface BookPayload {
   category_id: number;
   stock_total: number;
   shelf_location?: string | null;
+  description?: string | null;
+  cover_url?: string | null;
 }
 
 export interface BookListQuery {

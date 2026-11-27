@@ -22,6 +22,7 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [generalError, setGeneralError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -29,16 +30,17 @@ export default function RegisterPage() {
   function validateForm(): boolean {
     const errs: Record<string, string> = {};
     if (name.trim().length < 3) errs.name = "Nama lengkap minimal 3 karakter";
+    if (!/^[a-zA-Z0-9_]{4,50}$/.test(username.trim())) {
+      errs.username = "Minimal 4 karakter (huruf, angka, atau garis bawah _)";
+    }
     if (memberCode.trim().length < 3) errs.member_code = "NIS / Kode anggota minimal 3 karakter";
     if (className.trim().length < 2) errs.class_name = "Kelas wajib diisi (mis. XII RPL 1)";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) errs.email = "Format email tidak valid";
     if (phone.trim() && !/^[0-9+\-\s]{8,20}$/.test(phone.trim())) {
       errs.phone = "Nomor telepon harus terdiri dari 8–20 digit";
     }
-    if (!/^[a-zA-Z0-9_]{4,50}$/.test(username.trim())) {
-      errs.username = "Minimal 4 karakter (huruf, angka, atau garis bawah _)";
-    }
     if (password.length < 6) errs.password = "Password minimal 6 karakter";
+    if (confirmPassword !== password) errs.confirmPassword = "Konfirmasi password tidak cocok";
 
     setFieldErrors(errs);
     return Object.keys(errs).length === 0;
@@ -79,6 +81,7 @@ export default function RegisterPage() {
 
   return (
     <AuthShell
+      wideForm
       illustrationSrc="/images/denvora-register-web.svg"
       illustrationAlt="Ilustrasi 3D Pendaftaran Anggota Denvora Lexora"
     >
@@ -100,16 +103,32 @@ export default function RegisterPage() {
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-2.5">
-        <AuthField
-          compact
-          id="reg-name"
-          label="Nama Lengkap"
-          value={name}
-          onChange={setName}
-          placeholder="Nama lengkap sesuai data sekolah"
-          error={fieldErrors.name}
-        />
+      <form onSubmit={handleSubmit} className="space-y-3">
+        <div className="grid grid-cols-1 sm:grid-cols-12 gap-3">
+          <div className="sm:col-span-7">
+            <AuthField
+              compact
+              id="reg-name"
+              label="Nama Lengkap"
+              value={name}
+              onChange={setName}
+              placeholder="Nama lengkap sesuai data sekolah"
+              error={fieldErrors.name}
+            />
+          </div>
+          <div className="sm:col-span-5">
+            <AuthField
+              compact
+              id="reg-username"
+              label="Username"
+              value={username}
+              onChange={setUsername}
+              placeholder="Minimal 4 karakter"
+              autoComplete="username"
+              error={fieldErrors.username}
+            />
+          </div>
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-12 gap-3">
           <div className="sm:col-span-7">
@@ -168,16 +187,6 @@ export default function RegisterPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <AuthField
             compact
-            id="reg-username"
-            label="Username"
-            value={username}
-            onChange={setUsername}
-            placeholder="Minimal 4 karakter"
-            autoComplete="username"
-            error={fieldErrors.username}
-          />
-          <AuthField
-            compact
             id="reg-password"
             label="Password"
             type="password"
@@ -186,6 +195,17 @@ export default function RegisterPage() {
             placeholder="Minimal 6 karakter"
             autoComplete="new-password"
             error={fieldErrors.password}
+          />
+          <AuthField
+            compact
+            id="reg-confirm-password"
+            label="Konfirmasi Password"
+            type="password"
+            value={confirmPassword}
+            onChange={setConfirmPassword}
+            placeholder="Ulangi password"
+            autoComplete="new-password"
+            error={fieldErrors.confirmPassword}
           />
         </div>
 

@@ -45,6 +45,7 @@ export function ReportsOverviewPanel({
     <div className="space-y-6">
       <section className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
         <StatCard
+          delay={0}
           label="Total Judul Koleksi"
           value={summary.total_titles}
           sublabel={`${summary.available_copies} tersedia dari ${summary.total_copies} eksemplar`}
@@ -54,24 +55,27 @@ export function ReportsOverviewPanel({
           onAction={onNavigateTab ? () => onNavigateTab("books") : undefined}
         />
         <StatCard
+          delay={0.05}
           label="Anggota Siswa Aktif"
           value={summary.total_members}
           sublabel={`${summary.total_staff} petugas layanan aktif`}
           icon={Users}
           tone="success"
-          actionLabel={prefix === "/admin" ? "Kelola Anggota" : "Daftar Anggota"}
+          actionLabel={prefix === "/admin" ? "Kelola Anggota" : "Daftar Siswa"}
           onAction={onNavigateTab ? () => onNavigateTab("members") : undefined}
         />
         <StatCard
+          delay={0.1}
           label="Peminjaman Aktif"
           value={summary.active_borrows}
           sublabel="Transaksi sirkulasi berjalan"
           icon={BookOpen}
           tone="warning"
-          actionLabel="Transaksi Sirkulasi"
+          actionLabel="Sirkulasi Buku"
           onAction={onNavigateTab ? () => onNavigateTab("transactions") : undefined}
         />
         <StatCard
+          delay={0.15}
           label="Melewati Jatuh Tempo"
           value={summary.overdue_borrows}
           sublabel={

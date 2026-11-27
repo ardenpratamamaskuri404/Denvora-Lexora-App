@@ -3,12 +3,13 @@
  * @description Tabel transaksi sirkulasi perpustakaan untuk panel Petugas dan Admin.
  */
 
-import { AlertTriangle, RotateCcw, Trash2 } from "lucide-react";
+import { AlertTriangle, Pencil, RotateCcw, Trash2 } from "lucide-react";
 import type { TransactionItem } from "@/types/library";
 
 interface TransactionTableProps {
   items: TransactionItem[];
   busyId: number | null;
+  onEdit: (trx: TransactionItem) => void;
   onMarkReturned: (trx: TransactionItem) => void;
   onDelete: (trx: TransactionItem) => void;
 }
@@ -16,6 +17,7 @@ interface TransactionTableProps {
 export function TransactionTable({
   items,
   busyId,
+  onEdit,
   onMarkReturned,
   onDelete,
 }: TransactionTableProps) {
@@ -46,7 +48,10 @@ export function TransactionTable({
               </td>
               <td className="py-3 pr-3">
                 <p className="font-medium text-(--text-primary)">{trx.book_title}</p>
-                <p className="text-xs text-(--text-muted)">{trx.book_code}</p>
+                <p className="text-xs text-(--text-muted)">
+                  {trx.book_code}
+                  {trx.notes ? ` · ${trx.notes}` : ""}
+                </p>
               </td>
               <td className="py-3 pr-3 text-xs tabular-nums text-(--text-primary)">
                 {trx.borrow_date}
@@ -81,6 +86,15 @@ export function TransactionTable({
                       <RotateCcw size={12} /> Kembalikan
                     </button>
                   )}
+                  <button
+                    type="button"
+                    disabled={busyId === trx.id}
+                    onClick={() => onEdit(trx)}
+                    aria-label={`Ubah ${trx.transaction_code}`}
+                    className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-(--border-subtle) text-(--text-primary) hover:border-(--accent-primary) hover:text-(--accent-primary) cursor-pointer"
+                  >
+                    <Pencil size={13} />
+                  </button>
                   <button
                     type="button"
                     disabled={busyId === trx.id}
