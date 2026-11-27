@@ -1,0 +1,255 @@
+/**
+ * @module app/otp/page
+ * @description Halaman verifikasi kode OTP 6 digit untuk aktivasi email dan pemulihan akses akun.
+ */
+
+"use client";
+
+import { Suspense, useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import { ArrowRight, ExternalLink, Loader2, MailCheck, RefreshCw } from "lucide-react";
+import { AuthField } from "@/components/auth/AuthField";
+import { AuthShell } from "@/components/auth/AuthShell";
+import { ApiRequestError, sendOtpApi, verifyOtpApi } from "@/lib/api";
+import { getDashboardPath, type OtpPurpose } from "@/types/auth";
+
+function OtpContent() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const initialEmail = searchParams.get("email") || "";
+  const purpose: OtpPurpose = searchParams.get("purpose") === "register" ? "register" : "login";
+
+  const [email, setEmail] = useState(initialEmail);
+  const [step, setStep] = useState<"email" | "code">(initialEmail ? "code" : "email");
+  const [digits, setDigits] = useState<string[]>(["", "", "", "", "", ""]);
+  const [cooldown, setCooldown] = useState(initialEmail ? 45 : 0);
+  const [infoMsg, setInfoMsg] = useState(
+    initialEmail ? `Kode verifikasi 6 digit telah dikirimkan ke ${initialEmail}.` : ""
+  );
+  const [errorMsg, setErrorMsg] = useState("");
+  const [loading, setLoading] = useState(false);
+  const inputRefs = useRef<Array<HTMLInputElement | null>>([]);
+
+  useEffect(() => {
+    if (cooldown <= 0) return;
+    const timer = setTimeout(() => setCooldown((c) => c - 1), 1000);
+    return () => clearTimeout(timer);
+  }, [cooldown]);
+
+  async function handleSendOtp(e?: React.FormEvent) {
+    if (e) e.preventDefault();
+    setErrorMsg("");
+    setInfoMsg("");
+    const clean = email.trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(clean)) {
+      setErrorMsg("Masukkan alamat email yang valid.");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const res = await sendOtpApi(clean, purpose);
+      setStep("code");
+      setCooldown(45);
+      setInfoMsg(res.message);
+    } catch (err) {
+      setErrorMsg(err instanceof ApiRequestError ? err.message : "Gagal mengirim kode verifikasi.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  function handleDigitChange(index: number, raw: string) {
+    const clean = raw.replace(/\D/g, "");
+    if (!clean) {
+      const next = [...digits];
+      next[index] = "";
+      setDigits(next);
+      return;
+    }
+    const next = [...digits];
+    if (clean.length > 1) {
+      clean.slice(0, 6).split("").forEach((ch, idx) => {
+        if (index + idx < 6) next[index + idx] = ch;
+      });
+      setDigits(next);
+      inputRefs.current[Math.min(index + clean.length, 5)]?.focus();
+      return;
+    }
+    next[index] = clean;
+    setDigits(next);
+    if (index < 5) inputRefs.current[index + 1]?.focus();
+  }
+
+  function handleKeyDown(index: number, e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key === "Backspace" && !digits[index] && index > 0) {
+      inputRefs.current[index - 1]?.focus();
+    }
+  }
+
+  async function handleVerifyOtp(e: React.FormEvent) {
+    e.preventDefault();
+    setErrorMsg("");
+    const code = digits.join("");
+    if (code.length !== 6) {
+      setErrorMsg("Lengkapi 6 digit kode verifikasi terlebih dahulu.");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const res = await verifyOtpApi(email.trim().toLowerCase(), code, purpose);
+      const user = res.data?.user;
+      if (purpose === "register") {
+        router.push("/login?verified=1");
+        return;
+      }
+      router.push(user ? getDashboardPath(user.role) : "/siswa");
+    } catch (err) {
+      setErrorMsg(err instanceof ApiRequestError ? err.message : "Kode OTP tidak valid.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return (
+    <AuthShell
+      illustrationSrc="/images/denvora-otp-web.svg"
+      illustrationAlt="Ilustrasi 3D Verifikasi OTP Denvora Lexora"
+    >
+      <div className="mb-4">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#C87E4F]">
+          {purpose === "register" ? "Aktivasi Keanggotaan" : "Pemulihan Akses Akun"}
+        </p>
+        <h1 className="font-editorial mt-1 text-2xl sm:text-3xl font-bold text-[#F6EFE6]">
+          {purpose === "register" ? "Verifikasi Alamat Email" : "Lupa Password"}
+        </h1>
+        <p className="mt-1.5 text-xs sm:text-sm text-[#C2B09E] leading-relaxed">
+          {purpose === "register"
+            ? "Masukkan 6 digit kode verifikasi yang telah dikirimkan ke kotak masuk email Anda."
+            : "Masukkan alamat email terdaftar Anda untuk menerima kode verifikasi masuk 6 digit."}
+        </p>
+      </div>
+
+      {infoMsg && (
+        <div className="mb-3.5 flex items-start gap-2 rounded-2xl border border-[#A8643A]/60 bg-[#A8643A]/20 px-3.5 py-2 text-xs text-[#F6EFE6]">
+          <MailCheck size={15} className="shrink-0 mt-0.5 text-[#C87E4F]" />
+          <span>{infoMsg}</span>
+        </div>
+      )}
+
+      {errorMsg && (
+        <div className="mb-3.5 rounded-2xl border border-[#9E3B33] bg-[#9E3B33]/25 px-3.5 py-2 text-xs text-[#FAD5D1]">
+          {errorMsg}
+        </div>
+      )}
+
+      {step === "email" ? (
+        <form onSubmit={handleSendOtp} className="space-y-3.5">
+          <AuthField
+            id="otp-email"
+            label="Alamat Email"
+            type="email"
+            value={email}
+            onChange={setEmail}
+            placeholder="Masukkan alamat email terdaftar"
+            autoComplete="email"
+          />
+          <button
+            type="submit"
+            disabled={loading}
+            className="h-10.5 w-full rounded-full bg-gradient-to-r from-[#C87E4F] to-[#A8643A] text-sm font-bold text-[#FBF7F1] shadow-md flex items-center justify-center gap-2 disabled:opacity-60 cursor-pointer"
+          >
+            {loading ? <Loader2 size={16} className="animate-spin" /> : "Kirim Kode Verifikasi"}
+          </button>
+        </form>
+      ) : (
+        <form onSubmit={handleVerifyOtp} className="space-y-4">
+          <div>
+            <div className="flex items-center justify-between text-xs text-[#C2B09E] mb-2">
+              <span>Dikirim ke <strong className="text-[#F6EFE6]">{email}</strong></span>
+              <button
+                type="button"
+                onClick={() => setStep("email")}
+                className="text-[#C87E4F] hover:underline cursor-pointer"
+              >
+                Ubah Email
+              </button>
+            </div>
+            <div className="grid grid-cols-6 gap-2">
+              {digits.map((digit, idx) => (
+                <input
+                  key={idx}
+                  ref={(el) => {
+                    inputRefs.current[idx] = el;
+                  }}
+                  type="text"
+                  inputMode="numeric"
+                  maxLength={6}
+                  value={digit}
+                  aria-label={`Digit OTP ${idx + 1}`}
+                  onChange={(e) => handleDigitChange(idx, e.target.value)}
+                  onKeyDown={(e) => handleKeyDown(idx, e)}
+                  className="h-11 sm:h-12 w-full rounded-2xl border border-[#8C7B6B]/50 bg-[#1B110B]/75 text-center font-mono text-lg sm:text-xl font-bold text-[#F6EFE6] focus:border-[#C87E4F] focus:outline-none focus:ring-2 focus:ring-[#C87E4F]/30"
+                />
+              ))}
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="h-10.5 w-full rounded-full bg-gradient-to-r from-[#C87E4F] to-[#A8643A] text-sm font-bold text-[#FBF7F1] shadow-md flex items-center justify-center gap-2 disabled:opacity-60 cursor-pointer"
+          >
+            {loading ? (
+              <>
+                <Loader2 size={16} className="animate-spin" /> Memverifikasi...
+              </>
+            ) : (
+              <>
+                Verifikasi Sekarang <ArrowRight size={16} />
+              </>
+            )}
+          </button>
+
+          <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-[#C2B09E]">
+            <button
+              type="button"
+              disabled={cooldown > 0 || loading}
+              onClick={() => handleSendOtp()}
+              className="inline-flex items-center gap-1.5 text-[#E9DCCB] hover:text-[#C87E4F] disabled:opacity-45 cursor-pointer"
+            >
+              <RefreshCw size={12} />
+              {cooldown > 0 ? `Kirim ulang (${cooldown}d)` : "Kirim Ulang Kode"}
+            </button>
+
+            <a
+              href="http://127.0.0.1:8025"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1 text-[#C87E4F] hover:underline"
+            >
+              Buka Kotak Masuk Email <ExternalLink size={12} />
+            </a>
+          </div>
+        </form>
+      )}
+
+      <p className="mt-4 border-t border-[#8C7B6B]/25 pt-3.5 text-center text-xs text-[#C2B09E]">
+        Kembali ke{" "}
+        <Link href="/login" className="font-semibold text-[#E9DCCB] hover:text-[#C87E4F] underline">
+          Halaman Masuk
+        </Link>
+      </p>
+    </AuthShell>
+  );
+}
+
+export default function OtpPage() {
+  return (
+    <Suspense fallback={null}>
+      <OtpContent />
+    </Suspense>
+  );
+}

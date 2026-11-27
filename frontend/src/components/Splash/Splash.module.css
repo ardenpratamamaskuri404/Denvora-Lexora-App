@@ -1,0 +1,110 @@
+/* Splash.module.css — Denvora Lexora */
+.splash {
+  --bg: #F6EFE6; --surface: #E9DCCB; --text: #2B1D14; --accent: #A8643A; --muted: #8C7B6B;
+  position: fixed; inset: 0; z-index: 9999; display: grid; place-items: center; overflow: hidden;
+  font-family: inherit;
+}
+:global(.dark) .splash {
+  --bg: #18110C; --surface: #2E2017; --text: #F6EFE6; --accent: #C87E4F; --muted: #C2B09E;
+}
+.splash::before, .splash::after {
+  content: ""; position: absolute; top: 0; bottom: 0; width: 50.3%; background: var(--bg);
+  transition: transform .95s cubic-bezier(.77, 0, .18, 1) .3s;
+}
+.splash::before { left: 0; }
+.splash::after { right: 0; }
+.leave::before { transform: translateX(-101%); }
+.leave::after { transform: translateX(101%); }
+
+.stage {
+  position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center;
+  gap: clamp(28px, 6vh, 60px); transition: opacity .45s ease, transform .7s cubic-bezier(.4, 0, .2, 1);
+}
+.leave .stage { opacity: 0; transform: scale(1.06); }
+.glow {
+  position: absolute; z-index: -1; left: 50%; top: 50%; width: 150vmax; height: 150vmax; transform: translate(-50%, -50%);
+  background: radial-gradient(circle at center, rgba(168,100,58,.14) 0, rgba(233,220,203,.35) 14%, rgba(246,239,230,0) 34%);
+  animation: fade 1.2s ease both;
+}
+:global(.dark) .glow {
+  background: radial-gradient(circle at center, rgba(200,126,79,.22) 0, rgba(46,32,23,.42) 16%, rgba(24,17,12,0) 36%);
+}
+.logoFrame { position: relative; }
+:global(.dark) .logoFrame {
+  background: #FBF7F1;
+  border: 1px solid rgba(215,199,180,.5);
+  border-radius: clamp(20px, 3vw, 32px);
+  padding: clamp(14px, 2.4vw, 28px) clamp(18px, 3.2vw, 40px);
+  box-shadow: 0 24px 64px rgba(0,0,0,.48);
+}
+.logo { position: relative; width: min(82vw, 900px); aspect-ratio: 1363/436; }
+:global(.dark) .logo { width: min(76vw, 820px); }
+.logo img { position: absolute; display: block; user-select: none; -webkit-user-drag: none; }
+.mark    { left: 0.000%; top: 0.000%; width: 31.475%; height: 93.119%; animation: markIn 1.15s cubic-bezier(.22, 1, .36, 1) .25s both; }
+.star    { left: 14.160%; top: 16.743%; width: 4.989%; height: 16.514%; animation: starIn .9s cubic-bezier(.34, 1.56, .64, 1) 1.05s both, twinkle 2.2s ease-in-out 2.1s infinite;
+           filter: drop-shadow(0 0 10px rgba(208,138,92,.7)); }
+.divider { left: 34.043%; top: 12.615%; width: 0.734%; height: 71.789%; transform-origin: 50% 50%; animation: growY .65s cubic-bezier(.22, 1, .36, 1) 1.3s both; }
+.denvora { left: 38.225%; top: 7.798%; width: 61.775%; height: 35.550%; animation: slideIn .85s cubic-bezier(.22, 1, .36, 1) 1.5s both; }
+.lexora  { left: 38.371%; top: 47.018%; width: 51.944%; height: 34.404%; animation: slideIn .85s cubic-bezier(.22, 1, .36, 1) 1.75s both; }
+.tagline { left: 38.298%; top: 90.596%; width: 61.409%; height: 9.404%; animation: tagIn 1.1s cubic-bezier(.4, 0, .2, 1) 2.3s both; }
+
+.ring {
+  position: absolute; z-index: -1; left: 15.74%; top: 46.56%; width: 70%; aspect-ratio: 1; border-radius: 50%;
+  border: 2px solid var(--accent); opacity: 0; transform: translate(-50%, -50%) scale(.05);
+  animation: ring 2s cubic-bezier(.2, .6, .3, 1) .3s both;
+}
+.ring2 { animation-delay: .65s; border-color: #D08A5C; }
+.spark { position: absolute; left: 16.65%; top: 25.00%; width: 0; height: 0; }
+.spark i {
+  position: absolute; left: -7px; top: -7px; width: 14px; height: 14px; background: var(--accent); opacity: 0;
+  clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);
+  animation: burst 1.1s cubic-bezier(.2, .7, .2, 1) 1.2s both;
+}
+.progress { width: min(48vw, 260px); text-align: center; animation: fade .6s ease .5s both; }
+.bar { height: 4px; border-radius: 4px; background: rgba(140,123,107,.25); overflow: hidden; }
+.bar i {
+  display: block; height: 100%; border-radius: 4px; background: linear-gradient(90deg, #D08A5C, #A8643A);
+  transform-origin: left; transform: scaleX(0); animation: barFill 3.7s cubic-bezier(.45, .05, .3, 1) .3s forwards;
+}
+.progress small { display: block; margin-top: 12px; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+.skip {
+  position: absolute; z-index: 2; right: clamp(16px, 3vw, 36px); bottom: clamp(16px, 3vw, 32px);
+  border: 1px solid rgba(140,123,107,.4); background: transparent; color: var(--muted); font: inherit; font-size: 13px;
+  padding: 8px 18px; border-radius: 999px; cursor: pointer; animation: fade .6s ease 1s both;
+}
+.skip:hover { background: var(--surface); color: var(--text); }
+.leave .skip { opacity: 0; transition: opacity .25s ease; animation: none; }
+
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes markIn {
+  0% { clip-path: inset(0 100% 0 0); transform: scale(.86) translateX(-18px); filter: blur(6px); opacity: 0; }
+  25% { opacity: 1; }
+  100% { clip-path: inset(-3% -3% -3% -3%); transform: none; filter: blur(0); opacity: 1; }
+}
+@keyframes starIn { 0% { transform: scale(0) rotate(-200deg); opacity: 0; } 60% { opacity: 1; } 100% { transform: scale(1) rotate(0); opacity: 1; } }
+@keyframes twinkle {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 8px rgba(208,138,92,.6)); }
+  50% { transform: scale(1.18) rotate(8deg); filter: drop-shadow(0 0 16px rgba(208,138,92,.95)); }
+}
+@keyframes growY { from { transform: scaleY(0); opacity: 0; } to { transform: scaleY(1); opacity: 1; } }
+@keyframes slideIn {
+  from { clip-path: inset(0 100% 0 0); transform: translateX(-34px); opacity: 0; }
+  35% { opacity: 1; }
+  to { clip-path: inset(-4% -2% -4% -2%); transform: none; opacity: 1; }
+}
+@keyframes tagIn {
+  from { clip-path: inset(0 100% 0 0); opacity: 0; transform: translateY(8px); }
+  to { clip-path: inset(-10% -2% -10% -2%); opacity: 1; transform: none; }
+}
+@keyframes ring { 0% { opacity: .5; transform: translate(-50%, -50%) scale(.05); } 100% { opacity: 0; transform: translate(-50%, -50%) scale(1); } }
+@keyframes burst {
+  0% { opacity: 0; transform: translate(0, 0) scale(0); }
+  25% { opacity: 1; }
+  100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(var(--s, 1)) rotate(90deg); }
+}
+@keyframes barFill { to { transform: scaleX(1); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .splash *, .splash::before, .splash::after { animation-duration: .01s !important; animation-delay: 0s !important; }
+  .splash::before, .splash::after { transition-duration: .2s; transition-delay: 0s; }
+}

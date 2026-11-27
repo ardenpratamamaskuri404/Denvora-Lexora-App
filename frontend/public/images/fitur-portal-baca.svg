@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Ilustrasi 3D Portal Baca Anggota">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F2E6D6"/><stop offset="1" stop-color="#E3D2BC"/></linearGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#D08A5C"/><stop offset=".55" stop-color="#A8643A"/><stop offset="1" stop-color="#7A4524"/></linearGradient>
+    <linearGradient id="dark" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4A3426"/><stop offset="1" stop-color="#2B1D14"/></linearGradient>
+    <linearGradient id="cream" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFAF2"/><stop offset="1" stop-color="#E9DCCB"/></linearGradient>
+    <linearGradient id="muted" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#A5927F"/><stop offset="1" stop-color="#7B6A5A"/></linearGradient>
+    <linearGradient id="hl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".16"/></linearGradient>
+    <radialGradient id="skin2" cx=".4" cy=".3" r=".85"><stop offset="0" stop-color="#E7B08A"/><stop offset=".6" stop-color="#CF9168"/><stop offset="1" stop-color="#AF7249"/></radialGradient>
+    <filter id="sh" x="-25%" y="-25%" width="160%" height="170%"><feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#2B1D14" flood-opacity=".24"/></filter>
+  </defs>
+
+  <rect width="800" height="520" fill="url(#bg)"/>
+  <circle cx="385" cy="250" r="215" fill="#FBF7F1" opacity=".8"/>
+  <path d="M0 405H800V520H0Z" fill="#D5C0A7"/>
+  <rect y="405" width="800" height="4" fill="#fff" opacity=".35"/>
+
+  <g filter="url(#sh)" transform="translate(260 250) rotate(-4)">
+    <rect x="-125" y="-160" width="250" height="320" rx="28" fill="url(#dark)"/>
+    <rect x="-112" y="-146" width="224" height="292" rx="20" fill="url(#cream)"/>
+    <rect x="-92" y="-122" width="144" height="14" rx="7" fill="#2B1D14" opacity=".82"/>
+    <rect x="-92" y="-98" width="94" height="9" rx="4.5" fill="#8C7B6B" opacity=".55"/>
+    <circle cx="76" cy="-112" r="16" fill="url(#acc)"/>
+    <rect x="-92" y="-66" width="184" height="72" rx="14" fill="#E9DCCB"/>
+    <rect x="-76" y="-50" width="42" height="42" rx="8" fill="url(#acc)"/>
+    <rect x="-20" y="-44" width="92" height="10" rx="5" fill="#2B1D14" opacity=".8"/>
+    <rect x="-20" y="-24" width="70" height="8" rx="4" fill="#8C7B6B" opacity=".6"/>
+    <rect x="-92" y="24" width="184" height="72" rx="14" fill="#E9DCCB"/>
+    <rect x="-76" y="40" width="42" height="42" rx="8" fill="url(#dark)"/>
+    <rect x="-20" y="46" width="96" height="10" rx="5" fill="#2B1D14" opacity=".8"/>
+    <rect x="-20" y="66" width="60" height="8" rx="4" fill="#8C7B6B" opacity=".6"/>
+  </g>
+
+  <g filter="url(#sh)" transform="translate(555 320)">
+    <ellipse cx="0" cy="115" rx="70" ry="12" fill="#2B1D14" opacity=".2"/>
+    <rect x="-46" y="-50" width="92" height="140" rx="34" fill="url(#dark)"/>
+    <rect x="-46" y="-50" width="92" height="140" rx="34" fill="url(#hl)" opacity=".55"/>
+    <path d="M-20 -50L0 -14L20 -50Z" fill="#FBF7F1"/>
+    <rect x="-12" y="-72" width="24" height="28" rx="10" fill="#B97D54"/>
+    <circle cx="0" cy="-118" r="50" fill="url(#skin2)"/>
+    <path d="M-48 -134C-52 -184 -10 -198 30 -184C54 -172 56 -142 46 -112C34 -134 14 -144 -14 -142C-30 -140 -38 -136 -48 -134Z" fill="url(#dark)"/>
+    <circle cx="-16" cy="-116" r="4.5" fill="#2B1D14"/>
+    <circle cx="16" cy="-116" r="4.5" fill="#2B1D14"/>
+    <circle cx="-14.5" cy="-117.5" r="1.5" fill="#fff"/>
+    <circle cx="17.5" cy="-117.5" r="1.5" fill="#fff"/>
+    <path d="M-13 -95Q0 -82 13 -95" stroke="#8A3B2A" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+    <path d="M-38 -24Q-92 -12 -128 -38" stroke="#3A281C" stroke-width="20" stroke-linecap="round" fill="none"/>
+    <circle cx="-130" cy="-39" r="12" fill="url(#skin2)"/>
+  </g>
+
+  <g filter="url(#sh)" transform="translate(650 118)">
+    <circle r="30" fill="url(#cream)" stroke="#A8643A" stroke-width="3.5"/>
+    <path d="M-8 -12H8V14L0 8L-8 14Z" fill="url(#acc)"/>
+  </g>
+  <path d="M90 120Q90 132 102 132Q90 132 90 144Q90 132 78 132Q90 132 90 120Z" fill="#A8643A"/>
+</svg>

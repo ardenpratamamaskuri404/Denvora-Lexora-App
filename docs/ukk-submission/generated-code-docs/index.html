@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Denvora Lexora — Generated Code Documentation</title>
+<style>
+  :root{--bg:#FBF7F1;--card:#FFFFFF;--ink:#2B1D13;--muted:#6D5A4C;--border:#E2D5C3;--accent:#C87E4F}
+  *{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+  header{padding:28px 24px;border-bottom:1px solid var(--border);background:#2B1D13;color:#F6EFE6}
+  .wrap{max-width:1160px;margin:0 auto} h1{margin:0 0 6px;font-size:1.55rem} .sub{margin:0;color:#D8C6B3;font-size:.9rem}
+  .toolbar{margin:20px auto;padding:0 24px;display:flex;gap:12px;align-items:center}
+  input{flex:1;padding:10px 14px;border-radius:10px;border:1px solid var(--border);background:var(--card);font-size:.95rem}
+  main{padding:0 24px 48px} .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:16px}
+  .card-head{display:flex;flex-wrap:wrap;gap:10px;align-items:center} h2{margin:0;font-size:1.05rem}
+  .badge{font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:999px;background:#F3E5D5;color:#8D4F2B}
+  .meta{margin-left:auto;font-size:.8rem;color:var(--muted)} .desc{margin:8px 0 12px;color:var(--muted);font-size:.9rem}
+  table{width:100%;border-collapse:collapse;font-size:.86rem} th,td{text-align:left;padding:7px 9px;border-top:1px solid var(--border);vertical-align:top}
+  th{font-size:.76rem;text-transform:uppercase;color:var(--muted)} code{background:#F5EDE3;padding:1px 5px;border-radius:5px} small{color:var(--muted)}
+</style>
+</head>
+<body>
+<header><div class="wrap"><h1>Denvora Lexora — Dokumentasi Kode Otomatis (Offline)</h1>
+<p class="sub">102 Modul · 265 Fungsi/Komponen/Tipe Terekspor · Generate Lokal Tanpa Internet</p></div></header>
+<div class="wrap toolbar"><input id="q" type="search" placeholder="Cari nama modul, file, fungsi, atau komponen..."></div>
+<main class="wrap"><article class="card" data-search="backend (express + typescript) app backend/src/app.ts konfigurasi aplikasi express (typescript), cors, swagger ui offline, dan mounting routes. app">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>app</h2>
+    <span class="meta">backend/src/app.ts · 59 baris</span>
+  </div>
+  <p class="desc">Konfigurasi aplikasi Express (TypeScript), CORS, Swagger UI offline, dan mounting routes.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>21</td><td><code>const</code></td><td><code>app</code><br><small>export const app = express();</small></td><td>Ekspor const app.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) config/db backend/src/config/db.ts konfigurasi connection pool mysql menggunakan mysql2/promise. pool ensurebooksmetadatacolumns checkconnection">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>config/db</h2>
+    <span class="meta">backend/src/config/db.ts · 70 baris</span>
+  </div>
+  <p class="desc">Konfigurasi connection pool MySQL menggunakan mysql2/promise.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>9</td><td><code>const</code></td><td><code>pool</code><br><small>export const pool = mysql.createPool(</small></td><td>Ekspor const pool.</td></tr><tr><td>33</td><td><code>function</code></td><td><code>ensureBooksMetadataColumns</code><br><small>export async function ensureBooksMetadataColumns(): Promise&lt;void&gt;</small></td><td>Memastikan kolom tambahan buku (`description`, `cover_url`) tersedia pada skema DB aktif.</td></tr><tr><td>61</td><td><code>function</code></td><td><code>checkConnection</code><br><small>export async function checkConnection(): Promise&lt;boolean&gt;</small></td><td>Menguji koneksi ke database MySQL. @returns True jika koneksi aktif.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) config/env backend/src/config/env.ts konfigurasi terpusat environment backend dari file .env. env">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>config/env</h2>
+    <span class="meta">backend/src/config/env.ts · 30 baris</span>
+  </div>
+  <p class="desc">Konfigurasi terpusat environment backend dari file .env.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>10</td><td><code>const</code></td><td><code>env</code><br><small>export const env =</small></td><td>Ekspor const env.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) controllers/auth.controller backend/src/controllers/auth.controller.ts handler http untuk registrasi siswa, login, otp mailpit, logout, dan profil sesi. register login sendotp verifyotp logout me updateprofile changepassword listnotifications">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>controllers/auth.controller</h2>
+    <span class="meta">backend/src/controllers/auth.controller.ts · 145 baris</span>
+  </div>
+  <p class="desc">Handler HTTP untuk registrasi siswa, login, OTP Mailpit, logout, dan profil sesi.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>13</td><td><code>function</code></td><td><code>register</code><br><small>export async function register( req: Request, res: Response, next: NextFunction ): Promise&lt;void&gt;</small></td><td>Ekspor function register.</td></tr><tr><td>31</td><td><code>function</code></td><td><code>login</code><br><small>export async function login( req: Request, res: Response, next: NextFunction ): Promise&lt;void&gt;</small></td><td>Ekspor function login.</td></tr><tr><td>50</td><td><code>function</code></td><td><code>sendOtp</code><br><small>export async function sendOtp( req: Request, res: Response, next: NextFunction ): Promise&lt;void&gt;</small></td><td>Ekspor function sendOtp.</td></tr><tr><td>68</td><td><code>function</code></td><td><code>verifyOtp</code><br><small>export async function verifyOtp( req: Request, res: Response, next: NextFunction ): Promise&lt;void&gt;</small></td><td>Ekspor function verifyOtp.</td></tr><tr><td>94</td><td><code>function</code></td><td><code>logout</code><br><small>export function logout(_req: Request, res: Response): void</small></td><td>Ekspor function logout.</td></tr><tr><td>103</td><td><code>function</code></td><td><code>me</code><br><small>export function me(req: Request, res: Response): void</small></td><td>Ekspor function me.</td></tr><tr><td>107</td><td><code>function</code></td><td><code>updateProfile</code><br><small>export async function updateProfile( req: Request, res: Response, next: NextFunction ): Promise&lt;void&gt;</small></td><td>Ekspor function updateProfile.</td></tr><tr><td>120</td><td><code>function</code></td><td><code>changePassword</code><br><small>export async function changePassword( req: Request, res: Response, next: NextFunction ): Promise&lt;void&gt;</small></td><td>Ekspor function changePassword.</td></tr><tr><td>133</td><td><code>function</code></td><td><code>listNotifications</code><br><small>export async function listNotifications( req: Request, res: Response, next: NextFunction ): Promise&lt;void&gt;</small></td><td>Ekspor function listNotifications.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) controllers/catalog.controller backend/src/controllers/catalog.controller.ts handler http bersama untuk kategori dan katalog buku. listcategories createcategory updatecategory deletecategory listbooks getbook createbook updatebook deletebook uploadbookcover">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>controllers/catalog.controller</h2>
+    <span class="meta">backend/src/controllers/catalog.controller.ts · 143 baris</span>
+  </div>
+  <p class="desc">Handler HTTP bersama untuk kategori dan katalog buku.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>12</td><td><code>function</code></td><td><code>listCategories</code><br><small>export async function listCategories( _req: Request, res: Response, next: NextFunction ): Promise&lt;void&gt;</small></td><td>Ekspor function listCategories.</td></tr><tr><td>25</td><td><code>function</code></td><td><code>createCategory</code><br><small>export async function createCategory( req: Request, res: Response, next: NextFunction ): Promise&lt;void&gt;</small></td><td>Ekspor function createCategory.</td></tr><tr><td>38</td><td><code>function</code></td><td><code>updateCategory</code><br><small>export async function updateCategory( req: Request, res: Response, next: NextFunction ): Promise&lt;void&gt;</small></td><td>Ekspor function updateCategory.</td></tr><tr><td>51</td><td><code>function</code></td><td><code>deleteCategory</code><br><small>export async function deleteCategory( req: Request, res: Response, next: NextFunction ): Promise&lt;void&gt;</small></td><td>Ekspor function deleteCategory.</td></tr><tr><td>64</td><td><code>function</code></td><td><code>listBooks</code><br><small>export async function listBooks( req: Request, res: Response, next: NextFunction ): Promise&lt;void&gt;</small></td><td>Ekspor function listBooks.</td></tr><tr><td>78</td><td><code>function</code></td><td><code>getBook</code><br><small>export async function getBook( req: Request, res: Response, next: NextFunction ): Promise&lt;void&gt;</small></td><td>Ekspor function getBook.</td></tr><tr><td>91</td><td><code>function</code></td><td><code>createBook</code><br><small>export async function createBook( req: Request, res: Response, next: NextFunction ): Promise&lt;void&gt;</small></td><td>Ekspor function createBook.</td></tr><tr><td>104</td><td><code>function</code></td><td><code>updateBook</code><br><small>export async function updateBook( req: Request, res: Response, next: NextFunction ): Promise&lt;void&gt;</small></td><td>Ekspor function updateBook.</td></tr><tr><td>117</td><td><code>function</code></td><td><code>deleteBook</code><br><small>export async function deleteBook( req: Request, res: Response, next: NextFunction ): Promise&lt;void&gt;</small></td><td>Ekspor function deleteBook.</td></tr><tr><td>130</td><td><code>function</code></td><td><code>uploadBookCover</code><br><small>export async function uploadBookCover( req: Request, res: Response, next: NextFunction ): Promise&lt;void&gt;</small></td><td>Ekspor function uploadBookCover.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) controllers/report.controller backend/src/controllers/report.controller.ts handler http untuk ringkasan statistik dan ekspor laporan csv. getsummary exporttransactionscsv">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>controllers/report.controller</h2>
+    <span class="meta">backend/src/controllers/report.controller.ts · 39 baris</span>
+  </div>
+  <p class="desc">Handler HTTP untuk ringkasan statistik dan ekspor laporan CSV.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>11</td><td><code>function</code></td><td><code>getSummary</code><br><small>export async function getSummary( _req: Request, res: Response, next: NextFunction ): Promise&lt;void&gt;</small></td><td>Ekspor function getSummary.</td></tr><tr><td>24</td><td><code>function</code></td><td><code>exportTransactionsCsv</code><br><small>export async function exportTransactionsCsv( req: Request, res: Response, next: NextFunction ): Promise&lt;void&gt;</small></td><td>Ekspor function exportTransactionsCsv.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) controllers/transaction.controller backend/src/controllers/transaction.controller.ts handler http untuk peminjaman/pengembalian siswa dan crud transaksi admin/petugas. listmytransactions borrowbysiswa returnbysiswa listalltransactions gettransaction createtransactionbystaff updatetransactionbystaff deletetransactionbystaff">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>controllers/transaction.controller</h2>
+    <span class="meta">backend/src/controllers/transaction.controller.ts · 134 baris</span>
+  </div>
+  <p class="desc">Handler HTTP untuk peminjaman/pengembalian Siswa dan CRUD Transaksi Admin/Petugas.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>10</td><td><code>function</code></td><td><code>listMyTransactions</code><br><small>export async function listMyTransactions( req: Request, res: Response, next: NextFunction ): Promise&lt;void&gt;</small></td><td>Ekspor function listMyTransactions.</td></tr><tr><td>24</td><td><code>function</code></td><td><code>borrowBySiswa</code><br><small>export async function borrowBySiswa( req: Request, res: Response, next: NextFunction ): Promise&lt;void&gt;</small></td><td>Ekspor function borrowBySiswa.</td></tr><tr><td>42</td><td><code>function</code></td><td><code>returnBySiswa</code><br><small>export async function returnBySiswa( req: Request, res: Response, next: NextFunction ): Promise&lt;void&gt;</small></td><td>Ekspor function returnBySiswa.</td></tr><tr><td>58</td><td><code>function</code></td><td><code>listAllTransactions</code><br><small>export async function listAllTransactions( req: Request, res: Response, next: NextFunction ): Promise&lt;void&gt;</small></td><td>Ekspor function listAllTransactions.</td></tr><tr><td>72</td><td><code>function</code></td><td><code>getTransaction</code><br><small>export async function getTransaction( req: Request, res: Response, next: NextFunction ): Promise&lt;void&gt;</small></td><td>Ekspor function getTransaction.</td></tr><tr><td>85</td><td><code>function</code></td><td><code>createTransactionByStaff</code><br><small>export async function createTransactionByStaff( req: Request, res: Response, next: NextFunction ): Promise&lt;void&gt;</small></td><td>Ekspor function createTransactionByStaff.</td></tr><tr><td>105</td><td><code>function</code></td><td><code>updateTransactionByStaff</code><br><small>export async function updateTransactionByStaff( req: Request, res: Response, next: NextFunction ): Promise&lt;void&gt;</small></td><td>Ekspor function updateTransactionByStaff.</td></tr><tr><td>122</td><td><code>function</code></td><td><code>deleteTransactionByStaff</code><br><small>export async function deleteTransactionByStaff( req: Request, res: Response, next: NextFunction ): Promise&lt;void&gt;</small></td><td>Ekspor function deleteTransactionByStaff.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) controllers/user.controller backend/src/controllers/user.controller.ts factory handler http bersama untuk pengelolaan anggota (siswa) dan petugas. createusercontroller">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>controllers/user.controller</h2>
+    <span class="meta">backend/src/controllers/user.controller.ts · 64 baris</span>
+  </div>
+  <p class="desc">Factory handler HTTP bersama untuk pengelolaan Anggota (siswa) dan Petugas.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>13</td><td><code>function</code></td><td><code>createUserController</code><br><small>export function createUserController(role: 'siswa' | 'petugas')</small></td><td>Membuat kumpulan handler controller terparameterisasi untuk role 'siswa' atau 'petugas'.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) docs/openapi.paths backend/src/docs/openapi.paths.ts definisi path, parameter query/path, dan requestbody openapi untuk petugas dan admin. staffandadminpaths">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>docs/openapi.paths</h2>
+    <span class="meta">backend/src/docs/openapi.paths.ts · 178 baris</span>
+  </div>
+  <p class="desc">Definisi path, parameter query/path, dan requestBody OpenAPI untuk Petugas dan Admin.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>150</td><td><code>const</code></td><td><code>staffAndAdminPaths</code><br><small>export const staffAndAdminPaths =</small></td><td>Ekspor const staffAndAdminPaths.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) docs/openapi backend/src/docs/openapi.ts spesifikasi openapi 3.0 lokal (100% offline) untuk swagger ui (/api-docs). openapispec">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>docs/openapi</h2>
+    <span class="meta">backend/src/docs/openapi.ts · 234 baris</span>
+  </div>
+  <p class="desc">Spesifikasi OpenAPI 3.0 lokal (100% offline) untuk Swagger UI (/api-docs).</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>8</td><td><code>const</code></td><td><code>openApiSpec</code><br><small>export const openApiSpec =</small></td><td>Ekspor const openApiSpec.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) middlewares/auth backend/src/middlewares/auth.ts middleware autentikasi sesi dan otorisasi berbasis peran (rbac 3 role). authmiddleware requirerole">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>middlewares/auth</h2>
+    <span class="meta">backend/src/middlewares/auth.ts · 83 baris</span>
+  </div>
+  <p class="desc">Middleware autentikasi sesi dan otorisasi berbasis peran (RBAC 3 role).</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>31</td><td><code>function</code></td><td><code>authMiddleware</code><br><small>export async function authMiddleware( req: Request, _res: Response, next: NextFunction ): Promise&lt;void&gt;</small></td><td>Memverifikasi sesi login dan menyisipkan data pengguna aktif ke req.user.</td></tr><tr><td>70</td><td><code>function</code></td><td><code>requireRole</code><br><small>export function requireRole(...allowedRoles: UserRole[]): RequestHandler</small></td><td>Membatasi akses endpoint hanya untuk peran tertentu.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) middlewares/errorhandler backend/src/middlewares/errorhandler.ts penanganan error terpusat rest api dengan format json seragam. notfoundhandler errorhandler">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>middlewares/errorHandler</h2>
+    <span class="meta">backend/src/middlewares/errorHandler.ts · 55 baris</span>
+  </div>
+  <p class="desc">Penanganan error terpusat REST API dengan format JSON seragam.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>21</td><td><code>function</code></td><td><code>notFoundHandler</code><br><small>export function notFoundHandler(req: Request, res: Response): Response</small></td><td>Handler untuk route yang tidak terdaftar (404).</td></tr><tr><td>28</td><td><code>function</code></td><td><code>errorHandler</code><br><small>export function errorHandler( err: HttpError, req: Request, res: Response, _next: NextFunction ): Response</small></td><td>Global error handler middleware Express.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) middlewares/validate backend/src/middlewares/validate.ts middleware validasi request body/query/params menggunakan zod. validate">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>middlewares/validate</h2>
+    <span class="meta">backend/src/middlewares/validate.ts · 31 baris</span>
+  </div>
+  <p class="desc">Middleware validasi request body/query/params menggunakan Zod.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>13</td><td><code>function</code></td><td><code>validate</code><br><small>export function validate&lt;T&gt;( schema: ZodSchema&lt;T&gt;, source: 'body' | 'query' | 'params' = 'body' ): RequestHandler</small></td><td>Membuat middleware Express untuk memvalidasi bagian request tertentu terhadap skema Zod.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) routes/admin.routes backend/src/routes/admin.routes.ts routing kendali penuh admin (/api/admin/*) sesuai spk ukk + kelola petugas. adminrouter">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>routes/admin.routes</h2>
+    <span class="meta">backend/src/routes/admin.routes.ts · 51 baris</span>
+  </div>
+  <p class="desc">Routing kendali penuh Admin (/api/admin/*) sesuai SPK UKK + kelola Petugas.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>20</td><td><code>const</code></td><td><code>adminRouter</code><br><small>export const adminRouter = Router();</small></td><td>Ekspor const adminRouter.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) routes/auth.routes backend/src/routes/auth.routes.ts routing autentikasi &amp; otp mailpit (/api/auth/*). authrouter">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>routes/auth.routes</h2>
+    <span class="meta">backend/src/routes/auth.routes.ts · 30 baris</span>
+  </div>
+  <p class="desc">Routing autentikasi &amp; OTP Mailpit (/api/auth/*).</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>19</td><td><code>const</code></td><td><code>authRouter</code><br><small>export const authRouter = Router();</small></td><td>Ekspor const authRouter.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) routes/petugas.routes backend/src/routes/petugas.routes.ts routing operasional petugas (/api/petugas/* — recommendation). petugasrouter">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>routes/petugas.routes</h2>
+    <span class="meta">backend/src/routes/petugas.routes.ts · 24 baris</span>
+  </div>
+  <p class="desc">Routing operasional Petugas (/api/petugas/* — RECOMMENDATION).</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>14</td><td><code>const</code></td><td><code>petugasRouter</code><br><small>export const petugasRouter = Router();</small></td><td>Ekspor const petugasRouter.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) routes/publiccatalog.routes backend/src/routes/publiccatalog.routes.ts endpoint katalog baca-saja publik (/api/catalog/*) untuk pencarian live dari landing page. publiccatalogrouter">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>routes/publicCatalog.routes</h2>
+    <span class="meta">backend/src/routes/publicCatalog.routes.ts · 15 baris</span>
+  </div>
+  <p class="desc">Endpoint katalog baca-saja publik (/api/catalog/*) untuk pencarian live dari landing page.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>11</td><td><code>const</code></td><td><code>publicCatalogRouter</code><br><small>export const publicCatalogRouter = Router();</small></td><td>Ekspor const publicCatalogRouter.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) routes/sharedstaff.routes backend/src/routes/sharedstaff.routes.ts registrasi route bersama untuk namespace /api/petugas/* dan /api/admin/*. mountsharedstaffroutes">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>routes/sharedStaff.routes</h2>
+    <span class="meta">backend/src/routes/sharedStaff.routes.ts · 103 baris</span>
+  </div>
+  <p class="desc">Registrasi route bersama untuk namespace /api/petugas/* dan /api/admin/*.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>27</td><td><code>function</code></td><td><code>mountSharedStaffRoutes</code><br><small>export function mountSharedStaffRoutes( router: Router, options: { allowDeleteCatalog: boolean }</small></td><td>Memasang route katalog, transaksi, dan laporan pada router Admin atau Petugas.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) routes/siswa.routes backend/src/routes/siswa.routes.ts routing khusus peran siswa (/api/siswa/*) sesuai flowmap dan hak akses ukk. siswarouter">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>routes/siswa.routes</h2>
+    <span class="meta">backend/src/routes/siswa.routes.ts · 41 baris</span>
+  </div>
+  <p class="desc">Routing khusus peran Siswa (/api/siswa/*) sesuai flowmap dan hak akses UKK.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>18</td><td><code>const</code></td><td><code>siswaRouter</code><br><small>export const siswaRouter = Router();</small></td><td>Ekspor const siswaRouter.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) server backend/src/server.ts entrypoint menjalankan http server express (typescript) pada localhost. ">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>server</h2>
+    <span class="meta">backend/src/server.ts · 15 baris</span>
+  </div>
+  <p class="desc">Entrypoint menjalankan HTTP server Express (TypeScript) pada localhost.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td colspan="4"><em>Modul konfigurasi / entry-point tanpa simbol ekspor bernama.</em></td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) services/auth.service backend/src/services/auth.service.ts logika bisnis pendaftaran anggota siswa, login, dan verifikasi otp mailpit. publicuserdto registersiswa loginuser updateownprofile changeownpassword">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>services/auth.service</h2>
+    <span class="meta">backend/src/services/auth.service.ts · 226 baris</span>
+  </div>
+  <p class="desc">Logika bisnis pendaftaran anggota siswa, login, dan verifikasi OTP Mailpit.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>19</td><td><code>interface</code></td><td><code>PublicUserDto</code><br><small>export interface PublicUserDto</small></td><td>Ekspor interface PublicUserDto.</td></tr><tr><td>50</td><td><code>function</code></td><td><code>registerSiswa</code><br><small>export async function registerSiswa(input:</small></td><td>Mendaftarkan anggota baru dengan role dikunci sebagai 'siswa' dan mengirim OTP via Mailpit.</td></tr><tr><td>125</td><td><code>function</code></td><td><code>loginUser</code><br><small>export async function loginUser(input:</small></td><td>Memvalidasi kredensial login (username atau email) dan membuat token sesi HMAC.</td></tr><tr><td>178</td><td><code>function</code></td><td><code>updateOwnProfile</code><br><small>export async function updateOwnProfile( userId: number, input:</small></td><td>Memperbarui profil akun milik pengguna yang sedang login.</td></tr><tr><td>207</td><td><code>function</code></td><td><code>changeOwnPassword</code><br><small>export async function changeOwnPassword( userId: number, input: { current_password: string; new_password: string }</small></td><td>Mengganti password pengguna setelah memverifikasi password saat ini.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) services/book.service backend/src/services/book.service.ts logika bisnis katalog buku, pencarian kondisi tertentu, dan penjagaan stok. bookrow bookquery bookinput listbooks getbookbyid createbook updatebook deletebook">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>services/book.service</h2>
+    <span class="meta">backend/src/services/book.service.ts · 234 baris</span>
+  </div>
+  <p class="desc">Logika bisnis katalog buku, pencarian kondisi tertentu, dan penjagaan stok.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>10</td><td><code>interface</code></td><td><code>BookRow</code><br><small>export interface BookRow extends RowDataPacket</small></td><td>Ekspor interface BookRow.</td></tr><tr><td>28</td><td><code>interface</code></td><td><code>BookQuery</code><br><small>export interface BookQuery</small></td><td>Ekspor interface BookQuery.</td></tr><tr><td>36</td><td><code>interface</code></td><td><code>BookInput</code><br><small>export interface BookInput</small></td><td>Ekspor interface BookInput.</td></tr><tr><td>52</td><td><code>function</code></td><td><code>listBooks</code><br><small>export async function listBooks(query: BookQuery): Promise&lt;</small></td><td>Mengambil daftar buku dengan filter kondisi tertentu dan paginasi.</td></tr><tr><td>113</td><td><code>function</code></td><td><code>getBookById</code><br><small>export async function getBookById(id: number): Promise&lt;BookRow&gt;</small></td><td>Mengambil detail satu buku berdasarkan ID.</td></tr><tr><td>142</td><td><code>function</code></td><td><code>createBook</code><br><small>export async function createBook(input: BookInput): Promise&lt;BookRow&gt;</small></td><td>Menambahkan buku baru ke katalog.</td></tr><tr><td>169</td><td><code>function</code></td><td><code>updateBook</code><br><small>export async function updateBook(id: number, input: BookInput): Promise&lt;BookRow&gt;</small></td><td>Memperbarui data buku dengan menjaga selisih buku yang sedang dipinjam aktif.</td></tr><tr><td>210</td><td><code>function</code></td><td><code>deleteBook</code><br><small>export async function deleteBook(id: number): Promise&lt;void&gt;</small></td><td>Menghapus buku (ditolak jika masih memiliki pinjaman aktif atau riwayat transaksi).</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) services/category.service backend/src/services/category.service.ts logika bisnis crud kategori buku. categoryrow listcategories createcategory updatecategory deletecategory">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>services/category.service</h2>
+    <span class="meta">backend/src/services/category.service.ts · 81 baris</span>
+  </div>
+  <p class="desc">Logika bisnis CRUD kategori buku.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>10</td><td><code>interface</code></td><td><code>CategoryRow</code><br><small>export interface CategoryRow extends RowDataPacket</small></td><td>Ekspor interface CategoryRow.</td></tr><tr><td>20</td><td><code>function</code></td><td><code>listCategories</code><br><small>export async function listCategories(): Promise&lt;CategoryRow[]&gt;</small></td><td>Mengambil seluruh daftar kategori beserta jumlah buku di tiap kategori.</td></tr><tr><td>34</td><td><code>function</code></td><td><code>createCategory</code><br><small>export async function createCategory(name: string): Promise&lt;CategoryRow&gt;</small></td><td>Menambahkan kategori buku baru.</td></tr><tr><td>49</td><td><code>function</code></td><td><code>updateCategory</code><br><small>export async function updateCategory(id: number, name: string): Promise&lt;CategoryRow&gt;</small></td><td>Memperbarui nama kategori berdasarkan ID.</td></tr><tr><td>67</td><td><code>function</code></td><td><code>deleteCategory</code><br><small>export async function deleteCategory(id: number): Promise&lt;void&gt;</small></td><td>Menghapus kategori jika tidak lagi digunakan oleh buku mana pun.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) services/notification.service backend/src/services/notification.service.ts menghasilkan umpan notifikasi langsung (real-time dari mysql) sesuai peran pengguna. notificationitem getnotificationsforuser">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>services/notification.service</h2>
+    <span class="meta">backend/src/services/notification.service.ts · 122 baris</span>
+  </div>
+  <p class="desc">Menghasilkan umpan notifikasi langsung (real-time dari MySQL) sesuai peran pengguna.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>10</td><td><code>interface</code></td><td><code>NotificationItem</code><br><small>export interface NotificationItem</small></td><td>Ekspor interface NotificationItem.</td></tr><tr><td>21</td><td><code>function</code></td><td><code>getNotificationsForUser</code><br><small>export async function getNotificationsForUser(user: AuthUser): Promise&lt;</small></td><td>Mengambil daftar notifikasi aktif berdasarkan peran (Siswa, Petugas, atau Admin).</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) services/otp.service backend/src/services/otp.service.ts penerbitan, hashing, pengiriman via mailpit, dan verifikasi kode otp 6 digit. otppurpose issueandsendotp requestotpbyemail verifyotpcode">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>services/otp.service</h2>
+    <span class="meta">backend/src/services/otp.service.ts · 159 baris</span>
+  </div>
+  <p class="desc">Penerbitan, hashing, pengiriman via Mailpit, dan verifikasi kode OTP 6 digit.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>16</td><td><code>type</code></td><td><code>OtpPurpose</code><br><small>export type OtpPurpose = 'register' | 'login';</small></td><td>Ekspor type OtpPurpose.</td></tr><tr><td>41</td><td><code>function</code></td><td><code>issueAndSendOtp</code><br><small>export async function issueAndSendOtp(params:</small></td><td>Membuat kode OTP baru, menyimpan hash di MySQL, dan mengirimkannya ke Mailpit.</td></tr><tr><td>76</td><td><code>function</code></td><td><code>requestOtpByEmail</code><br><small>export async function requestOtpByEmail(email: string, purpose: OtpPurpose): Promise&lt;void&gt;</small></td><td>Meminta kirim ulang atau pengiriman OTP baru berdasarkan alamat email terdaftar.</td></tr><tr><td>108</td><td><code>function</code></td><td><code>verifyOtpCode</code><br><small>export async function verifyOtpCode(input:</small></td><td>Memvalidasi OTP 6 digit dari Mailpit dan mengaktifkan verifikasi / sesi pengguna.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) services/report.service backend/src/services/report.service.ts agregasi ringkasan statistik menggunakan array dan ekspor laporan csv ke file lokal. getlibrarysummary exporttransactionscsv">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>services/report.service</h2>
+    <span class="meta">backend/src/services/report.service.ts · 166 baris</span>
+  </div>
+  <p class="desc">Agregasi ringkasan statistik menggunakan array dan ekspor laporan CSV ke file lokal.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>22</td><td><code>function</code></td><td><code>getLibrarySummary</code><br><small>export async function getLibrarySummary(): Promise&lt;</small></td><td>Mengambil ringkasan statistik perpustakaan secara riil dari database.</td></tr><tr><td>117</td><td><code>function</code></td><td><code>exportTransactionsCsv</code><br><small>export async function exportTransactionsCsv( query: Omit&lt;StaffTransactionQuery, 'page' | 'limit'&gt; ): Promise&lt;{ filename: string; content: st</small></td><td>Menghasilkan file CSV transaksi sesuai filter dan menyimpannya ke backend/exports/.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) services/transaction.service backend/src/services/transaction.service.ts mutasi transaksi peminjaman dan pengembalian buku secara atomik (for update). createborrowtransaction returntransaction updatetransactionbystaff deletetransactionbystaff">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>services/transaction.service</h2>
+    <span class="meta">backend/src/services/transaction.service.ts · 278 baris</span>
+  </div>
+  <p class="desc">Mutasi transaksi peminjaman dan pengembalian buku secara atomik (FOR UPDATE).</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>28</td><td><code>function</code></td><td><code>createBorrowTransaction</code><br><small>export async function createBorrowTransaction(input:</small></td><td>Mencatat peminjaman buku baru secara atomik dengan penguncian stok (FOR UPDATE).</td></tr><tr><td>106</td><td><code>function</code></td><td><code>returnTransaction</code><br><small>export async function returnTransaction( trxId: number, actor: { id: number; role: UserRole }</small></td><td>Memproses pengembalian buku secara atomik dan menambah kembali stok tersedia.</td></tr><tr><td>167</td><td><code>function</code></td><td><code>updateTransactionByStaff</code><br><small>export async function updateTransactionByStaff( trxId: number, staffId: number, input:</small></td><td>Memperbarui data transaksi oleh Admin/Petugas beserta sinkronisasi stok jika status berubah.</td></tr><tr><td>247</td><td><code>function</code></td><td><code>deleteTransactionByStaff</code><br><small>export async function deleteTransactionByStaff(trxId: number): Promise&lt;void&gt;</small></td><td>Menghapus catatan transaksi oleh Admin/Petugas (memulihkan stok jika masih borrowed).</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) services/transactionquery.service backend/src/services/transactionquery.service.ts query baca transaksi peminjaman/pengembalian dan kalkulasi keterlambatan. transactionrow transactiondto stafftransactionquery formatdatelocal adddays computeoverdueinfo gettransactionbyid listmytransactions listalltransactions">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>services/transactionQuery.service</h2>
+    <span class="meta">backend/src/services/transactionQuery.service.ts · 191 baris</span>
+  </div>
+  <p class="desc">Query baca transaksi peminjaman/pengembalian dan kalkulasi keterlambatan.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>10</td><td><code>interface</code></td><td><code>TransactionRow</code><br><small>export interface TransactionRow extends RowDataPacket</small></td><td>Ekspor interface TransactionRow.</td></tr><tr><td>31</td><td><code>interface</code></td><td><code>TransactionDto</code><br><small>export interface TransactionDto extends TransactionRow</small></td><td>Ekspor interface TransactionDto.</td></tr><tr><td>36</td><td><code>interface</code></td><td><code>StaffTransactionQuery</code><br><small>export interface StaffTransactionQuery</small></td><td>Ekspor interface StaffTransactionQuery.</td></tr><tr><td>46</td><td><code>function</code></td><td><code>formatDateLocal</code><br><small>export function formatDateLocal(date: Date): string</small></td><td>Ekspor function formatDateLocal.</td></tr><tr><td>53</td><td><code>function</code></td><td><code>addDays</code><br><small>export function addDays(isoDate: string, days: number): string</small></td><td>Ekspor function addDays.</td></tr><tr><td>62</td><td><code>function</code></td><td><code>computeOverdueInfo</code><br><small>export function computeOverdueInfo(row: TransactionRow): TransactionDto</small></td><td>Menghitung status dan jumlah hari keterlambatan berdasarkan due_date.</td></tr><tr><td>92</td><td><code>function</code></td><td><code>getTransactionById</code><br><small>export async function getTransactionById(id: number): Promise&lt;TransactionDto&gt;</small></td><td>Mengambil detail satu transaksi beserta status keterlambatan.</td></tr><tr><td>106</td><td><code>function</code></td><td><code>listMyTransactions</code><br><small>export async function listMyTransactions( userId: number, status: 'all' | 'borrowed' | 'returned' ): Promise&lt;TransactionDto[]&gt;</small></td><td>Mengambil daftar riwayat transaksi milik siswa yang sedang login.</td></tr><tr><td>129</td><td><code>function</code></td><td><code>listAllTransactions</code><br><small>export async function listAllTransactions(query: StaffTransactionQuery): Promise&lt;</small></td><td>Mengambil seluruh transaksi untuk Admin/Petugas dengan filter kondisi tertentu.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) services/user.service backend/src/services/user.service.ts logika bisnis bersama untuk pengelolaan anggota (siswa) dan petugas (staff). userlistrow userquery manageuserinput listusersbyrole getuserbyidandrole createuserbyrole updateuserbyrole deleteuserbyrole">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>services/user.service</h2>
+    <span class="meta">backend/src/services/user.service.ts · 221 baris</span>
+  </div>
+  <p class="desc">Logika bisnis bersama untuk pengelolaan Anggota (siswa) dan Petugas (staff).</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>12</td><td><code>interface</code></td><td><code>UserListRow</code><br><small>export interface UserListRow extends RowDataPacket, PublicUserDto</small></td><td>Ekspor interface UserListRow.</td></tr><tr><td>18</td><td><code>interface</code></td><td><code>UserQuery</code><br><small>export interface UserQuery</small></td><td>Ekspor interface UserQuery.</td></tr><tr><td>25</td><td><code>interface</code></td><td><code>ManageUserInput</code><br><small>export interface ManageUserInput</small></td><td>Ekspor interface ManageUserInput.</td></tr><tr><td>39</td><td><code>function</code></td><td><code>listUsersByRole</code><br><small>export async function listUsersByRole( role: 'siswa' | 'petugas', query: UserQuery ): Promise&lt;</small></td><td>Mengambil daftar pengguna berdasarkan peran ('siswa' atau 'petugas') dengan filter pencarian.</td></tr><tr><td>95</td><td><code>function</code></td><td><code>getUserByIdAndRole</code><br><small>export async function getUserByIdAndRole( id: number, role: 'siswa' | 'petugas' ): Promise&lt;UserListRow&gt;</small></td><td>Mengambil detail satu anggota atau petugas sesuai role.</td></tr><tr><td>122</td><td><code>function</code></td><td><code>createUserByRole</code><br><small>export async function createUserByRole( role: 'siswa' | 'petugas', input: ManageUserInput &amp; { password: string }</small></td><td>Membuat akun anggota atau petugas baru oleh Admin.</td></tr><tr><td>152</td><td><code>function</code></td><td><code>updateUserByRole</code><br><small>export async function updateUserByRole( id: number, role: 'siswa' | 'petugas', input: ManageUserInput ): Promise&lt;UserListRow&gt;</small></td><td>Memperbarui data anggota atau petugas beserta password opsional.</td></tr><tr><td>197</td><td><code>function</code></td><td><code>deleteUserByRole</code><br><small>export async function deleteUserByRole(id: number, role: 'siswa' | 'petugas'): Promise&lt;void&gt;</small></td><td>Menghapus akun anggota atau petugas dengan pengecekan pinjaman aktif dan riwayat.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) utils/filehelper backend/src/utils/filehelper.ts modul akses file lokal menggunakan fs/promises untuk logging aplikasi dan ekspor laporan csv (memenuhi kriteria kompetensi ukk ppsp 1.12). csvcolumn appendlog buildcsvcontent writecsvexport savebookcoverfile">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>utils/fileHelper</h2>
+    <span class="meta">backend/src/utils/fileHelper.ts · 124 baris</span>
+  </div>
+  <p class="desc">Modul akses file lokal menggunakan fs/promises untuk logging aplikasi dan ekspor laporan CSV (memenuhi kriteria kompetensi UKK PPsp 1.12).</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>16</td><td><code>interface</code></td><td><code>CsvColumn</code><br><small>export interface CsvColumn</small></td><td>Ekspor interface CsvColumn.</td></tr><tr><td>28</td><td><code>function</code></td><td><code>appendLog</code><br><small>export async function appendLog( level: 'INFO' | 'WARN' | 'ERROR', context: string, message: string ): Promise&lt;void&gt;</small></td><td>Menambahkan baris log aktivitas/error ke backend/logs/app.log.</td></tr><tr><td>61</td><td><code>function</code></td><td><code>buildCsvContent</code><br><small>export function buildCsvContent( columns: CsvColumn[], rows: Array&lt;Record&lt;string, unknown&gt;&gt; ): string</small></td><td>Mengubah array objek menjadi string CSV menggunakan pemrosesan array.</td></tr><tr><td>75</td><td><code>function</code></td><td><code>writeCsvExport</code><br><small>export async function writeCsvExport( filename: string, columns: CsvColumn[], rows: Array&lt;Record&lt;string, unknown&gt;&gt; ): Promise&lt;{ filePath: st</small></td><td>Menyimpan file ekspor CSV ke folder backend/exports/ dan mengembalikan isi serta path-nya.</td></tr><tr><td>99</td><td><code>function</code></td><td><code>saveBookCoverFile</code><br><small>export async function saveBookCoverFile( originalName: string, dataUrl: string ): Promise&lt;string&gt;</small></td><td>Menyimpan file cover buku dari data URL base64 ke folder lokal backend/uploads/covers/.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) utils/mailer backend/src/utils/mailer.ts pengirim email otp lokal melalui smtp mailpit (100% offline localhost). sendotpemailparams sendotpemail">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>utils/mailer</h2>
+    <span class="meta">backend/src/utils/mailer.ts · 79 baris</span>
+  </div>
+  <p class="desc">Pengirim email OTP lokal melalui SMTP Mailpit (100% offline localhost).</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>17</td><td><code>interface</code></td><td><code>SendOtpEmailParams</code><br><small>export interface SendOtpEmailParams</small></td><td>Ekspor interface SendOtpEmailParams.</td></tr><tr><td>27</td><td><code>function</code></td><td><code>sendOtpEmail</code><br><small>export async function sendOtpEmail(</small></td><td>Mengirim kode OTP 6 digit ke kotak masuk Mailpit lokal.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) utils/response backend/src/utils/response.ts helper standarisasi response json rest api dan error aplikasi. validationissue apperror sendsuccess senderror">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>utils/response</h2>
+    <span class="meta">backend/src/utils/response.ts · 60 baris</span>
+  </div>
+  <p class="desc">Helper standarisasi response JSON REST API dan error aplikasi.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>8</td><td><code>interface</code></td><td><code>ValidationIssue</code><br><small>export interface ValidationIssue</small></td><td>Ekspor interface ValidationIssue.</td></tr><tr><td>16</td><td><code>class</code></td><td><code>AppError</code><br><small>export class AppError extends Error</small></td><td>Custom error dengan kode status HTTP dan detail validasi opsional.</td></tr><tr><td>31</td><td><code>function</code></td><td><code>sendSuccess</code><br><small>export function sendSuccess&lt;T&gt;( res: Response, statusCode: number, message: string, data: T | null = null, meta?: Record&lt;string, unknown&gt;</small></td><td>Mengirim response sukses berformat standar.</td></tr><tr><td>48</td><td><code>function</code></td><td><code>sendError</code><br><small>export function sendError( res: Response, statusCode: number, message: string, errors?: ValidationIssue[] ): Response</small></td><td>Mengirim response error berformat standar.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) utils/token backend/src/utils/token.ts penandatanganan dan verifikasi token sesi berbasis hmac-sha256 menggunakan modul crypto bawaan node.js tanpa dependensi eksternal tambahan. sessionpayload signsessiontoken verifysessiontoken parsecookies">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>utils/token</h2>
+    <span class="meta">backend/src/utils/token.ts · 97 baris</span>
+  </div>
+  <p class="desc">Penandatanganan dan verifikasi token sesi berbasis HMAC-SHA256 menggunakan modul crypto bawaan Node.js tanpa dependensi eksternal tambahan.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>11</td><td><code>interface</code></td><td><code>SessionPayload</code><br><small>export interface SessionPayload</small></td><td>Ekspor interface SessionPayload.</td></tr><tr><td>32</td><td><code>function</code></td><td><code>signSessionToken</code><br><small>export function signSessionToken(userData:</small></td><td>Membuat token sesi bertanda tangan untuk pengguna terautentikasi.</td></tr><tr><td>51</td><td><code>function</code></td><td><code>verifySessionToken</code><br><small>export function verifySessionToken(token: string | null): SessionPayload | null</small></td><td>Memverifikasi keaslian dan masa berlaku token sesi.</td></tr><tr><td>81</td><td><code>function</code></td><td><code>parseCookies</code><br><small>export function parseCookies(cookieHeader: string | undefined): Record&lt;string, string&gt;</small></td><td>Mem-parsing header Cookie HTTP secara ringan tanpa dependensi tambahan.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) validators/auth backend/src/validators/auth.validator.ts skema validasi zod untuk pendaftaran anggota, login, dan verifikasi otp. registerschema loginschema sendotpschema verifyotpschema updateprofileschema changepasswordschema">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>validators/auth</h2>
+    <span class="meta">backend/src/validators/auth.validator.ts · 72 baris</span>
+  </div>
+  <p class="desc">Skema validasi Zod untuk pendaftaran anggota, login, dan verifikasi OTP.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>8</td><td><code>const</code></td><td><code>registerSchema</code><br><small>export const registerSchema = z.object(</small></td><td>Ekspor const registerSchema.</td></tr><tr><td>29</td><td><code>const</code></td><td><code>loginSchema</code><br><small>export const loginSchema = z.object(</small></td><td>Ekspor const loginSchema.</td></tr><tr><td>34</td><td><code>const</code></td><td><code>sendOtpSchema</code><br><small>export const sendOtpSchema = z.object(</small></td><td>Ekspor const sendOtpSchema.</td></tr><tr><td>39</td><td><code>const</code></td><td><code>verifyOtpSchema</code><br><small>export const verifyOtpSchema = z.object(</small></td><td>Ekspor const verifyOtpSchema.</td></tr><tr><td>48</td><td><code>const</code></td><td><code>updateProfileSchema</code><br><small>export const updateProfileSchema = z.object(</small></td><td>Ekspor const updateProfileSchema.</td></tr><tr><td>68</td><td><code>const</code></td><td><code>changePasswordSchema</code><br><small>export const changePasswordSchema = z.object(</small></td><td>Ekspor const changePasswordSchema.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) validators/catalog backend/src/validators/catalog.validator.ts skema validasi zod untuk kategori dan data buku beserta pencarian kondisi tertentu. categoryschema bookbodyschema coveruploadschema bookqueryschema">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>validators/catalog</h2>
+    <span class="meta">backend/src/validators/catalog.validator.ts · 41 baris</span>
+  </div>
+  <p class="desc">Skema validasi Zod untuk kategori dan data buku beserta pencarian kondisi tertentu.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>8</td><td><code>const</code></td><td><code>categorySchema</code><br><small>export const categorySchema = z.object(</small></td><td>Ekspor const categorySchema.</td></tr><tr><td>12</td><td><code>const</code></td><td><code>bookBodySchema</code><br><small>export const bookBodySchema = z.object(</small></td><td>Ekspor const bookBodySchema.</td></tr><tr><td>29</td><td><code>const</code></td><td><code>coverUploadSchema</code><br><small>export const coverUploadSchema = z.object(</small></td><td>Ekspor const coverUploadSchema.</td></tr><tr><td>34</td><td><code>const</code></td><td><code>bookQuerySchema</code><br><small>export const bookQuerySchema = z.object(</small></td><td>Ekspor const bookQuerySchema.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) validators/common backend/src/validators/common.validator.ts skema validasi umum untuk parameter url. idparamschema">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>validators/common</h2>
+    <span class="meta">backend/src/validators/common.validator.ts · 11 baris</span>
+  </div>
+  <p class="desc">Skema validasi umum untuk parameter URL.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>8</td><td><code>const</code></td><td><code>idParamSchema</code><br><small>export const idParamSchema = z.object(</small></td><td>Ekspor const idParamSchema.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) validators/transaction backend/src/validators/transaction.validator.ts skema validasi zod untuk transaksi peminjaman, pengembalian, dan filter kondisi tertentu. siswaborrowschema staffcreatetransactionschema staffupdatetransactionschema siswatransactionqueryschema stafftransactionqueryschema">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>validators/transaction</h2>
+    <span class="meta">backend/src/validators/transaction.validator.ts · 56 baris</span>
+  </div>
+  <p class="desc">Skema validasi Zod untuk transaksi peminjaman, pengembalian, dan filter kondisi tertentu.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>10</td><td><code>const</code></td><td><code>siswaBorrowSchema</code><br><small>export const siswaBorrowSchema = z.object(</small></td><td>Ekspor const siswaBorrowSchema.</td></tr><tr><td>15</td><td><code>const</code></td><td><code>staffCreateTransactionSchema</code><br><small>export const staffCreateTransactionSchema = z .object(</small></td><td>Ekspor const staffCreateTransactionSchema.</td></tr><tr><td>31</td><td><code>const</code></td><td><code>staffUpdateTransactionSchema</code><br><small>export const staffUpdateTransactionSchema = z.object(</small></td><td>Ekspor const staffUpdateTransactionSchema.</td></tr><tr><td>43</td><td><code>const</code></td><td><code>siswaTransactionQuerySchema</code><br><small>export const siswaTransactionQuerySchema = z.object(</small></td><td>Ekspor const siswaTransactionQuerySchema.</td></tr><tr><td>47</td><td><code>const</code></td><td><code>staffTransactionQuerySchema</code><br><small>export const staffTransactionQuerySchema = z.object(</small></td><td>Ekspor const staffTransactionQuerySchema.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="backend (express + typescript) validators/user backend/src/validators/user.validator.ts skema validasi zod untuk pengelolaan anggota siswa dan akun petugas. membercreateschema memberupdateschema staffcreateschema staffupdateschema userqueryschema">
+  <div class="card-head">
+    <span class="badge">Backend</span>
+    <h2>validators/user</h2>
+    <span class="meta">backend/src/validators/user.validator.ts · 57 baris</span>
+  </div>
+  <p class="desc">Skema validasi Zod untuk pengelolaan anggota siswa dan akun petugas.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>29</td><td><code>const</code></td><td><code>memberCreateSchema</code><br><small>export const memberCreateSchema = z.object(</small></td><td>Ekspor const memberCreateSchema.</td></tr><tr><td>35</td><td><code>const</code></td><td><code>memberUpdateSchema</code><br><small>export const memberUpdateSchema = z.object(</small></td><td>Ekspor const memberUpdateSchema.</td></tr><tr><td>41</td><td><code>const</code></td><td><code>staffCreateSchema</code><br><small>export const staffCreateSchema = z.object(</small></td><td>Ekspor const staffCreateSchema.</td></tr><tr><td>46</td><td><code>const</code></td><td><code>staffUpdateSchema</code><br><small>export const staffUpdateSchema = z.object(</small></td><td>Ekspor const staffUpdateSchema.</td></tr><tr><td>51</td><td><code>const</code></td><td><code>userQuerySchema</code><br><small>export const userQuerySchema = z.object(</small></td><td>Ekspor const userQuerySchema.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) frontend/src/app/admin/page.tsx frontend/src/app/admin/page.tsx modul internal sistem denvora lexora. admindashboardpage">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>frontend/src/app/admin/page.tsx</h2>
+    <span class="meta">frontend/src/app/admin/page.tsx · 6 baris</span>
+  </div>
+  <p class="desc">Modul internal sistem Denvora Lexora.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>3</td><td><code>function</code></td><td><code>AdminDashboardPage</code><br><small>export default function AdminDashboardPage()</small></td><td>Ekspor function AdminDashboardPage.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) frontend/src/app/alur/page.tsx frontend/src/app/alur/page.tsx modul internal sistem denvora lexora. metadata alurpage">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>frontend/src/app/alur/page.tsx</h2>
+    <span class="meta">frontend/src/app/alur/page.tsx · 24 baris</span>
+  </div>
+  <p class="desc">Modul internal sistem Denvora Lexora.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>7</td><td><code>const</code></td><td><code>metadata</code><br><small>export const metadata: Metadata =</small></td><td>Ekspor const metadata.</td></tr><tr><td>12</td><td><code>function</code></td><td><code>AlurPage</code><br><small>export default function AlurPage()</small></td><td>Ekspor function AlurPage.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) frontend/src/app/fitur/page.tsx frontend/src/app/fitur/page.tsx modul internal sistem denvora lexora. metadata fiturpage">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>frontend/src/app/fitur/page.tsx</h2>
+    <span class="meta">frontend/src/app/fitur/page.tsx · 24 baris</span>
+  </div>
+  <p class="desc">Modul internal sistem Denvora Lexora.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>7</td><td><code>const</code></td><td><code>metadata</code><br><small>export const metadata: Metadata =</small></td><td>Ekspor const metadata.</td></tr><tr><td>12</td><td><code>function</code></td><td><code>FiturPage</code><br><small>export default function FiturPage()</small></td><td>Ekspor function FiturPage.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) frontend/src/app/layout.tsx frontend/src/app/layout.tsx modul internal sistem denvora lexora. metadata rootlayout">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>frontend/src/app/layout.tsx</h2>
+    <span class="meta">frontend/src/app/layout.tsx · 30 baris</span>
+  </div>
+  <p class="desc">Modul internal sistem Denvora Lexora.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>5</td><td><code>const</code></td><td><code>metadata</code><br><small>export const metadata: Metadata =</small></td><td>Ekspor const metadata.</td></tr><tr><td>13</td><td><code>function</code></td><td><code>RootLayout</code><br><small>export default function RootLayout(</small></td><td>Ekspor function RootLayout.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) app/login/page frontend/src/app/login/page.tsx halaman login terpadu sesuai alur spk-3/4 dengan dukungan verifikasi dan pemulihan otp. loginpage">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>app/login/page</h2>
+    <span class="meta">frontend/src/app/login/page.tsx · 158 baris</span>
+  </div>
+  <p class="desc">Halaman Login terpadu sesuai alur SPK-3/4 dengan dukungan verifikasi dan pemulihan OTP.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>151</td><td><code>function</code></td><td><code>LoginPage</code><br><small>export default function LoginPage()</small></td><td>Ekspor function LoginPage.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) app/otp/page frontend/src/app/otp/page.tsx halaman verifikasi kode otp 6 digit untuk aktivasi email dan pemulihan akses akun. otppage">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>app/otp/page</h2>
+    <span class="meta">frontend/src/app/otp/page.tsx · 256 baris</span>
+  </div>
+  <p class="desc">Halaman verifikasi kode OTP 6 digit untuk aktivasi email dan pemulihan akses akun.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>249</td><td><code>function</code></td><td><code>OtpPage</code><br><small>export default function OtpPage()</small></td><td>Ekspor function OtpPage.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) frontend/src/app/page.tsx frontend/src/app/page.tsx modul internal sistem denvora lexora. homepage">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>frontend/src/app/page.tsx</h2>
+    <span class="meta">frontend/src/app/page.tsx · 24 baris</span>
+  </div>
+  <p class="desc">Modul internal sistem Denvora Lexora.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>9</td><td><code>function</code></td><td><code>HomePage</code><br><small>export default function HomePage()</small></td><td>Ekspor function HomePage.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) frontend/src/app/petugas/page.tsx frontend/src/app/petugas/page.tsx modul internal sistem denvora lexora. petugasdashboardpage">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>frontend/src/app/petugas/page.tsx</h2>
+    <span class="meta">frontend/src/app/petugas/page.tsx · 6 baris</span>
+  </div>
+  <p class="desc">Modul internal sistem Denvora Lexora.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>3</td><td><code>function</code></td><td><code>PetugasDashboardPage</code><br><small>export default function PetugasDashboardPage()</small></td><td>Ekspor function PetugasDashboardPage.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) app/register/page frontend/src/app/register/page.tsx halaman pendaftaran anggota siswa baru sesuai alur spk-3/4 dengan verifikasi otp. registerpage">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>app/register/page</h2>
+    <span class="meta">frontend/src/app/register/page.tsx · 238 baris</span>
+  </div>
+  <p class="desc">Halaman pendaftaran anggota siswa baru sesuai alur SPK-3/4 dengan verifikasi OTP.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>16</td><td><code>function</code></td><td><code>RegisterPage</code><br><small>export default function RegisterPage()</small></td><td>Ekspor function RegisterPage.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) frontend/src/app/siswa/page.tsx frontend/src/app/siswa/page.tsx modul internal sistem denvora lexora. siswadashboardpage">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>frontend/src/app/siswa/page.tsx</h2>
+    <span class="meta">frontend/src/app/siswa/page.tsx · 6 baris</span>
+  </div>
+  <p class="desc">Modul internal sistem Denvora Lexora.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>3</td><td><code>function</code></td><td><code>SiswaDashboardPage</code><br><small>export default function SiswaDashboardPage()</small></td><td>Ekspor function SiswaDashboardPage.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) frontend/src/app/tentang/page.tsx frontend/src/app/tentang/page.tsx modul internal sistem denvora lexora. metadata tentangpage">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>frontend/src/app/tentang/page.tsx</h2>
+    <span class="meta">frontend/src/app/tentang/page.tsx · 24 baris</span>
+  </div>
+  <p class="desc">Modul internal sistem Denvora Lexora.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>7</td><td><code>const</code></td><td><code>metadata</code><br><small>export const metadata: Metadata =</small></td><td>Ekspor const metadata.</td></tr><tr><td>12</td><td><code>function</code></td><td><code>TentangPage</code><br><small>export default function TentangPage()</small></td><td>Ekspor function TentangPage.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) frontend/src/components/auth/authfield.tsx frontend/src/components/auth/authfield.tsx modul internal sistem denvora lexora. authfield">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>frontend/src/components/auth/AuthField.tsx</h2>
+    <span class="meta">frontend/src/components/auth/AuthField.tsx · 76 baris</span>
+  </div>
+  <p class="desc">Modul internal sistem Denvora Lexora.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>20</td><td><code>function</code></td><td><code>AuthField</code><br><small>export function AuthField(</small></td><td>Ekspor function AuthField.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) components/auth/authshell frontend/src/components/auth/authshell.tsx layout full-layar terbelah kurva cream mocha yang tersinkron dengan tema light/dark global. authshell">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>components/auth/AuthShell</h2>
+    <span class="meta">frontend/src/components/auth/AuthShell.tsx · 133 baris</span>
+  </div>
+  <p class="desc">Layout full-layar terbelah kurva Cream Mocha yang tersinkron dengan tema Light/Dark global.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>20</td><td><code>function</code></td><td><code>AuthShell</code><br><small>export function AuthShell(</small></td><td>Ekspor function AuthShell.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) components/dashboard/accountsettingspanel frontend/src/components/dashboard/accountsettingspanel.tsx panel pengaturan profil pribadi dan keamanan password untuk semua peran (admin, petugas, siswa). accountsettingspanel">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>components/dashboard/AccountSettingsPanel</h2>
+    <span class="meta">frontend/src/components/dashboard/AccountSettingsPanel.tsx · 257 baris</span>
+  </div>
+  <p class="desc">Panel pengaturan profil pribadi dan keamanan password untuk semua peran (Admin, Petugas, Siswa).</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>19</td><td><code>function</code></td><td><code>AccountSettingsPanel</code><br><small>export function AccountSettingsPanel(</small></td><td>Ekspor function AccountSettingsPanel.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) components/dashboard/bookcatalogtable frontend/src/components/dashboard/bookcatalogtable.tsx tabel daftar buku katalog dilengkapi thumbnail sampul, detail deskripsi, dan aksi pinjam/kelola. bookcatalogtable">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>components/dashboard/BookCatalogTable</h2>
+    <span class="meta">frontend/src/components/dashboard/BookCatalogTable.tsx · 155 baris</span>
+  </div>
+  <p class="desc">Tabel daftar buku katalog dilengkapi thumbnail sampul, detail deskripsi, dan aksi pinjam/kelola.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>22</td><td><code>function</code></td><td><code>BookCatalogTable</code><br><small>export function BookCatalogTable(</small></td><td>Ekspor function BookCatalogTable.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) components/dashboard/bookcoveruploader frontend/src/components/dashboard/bookcoveruploader.tsx komponen pratinjau dan unggah gambar sampul buku lokal untuk admin dan petugas. bookcoveruploader">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>components/dashboard/BookCoverUploader</h2>
+    <span class="meta">frontend/src/components/dashboard/BookCoverUploader.tsx · 102 baris</span>
+  </div>
+  <p class="desc">Komponen pratinjau dan unggah gambar sampul buku lokal untuk Admin dan Petugas.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>23</td><td><code>function</code></td><td><code>BookCoverUploader</code><br><small>export function BookCoverUploader(</small></td><td>Ekspor function BookCoverUploader.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) components/dashboard/bookdetailmodal frontend/src/components/dashboard/bookdetailmodal.tsx modal detail lengkap buku menampilkan cover, sinopsis/deskripsi, metadata, dan aksi pinjam langsung. bookdetailmodal">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>components/dashboard/BookDetailModal</h2>
+    <span class="meta">frontend/src/components/dashboard/BookDetailModal.tsx · 152 baris</span>
+  </div>
+  <p class="desc">Modal detail lengkap buku menampilkan cover, sinopsis/deskripsi, metadata, dan aksi pinjam langsung.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>21</td><td><code>function</code></td><td><code>BookDetailModal</code><br><small>export function BookDetailModal(</small></td><td>Ekspor function BookDetailModal.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) components/dashboard/bookformmodal frontend/src/components/dashboard/bookformmodal.tsx modal formulir tambah/ubah buku lengkap dengan unggah sampul gambar lokal dan deskripsi buku. bookformmodal">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>components/dashboard/BookFormModal</h2>
+    <span class="meta">frontend/src/components/dashboard/BookFormModal.tsx · 255 baris</span>
+  </div>
+  <p class="desc">Modal formulir tambah/ubah buku lengkap dengan unggah sampul gambar lokal dan deskripsi buku.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>24</td><td><code>function</code></td><td><code>BookFormModal</code><br><small>export function BookFormModal(</small></td><td>Ekspor function BookFormModal.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) components/dashboard/catalogbookspanel frontend/src/components/dashboard/catalogbookspanel.tsx panel katalog buku dengan pencarian kondisi tertentu, detail sampul/deskripsi, aksi pinjam siswa, dan crud admin/petugas. catalogbookspanel">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>components/dashboard/CatalogBooksPanel</h2>
+    <span class="meta">frontend/src/components/dashboard/CatalogBooksPanel.tsx · 294 baris</span>
+  </div>
+  <p class="desc">Panel katalog buku dengan pencarian kondisi tertentu, detail sampul/deskripsi, aksi pinjam Siswa, dan CRUD Admin/Petugas.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>33</td><td><code>function</code></td><td><code>CatalogBooksPanel</code><br><small>export function CatalogBooksPanel(</small></td><td>Ekspor function CatalogBooksPanel.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) components/dashboard/categorymanagercard frontend/src/components/dashboard/categorymanagercard.tsx panel ringkas pengelolaan kategori buku untuk petugas dan admin. categorymanagercard">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>components/dashboard/CategoryManagerCard</h2>
+    <span class="meta">frontend/src/components/dashboard/CategoryManagerCard.tsx · 183 baris</span>
+  </div>
+  <p class="desc">Panel ringkas pengelolaan kategori buku untuk Petugas dan Admin.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>25</td><td><code>function</code></td><td><code>CategoryManagerCard</code><br><small>export function CategoryManagerCard(</small></td><td>Ekspor function CategoryManagerCard.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) components/dashboard/dashboardcharts frontend/src/components/dashboard/dashboardcharts.tsx grafik interaktif recharts (areachart &amp; donut piechart) lengkap dengan animasi gerak &amp; tooltip real-time. dashboardcharts">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>components/dashboard/DashboardCharts</h2>
+    <span class="meta">frontend/src/components/dashboard/DashboardCharts.tsx · 216 baris</span>
+  </div>
+  <p class="desc">Grafik interaktif Recharts (AreaChart &amp; Donut PieChart) lengkap dengan animasi gerak &amp; tooltip real-time.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>40</td><td><code>function</code></td><td><code>DashboardCharts</code><br><small>export function DashboardCharts(</small></td><td>Ekspor function DashboardCharts.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) components/dashboard/paginationbar frontend/src/components/dashboard/paginationbar.tsx kontrol navigasi halaman bersama untuk tabel katalog, transaksi, dan pengguna. paginationbar">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>components/dashboard/PaginationBar</h2>
+    <span class="meta">frontend/src/components/dashboard/PaginationBar.tsx · 45 baris</span>
+  </div>
+  <p class="desc">Kontrol navigasi halaman bersama untuk tabel katalog, transaksi, dan pengguna.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>12</td><td><code>function</code></td><td><code>PaginationBar</code><br><small>export function PaginationBar(</small></td><td>Ekspor function PaginationBar.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) components/dashboard/portalglobalsearch frontend/src/components/dashboard/portalglobalsearch.tsx searchbar real-time di topbar portal semua peran untuk mencari koleksi buku secara instan. portalglobalsearch">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>components/dashboard/PortalGlobalSearch</h2>
+    <span class="meta">frontend/src/components/dashboard/PortalGlobalSearch.tsx · 175 baris</span>
+  </div>
+  <p class="desc">Searchbar real-time di topbar portal semua peran untuk mencari koleksi buku secara instan.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>21</td><td><code>function</code></td><td><code>PortalGlobalSearch</code><br><small>export function PortalGlobalSearch({ role, onSelectQuery }: PortalGlobalSearchProps)</small></td><td>Ekspor function PortalGlobalSearch.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) components/dashboard/portalnotifications frontend/src/components/dashboard/portalnotifications.tsx ikon notifikasi bel interaktif dengan lencana real-time dan daftar peringatan peran aktif. portalnotifications">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>components/dashboard/PortalNotifications</h2>
+    <span class="meta">frontend/src/components/dashboard/PortalNotifications.tsx · 125 baris</span>
+  </div>
+  <p class="desc">Ikon notifikasi bel interaktif dengan lencana real-time dan daftar peringatan peran aktif.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>24</td><td><code>function</code></td><td><code>PortalNotifications</code><br><small>export function PortalNotifications(</small></td><td>Ekspor function PortalNotifications.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) components/dashboard/portalshell frontend/src/components/dashboard/portalshell.tsx kerangka dashboard profesional dengan toggle garis 3, searchbar real-time, notifikasi, dan menu dropdown profil. portalnavitem portalshell">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>components/dashboard/PortalShell</h2>
+    <span class="meta">frontend/src/components/dashboard/PortalShell.tsx · 212 baris</span>
+  </div>
+  <p class="desc">Kerangka dashboard profesional dengan toggle garis 3, searchbar real-time, notifikasi, dan menu dropdown profil.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>21</td><td><code>interface</code></td><td><code>PortalNavItem</code><br><small>export interface PortalNavItem</small></td><td>Ekspor interface PortalNavItem.</td></tr><tr><td>58</td><td><code>function</code></td><td><code>PortalShell</code><br><small>export function PortalShell(</small></td><td>Ekspor function PortalShell.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) components/dashboard/portalsidebar frontend/src/components/dashboard/portalsidebar.tsx sidebar terkelompok cream mocha yang dapat dilipat dengan logo denvora asli dan kartu peran bersih. portalnavlist portalsidebar">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>components/dashboard/PortalSidebar</h2>
+    <span class="meta">frontend/src/components/dashboard/PortalSidebar.tsx · 162 baris</span>
+  </div>
+  <p class="desc">Sidebar terkelompok Cream Mocha yang dapat dilipat dengan logo Denvora asli dan kartu peran bersih.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>24</td><td><code>function</code></td><td><code>PortalNavList</code><br><small>export function PortalNavList(</small></td><td>Ekspor function PortalNavList.</td></tr><tr><td>71</td><td><code>function</code></td><td><code>PortalSidebar</code><br><small>export function PortalSidebar(</small></td><td>Ekspor function PortalSidebar.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) components/dashboard/portalusermenu frontend/src/components/dashboard/portalusermenu.tsx menu dropdown profil pengguna di topbar kanan yang menampilkan nama, email, dan pintasan akun untuk semua role. portalusermenu">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>components/dashboard/PortalUserMenu</h2>
+    <span class="meta">frontend/src/components/dashboard/PortalUserMenu.tsx · 151 baris</span>
+  </div>
+  <p class="desc">Menu dropdown profil pengguna di topbar kanan yang menampilkan nama, email, dan pintasan akun untuk semua role.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>27</td><td><code>function</code></td><td><code>PortalUserMenu</code><br><small>export function PortalUserMenu(</small></td><td>Ekspor function PortalUserMenu.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) components/dashboard/reportsoverviewpanel frontend/src/components/dashboard/reportsoverviewpanel.tsx panel dashboard utama admin/petugas dengan 4 kartu kpi, grafik tren &amp; kategori, dan ekspor csv. reportsoverviewpanel">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>components/dashboard/ReportsOverviewPanel</h2>
+    <span class="meta">frontend/src/components/dashboard/ReportsOverviewPanel.tsx · 158 baris</span>
+  </div>
+  <p class="desc">Panel dashboard utama Admin/Petugas dengan 4 kartu KPI, grafik tren &amp; kategori, dan ekspor CSV.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>22</td><td><code>function</code></td><td><code>ReportsOverviewPanel</code><br><small>export function ReportsOverviewPanel(</small></td><td>Ekspor function ReportsOverviewPanel.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) components/dashboard/siswadashboardview frontend/src/components/dashboard/siswadashboardview.tsx portal real-time siswa dengan grafik animasi recharts, notifikasi langsung, detail cover/deskripsi, dan pengaturan akun. siswadashboardview">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>components/dashboard/SiswaDashboardView</h2>
+    <span class="meta">frontend/src/components/dashboard/SiswaDashboardView.tsx · 277 baris</span>
+  </div>
+  <p class="desc">Portal real-time Siswa dengan grafik animasi Recharts, notifikasi langsung, detail cover/deskripsi, dan pengaturan akun.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>270</td><td><code>function</code></td><td><code>SiswaDashboardView</code><br><small>export function SiswaDashboardView()</small></td><td>Ekspor function SiswaDashboardView.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) components/dashboard/siswaloanspanel frontend/src/components/dashboard/siswaloanspanel.tsx panel riwayat peminjaman aktif dan pengembalian buku khusus siswa. siswaloanspanel">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>components/dashboard/SiswaLoansPanel</h2>
+    <span class="meta">frontend/src/components/dashboard/SiswaLoansPanel.tsx · 193 baris</span>
+  </div>
+  <p class="desc">Panel riwayat peminjaman aktif dan pengembalian buku khusus Siswa.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>19</td><td><code>function</code></td><td><code>SiswaLoansPanel</code><br><small>export function SiswaLoansPanel({ refreshSignal = 0, onReturned }: SiswaLoansPanelProps)</small></td><td>Ekspor function SiswaLoansPanel.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) components/dashboard/staffdashboardview frontend/src/components/dashboard/staffdashboardview.tsx portal real-time petugas &amp; admin dengan sidebar lipat, notifikasi langsung, grafik recharts, dan pengaturan akun. staffdashboardview">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>components/dashboard/StaffDashboardView</h2>
+    <span class="meta">frontend/src/components/dashboard/StaffDashboardView.tsx · 226 baris</span>
+  </div>
+  <p class="desc">Portal real-time Petugas &amp; Admin dengan sidebar lipat, notifikasi langsung, grafik Recharts, dan pengaturan akun.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>219</td><td><code>function</code></td><td><code>StaffDashboardView</code><br><small>export function StaffDashboardView({ expectedRole }: StaffDashboardViewProps)</small></td><td>Ekspor function StaffDashboardView.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) components/dashboard/stafftransactioneditmodal frontend/src/components/dashboard/stafftransactioneditmodal.tsx modal ubah status, tanggal jatuh tempo, tanggal kembali, dan catatan transaksi oleh petugas/admin. stafftransactioneditmodal">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>components/dashboard/StaffTransactionEditModal</h2>
+    <span class="meta">frontend/src/components/dashboard/StaffTransactionEditModal.tsx · 178 baris</span>
+  </div>
+  <p class="desc">Modal ubah status, tanggal jatuh tempo, tanggal kembali, dan catatan transaksi oleh Petugas/Admin.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>29</td><td><code>function</code></td><td><code>StaffTransactionEditModal</code><br><small>export function StaffTransactionEditModal(</small></td><td>Ekspor function StaffTransactionEditModal.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) components/dashboard/stafftransactionmodal frontend/src/components/dashboard/stafftransactionmodal.tsx modal catat peminjaman buku baru oleh petugas atau admin. stafftransactionmodal">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>components/dashboard/StaffTransactionModal</h2>
+    <span class="meta">frontend/src/components/dashboard/StaffTransactionModal.tsx · 214 baris</span>
+  </div>
+  <p class="desc">Modal catat peminjaman buku baru oleh Petugas atau Admin.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>34</td><td><code>function</code></td><td><code>StaffTransactionModal</code><br><small>export function StaffTransactionModal(</small></td><td>Ekspor function StaffTransactionModal.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) components/dashboard/stafftransactionspanel frontend/src/components/dashboard/stafftransactionspanel.tsx panel manajemen transaksi peminjaman/pengembalian lengkap untuk admin dan petugas beserta ekspor csv. stafftransactionspanel">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>components/dashboard/StaffTransactionsPanel</h2>
+    <span class="meta">frontend/src/components/dashboard/StaffTransactionsPanel.tsx · 288 baris</span>
+  </div>
+  <p class="desc">Panel manajemen transaksi peminjaman/pengembalian lengkap untuk Admin dan Petugas beserta ekspor CSV.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>30</td><td><code>function</code></td><td><code>StaffTransactionsPanel</code><br><small>export function StaffTransactionsPanel(</small></td><td>Ekspor function StaffTransactionsPanel.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) components/dashboard/statcard frontend/src/components/dashboard/statcard.tsx kartu kpi bergaya shadcn/ui dengan animasi motion lembut dan tombol aksi cepat. statcard">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>components/dashboard/StatCard</h2>
+    <span class="meta">frontend/src/components/dashboard/StatCard.tsx · 115 baris</span>
+  </div>
+  <p class="desc">Kartu KPI bergaya shadcn/ui dengan animasi Motion lembut dan tombol aksi cepat.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>36</td><td><code>function</code></td><td><code>StatCard</code><br><small>export function StatCard(</small></td><td>Ekspor function StatCard.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) components/dashboard/transactiontable frontend/src/components/dashboard/transactiontable.tsx tabel transaksi sirkulasi perpustakaan untuk panel petugas dan admin. transactiontable">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>components/dashboard/TransactionTable</h2>
+    <span class="meta">frontend/src/components/dashboard/TransactionTable.tsx · 116 baris</span>
+  </div>
+  <p class="desc">Tabel transaksi sirkulasi perpustakaan untuk panel Petugas dan Admin.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>17</td><td><code>function</code></td><td><code>TransactionTable</code><br><small>export function TransactionTable(</small></td><td>Ekspor function TransactionTable.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) components/dashboard/userformmodal frontend/src/components/dashboard/userformmodal.tsx modal tambah/ubah akun anggota (siswa) dan petugas layanan untuk admin. userformmodal">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>components/dashboard/UserFormModal</h2>
+    <span class="meta">frontend/src/components/dashboard/UserFormModal.tsx · 219 baris</span>
+  </div>
+  <p class="desc">Modal tambah/ubah akun Anggota (siswa) dan Petugas layanan untuk Admin.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>21</td><td><code>function</code></td><td><code>UserFormModal</code><br><small>export function UserFormModal(</small></td><td>Ekspor function UserFormModal.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) components/dashboard/usersmanagementpanel frontend/src/components/dashboard/usersmanagementpanel.tsx panel terpadu untuk membaca/mengelola anggota siswa dan petugas perpustakaan. usersmanagementpanel">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>components/dashboard/UsersManagementPanel</h2>
+    <span class="meta">frontend/src/components/dashboard/UsersManagementPanel.tsx · 274 baris</span>
+  </div>
+  <p class="desc">Panel terpadu untuk membaca/mengelola Anggota Siswa dan Petugas Perpustakaan.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>29</td><td><code>function</code></td><td><code>UsersManagementPanel</code><br><small>export function UsersManagementPanel(</small></td><td>Ekspor function UsersManagementPanel.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) frontend/src/components/landing/aboutfaqview.tsx frontend/src/components/landing/aboutfaqview.tsx modul internal sistem denvora lexora. aboutfaqview">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>frontend/src/components/landing/AboutFaqView.tsx</h2>
+    <span class="meta">frontend/src/components/landing/AboutFaqView.tsx · 117 baris</span>
+  </div>
+  <p class="desc">Modul internal sistem Denvora Lexora.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>30</td><td><code>function</code></td><td><code>AboutFaqView</code><br><small>export function AboutFaqView()</small></td><td>Ekspor function AboutFaqView.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) frontend/src/components/landing/aboutmoresections.tsx frontend/src/components/landing/aboutmoresections.tsx modul internal sistem denvora lexora. aboutmoresections">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>frontend/src/components/landing/AboutMoreSections.tsx</h2>
+    <span class="meta">frontend/src/components/landing/AboutMoreSections.tsx · 136 baris</span>
+  </div>
+  <p class="desc">Modul internal sistem Denvora Lexora.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>32</td><td><code>function</code></td><td><code>AboutMoreSections</code><br><small>export function AboutMoreSections()</small></td><td>Ekspor function AboutMoreSections.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) frontend/src/components/landing/ambientsparkles.tsx frontend/src/components/landing/ambientsparkles.tsx modul internal sistem denvora lexora. ambientsparkles">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>frontend/src/components/landing/AmbientSparkles.tsx</h2>
+    <span class="meta">frontend/src/components/landing/AmbientSparkles.tsx · 80 baris</span>
+  </div>
+  <p class="desc">Modul internal sistem Denvora Lexora.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>29</td><td><code>function</code></td><td><code>AmbientSparkles</code><br><small>export function AmbientSparkles({ className = &quot;&quot; }: { className?: string })</small></td><td>Ekspor function AmbientSparkles.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) frontend/src/components/landing/brandstorysection.tsx frontend/src/components/landing/brandstorysection.tsx modul internal sistem denvora lexora. brandstorysection">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>frontend/src/components/landing/BrandStorySection.tsx</h2>
+    <span class="meta">frontend/src/components/landing/BrandStorySection.tsx · 135 baris</span>
+  </div>
+  <p class="desc">Modul internal sistem Denvora Lexora.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>16</td><td><code>function</code></td><td><code>BrandStorySection</code><br><small>export function BrandStorySection()</small></td><td>Ekspor function BrandStorySection.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) frontend/src/components/landing/explorepillarssection.tsx frontend/src/components/landing/explorepillarssection.tsx modul internal sistem denvora lexora. explorepillarssection">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>frontend/src/components/landing/ExplorePillarsSection.tsx</h2>
+    <span class="meta">frontend/src/components/landing/ExplorePillarsSection.tsx · 97 baris</span>
+  </div>
+  <p class="desc">Modul internal sistem Denvora Lexora.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>34</td><td><code>function</code></td><td><code>ExplorePillarsSection</code><br><small>export function ExplorePillarsSection()</small></td><td>Ekspor function ExplorePillarsSection.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) frontend/src/components/landing/featuresmoresections.tsx frontend/src/components/landing/featuresmoresections.tsx modul internal sistem denvora lexora. featuresmoresections">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>frontend/src/components/landing/FeaturesMoreSections.tsx</h2>
+    <span class="meta">frontend/src/components/landing/FeaturesMoreSections.tsx · 163 baris</span>
+  </div>
+  <p class="desc">Modul internal sistem Denvora Lexora.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>54</td><td><code>function</code></td><td><code>FeaturesMoreSections</code><br><small>export function FeaturesMoreSections()</small></td><td>Ekspor function FeaturesMoreSections.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) frontend/src/components/landing/featuresview.tsx frontend/src/components/landing/featuresview.tsx modul internal sistem denvora lexora. featuresview">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>frontend/src/components/landing/FeaturesView.tsx</h2>
+    <span class="meta">frontend/src/components/landing/FeaturesView.tsx · 185 baris</span>
+  </div>
+  <p class="desc">Modul internal sistem Denvora Lexora.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>57</td><td><code>function</code></td><td><code>FeaturesView</code><br><small>export function FeaturesView()</small></td><td>Ekspor function FeaturesView.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) frontend/src/components/landing/flowmoresections.tsx frontend/src/components/landing/flowmoresections.tsx modul internal sistem denvora lexora. flowmoresections">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>frontend/src/components/landing/FlowMoreSections.tsx</h2>
+    <span class="meta">frontend/src/components/landing/FlowMoreSections.tsx · 155 baris</span>
+  </div>
+  <p class="desc">Modul internal sistem Denvora Lexora.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>51</td><td><code>function</code></td><td><code>FlowMoreSections</code><br><small>export function FlowMoreSections()</small></td><td>Ekspor function FlowMoreSections.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) frontend/src/components/landing/flowview.tsx frontend/src/components/landing/flowview.tsx modul internal sistem denvora lexora. flowview">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>frontend/src/components/landing/FlowView.tsx</h2>
+    <span class="meta">frontend/src/components/landing/FlowView.tsx · 174 baris</span>
+  </div>
+  <p class="desc">Modul internal sistem Denvora Lexora.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>49</td><td><code>function</code></td><td><code>FlowView</code><br><small>export function FlowView()</small></td><td>Ekspor function FlowView.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) frontend/src/components/landing/herosection.tsx frontend/src/components/landing/herosection.tsx modul internal sistem denvora lexora. herosection">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>frontend/src/components/landing/HeroSection.tsx</h2>
+    <span class="meta">frontend/src/components/landing/HeroSection.tsx · 255 baris</span>
+  </div>
+  <p class="desc">Modul internal sistem Denvora Lexora.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>23</td><td><code>function</code></td><td><code>HeroSection</code><br><small>export function HeroSection()</small></td><td>Ekspor function HeroSection.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) frontend/src/components/landing/homeextrasections.tsx frontend/src/components/landing/homeextrasections.tsx modul internal sistem denvora lexora. homeextrasections">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>frontend/src/components/landing/HomeExtraSections.tsx</h2>
+    <span class="meta">frontend/src/components/landing/HomeExtraSections.tsx · 143 baris</span>
+  </div>
+  <p class="desc">Modul internal sistem Denvora Lexora.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>52</td><td><code>function</code></td><td><code>HomeExtraSections</code><br><small>export function HomeExtraSections()</small></td><td>Ekspor function HomeExtraSections.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) components/landing/landingnavbar frontend/src/components/landing/landingnavbar.tsx navbar utama mengambang responsif yang beradaptasi untuk tamu maupun pengguna terautentikasi (tombol kembali ke dashboard). landingnavbar">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>components/landing/LandingNavbar</h2>
+    <span class="meta">frontend/src/components/landing/LandingNavbar.tsx · 227 baris</span>
+  </div>
+  <p class="desc">Navbar utama mengambang responsif yang beradaptasi untuk tamu maupun pengguna terautentikasi (tombol kembali ke Dashboard).</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>91</td><td><code>function</code></td><td><code>LandingNavbar</code><br><small>export function LandingNavbar()</small></td><td>Ekspor function LandingNavbar.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) components/landing/landingusermenu frontend/src/components/landing/landingusermenu.tsx tombol profil pengguna pada navbar publik agar pengguna aktif mudah kembali ke dashboard perannya. landingusermenu">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>components/landing/LandingUserMenu</h2>
+    <span class="meta">frontend/src/components/landing/LandingUserMenu.tsx · 187 baris</span>
+  </div>
+  <p class="desc">Tombol profil pengguna pada navbar publik agar pengguna aktif mudah kembali ke dashboard perannya.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>27</td><td><code>function</code></td><td><code>LandingUserMenu</code><br><small>export function LandingUserMenu(</small></td><td>Ekspor function LandingUserMenu.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) components/landing/sitefooter frontend/src/components/landing/sitefooter.tsx footer 4 kolom cream mocha penuh hingga sudut layar dengan live search katalog buku. sitefooter">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>components/landing/SiteFooter</h2>
+    <span class="meta">frontend/src/components/landing/SiteFooter.tsx · 252 baris</span>
+  </div>
+  <p class="desc">Footer 4 kolom Cream Mocha penuh hingga sudut layar dengan live search katalog buku.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>60</td><td><code>function</code></td><td><code>SiteFooter</code><br><small>export function SiteFooter()</small></td><td>Ekspor function SiteFooter.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) frontend/src/components/landing/storyrevealsection.tsx frontend/src/components/landing/storyrevealsection.tsx modul internal sistem denvora lexora. storyrevealsection">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>frontend/src/components/landing/StoryRevealSection.tsx</h2>
+    <span class="meta">frontend/src/components/landing/StoryRevealSection.tsx · 104 baris</span>
+  </div>
+  <p class="desc">Modul internal sistem Denvora Lexora.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>10</td><td><code>function</code></td><td><code>StoryRevealSection</code><br><small>export function StoryRevealSection()</small></td><td>Ekspor function StoryRevealSection.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) frontend/src/components/splash/splash.tsx frontend/src/components/splash/splash.tsx modul internal sistem denvora lexora. splash">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>frontend/src/components/Splash/Splash.tsx</h2>
+    <span class="meta">frontend/src/components/Splash/Splash.tsx · 130 baris</span>
+  </div>
+  <p class="desc">Modul internal sistem Denvora Lexora.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>22</td><td><code>function</code></td><td><code>Splash</code><br><small>export default function Splash({ minDuration = 4300, once = false, ready = true, onDone }: Props)</small></td><td>Ekspor function Splash.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) frontend/src/components/ui/badge.tsx frontend/src/components/ui/badge.tsx modul internal sistem denvora lexora. badgeprops badge">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>frontend/src/components/ui/badge.tsx</h2>
+    <span class="meta">frontend/src/components/ui/badge.tsx · 30 baris</span>
+  </div>
+  <p class="desc">Modul internal sistem Denvora Lexora.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>23</td><td><code>interface</code></td><td><code>BadgeProps</code><br><small>export interface BadgeProps</small></td><td>Ekspor interface BadgeProps.</td></tr><tr><td>27</td><td><code>function</code></td><td><code>Badge</code><br><small>export function Badge({ className, variant, ...props }: BadgeProps)</small></td><td>Ekspor function Badge.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) frontend/src/components/ui/button.tsx frontend/src/components/ui/button.tsx modul internal sistem denvora lexora. buttonprops button">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>frontend/src/components/ui/button.tsx</h2>
+    <span class="meta">frontend/src/components/ui/button.tsx · 56 baris</span>
+  </div>
+  <p class="desc">Modul internal sistem Denvora Lexora.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>37</td><td><code>interface</code></td><td><code>ButtonProps</code><br><small>export interface ButtonProps</small></td><td>Ekspor interface ButtonProps.</td></tr><tr><td>43</td><td><code>const</code></td><td><code>Button</code><br><small>export const Button = React.forwardRef&lt;HTMLButtonElement, ButtonProps&gt;( ({ className, variant, size, asChild = false, ...props }, ref) =&gt;</small></td><td>Ekspor const Button.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) components/ui/card frontend/src/components/ui/card.tsx komponen card bergaya shadcn/ui yang dikustomisasi ke tema cream mocha denvora lexora. ">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>components/ui/card</h2>
+    <span class="meta">frontend/src/components/ui/card.tsx · 60 baris</span>
+  </div>
+  <p class="desc">Komponen Card bergaya shadcn/ui yang dikustomisasi ke tema Cream Mocha Denvora Lexora.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td colspan="4"><em>Modul konfigurasi / entry-point tanpa simbol ekspor bernama.</em></td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) lib/api frontend/src/lib/api.ts klien http terpusat untuk komunikasi dengan rest api backend denvora lexora. api_base_url asset_base_url resolvebookcoverurl apirequesterror formatapierror apirequest registerpayload registerapi loginapi sendotpapi verifyotpapi meapi logoutapi searchpublicbooksapi updateprofileapi changepasswordapi fetchnotificationsapi">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>lib/api</h2>
+    <span class="meta">frontend/src/lib/api.ts · 189 baris</span>
+  </div>
+  <p class="desc">Klien HTTP terpusat untuk komunikasi dengan REST API backend Denvora Lexora.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>15</td><td><code>const</code></td><td><code>API_BASE_URL</code><br><small>export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || &quot;http://localhost:5000/api&quot;;</small></td><td>Ekspor const API_BASE_URL.</td></tr><tr><td>18</td><td><code>const</code></td><td><code>ASSET_BASE_URL</code><br><small>export const ASSET_BASE_URL = API_BASE_URL.replace(/\/api\/?$/, &quot;&quot;);</small></td><td>Ekspor const ASSET_BASE_URL.</td></tr><tr><td>21</td><td><code>function</code></td><td><code>resolveBookCoverUrl</code><br><small>export function resolveBookCoverUrl(coverUrl?: string | null): string | null</small></td><td>Mengubah path asset (/uploads/... atau /covers/...) menjadi URL siap tampil.</td></tr><tr><td>28</td><td><code>class</code></td><td><code>ApiRequestError</code><br><small>export class ApiRequestError extends Error</small></td><td>Representasi error terstruktur yang dikembalikan oleh REST API.</td></tr><tr><td>40</td><td><code>function</code></td><td><code>formatApiError</code><br><small>export function formatApiError(err: unknown, fallback: string): string</small></td><td>Mengubah error API/validasi menjadi pesan ringkas yang mudah dipahami pengguna.</td></tr><tr><td>57</td><td><code>function</code></td><td><code>apiRequest</code><br><small>export async function apiRequest&lt;T&gt;( path: string, options: RequestInit = {}</small></td><td>Mengirim permintaan HTTP terautentikasi cookie HttpOnly ke server backend lokal. @param path Path endpoint relatif terhadap API_BASE_URL @param options Konfigurasi fetch standar</td></tr><tr><td>96</td><td><code>interface</code></td><td><code>RegisterPayload</code><br><small>export interface RegisterPayload</small></td><td>Ekspor interface RegisterPayload.</td></tr><tr><td>107</td><td><code>function</code></td><td><code>registerApi</code><br><small>export async function registerApi(payload: RegisterPayload)</small></td><td>Mendaftarkan anggota siswa baru dan memicu pengiriman OTP verifikasi.</td></tr><tr><td>115</td><td><code>function</code></td><td><code>loginApi</code><br><small>export async function loginApi(username: string, password: string)</small></td><td>Memvalidasi kredensial pengguna (username atau email beserta password).</td></tr><tr><td>123</td><td><code>function</code></td><td><code>sendOtpApi</code><br><small>export async function sendOtpApi(email: string, purpose: OtpPurpose)</small></td><td>Mengirim kode OTP 6 digit ke alamat email terdaftar melalui layanan surat lokal.</td></tr><tr><td>134</td><td><code>function</code></td><td><code>verifyOtpApi</code><br><small>export async function verifyOtpApi(email: string, otp: string, purpose: OtpPurpose)</small></td><td>Memverifikasi kode OTP 6 digit untuk aktivasi akun atau pemulihan akses masuk.</td></tr><tr><td>142</td><td><code>function</code></td><td><code>meApi</code><br><small>export async function meApi()</small></td><td>Mengambil profil sesi pengguna yang sedang aktif.</td></tr><tr><td>147</td><td><code>function</code></td><td><code>logoutApi</code><br><small>export async function logoutApi()</small></td><td>Menghapus sesi aktif pengguna saat keluar dari sistem.</td></tr><tr><td>152</td><td><code>function</code></td><td><code>searchPublicBooksApi</code><br><small>export async function searchPublicBooksApi(search: string, limit = 5)</small></td><td>Mencari buku katalog publik secara live berdasarkan kata kunci.</td></tr><tr><td>162</td><td><code>function</code></td><td><code>updateProfileApi</code><br><small>export async function updateProfileApi(payload:</small></td><td>Memperbarui data profil akun milik pengguna yang sedang aktif.</td></tr><tr><td>175</td><td><code>function</code></td><td><code>changePasswordApi</code><br><small>export async function changePasswordApi(payload:</small></td><td>Mengubah password pengguna setelah memverifikasi password saat ini.</td></tr><tr><td>186</td><td><code>function</code></td><td><code>fetchNotificationsApi</code><br><small>export async function fetchNotificationsApi()</small></td><td>Mengambil umpan notifikasi real-time sesuai peran akun aktif.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) lib/portalapi frontend/src/lib/portalapi.ts klien rest api terparameterisasi untuk operasi dashboard siswa, petugas, dan admin. fetchcategoriesapi createcategoryapi updatecategoryapi deletecategoryapi uploadbookcoverapi fetchbooksapi createbookapi updatebookapi deletebookapi fetchmytransactionsapi borrowbysiswaapi returnbysiswaapi fetchalltransactionsapi createstafftransactionapi updatestafftransactionapi deletestafftransactionapi fetchusersapi createuserapi updateuserapi deleteuserapi fetchreportsummaryapi downloadtransactionscsvapi">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>lib/portalApi</h2>
+    <span class="meta">frontend/src/lib/portalApi.ts · 263 baris</span>
+  </div>
+  <p class="desc">Klien REST API terparameterisasi untuk operasi Dashboard Siswa, Petugas, dan Admin.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>36</td><td><code>function</code></td><td><code>fetchCategoriesApi</code><br><small>export async function fetchCategoriesApi(prefix: PortalRolePrefix): Promise&lt;CategoryItem[]&gt;</small></td><td>Mengambil daftar kategori buku berdasarkan prefix peran.</td></tr><tr><td>42</td><td><code>function</code></td><td><code>createCategoryApi</code><br><small>export async function createCategoryApi(prefix: StaffRolePrefix, name: string)</small></td><td>Menambahkan kategori baru (Admin/Petugas).</td></tr><tr><td>50</td><td><code>function</code></td><td><code>updateCategoryApi</code><br><small>export async function updateCategoryApi(prefix: StaffRolePrefix, id: number, name: string)</small></td><td>Memperbarui nama kategori (Admin/Petugas).</td></tr><tr><td>58</td><td><code>function</code></td><td><code>deleteCategoryApi</code><br><small>export async function deleteCategoryApi(id: number)</small></td><td>Menghapus kategori (khusus Admin).</td></tr><tr><td>63</td><td><code>function</code></td><td><code>uploadBookCoverApi</code><br><small>export async function uploadBookCoverApi( prefix: StaffRolePrefix, filename: string, dataUrl: string )</small></td><td>Mengunggah gambar cover buku ke penyimpanan lokal backend (offline localhost).</td></tr><tr><td>75</td><td><code>function</code></td><td><code>fetchBooksApi</code><br><small>export async function fetchBooksApi( prefix: PortalRolePrefix, query: BookListQuery ): Promise&lt;{ items: CatalogBookItem[]; meta?: Pagination</small></td><td>Mengambil daftar buku terpaginasi beserta filter pencarian kondisi tertentu.</td></tr><tr><td>91</td><td><code>function</code></td><td><code>createBookApi</code><br><small>export async function createBookApi(prefix: StaffRolePrefix, payload: BookPayload)</small></td><td>Menambahkan buku baru ke katalog (Admin/Petugas).</td></tr><tr><td>99</td><td><code>function</code></td><td><code>updateBookApi</code><br><small>export async function updateBookApi(prefix: StaffRolePrefix, id: number, payload: BookPayload)</small></td><td>Memperbarui data buku yang sudah ada (Admin/Petugas).</td></tr><tr><td>107</td><td><code>function</code></td><td><code>deleteBookApi</code><br><small>export async function deleteBookApi(id: number)</small></td><td>Menghapus buku dari katalog (khusus Admin).</td></tr><tr><td>112</td><td><code>function</code></td><td><code>fetchMyTransactionsApi</code><br><small>export async function fetchMyTransactionsApi( status: &quot;all&quot; | &quot;borrowed&quot; | &quot;returned&quot; = &quot;all&quot; ): Promise&lt;TransactionItem[]&gt;</small></td><td>Mengambil riwayat peminjaman milik siswa yang sedang masuk.</td></tr><tr><td>122</td><td><code>function</code></td><td><code>borrowBySiswaApi</code><br><small>export async function borrowBySiswaApi(bookId: number, notes?: string)</small></td><td>Mengajukan peminjaman buku baru oleh siswa.</td></tr><tr><td>130</td><td><code>function</code></td><td><code>returnBySiswaApi</code><br><small>export async function returnBySiswaApi(transactionId: number)</small></td><td>Mengembalikan buku yang dipinjam oleh siswa.</td></tr><tr><td>137</td><td><code>function</code></td><td><code>fetchAllTransactionsApi</code><br><small>export async function fetchAllTransactionsApi( prefix: StaffRolePrefix, query: TransactionListQuery ): Promise&lt;{ items: TransactionItem[]; m</small></td><td>Mengambil seluruh transaksi perpustakaan terpaginasi dengan filter (Admin/Petugas).</td></tr><tr><td>155</td><td><code>function</code></td><td><code>createStaffTransactionApi</code><br><small>export async function createStaffTransactionApi( prefix: StaffRolePrefix, payload: StaffCreateTransactionPayload )</small></td><td>Mencatat transaksi peminjaman baru oleh Petugas/Admin.</td></tr><tr><td>166</td><td><code>function</code></td><td><code>updateStaffTransactionApi</code><br><small>export async function updateStaffTransactionApi( prefix: StaffRolePrefix, id: number, payload: StaffUpdateTransactionPayload )</small></td><td>Memperbarui status pengembalian atau jatuh tempo transaksi (Admin/Petugas).</td></tr><tr><td>178</td><td><code>function</code></td><td><code>deleteStaffTransactionApi</code><br><small>export async function deleteStaffTransactionApi(prefix: StaffRolePrefix, id: number)</small></td><td>Menghapus catatan transaksi (Admin/Petugas).</td></tr><tr><td>183</td><td><code>function</code></td><td><code>fetchUsersApi</code><br><small>export async function fetchUsersApi( prefix: StaffRolePrefix, kind: UserResourceKind, query: { search?: string; is_active?: &quot;all&quot; | &quot;1&quot; | &quot;0</small></td><td>Mengambil daftar Anggota (`members`) atau Staf (`staff`).</td></tr><tr><td>199</td><td><code>function</code></td><td><code>createUserApi</code><br><small>export async function createUserApi(kind: UserResourceKind, payload: UserManagePayload)</small></td><td>Membuat akun Anggota atau Staf baru (khusus Admin).</td></tr><tr><td>207</td><td><code>function</code></td><td><code>updateUserApi</code><br><small>export async function updateUserApi( kind: UserResourceKind, id: number, payload: UserManagePayload )</small></td><td>Memperbarui data Anggota atau Staf (khusus Admin).</td></tr><tr><td>219</td><td><code>function</code></td><td><code>deleteUserApi</code><br><small>export async function deleteUserApi(kind: UserResourceKind, id: number)</small></td><td>Menghapus akun Anggota atau Staf (khusus Admin).</td></tr><tr><td>224</td><td><code>function</code></td><td><code>fetchReportSummaryApi</code><br><small>export async function fetchReportSummaryApi(prefix: StaffRolePrefix): Promise&lt;LibrarySummary&gt;</small></td><td>Mengambil ringkasan statistik perpustakaan untuk dashboard laporan (Admin/Petugas).</td></tr><tr><td>233</td><td><code>function</code></td><td><code>downloadTransactionsCsvApi</code><br><small>export async function downloadTransactionsCsvApi( prefix: StaffRolePrefix, query: Omit&lt;TransactionListQuery, &quot;page&quot; | &quot;limit&quot;&gt; ): Promise&lt;vo</small></td><td>Mengunduh laporan transaksi dalam format CSV dengan cookie autentikasi aktif.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) lib/userealtimesync frontend/src/lib/userealtimesync.ts hook sinkronisasi real-time antar peran dan tab browser melalui polling berkala, fokus tab, dan broadcastchannel. broadcastportalsync userealtimesync">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>lib/useRealtimeSync</h2>
+    <span class="meta">frontend/src/lib/useRealtimeSync.ts · 65 baris</span>
+  </div>
+  <p class="desc">Hook sinkronisasi real-time antar peran dan tab browser melalui polling berkala, fokus tab, dan BroadcastChannel.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>15</td><td><code>function</code></td><td><code>broadcastPortalSync</code><br><small>export function broadcastPortalSync(topic = &quot;all&quot;): void</small></td><td>Mengirim sinyal perubahan data ke seluruh tab/portal yang sedang terbuka.</td></tr><tr><td>29</td><td><code>function</code></td><td><code>useRealtimeSync</code><br><small>export function useRealtimeSync(onSync: () =&gt; void | Promise&lt;void&gt;, intervalMs = 8000): void</small></td><td>Menjalankan sinkronisasi otomatis berkala, saat jendela kembali aktif, dan saat ada sinyal mutasi dari tab lain.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) lib/usesplashreveal frontend/src/lib/usesplashreveal.ts hook ringan untuk menyinkronkan animasi masuk beranda tepat saat tirai splash screen terbuka. usesplashreveal">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>lib/useSplashReveal</h2>
+    <span class="meta">frontend/src/lib/useSplashReveal.ts · 40 baris</span>
+  </div>
+  <p class="desc">Hook ringan untuk menyinkronkan animasi masuk Beranda tepat saat tirai Splash Screen terbuka.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>14</td><td><code>function</code></td><td><code>useSplashReveal</code><br><small>export function useSplashReveal(): boolean</small></td><td>Mengembalikan `true` segera setelah Splash selesai/mulai terbuka, atau langsung `true` pada navigasi antarhalaman.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) frontend/src/lib/utils.ts frontend/src/lib/utils.ts modul internal sistem denvora lexora. cn">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>frontend/src/lib/utils.ts</h2>
+    <span class="meta">frontend/src/lib/utils.ts · 10 baris</span>
+  </div>
+  <p class="desc">Modul internal sistem Denvora Lexora.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>7</td><td><code>function</code></td><td><code>cn</code><br><small>export function cn(...inputs: ClassValue[]): string</small></td><td>Menggabungkan class Tailwind CSS secara aman tanpa konflik utilitas.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) types/auth frontend/src/types/auth.ts definisi tipe pengguna terautentikasi, katalog ringkas, dan pembantu rute peran. userrole otppurpose authuser catalogbookitem portalnotificationitem notificationfeed apifielderror paginationmeta apiresponse role_dashboard_path getdashboardpath">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>types/auth</h2>
+    <span class="meta">frontend/src/types/auth.ts · 82 baris</span>
+  </div>
+  <p class="desc">Definisi tipe pengguna terautentikasi, katalog ringkas, dan pembantu rute peran.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>6</td><td><code>type</code></td><td><code>UserRole</code><br><small>export type UserRole = &quot;admin&quot; | &quot;petugas&quot; | &quot;siswa&quot;;</small></td><td>Ekspor type UserRole.</td></tr><tr><td>8</td><td><code>type</code></td><td><code>OtpPurpose</code><br><small>export type OtpPurpose = &quot;register&quot; | &quot;login&quot;;</small></td><td>Ekspor type OtpPurpose.</td></tr><tr><td>10</td><td><code>interface</code></td><td><code>AuthUser</code><br><small>export interface AuthUser</small></td><td>Ekspor interface AuthUser.</td></tr><tr><td>23</td><td><code>interface</code></td><td><code>CatalogBookItem</code><br><small>export interface CatalogBookItem</small></td><td>Ekspor interface CatalogBookItem.</td></tr><tr><td>39</td><td><code>interface</code></td><td><code>PortalNotificationItem</code><br><small>export interface PortalNotificationItem</small></td><td>Ekspor interface PortalNotificationItem.</td></tr><tr><td>47</td><td><code>interface</code></td><td><code>NotificationFeed</code><br><small>export interface NotificationFeed</small></td><td>Ekspor interface NotificationFeed.</td></tr><tr><td>52</td><td><code>interface</code></td><td><code>ApiFieldError</code><br><small>export interface ApiFieldError</small></td><td>Ekspor interface ApiFieldError.</td></tr><tr><td>57</td><td><code>interface</code></td><td><code>PaginationMeta</code><br><small>export interface PaginationMeta</small></td><td>Ekspor interface PaginationMeta.</td></tr><tr><td>64</td><td><code>interface</code></td><td><code>ApiResponse</code><br><small>export interface ApiResponse&lt;T&gt;</small></td><td>Ekspor interface ApiResponse.</td></tr><tr><td>72</td><td><code>const</code></td><td><code>ROLE_DASHBOARD_PATH</code><br><small>export const ROLE_DASHBOARD_PATH: Record&lt;UserRole, string&gt; =</small></td><td>Ekspor const ROLE_DASHBOARD_PATH.</td></tr><tr><td>79</td><td><code>function</code></td><td><code>getDashboardPath</code><br><small>export function getDashboardPath(role: UserRole): string</small></td><td>Mengembalikan path halaman dashboard sesuai peran pengguna.</td></tr></tbody></table>
+</article>
+<article class="card" data-search="frontend (next.js + react) types/library frontend/src/types/library.ts definisi tipe katalog, transaksi peminjaman, keanggotaan, dan laporan perpustakaan. staffroleprefix portalroleprefix userresourcekind categoryitem transactionitem categorystatitem dailyborrowpoint librarysummary bookpayload booklistquery transactionlistquery staffcreatetransactionpayload staffupdatetransactionpayload usermanagepayload portalmemberitem portalbookitem">
+  <div class="card-head">
+    <span class="badge">Frontend</span>
+    <h2>types/library</h2>
+    <span class="meta">frontend/src/types/library.ts · 122 baris</span>
+  </div>
+  <p class="desc">Definisi tipe katalog, transaksi peminjaman, keanggotaan, dan laporan perpustakaan.</p>
+  <table><thead><tr><th>Baris</th><th>Jenis</th><th>Deklarasi</th><th>Deskripsi</th></tr></thead><tbody><tr><td>8</td><td><code>type</code></td><td><code>StaffRolePrefix</code><br><small>export type StaffRolePrefix = &quot;/admin&quot; | &quot;/petugas&quot;;</small></td><td>Ekspor type StaffRolePrefix.</td></tr><tr><td>9</td><td><code>type</code></td><td><code>PortalRolePrefix</code><br><small>export type PortalRolePrefix = StaffRolePrefix | &quot;/siswa&quot;;</small></td><td>Ekspor type PortalRolePrefix.</td></tr><tr><td>10</td><td><code>type</code></td><td><code>UserResourceKind</code><br><small>export type UserResourceKind = &quot;members&quot; | &quot;staff&quot;;</small></td><td>Ekspor type UserResourceKind.</td></tr><tr><td>12</td><td><code>interface</code></td><td><code>CategoryItem</code><br><small>export interface CategoryItem</small></td><td>Ekspor interface CategoryItem.</td></tr><tr><td>18</td><td><code>interface</code></td><td><code>TransactionItem</code><br><small>export interface TransactionItem</small></td><td>Ekspor interface TransactionItem.</td></tr><tr><td>39</td><td><code>interface</code></td><td><code>CategoryStatItem</code><br><small>export interface CategoryStatItem</small></td><td>Ekspor interface CategoryStatItem.</td></tr><tr><td>46</td><td><code>interface</code></td><td><code>DailyBorrowPoint</code><br><small>export interface DailyBorrowPoint</small></td><td>Ekspor interface DailyBorrowPoint.</td></tr><tr><td>51</td><td><code>interface</code></td><td><code>LibrarySummary</code><br><small>export interface LibrarySummary</small></td><td>Ekspor interface LibrarySummary.</td></tr><tr><td>63</td><td><code>interface</code></td><td><code>BookPayload</code><br><small>export interface BookPayload</small></td><td>Ekspor interface BookPayload.</td></tr><tr><td>76</td><td><code>interface</code></td><td><code>BookListQuery</code><br><small>export interface BookListQuery</small></td><td>Ekspor interface BookListQuery.</td></tr><tr><td>84</td><td><code>interface</code></td><td><code>TransactionListQuery</code><br><small>export interface TransactionListQuery</small></td><td>Ekspor interface TransactionListQuery.</td></tr><tr><td>94</td><td><code>interface</code></td><td><code>StaffCreateTransactionPayload</code><br><small>export interface StaffCreateTransactionPayload</small></td><td>Ekspor interface StaffCreateTransactionPayload.</td></tr><tr><td>102</td><td><code>interface</code></td><td><code>StaffUpdateTransactionPayload</code><br><small>export interface StaffUpdateTransactionPayload</small></td><td>Ekspor interface StaffUpdateTransactionPayload.</td></tr><tr><td>109</td><td><code>interface</code></td><td><code>UserManagePayload</code><br><small>export interface UserManagePayload</small></td><td>Ekspor interface UserManagePayload.</td></tr><tr><td>120</td><td><code>type</code></td><td><code>PortalMemberItem</code><br><small>export type PortalMemberItem = AuthUser;</small></td><td>Ekspor type PortalMemberItem.</td></tr><tr><td>121</td><td><code>type</code></td><td><code>PortalBookItem</code><br><small>export type PortalBookItem = CatalogBookItem;</small></td><td>Ekspor type PortalBookItem.</td></tr></tbody></table>
+</article></main>
+<script>
+  const q=document.getElementById('q');const cards=[...document.querySelectorAll('.card')];
+  q.addEventListener('input',()=>{const v=q.value.trim().toLowerCase();cards.forEach(c=>{c.style.display=!v||c.dataset.search.includes(v)?'block':'none'})});
+</script>
+</body>
+</html>

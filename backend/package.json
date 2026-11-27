@@ -1,0 +1,36 @@
+{
+  "name": "denvora-lexora-backend",
+  "version": "1.0.0",
+  "description": "Backend REST API (TypeScript) for Denvora Lexora Digital Library Management System",
+  "main": "src/server.ts",
+  "scripts": {
+    "start": "tsx src/server.ts",
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
+    "seed": "tsx database/seed.ts",
+    "seed:scrape": "tsx scripts/scrape-books-seed.ts",
+    "test:smoke": "tsx tests/smoke.ts",
+    "docs:generate": "tsx scripts/generate-code-docs.ts"
+  },
+  "dependencies": {
+    "@types/nodemailer": "^8.0.2",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mysql2": "^3.12.0",
+    "nodemailer": "^10.6.1",
+    "swagger-ui-express": "^5.0.1",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.7",
+    "@types/swagger-ui-express": "^4.1.8",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}
