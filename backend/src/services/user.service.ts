@@ -47,9 +47,11 @@ export async function listUsersByRole(
   const params: Array<string | number> = [role];
 
   if (query.search) {
-    conditions.push('(name LIKE ? OR username LIKE ? OR email LIKE ? OR member_code LIKE ?)');
+    conditions.push(
+      '(name LIKE ? OR username LIKE ? OR email LIKE ? OR member_code LIKE ? OR class_name LIKE ?)'
+    );
     const kw = `%${query.search}%`;
-    params.push(kw, kw, kw, kw);
+    params.push(kw, kw, kw, kw, kw);
   }
 
   if (query.is_active === '1' || query.is_active === '0') {

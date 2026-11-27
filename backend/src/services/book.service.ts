@@ -19,6 +19,8 @@ export interface BookRow extends RowDataPacket {
   stock_total: number;
   stock_available: number;
   shelf_location: string | null;
+  description: string | null;
+  cover_url: string | null;
   created_at: string;
   updated_at: string;
 }
@@ -40,6 +42,8 @@ export interface BookInput {
   category_id: number;
   stock_total: number;
   shelf_location?: string | null;
+  description?: string | null;
+  cover_url?: string | null;
 }
 
 /**
@@ -53,9 +57,11 @@ export async function listBooks(query: BookQuery): Promise<{
   const params: Array<string | number> = [];
 
   if (query.search) {
-    conditions.push('(b.title LIKE ? OR b.author LIKE ? OR b.book_code LIKE ?)');
+    conditions.push(
+      '(b.title LIKE ? OR b.author LIKE ? OR b.book_code LIKE ? OR b.publisher LIKE ? OR b.shelf_location LIKE ?)'
+    );
     const kw = `%${query.search}%`;
-    params.push(kw, kw, kw);
+    params.push(kw, kw, kw, kw, kw);
   }
 
   if (query.category_id) {
@@ -81,7 +87,7 @@ export async function listBooks(query: BookQuery): Promise<{
   const [rows] = await pool.query<BookRow[]>(
     `SELECT b.id, b.book_code, b.title, b.author, b.publisher, b.publication_year,
             b.category_id, c.name AS category_name, b.stock_total, b.stock_available,
-            b.shelf_location, b.created_at, b.updated_at
+            b.shelf_location, b.description, b.cover_url, b.created_at, b.updated_at
      FROM books b
      INNER JOIN categories c ON c.id = b.category_id
      ${whereClause}
@@ -108,7 +114,7 @@ export async function getBookById(id: number): Promise<BookRow> {
   const [rows] = await pool.execute<BookRow[]>(
     `SELECT b.id, b.book_code, b.title, b.author, b.publisher, b.publication_year,
             b.category_id, c.name AS category_name, b.stock_total, b.stock_available,
-            b.shelf_location, b.created_at, b.updated_at
+            b.shelf_location, b.description, b.cover_url, b.created_at, b.updated_at
      FROM books b
      INNER JOIN categories c ON c.id = b.category_id
      WHERE b.id = ? LIMIT 1`,
@@ -137,8 +143,8 @@ export async function createBook(input: BookInput): Promise<BookRow> {
   await ensureCategoryExists(input.category_id);
 
   const [result] = await pool.execute<ResultSetHeader>(
-    `INSERT INTO books (book_code, title, author, publisher, publication_year, category_id, stock_total, stock_available, shelf_location)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    `INSERT INTO books (book_code, title, author, publisher, publication_year, category_id, stock_total, stock_available, shelf_location, description, cover_url)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     [
       input.book_code,
       input.title,
@@ -149,6 +155,8 @@ export async function createBook(input: BookInput): Promise<BookRow> {
       input.stock_total,
       input.stock_total,
       input.shelf_location || null,
+      input.description || null,
+      input.cover_url || null,
     ]
   );
 
@@ -174,7 +182,8 @@ export async function updateBook(id: number, input: BookInput): Promise<BookRow>
   await pool.execute<ResultSetHeader>(
     `UPDATE books
      SET book_code = ?, title = ?, author = ?, publisher = ?, publication_year = ?,
-         category_id = ?, stock_total = ?, stock_available = ?, shelf_location = ?
+         category_id = ?, stock_total = ?, stock_available = ?, shelf_location = ?,
+         description = ?, cover_url = ?
      WHERE id = ?`,
     [
       input.book_code,
@@ -186,6 +195,8 @@ export async function updateBook(id: number, input: BookInput): Promise<BookRow>
       input.stock_total,
       nextAvailable,
       input.shelf_location || null,
+      input.description ?? existing.description ?? null,
+      input.cover_url !== undefined ? input.cover_url || null : existing.cover_url,
       id,
     ]
   );

@@ -10,6 +10,7 @@ import {
   bookBodySchema,
   bookQuerySchema,
   categorySchema,
+  coverUploadSchema,
 } from '../validators/catalog.validator';
 import {
   staffCreateTransactionSchema,
@@ -46,6 +47,7 @@ export function mountSharedStaffRoutes(
 
   // Books
   router.get('/books', validate(bookQuerySchema, 'query'), catalogController.listBooks);
+  router.post('/books/cover', validate(coverUploadSchema), catalogController.uploadBookCover);
   router.get('/books/:id', validate(idParamSchema, 'params'), catalogController.getBook);
   router.post('/books', validate(bookBodySchema), catalogController.createBook);
   router.put(

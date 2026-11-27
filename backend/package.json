@@ -9,7 +9,9 @@
     "build": "tsc --noEmit",
     "typecheck": "tsc --noEmit",
     "seed": "tsx database/seed.ts",
-    "test:smoke": "tsx tests/smoke.ts"
+    "seed:scrape": "tsx scripts/scrape-books-seed.ts",
+    "test:smoke": "tsx tests/smoke.ts",
+    "docs:generate": "tsx scripts/generate-code-docs.ts"
   },
   "dependencies": {
     "@types/nodemailer": "^8.0.2",

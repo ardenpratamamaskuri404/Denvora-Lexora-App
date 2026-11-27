@@ -4,7 +4,8 @@
  */
 
 import type { NextFunction, Request, Response } from 'express';
-import { sendSuccess } from '../utils/response';
+import { AppError, sendSuccess } from '../utils/response';
+import { saveBookCoverFile } from '../utils/fileHelper';
 import * as categoryService from '../services/category.service';
 import * as bookService from '../services/book.service';
 
@@ -123,5 +124,19 @@ export async function deleteBook(
     sendSuccess(res, 200, 'Buku berhasil dihapus');
   } catch (err) {
     next(err);
+  }
+}
+
+export async function uploadBookCover(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  try {
+    const { filename, data_url } = req.body as { filename: string; data_url: string };
+    const coverUrl = await saveBookCoverFile(filename, data_url);
+    sendSuccess(res, 201, 'Gambar sampul berhasil diunggah', { cover_url: coverUrl });
+  } catch (err) {
+    next(err instanceof Error ? new AppError(400, err.message) : err);
   }
 }

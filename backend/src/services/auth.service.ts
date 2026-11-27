@@ -68,8 +68,11 @@ export async function registerSiswa(input: {
     const dup = existing[0];
     let msg = 'Data anggota sudah terdaftar';
     if (dup.email === cleanEmail) msg = 'Email sudah digunakan oleh akun lain';
-    else if (dup.username === input.username) msg = 'Username sudah digunakan';
-    else if (dup.member_code === input.member_code) msg = 'NIS / Kode anggota sudah terdaftar';
+    else if (String(dup.username).toLowerCase() === input.username.trim().toLowerCase()) {
+      msg = 'Username sudah digunakan';
+    } else if (dup.member_code === input.member_code) {
+      msg = 'NIS / Kode anggota sudah terdaftar';
+    }
     throw new AppError(409, msg);
   }
 
@@ -88,12 +91,17 @@ export async function registerSiswa(input: {
     ]
   );
 
-  await issueAndSendOtp({
-    userId: result.insertId,
-    email: cleanEmail,
-    name: input.name,
-    purpose: 'register',
-  });
+  try {
+    await issueAndSendOtp({
+      userId: result.insertId,
+      email: cleanEmail,
+      name: input.name,
+      purpose: 'register',
+    });
+  } catch (err) {
+    await pool.execute('DELETE FROM users WHERE id = ? AND is_verified = 0', [result.insertId]);
+    throw err;
+  }
 
   await appendLog('INFO', 'auth.register', `Siswa baru terdaftar (menunggu OTP): ${input.username}`);
 
@@ -126,12 +134,14 @@ export async function loginUser(input: {
   );
 
   if (rows.length === 0) {
+    await appendLog('WARN', 'auth.login.failed', `Akun tidak ditemukan: ${identifier}`);
     throw new AppError(401, 'Username atau password salah');
   }
 
   const user = rows[0];
   const validPassword = await bcrypt.compare(input.password, user.password_hash);
   if (!validPassword) {
+    await appendLog('WARN', 'auth.login.failed', `Password tidak cocok: ${user.username}`);
     throw new AppError(401, 'Username atau password salah');
   }
 
@@ -160,4 +170,56 @@ export async function loginUser(input: {
   await appendLog('INFO', 'auth.login', `Login sukses: ${user.username} (${user.role})`);
 
   return { user: toPublicUser(user), token };
+}
+
+/**
+ * Memperbarui profil akun milik pengguna yang sedang login.
+ */
+export async function updateOwnProfile(
+  userId: number,
+  input: {
+    name: string;
+    email?: string | null;
+    class_name?: string | null;
+    phone?: string | null;
+  }
+): Promise<PublicUserDto> {
+  const cleanEmail = input.email?.trim() ? input.email.trim().toLowerCase() : null;
+  await pool.execute(
+    `UPDATE users SET name = ?, email = ?, class_name = ?, phone = ? WHERE id = ?`,
+    [input.name.trim(), cleanEmail, input.class_name?.trim() || null, input.phone?.trim() || null, userId]
+  );
+  const [rows] = await pool.execute<UserAuthRow[]>(
+    `SELECT id, name, email, username, role, member_code, class_name, phone, is_active, is_verified, password_hash
+     FROM users WHERE id = ? LIMIT 1`,
+    [userId]
+  );
+  if (rows.length === 0) {
+    throw new AppError(404, 'Akun pengguna tidak ditemukan');
+  }
+  await appendLog('INFO', 'auth.profile.update', `Profil diperbarui oleh ${rows[0].username}`);
+  return toPublicUser(rows[0]);
+}
+
+/**
+ * Mengganti password pengguna setelah memverifikasi password saat ini.
+ */
+export async function changeOwnPassword(
+  userId: number,
+  input: { current_password: string; new_password: string }
+): Promise<void> {
+  const [rows] = await pool.execute<UserAuthRow[]>(
+    `SELECT id, username, password_hash FROM users WHERE id = ? LIMIT 1`,
+    [userId]
+  );
+  if (rows.length === 0) {
+    throw new AppError(404, 'Akun pengguna tidak ditemukan');
+  }
+  const match = await bcrypt.compare(input.current_password, rows[0].password_hash);
+  if (!match) {
+    throw new AppError(400, 'Password saat ini tidak sesuai');
+  }
+  const nextHash = await bcrypt.hash(input.new_password, 10);
+  await pool.execute('UPDATE users SET password_hash = ? WHERE id = ?', [nextHash, userId]);
+  await appendLog('INFO', 'auth.password.change', `Password diubah oleh ${rows[0].username}`);
 }

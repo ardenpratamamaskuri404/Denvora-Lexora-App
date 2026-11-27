@@ -22,6 +22,13 @@ export const bookBodySchema = z.object({
   category_id: z.coerce.number().int().positive('Kategori wajib dipilih'),
   stock_total: z.coerce.number().int().min(0, 'Stok total tidak boleh negatif').max(10000),
   shelf_location: z.string().trim().max(30).optional().nullable(),
+  description: z.string().trim().max(2000).optional().nullable(),
+  cover_url: z.string().trim().max(255).optional().nullable().or(z.literal('')),
+});
+
+export const coverUploadSchema = z.object({
+  filename: z.string().trim().min(1, 'Nama file wajib diisi').max(120),
+  data_url: z.string().min(20, 'Data gambar tidak valid'),
 });
 
 export const bookQuerySchema = z.object({

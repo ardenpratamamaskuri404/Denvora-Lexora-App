@@ -44,3 +44,28 @@ export const verifyOtpSchema = z.object({
     .regex(/^\d{6}$/, 'Kode OTP wajib 6 digit angka'),
   purpose: z.enum(['register', 'login']),
 });
+
+export const updateProfileSchema = z.object({
+  name: z.string().trim().min(3, 'Nama lengkap minimal 3 karakter').max(100),
+  email: z
+    .string()
+    .trim()
+    .email('Format email tidak valid')
+    .max(120)
+    .optional()
+    .nullable()
+    .or(z.literal('')),
+  class_name: z.string().trim().max(50).optional().nullable(),
+  phone: z
+    .string()
+    .trim()
+    .regex(/^[0-9+\-\s]{0,20}$/, 'Format nomor HP tidak valid')
+    .max(20)
+    .optional()
+    .nullable(),
+});
+
+export const changePasswordSchema = z.object({
+  current_password: z.string().min(1, 'Password saat ini wajib diisi'),
+  new_password: z.string().min(6, 'Password baru minimal 6 karakter').max(100),
+});

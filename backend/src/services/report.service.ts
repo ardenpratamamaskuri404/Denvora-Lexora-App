@@ -6,6 +6,7 @@
 import type { RowDataPacket } from 'mysql2';
 import { pool } from '../config/db';
 import { appendLog, writeCsvExport } from '../utils/fileHelper';
+import { formatDateLocal } from './transactionQuery.service';
 import { listAllTransactions, StaffTransactionQuery } from './transaction.service';
 
 interface CategoryBookStat extends RowDataPacket {
@@ -154,7 +155,7 @@ export async function exportTransactionsCsv(
     { key: 'notes', label: 'Catatan' },
   ];
 
-  const stamp = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+  const stamp = formatDateLocal(new Date()).replace(/-/g, '');
   const filename = `laporan-transaksi-denvora-${stamp}.csv`;
   const { content } = await writeCsvExport(filename, columns, rowsForCsv);
 

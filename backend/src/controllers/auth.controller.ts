@@ -8,6 +8,7 @@ import { env } from '../config/env';
 import { sendSuccess } from '../utils/response';
 import * as authService from '../services/auth.service';
 import * as otpService from '../services/otp.service';
+import * as notificationService from '../services/notification.service';
 
 export async function register(
   req: Request,
@@ -101,4 +102,43 @@ export function logout(_req: Request, res: Response): void {
 
 export function me(req: Request, res: Response): void {
   sendSuccess(res, 200, 'Profil pengguna aktif', { user: req.user });
+}
+
+export async function updateProfile(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  try {
+    const user = await authService.updateOwnProfile(req.user!.id, req.body);
+    sendSuccess(res, 200, 'Profil akun berhasil diperbarui', { user });
+  } catch (err) {
+    next(err);
+  }
+}
+
+export async function changePassword(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  try {
+    await authService.changeOwnPassword(req.user!.id, req.body);
+    sendSuccess(res, 200, 'Password berhasil diperbarui');
+  } catch (err) {
+    next(err);
+  }
+}
+
+export async function listNotifications(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  try {
+    const feed = await notificationService.getNotificationsForUser(req.user!);
+    sendSuccess(res, 200, 'Notifikasi berhasil diambil', feed);
+  } catch (err) {
+    next(err);
+  }
 }

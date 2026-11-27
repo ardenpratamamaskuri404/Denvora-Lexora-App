@@ -3,11 +3,12 @@
  * @description Konfigurasi aplikasi Express (TypeScript), CORS, Swagger UI offline, dan mounting routes.
  */
 
+import path from 'node:path';
 import express from 'express';
 import cors from 'cors';
 import swaggerUi from 'swagger-ui-express';
 import { env } from './config/env';
-import { checkConnection } from './config/db';
+import { checkConnection, ensureBooksMetadataColumns } from './config/db';
 import { openApiSpec } from './docs/openapi';
 import { sendSuccess, sendError } from './utils/response';
 import { notFoundHandler, errorHandler } from './middlewares/errorHandler';
@@ -25,7 +26,12 @@ app.use(
     credentials: true,
   })
 );
-app.use(express.json({ limit: '1mb' }));
+app.use(express.json({ limit: '4mb' }));
+app.use('/uploads', express.static(path.resolve(__dirname, '../uploads')));
+
+void ensureBooksMetadataColumns().catch(() => {
+  // Akan dicek kembali saat /api/health jika MySQL menyala belakangan.
+});
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openApiSpec));
 

@@ -67,6 +67,8 @@ CREATE TABLE `books` (
   `stock_total` INT UNSIGNED NOT NULL DEFAULT 1,
   `stock_available` INT UNSIGNED NOT NULL DEFAULT 1,
   `shelf_location` VARCHAR(30) NULL,
+  `description` TEXT NULL,
+  `cover_url` VARCHAR(255) NULL,
   `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
@@ -148,13 +150,13 @@ INSERT INTO `categories` (`id`, `name`) VALUES
   (3, 'Sains & Matematika'),
   (4, 'Sejarah & Umum');
 
-INSERT INTO `books` (`id`, `book_code`, `title`, `author`, `publisher`, `publication_year`, `category_id`, `stock_total`, `stock_available`, `shelf_location`) VALUES
-  (1, 'BK-001', 'Algoritma & Struktur Data Modern', 'Rinaldi Munir', 'Informatika Bandung', 2022, 1, 5, 4, 'Rak A1'),
-  (2, 'BK-002', 'Laskar Pelangi', 'Andrea Hirata', 'Bentang Pustaka', 2005, 2, 4, 4, 'Rak B2'),
-  (3, 'BK-003', 'Clean Code Edisi Bahasa Indonesia', 'Robert C. Martin', 'Pustaka Kode', 2020, 1, 3, 2, 'Rak A2'),
-  (4, 'BK-004', 'Bumi Manusia', 'Pramoedya Ananta Toer', 'Lentera Dipantara', 2005, 2, 2, 2, 'Rak B1'),
-  (5, 'BK-005', 'Fisika Dasar Universitas', 'Halliday & Resnick', 'Erlangga', 2019, 3, 3, 0, 'Rak C1'),
-  (6, 'BK-006', 'Sejarah Nusantara Lengkap', 'M.C. Ricklefs', 'Serambi Ilmu', 2018, 4, 4, 4, 'Rak D1');
+INSERT INTO `books` (`id`, `book_code`, `title`, `author`, `publisher`, `publication_year`, `category_id`, `stock_total`, `stock_available`, `shelf_location`, `description`, `cover_url`) VALUES
+  (1, 'BK-001', 'Algoritma & Struktur Data Modern', 'Rinaldi Munir', 'Informatika Bandung', 2022, 1, 5, 4, 'Rak A1', 'Panduan komprehensif perancangan algoritma, analisis kompleksitas waktu, rekursi, pohon, serta struktur data graf untuk pelajar rekayasa perangkat lunak.', '/covers/bk-001.svg'),
+  (2, 'BK-002', 'Laskar Pelangi', 'Andrea Hirata', 'Bentang Pustaka', 2005, 2, 4, 4, 'Rak B2', 'Kisah inspiratif sepuluh anak Belitung di sekolah sederhana Muhammadiyah yang menyalakan harapan melalui persahabatan, ketekunan, dan kecintaan pada ilmu.', '/covers/bk-002.svg'),
+  (3, 'BK-003', 'Clean Code Edisi Bahasa Indonesia', 'Robert C. Martin', 'Pustaka Kode', 2020, 1, 3, 2, 'Rak A2', 'Kumpulan prinsip praktis menulis kode sumber yang bersih, mudah dibaca, terstruktur, dan aman dipelihara dalam proyek perangkat lunak berskala tim.', '/covers/bk-003.svg'),
+  (4, 'BK-004', 'Bumi Manusia', 'Pramoedya Ananta Toer', 'Lentera Dipantara', 2005, 2, 2, 2, 'Rak B1', 'Roman sejarah klasik Nusantara awal abad ke-20 yang mengisahkan pergulatan pemikiran, martabat manusia, dan kesadaran kebangsaan tokoh Minke.', '/covers/bk-004.svg'),
+  (5, 'BK-005', 'Fisika Dasar Universitas', 'Halliday & Resnick', 'Erlangga', 2019, 3, 3, 0, 'Rak C1', 'Referensi utama mekanika, termodinamika, gelombang, dan elektromagnetisme yang dilengkapi contoh soal konseptual dan penerapan eksperimen.', '/covers/bk-005.svg'),
+  (6, 'BK-006', 'Sejarah Nusantara Lengkap', 'M.C. Ricklefs', 'Serambi Ilmu', 2018, 4, 4, 4, 'Rak D1', 'Ulasan kronologis perkembangan kerajaan maritim, jalur perdagangan, perubahan sosial, hingga pembentukan negara Indonesia modern.', '/covers/bk-006.svg');
 
 INSERT INTO `transactions` (`id`, `transaction_code`, `user_id`, `book_id`, `processed_by`, `borrow_date`, `due_date`, `return_date`, `status`, `notes`) VALUES
   (1, 'TRX-202601', 3, 1, 2, DATE_SUB(CURDATE(), INTERVAL 2 DAY), DATE_ADD(CURDATE(), INTERVAL 5 DAY), NULL, 'borrowed', 'Pinjaman aktif tepat waktu'),

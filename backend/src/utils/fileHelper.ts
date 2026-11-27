@@ -4,11 +4,13 @@
  * dan ekspor laporan CSV (memenuhi kriteria kompetensi UKK PPsp 1.12).
  */
 
+import crypto from 'node:crypto';
 import fs from 'fs/promises';
 import path from 'path';
 
 const LOGS_DIR = path.resolve(__dirname, '../../logs');
 const EXPORTS_DIR = path.resolve(__dirname, '../../exports');
+const COVERS_DIR = path.resolve(__dirname, '../../uploads/covers');
 const APP_LOG_PATH = path.join(LOGS_DIR, 'app.log');
 
 export interface CsvColumn {
@@ -81,4 +83,41 @@ export async function writeCsvExport(
   const content = buildCsvContent(columns, rows);
   await fs.writeFile(filePath, content, 'utf8');
   return { filePath, content };
+}
+
+const MIME_EXT_MAP: Record<string, string> = {
+  'image/png': 'png',
+  'image/jpeg': 'jpg',
+  'image/jpg': 'jpg',
+  'image/webp': 'webp',
+  'image/svg+xml': 'svg',
+};
+
+/**
+ * Menyimpan file cover buku dari data URL base64 ke folder lokal backend/uploads/covers/.
+ */
+export async function saveBookCoverFile(
+  originalName: string,
+  dataUrl: string
+): Promise<string> {
+  const match = dataUrl.match(/^data:(image\/(?:png|jpeg|jpg|webp|svg\+xml));base64,([A-Za-z0-9+/=]+)$/);
+  if (!match) {
+    throw new Error('Format gambar cover harus PNG, JPG, WEBP, atau SVG.');
+  }
+  const [, mime, base64Body] = match;
+  const buffer = Buffer.from(base64Body, 'base64');
+  if (buffer.length === 0 || buffer.length > 2 * 1024 * 1024) {
+    throw new Error('Ukuran gambar maksimal 2 MB.');
+  }
+  const ext = MIME_EXT_MAP[mime] || 'png';
+  const baseSlug = path
+    .basename(originalName, path.extname(originalName))
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')
+    .slice(0, 32) || 'cover';
+  const filename = `${baseSlug}-${crypto.randomBytes(3).toString('hex')}.${ext}`;
+  await ensureDir(COVERS_DIR);
+  await fs.writeFile(path.join(COVERS_DIR, filename), buffer);
+  return `/uploads/covers/${filename}`;
 }
