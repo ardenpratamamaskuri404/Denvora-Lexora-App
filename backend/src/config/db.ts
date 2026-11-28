@@ -52,6 +52,20 @@ export async function ensureBooksMetadataColumns(): Promise<void> {
       [cover, desc, code]
     );
   }
+
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS user_notification_states (
+      user_id INT UNSIGNED NOT NULL,
+      notif_key VARCHAR(80) NOT NULL,
+      is_read TINYINT(1) NOT NULL DEFAULT 0,
+      is_deleted TINYINT(1) NOT NULL DEFAULT 0,
+      updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+      PRIMARY KEY (user_id, notif_key),
+      CONSTRAINT fk_notif_user
+        FOREIGN KEY (user_id) REFERENCES users (id)
+        ON DELETE CASCADE ON UPDATE CASCADE
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+  `);
 }
 
 /**

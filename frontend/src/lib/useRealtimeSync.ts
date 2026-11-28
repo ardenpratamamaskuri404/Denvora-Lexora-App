@@ -5,7 +5,14 @@
 
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  clearNotificationsApi,
+  deleteNotificationApi,
+  formatApiError,
+  markAllNotificationsReadApi,
+  markNotificationReadApi,
+} from "@/lib/api";
 
 const CHANNEL_NAME = "denvora-lexora-realtime";
 
@@ -61,4 +68,72 @@ export function useRealtimeSync(onSync: () => void | Promise<void>, intervalMs =
       channel?.close();
     };
   }, [intervalMs]);
+}
+
+export interface NotificationActionControls {
+  busyKey: string | null;
+  actionError: string;
+  onMarkRead: (key: string) => Promise<void>;
+  onMarkAllRead: () => Promise<void>;
+  onDeleteItem: (key: string) => Promise<void>;
+  onClearItems: (mode: "read" | "all") => Promise<void>;
+}
+
+/**
+ * Mengelola aksi baca/hapus notifikasi sekaligus memicu sinkronisasi lintas komponen & tab.
+ */
+export function useNotificationActions(
+  onRefresh: () => void | Promise<void>,
+): NotificationActionControls {
+  const [busyKey, setBusyKey] = useState<string | null>(null);
+  const [actionError, setActionError] = useState("");
+  const refreshRef = useRef(onRefresh);
+
+  useEffect(() => {
+    refreshRef.current = onRefresh;
+  }, [onRefresh]);
+
+  const runAction = useCallback(
+    async (actionKey: string, task: () => Promise<unknown>) => {
+      if (busyKey) return;
+      setBusyKey(actionKey);
+      setActionError("");
+      try {
+        await task();
+        broadcastPortalSync("notifications");
+        await refreshRef.current();
+      } catch (err) {
+        setActionError(formatApiError(err, "Gagal memperbarui status notifikasi."));
+      } finally {
+        setBusyKey(null);
+      }
+    },
+    [busyKey],
+  );
+
+  const onMarkRead = useCallback(
+    (key: string) => runAction(`read:${key}`, () => markNotificationReadApi(key)),
+    [runAction],
+  );
+  const onMarkAllRead = useCallback(
+    () => runAction("read-all", () => markAllNotificationsReadApi()),
+    [runAction],
+  );
+  const onDeleteItem = useCallback(
+    (key: string) => runAction(`del:${key}`, () => deleteNotificationApi(key)),
+    [runAction],
+  );
+  const onClearItems = useCallback(
+    (mode: "read" | "all") => runAction(`clear:${mode}`, () => clearNotificationsApi(mode)),
+    [runAction],
+  );
+
+  return {
+    busyKey,
+    actionError,
+    onMarkRead,
+    onMarkAllRead,
+    onDeleteItem,
+    onClearItems,
+  };
 }

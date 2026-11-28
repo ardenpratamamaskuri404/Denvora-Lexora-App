@@ -186,3 +186,29 @@ export async function changePasswordApi(payload: {
 export async function fetchNotificationsApi() {
   return apiRequest<NotificationFeed>("/auth/notifications", { method: "GET" });
 }
+
+/** Menandai satu notifikasi sudah dibaca untuk akun aktif. */
+export async function markNotificationReadApi(key: string) {
+  return apiRequest<null>(`/auth/notifications/${encodeURIComponent(key)}/read`, {
+    method: "PATCH",
+  });
+}
+
+/** Menandai semua notifikasi aktif sudah dibaca. */
+export async function markAllNotificationsReadApi() {
+  return apiRequest<null>("/auth/notifications/read-all", { method: "PATCH" });
+}
+
+/** Menghapus / menyembunyikan satu notifikasi dari daftar akun aktif. */
+export async function deleteNotificationApi(key: string) {
+  return apiRequest<null>(`/auth/notifications/${encodeURIComponent(key)}`, {
+    method: "DELETE",
+  });
+}
+
+/** Membersihkan notifikasi yang sudah dibaca atau seluruh notifikasi aktif. */
+export async function clearNotificationsApi(mode: "read" | "all") {
+  return apiRequest<null>(`/auth/notifications?mode=${mode}`, {
+    method: "DELETE",
+  });
+}

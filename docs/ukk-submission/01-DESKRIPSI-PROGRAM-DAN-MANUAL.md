@@ -35,6 +35,7 @@ Rujukan diagram visual lengkap tersedia pada:
 | `books` | Menyimpan data koleksi (`book_code`, `title`, `author`, `publisher`, `publication_year`, `stock_total`, `stock_available`, `shelf_location`, `description`, `cover_url`). | Terhubung ke `categories` & `transactions` |
 | `transactions` | Mencatat sirkulasi (`transaction_code`, `user_id`, `book_id`, `processed_by`, `borrow_date`, `due_date`, `return_date`, `status`, `notes`). | Terhubung ke `users` & `books` |
 | `otp_verifications` | Menyimpan hash SHA-256 kode OTP 6 digit (`otp_hash`), tujuan (`register`/`login`), masa berlaku 10 menit, dan penanda sekali pakai (`consumed_at`). | `N : 1` ke `users` (`ON DELETE CASCADE`) |
+| `user_notification_states` | Menyimpan status baca (`is_read`) dan hapus (`is_deleted`) notifikasi per akun berdasarkan `(user_id, notif_key)`. | `N : 1` ke `users` (`ON DELETE CASCADE`) |
 
 ---
 
@@ -48,9 +49,9 @@ Rujukan diagram visual lengkap tersedia pada:
 | Lihat Cover Sampul, Sinopsis & Pinjam/Kembali Buku | ✗ | ✓ (milik sendiri) | ✓ | ✓ |
 | Pencarian Kondisi Tertentu (judul/rak/penerbit/stok/tenggat/kelas) | ✓ (buku) | ✓ | ✓ | ✓ |
 | CRUD Kategori & Buku + Unggah Cover Gambar Lokal | ✗ | ✗ | ✓ (tambah/ubah) | ✓ (penuh) |
-| Lihat Daftar Anggota Siswa | ✗ | ✗ | ✓ (read-only) | ✓ |
-| CRUD Penuh Anggota Siswa & Akun Petugas | ✗ | ✗ | ✗ | ✓ |
-| Sinkronisasi Real-Time, Notifikasi Live & Pengaturan Akun | ✗ | ✓ | ✓ | ✓ |
+| Lihat Daftar Anggota Siswa | ✗ | ✗ | ✓ (`Daftar Siswa`, read-only) | ✓ (`Anggota Siswa`, penuh) |
+| CRUD Penuh Anggota Siswa & Akun Petugas | ✗ | ✗ | ✗ (tanpa menu `Akun Petugas`) | ✓ (termasuk menu `Akun Petugas`) |
+| Sinkronisasi Real-Time, Pusat Notifikasi (Halaman Penuh, Baca/Hapus) & Pengaturan Akun | ✗ | ✓ | ✓ | ✓ |
 | Ekspor Laporan Transaksi CSV & Log File Lokal | ✗ | ✗ | ✓ | ✓ |
 
 ---
@@ -63,7 +64,8 @@ Dokumentasi interaktif lokal tersedia saat backend berjalan di `http://localhost
   * `GET /api/health` — Cek kesehatan server Express & koneksi MySQL.
   * `GET /api/catalog/categories`, `GET /api/catalog/books` — Katalog baca-saja publik.
   * `POST /api/auth/register`, `POST /api/auth/login`, `POST /api/auth/otp/send`, `POST /api/auth/otp/verify`, `POST /api/auth/logout`, `GET /api/auth/me`.
-  * `PUT /api/auth/profile`, `PUT /api/auth/password`, `GET /api/auth/notifications` — Pengaturan akun mandiri & notifikasi real-time lintas peran.
+  * `PUT /api/auth/profile`, `PUT /api/auth/password` — Pengaturan profil & kata sandi mandiri.
+  * `GET /api/auth/notifications`, `PATCH /api/auth/notifications/read-all`, `PATCH /api/auth/notifications/:key/read`, `DELETE /api/auth/notifications`, `DELETE /api/auth/notifications/:key` — Pusat Notifikasi persisten per akun (baca, tandai semua terbaca, hapus item, atau bersihkan).
 * **Namespace Siswa (`/api/siswa/*`):**
   * `GET /categories`, `GET /books`, `GET /books/:id`
   * `GET /transactions`, `POST /transactions/borrow`, `PATCH /transactions/:id/return`
@@ -118,8 +120,10 @@ Dokumentasi interaktif lokal tersedia saat backend berjalan di `http://localhost
 
 ---
 
-### 4. Panduan Penggunaan — Petugas & Admin
-1. **Dashboard Utama:** Menampilkan kartu metrik stok/anggota/pinjaman aktif/terlambat serta grafik aktivitas peminjaman 7 hari terakhir dan distribusi kategori.
-2. **Kelola Koleksi Buku & Kategori:** Tambah buku baru, ubah stok/lokasi rak, saring stok habis/tersedia; Admin juga dapat menghapus buku atau kategori yang tidak lagi terikat transaksi.
+### 4. Panduan Penggunaan — Petugas & Admin (Perbedaan Tugas & Menu)
+1. **Perbedaan Menu & Kewenangan Sidebar:**
+   * **Portal Petugas (`/petugas`):** Memiliki menu *Dashboard*, *Buku & Kategori* (tambah/ubah tanpa tombol hapus), *Daftar Siswa* (**hanya lihat / read-only**), *Sirkulasi Buku*, *Notifikasi*, dan *Pengaturan*. Menu *Akun Petugas* tidak ditampilkan.
+   * **Portal Admin (`/admin`):** Memiliki seluruh menu operasional Petugas ditambah hak hapus buku/kategori, manajemen CRUD penuh *Anggota Siswa*, serta menu eksklusif **Akun Petugas** untuk mengelola akun staf.
+2. **Dashboard Utama & Pusat Notifikasi:** Menampilkan kartu metrik stok/anggota/pinjaman aktif/terlambat, grafik 7 hari & kategori, popover lonceng cepat, serta halaman **Notifikasi** penuh untuk memfilter, menandai terbaca, atau menghapus pemberitahuan.
 3. **Sirkulasi (Pinjam-Kembali) & Laporan:** Catat peminjaman atas nama siswa, filter transaksi berdasarkan status/tanggal/keterlambatan, proses pengembalian, edit catatan, atau klik **Ekspor CSV** untuk mengunduh laporan.
-4. **Kelola Keanggotaan & Akun Petugas (Khusus Admin):** Tambah, perbarui, nonaktifkan, atau hapus akun Siswa dan Petugas Layanan melalui tab **Keanggotaan Siswa** dan **Akun Petugas Layanan**.
+4. **Kelola Keanggotaan & Akun Petugas (Khusus Admin):** Tambah, perbarui, nonaktifkan, atau hapus akun Siswa dan Petugas Layanan melalui tab **Anggota Siswa** dan **Akun Petugas**.

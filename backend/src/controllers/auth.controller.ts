@@ -142,3 +142,56 @@ export async function listNotifications(
     next(err);
   }
 }
+
+export async function markNotificationRead(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  try {
+    await notificationService.markNotificationRead(req.user!.id, String(req.params.key));
+    sendSuccess(res, 200, 'Notifikasi ditandai sudah dibaca');
+  } catch (err) {
+    next(err);
+  }
+}
+
+export async function markAllNotificationsRead(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  try {
+    await notificationService.markAllNotificationsRead(req.user!);
+    sendSuccess(res, 200, 'Semua notifikasi ditandai sudah dibaca');
+  } catch (err) {
+    next(err);
+  }
+}
+
+export async function deleteNotification(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  try {
+    await notificationService.deleteNotification(req.user!.id, String(req.params.key));
+    sendSuccess(res, 200, 'Notifikasi berhasil dihapus');
+  } catch (err) {
+    next(err);
+  }
+}
+
+export async function clearNotifications(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  try {
+    const mode = req.query.mode === 'all' ? 'all' : 'read';
+    await notificationService.clearNotifications(req.user!, mode);
+    sendSuccess(res, 200, mode === 'all' ? 'Semua notifikasi dibersihkan' : 'Notifikasi terbaca dihapus');
+  } catch (err) {
+    next(err);
+  }
+}

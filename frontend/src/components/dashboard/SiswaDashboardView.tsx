@@ -10,6 +10,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import {
   AlertTriangle,
   ArrowLeftRight,
+  Bell,
   BookOpen,
   CheckCircle2,
   LayoutDashboard,
@@ -18,22 +19,30 @@ import {
 } from "lucide-react";
 import { fetchNotificationsApi, meApi } from "@/lib/api";
 import { fetchBooksApi, fetchCategoriesApi, fetchMyTransactionsApi } from "@/lib/portalApi";
-import { broadcastPortalSync, useRealtimeSync } from "@/lib/useRealtimeSync";
+import {
+  broadcastPortalSync,
+  useNotificationActions,
+  useRealtimeSync,
+} from "@/lib/useRealtimeSync";
 import { PortalShell, type PortalNavItem } from "@/components/dashboard/PortalShell";
 import { StatCard } from "@/components/dashboard/StatCard";
 import { DashboardCharts } from "@/components/dashboard/DashboardCharts";
 import { CatalogBooksPanel } from "@/components/dashboard/CatalogBooksPanel";
 import { SiswaLoansPanel } from "@/components/dashboard/SiswaLoansPanel";
+import { NotificationsPagePanel } from "@/components/dashboard/NotificationsPagePanel";
 import { AccountSettingsPanel } from "@/components/dashboard/AccountSettingsPanel";
 import { getDashboardPath, type AuthUser, type PortalNotificationItem } from "@/types/auth";
 import type { CategoryStatItem, DailyBorrowPoint, TransactionItem } from "@/types/library";
 
-const SISWA_NAV: PortalNavItem[] = [
-  { id: "overview", group: "Utama", label: "Dashboard", icon: LayoutDashboard },
-  { id: "catalog", group: "Layanan Baca", label: "Katalog Buku", icon: BookOpen },
-  { id: "loans", group: "Sirkulasi", label: "Pinjam & Kembali", icon: ArrowLeftRight },
-  { id: "settings", group: "Akun", label: "Pengaturan", icon: Settings },
-];
+function getSiswaNavItems(unreadCount: number): PortalNavItem[] {
+  return [
+    { id: "overview", group: "Utama", label: "Dashboard", icon: LayoutDashboard },
+    { id: "catalog", group: "Layanan Baca", label: "Katalog Buku", icon: BookOpen },
+    { id: "loans", group: "Sirkulasi", label: "Pinjam & Kembali", icon: ArrowLeftRight },
+    { id: "notifications", group: "Akun", label: "Notifikasi", icon: Bell, badge: unreadCount },
+    { id: "settings", group: "Akun", label: "Pengaturan", icon: Settings },
+  ];
+}
 
 function buildStudent7dTrend(loans: TransactionItem[]): DailyBorrowPoint[] {
   const counts = new Map<string, number>();
@@ -64,7 +73,7 @@ function SiswaDashboardInner() {
   const [activeTab, setActiveTab] = useState(
     initialSearch
       ? "catalog"
-      : initialTabParam === "settings" || initialTabParam === "loans" || initialTabParam === "catalog"
+      : initialTabParam === "settings" || initialTabParam === "loans" || initialTabParam === "catalog" || initialTabParam === "notifications"
         ? initialTabParam
         : "overview"
   );
@@ -74,6 +83,7 @@ function SiswaDashboardInner() {
   const [trend7d, setTrend7d] = useState<DailyBorrowPoint[]>([]);
   const [categoryStats, setCategoryStats] = useState<CategoryStatItem[]>([]);
   const [notifications, setNotifications] = useState<PortalNotificationItem[]>([]);
+  const [unreadCount, setUnreadCount] = useState(0);
   const [stats, setStats] = useState({
     activeCount: 0,
     overdueCount: 0,
@@ -111,8 +121,9 @@ function SiswaDashboardInner() {
           };
         })
       );
-      if (notifRes?.data?.items) {
+      if (notifRes?.data) {
         setNotifications(notifRes.data.items);
+        setUnreadCount(notifRes.data.unreadCount);
       }
     } catch {
       // Abaikan jika metrik ringkasan belum tersedia sementara.
@@ -155,6 +166,7 @@ function SiswaDashboardInner() {
   }, [user, refreshMetrics]);
 
   useRealtimeSync(handleRealtimeTick, 8000);
+  const notifActions = useNotificationActions(refreshMetrics);
 
   function handleTransactionMutation() {
     setRefreshSignal((s) => s + 1);
@@ -178,7 +190,7 @@ function SiswaDashboardInner() {
       user={user}
       portalLabel="Portal Anggota Siswa"
       portalSubtitle="Layanan Baca & Peminjaman"
-      navItems={SISWA_NAV}
+      navItems={getSiswaNavItems(unreadCount)}
       activeTab={activeTab}
       onSelectTab={setActiveTab}
       onQuickSearch={(kw) => {
@@ -187,6 +199,8 @@ function SiswaDashboardInner() {
         setActiveTab("catalog");
       }}
       notifications={notifications}
+      unreadNotificationsCount={unreadCount}
+      notificationActions={notifActions}
     >
       {activeTab === "overview" && (
         <div className="space-y-6">
@@ -257,6 +271,15 @@ function SiswaDashboardInner() {
         <SiswaLoansPanel
           refreshSignal={refreshSignal}
           onReturned={handleTransactionMutation}
+        />
+      )}
+
+      {activeTab === "notifications" && (
+        <NotificationsPagePanel
+          items={notifications}
+          unreadCount={unreadCount}
+          onNavigateTab={setActiveTab}
+          {...notifActions}
         />
       )}
 

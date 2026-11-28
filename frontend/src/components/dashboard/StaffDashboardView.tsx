@@ -9,6 +9,7 @@ import { Suspense, useCallback, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   ArrowLeftRight,
+  Bell,
   BookOpen,
   LayoutDashboard,
   Loader2,
@@ -18,12 +19,17 @@ import {
 } from "lucide-react";
 import { fetchNotificationsApi, meApi } from "@/lib/api";
 import { fetchReportSummaryApi } from "@/lib/portalApi";
-import { broadcastPortalSync, useRealtimeSync } from "@/lib/useRealtimeSync";
+import {
+  broadcastPortalSync,
+  useNotificationActions,
+  useRealtimeSync,
+} from "@/lib/useRealtimeSync";
 import { PortalShell, type PortalNavItem } from "@/components/dashboard/PortalShell";
 import { ReportsOverviewPanel } from "@/components/dashboard/ReportsOverviewPanel";
 import { CatalogBooksPanel } from "@/components/dashboard/CatalogBooksPanel";
 import { StaffTransactionsPanel } from "@/components/dashboard/StaffTransactionsPanel";
 import { UsersManagementPanel } from "@/components/dashboard/UsersManagementPanel";
+import { NotificationsPagePanel } from "@/components/dashboard/NotificationsPagePanel";
 import { AccountSettingsPanel } from "@/components/dashboard/AccountSettingsPanel";
 import { getDashboardPath, type AuthUser, type PortalNotificationItem } from "@/types/auth";
 import type { LibrarySummary, StaffRolePrefix } from "@/types/library";
@@ -32,7 +38,7 @@ interface StaffDashboardViewProps {
   expectedRole: "admin" | "petugas";
 }
 
-function getStaffNavItems(role: "admin" | "petugas"): PortalNavItem[] {
+function getStaffNavItems(role: "admin" | "petugas", unreadCount: number): PortalNavItem[] {
   const items: PortalNavItem[] = [
     { id: "overview", group: "Utama", label: "Dashboard", icon: LayoutDashboard },
     { id: "books", group: "Master Data", label: "Buku & Kategori", icon: BookOpen },
@@ -53,6 +59,7 @@ function getStaffNavItems(role: "admin" | "petugas"): PortalNavItem[] {
   }
   items.push(
     { id: "transactions", group: "Sirkulasi", label: "Sirkulasi Buku", icon: ArrowLeftRight },
+    { id: "notifications", group: "Akun", label: "Notifikasi", icon: Bell, badge: unreadCount },
     { id: "settings", group: "Akun", label: "Pengaturan", icon: Settings }
   );
   return items;
@@ -68,6 +75,7 @@ function StaffDashboardInner({ expectedRole }: StaffDashboardViewProps) {
   const [user, setUser] = useState<AuthUser | null>(null);
   const [summary, setSummary] = useState<LibrarySummary | null>(null);
   const [notifications, setNotifications] = useState<PortalNotificationItem[]>([]);
+  const [unreadCount, setUnreadCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [refreshSignal, setRefreshSignal] = useState(0);
   const [quickSearch, setQuickSearch] = useState(initialSearch);
@@ -75,7 +83,7 @@ function StaffDashboardInner({ expectedRole }: StaffDashboardViewProps) {
   const [activeTab, setActiveTab] = useState(
     initialSearch
       ? "books"
-      : initialTabParam === "settings" || initialTabParam === "transactions" || initialTabParam === "books"
+      : initialTabParam === "settings" || initialTabParam === "transactions" || initialTabParam === "books" || initialTabParam === "notifications"
         ? initialTabParam
         : "overview"
   );
@@ -87,8 +95,9 @@ function StaffDashboardInner({ expectedRole }: StaffDashboardViewProps) {
         fetchNotificationsApi().catch(() => null),
       ]);
       setSummary(data);
-      if (notifRes?.data?.items) {
+      if (notifRes?.data) {
         setNotifications(notifRes.data.items);
+        setUnreadCount(notifRes.data.unreadCount);
       }
     } catch {
       // Abaikan jika ringkasan belum dapat dimuat sesaat.
@@ -131,6 +140,7 @@ function StaffDashboardInner({ expectedRole }: StaffDashboardViewProps) {
   }, [user, loadSummary]);
 
   useRealtimeSync(handleRealtimeTick, 8000);
+  const notifActions = useNotificationActions(loadSummary);
 
   function handleDataChanged() {
     setRefreshSignal((s) => s + 1);
@@ -158,7 +168,7 @@ function StaffDashboardInner({ expectedRole }: StaffDashboardViewProps) {
       portalSubtitle={
         expectedRole === "admin" ? "Kendali Sistem & Sirkulasi" : "Operasional Sirkulasi & Katalog"
       }
-      navItems={getStaffNavItems(expectedRole)}
+      navItems={getStaffNavItems(expectedRole, unreadCount)}
       activeTab={activeTab}
       onSelectTab={setActiveTab}
       onQuickSearch={(kw) => {
@@ -167,6 +177,8 @@ function StaffDashboardInner({ expectedRole }: StaffDashboardViewProps) {
         setActiveTab("books");
       }}
       notifications={notifications}
+      unreadNotificationsCount={unreadCount}
+      notificationActions={notifActions}
     >
       {activeTab === "overview" && (
         <ReportsOverviewPanel
@@ -207,6 +219,14 @@ function StaffDashboardInner({ expectedRole }: StaffDashboardViewProps) {
           readOnly={false}
           refreshSignal={refreshSignal}
           onChanged={handleDataChanged}
+        />
+      )}
+      {activeTab === "notifications" && (
+        <NotificationsPagePanel
+          items={notifications}
+          unreadCount={unreadCount}
+          onNavigateTab={setActiveTab}
+          {...notifActions}
         />
       )}
       {activeTab === "settings" && (
