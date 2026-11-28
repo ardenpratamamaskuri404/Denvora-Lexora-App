@@ -27,3 +27,7 @@ authRouter.get('/me', authMiddleware, authController.me);
 authRouter.put('/profile', authMiddleware, validate(updateProfileSchema), authController.updateProfile);
 authRouter.put('/password', authMiddleware, validate(changePasswordSchema), authController.changePassword);
 authRouter.get('/notifications', authMiddleware, authController.listNotifications);
+authRouter.patch('/notifications/read-all', authMiddleware, authController.markAllNotificationsRead);
+authRouter.patch('/notifications/:key/read', authMiddleware, authController.markNotificationRead);
+authRouter.delete('/notifications', authMiddleware, authController.clearNotifications);
+authRouter.delete('/notifications/:key', authMiddleware, authController.deleteNotification);
