@@ -61,6 +61,13 @@
 | `POST` | `/auth/otp/verify` | Publik | Verifikasi kode OTP 6 digit dari Mailpit (aktifkan akun / terbitkan cookie sesi). |
 | `POST` | `/auth/logout` | Authenticated | Menghapus cookie sesi. |
 | `GET` | `/auth/me` | Authenticated | Mengambil profil pengguna yang sedang login. |
+| `PUT` | `/auth/profile` | Authenticated | Memperbarui profil akun aktif (`name`, `email`, `phone`, `class_name`). |
+| `PUT` | `/auth/password` | Authenticated | Mengubah kata sandi akun aktif dengan verifikasi password lama. |
+| `GET` | `/auth/notifications` | Authenticated | Mengambil daftar notifikasi aktif & `unreadCount` per peran. |
+| `PATCH` | `/auth/notifications/read-all` | Authenticated | Menandai seluruh notifikasi aktif sudah dibaca. |
+| `PATCH` | `/auth/notifications/:key/read` | Authenticated | Menandai satu notifikasi sudah dibaca. |
+| `DELETE` | `/auth/notifications?mode=read\|all` | Authenticated | Menghapus notifikasi yang sudah dibaca atau seluruhnya. |
+| `DELETE` | `/auth/notifications/:key` | Authenticated | Menghapus/menyembunyikan satu notifikasi untuk akun aktif. |
 
 ### Detail Request & Validasi Auth
 - **`POST /auth/register`**

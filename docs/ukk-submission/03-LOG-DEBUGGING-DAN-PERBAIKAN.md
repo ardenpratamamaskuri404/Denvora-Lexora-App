@@ -68,6 +68,19 @@ Setiap entri di bawah ini mendokumentasikan kendala teknis nyata yang terdeteksi
 
 ---
 
+### 8. Validasi Mismatch Password Live, Pusat Notifikasi Halaman Penuh & Penyatuan Kartu Sidebar
+* **Gejala:**
+  1. Pada halaman daftar (`/register`), ketidaksesuaian *Password* dan *Konfirmasi Password* baru terlihat setelah tombol kirim ditekan.
+  2. Popover notifikasi di header sebelumnya belum memiliki halaman manajemen khusus, belum dapat ditandai terbaca atau dihapus secara persisten, dan menampilkan badge `• Live`.
+  3. Kotak logo putih (`rounded-full`) di sidebar atas terpisah dari kotak label peran (`PANEL ADMINISTRATOR / PETUGAS`).
+* **Akar Masalah:** Validasi konfirmasi password hanya dievaluasi saat submit, umpan notifikasi belum menyimpan status baca/hapus ke basis data, dan `PortalSidebar.tsx` memisahkan wadah logo dengan label peran.
+* **Perbaikan:**
+  1. Menambahkan validasi langsung `liveConfirmError` di [`register/page.tsx`](../../frontend/src/app/register/page.tsx).
+  2. Menambahkan tabel `user_notification_states` ([`schema.sql`](../../database/schema.sql), [`db.ts`](../../backend/src/config/db.ts)), endpoint `PATCH/DELETE /api/auth/notifications*` ([`notification.service.ts`](../../backend/src/services/notification.service.ts), [`auth.controller.ts`](../../backend/src/controllers/auth.controller.ts), [`auth.routes.ts`](../../backend/src/routes/auth.routes.ts)), popover terbaru ([`PortalNotifications.tsx`](../../frontend/src/components/dashboard/PortalNotifications.tsx)), dan halaman penuh **Notifikasi** ([`NotificationsPagePanel.tsx`](../../frontend/src/components/dashboard/NotificationsPagePanel.tsx)).
+  3. Menyatukan logo Denvora Lexora dan label peran aktif ke dalam satu kartu Cream `#FBF7F1` terpadu di [`PortalSidebar.tsx`](../../frontend/src/components/dashboard/PortalSidebar.tsx).
+
+---
+
 ## Catatan Aktivitas Log Server Lokal
 
 Semua aktivitas penting maupun error sistem juga dicatat otomatis ke file lokal [`backend/logs/app.log`](../../backend/logs/app.log) melalui [`appendLog()`](../../backend/src/utils/fileHelper.ts) (contoh: `auth.register`, `auth.otp.verified`, `auth.login`, `transaction.borrow`, `transaction.return`, `transaction.delete`, dan `report.exportCsv`).

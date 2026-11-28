@@ -1,7 +1,7 @@
 # Dokumentasi Modul, Fungsi & Prosedur (Hasil Generate)
 
 > **Sumber:** Dihasilkan otomatis secara offline oleh [`backend/scripts/generate-code-docs.ts`](../../backend/scripts/generate-code-docs.ts) (`npm run docs:generate`)
-> **Waktu Generate:** 2026-11-27 16:24:49 | **Total Modul:** 102 | **Total Simbol Terekspor:** 265
+> **Waktu Generate:** 2026-11-28 02:31:27 | **Total Modul:** 103 | **Total Simbol Terekspor:** 281
 > **Versi HTML Interaktif Offline:** [`generated-code-docs/index.html`](./generated-code-docs/index.html)
 
 ---
@@ -16,7 +16,7 @@ Konfigurasi aplikasi Express (TypeScript), CORS, Swagger UI offline, dan mountin
 | :---: | :---: | :--- | :--- |
 | 21 | `const` | `app` | Ekspor const app. |
 
-### `config/db` — [`backend/src/config/db.ts`](../../backend/src/config/db.ts) (70 baris)
+### `config/db` — [`backend/src/config/db.ts`](../../backend/src/config/db.ts) (84 baris)
 
 Konfigurasi connection pool MySQL menggunakan mysql2/promise.
 
@@ -24,7 +24,7 @@ Konfigurasi connection pool MySQL menggunakan mysql2/promise.
 | :---: | :---: | :--- | :--- |
 | 9 | `const` | `pool` | Ekspor const pool. |
 | 33 | `function` | `ensureBooksMetadataColumns` | Memastikan kolom tambahan buku (`description`, `cover_url`) tersedia pada skema DB aktif. |
-| 61 | `function` | `checkConnection` | Menguji koneksi ke database MySQL. @returns True jika koneksi aktif. |
+| 75 | `function` | `checkConnection` | Menguji koneksi ke database MySQL. @returns True jika koneksi aktif. |
 
 ### `config/env` — [`backend/src/config/env.ts`](../../backend/src/config/env.ts) (30 baris)
 
@@ -34,7 +34,7 @@ Konfigurasi terpusat environment backend dari file .env.
 | :---: | :---: | :--- | :--- |
 | 10 | `const` | `env` | Ekspor const env. |
 
-### `controllers/auth.controller` — [`backend/src/controllers/auth.controller.ts`](../../backend/src/controllers/auth.controller.ts) (145 baris)
+### `controllers/auth.controller` — [`backend/src/controllers/auth.controller.ts`](../../backend/src/controllers/auth.controller.ts) (198 baris)
 
 Handler HTTP untuk registrasi siswa, login, OTP Mailpit, logout, dan profil sesi.
 
@@ -49,6 +49,10 @@ Handler HTTP untuk registrasi siswa, login, OTP Mailpit, logout, dan profil sesi
 | 107 | `function` | `updateProfile` | Ekspor function updateProfile. |
 | 120 | `function` | `changePassword` | Ekspor function changePassword. |
 | 133 | `function` | `listNotifications` | Ekspor function listNotifications. |
+| 146 | `function` | `markNotificationRead` | Ekspor function markNotificationRead. |
+| 159 | `function` | `markAllNotificationsRead` | Ekspor function markAllNotificationsRead. |
+| 172 | `function` | `deleteNotification` | Ekspor function deleteNotification. |
+| 185 | `function` | `clearNotifications` | Ekspor function clearNotifications. |
 
 ### `controllers/catalog.controller` — [`backend/src/controllers/catalog.controller.ts`](../../backend/src/controllers/catalog.controller.ts) (143 baris)
 
@@ -107,7 +111,7 @@ Definisi path, parameter query/path, dan requestBody OpenAPI untuk Petugas dan A
 | :---: | :---: | :--- | :--- |
 | 150 | `const` | `staffAndAdminPaths` | Ekspor const staffAndAdminPaths. |
 
-### `docs/openapi` — [`backend/src/docs/openapi.ts`](../../backend/src/docs/openapi.ts) (234 baris)
+### `docs/openapi` — [`backend/src/docs/openapi.ts`](../../backend/src/docs/openapi.ts) (286 baris)
 
 Spesifikasi OpenAPI 3.0 lokal (100% offline) untuk Swagger UI (/api-docs).
 
@@ -149,7 +153,7 @@ Routing kendali penuh Admin (/api/admin/*) sesuai SPK UKK + kelola Petugas.
 | :---: | :---: | :--- | :--- |
 | 20 | `const` | `adminRouter` | Ekspor const adminRouter. |
 
-### `routes/auth.routes` — [`backend/src/routes/auth.routes.ts`](../../backend/src/routes/auth.routes.ts) (30 baris)
+### `routes/auth.routes` — [`backend/src/routes/auth.routes.ts`](../../backend/src/routes/auth.routes.ts) (34 baris)
 
 Routing autentikasi & OTP Mailpit (/api/auth/*).
 
@@ -234,14 +238,18 @@ Logika bisnis CRUD kategori buku.
 | 49 | `function` | `updateCategory` | Memperbarui nama kategori berdasarkan ID. |
 | 67 | `function` | `deleteCategory` | Menghapus kategori jika tidak lagi digunakan oleh buku mana pun. |
 
-### `services/notification.service` — [`backend/src/services/notification.service.ts`](../../backend/src/services/notification.service.ts) (122 baris)
+### `services/notification.service` — [`backend/src/services/notification.service.ts`](../../backend/src/services/notification.service.ts) (203 baris)
 
-Menghasilkan umpan notifikasi langsung (real-time dari MySQL) sesuai peran pengguna.
+Menghasilkan umpan notifikasi real-time per peran lengkap dengan status dibaca & hapus persisten di MySQL.
 
 | Baris | Jenis | Simbol | Deskripsi |
 | :---: | :---: | :--- | :--- |
 | 10 | `interface` | `NotificationItem` | Ekspor interface NotificationItem. |
-| 21 | `function` | `getNotificationsForUser` | Mengambil daftar notifikasi aktif berdasarkan peran (Siswa, Petugas, atau Admin). |
+| 137 | `function` | `getNotificationsForUser` | Mengambil daftar notifikasi aktif pengguna beserta status dibaca dan jumlah belum dibaca. |
+| 168 | `function` | `markNotificationRead` | Menandai satu notifikasi sebagai sudah dibaca. |
+| 178 | `function` | `markAllNotificationsRead` | Menandai seluruh notifikasi aktif milik pengguna sebagai sudah dibaca. |
+| 186 | `function` | `deleteNotification` | Menghapus (menyembunyikan) satu notifikasi untuk pengguna aktif. |
+| 196 | `function` | `clearNotifications` | Menghapus semua notifikasi yang sudah berstatus dibaca (atau seluruhnya jika mode='all'). |
 
 ### `services/otp.service` — [`backend/src/services/otp.service.ts`](../../backend/src/services/otp.service.ts) (159 baris)
 
@@ -404,7 +412,7 @@ Skema validasi Zod untuk pengelolaan anggota siswa dan akun petugas.
 | 46 | `const` | `staffUpdateSchema` | Ekspor const staffUpdateSchema. |
 | 51 | `const` | `userQuerySchema` | Ekspor const userQuerySchema. |
 
-## Frontend (Next.js + React) (64 Modul)
+## Frontend (Next.js + React) (65 Modul)
 
 ### `frontend/src/app/admin/page.tsx` — [`frontend/src/app/admin/page.tsx`](../../frontend/src/app/admin/page.tsx) (6 baris)
 
@@ -473,7 +481,7 @@ Modul internal sistem Denvora Lexora.
 | :---: | :---: | :--- | :--- |
 | 3 | `function` | `PetugasDashboardPage` | Ekspor function PetugasDashboardPage. |
 
-### `app/register/page` — [`frontend/src/app/register/page.tsx`](../../frontend/src/app/register/page.tsx) (238 baris)
+### `app/register/page` — [`frontend/src/app/register/page.tsx`](../../frontend/src/app/register/page.tsx) (243 baris)
 
 Halaman pendaftaran anggota siswa baru sesuai alur SPK-3/4 dengan verifikasi OTP.
 
@@ -578,6 +586,15 @@ Grafik interaktif Recharts (AreaChart & Donut PieChart) lengkap dengan animasi g
 | :---: | :---: | :--- | :--- |
 | 40 | `function` | `DashboardCharts` | Ekspor function DashboardCharts. |
 
+### `components/dashboard/NotificationsPagePanel` — [`frontend/src/components/dashboard/NotificationsPagePanel.tsx`](../../frontend/src/components/dashboard/NotificationsPagePanel.tsx) (261 baris)
+
+Halaman penuh manajemen notifikasi untuk membaca, memfilter, mencari, menghapus item, dan membuka halaman terkait.
+
+| Baris | Jenis | Simbol | Deskripsi |
+| :---: | :---: | :--- | :--- |
+| 26 | `interface` | `NotificationsPagePanelProps` | Ekspor interface NotificationsPagePanelProps. |
+| 70 | `function` | `NotificationsPagePanel` | Ekspor function NotificationsPagePanel. |
+
 ### `components/dashboard/PaginationBar` — [`frontend/src/components/dashboard/PaginationBar.tsx`](../../frontend/src/components/dashboard/PaginationBar.tsx) (45 baris)
 
 Kontrol navigasi halaman bersama untuk tabel katalog, transaksi, dan pengguna.
@@ -594,31 +611,31 @@ Searchbar real-time di topbar portal semua peran untuk mencari koleksi buku seca
 | :---: | :---: | :--- | :--- |
 | 21 | `function` | `PortalGlobalSearch` | Ekspor function PortalGlobalSearch. |
 
-### `components/dashboard/PortalNotifications` — [`frontend/src/components/dashboard/PortalNotifications.tsx`](../../frontend/src/components/dashboard/PortalNotifications.tsx) (125 baris)
+### `components/dashboard/PortalNotifications` — [`frontend/src/components/dashboard/PortalNotifications.tsx`](../../frontend/src/components/dashboard/PortalNotifications.tsx) (222 baris)
 
-Ikon notifikasi bel interaktif dengan lencana real-time dan daftar peringatan peran aktif.
+Popover notifikasi bel interaktif dengan status terbaca, hapus item, dan tautan ke halaman notifikasi.
 
 | Baris | Jenis | Simbol | Deskripsi |
 | :---: | :---: | :--- | :--- |
-| 24 | `function` | `PortalNotifications` | Ekspor function PortalNotifications. |
+| 39 | `function` | `PortalNotifications` | Ekspor function PortalNotifications. |
 
-### `components/dashboard/PortalShell` — [`frontend/src/components/dashboard/PortalShell.tsx`](../../frontend/src/components/dashboard/PortalShell.tsx) (212 baris)
+### `components/dashboard/PortalShell` — [`frontend/src/components/dashboard/PortalShell.tsx`](../../frontend/src/components/dashboard/PortalShell.tsx) (229 baris)
 
 Kerangka dashboard profesional dengan toggle garis 3, searchbar real-time, notifikasi, dan menu dropdown profil.
 
 | Baris | Jenis | Simbol | Deskripsi |
 | :---: | :---: | :--- | :--- |
-| 21 | `interface` | `PortalNavItem` | Ekspor interface PortalNavItem. |
-| 58 | `function` | `PortalShell` | Ekspor function PortalShell. |
+| 22 | `interface` | `PortalNavItem` | Ekspor interface PortalNavItem. |
+| 62 | `function` | `PortalShell` | Ekspor function PortalShell. |
 
-### `components/dashboard/PortalSidebar` — [`frontend/src/components/dashboard/PortalSidebar.tsx`](../../frontend/src/components/dashboard/PortalSidebar.tsx) (162 baris)
+### `components/dashboard/PortalSidebar` — [`frontend/src/components/dashboard/PortalSidebar.tsx`](../../frontend/src/components/dashboard/PortalSidebar.tsx) (185 baris)
 
 Sidebar terkelompok Cream Mocha yang dapat dilipat dengan logo Denvora asli dan kartu peran bersih.
 
 | Baris | Jenis | Simbol | Deskripsi |
 | :---: | :---: | :--- | :--- |
 | 24 | `function` | `PortalNavList` | Ekspor function PortalNavList. |
-| 71 | `function` | `PortalSidebar` | Ekspor function PortalSidebar. |
+| 89 | `function` | `PortalSidebar` | Ekspor function PortalSidebar. |
 
 ### `components/dashboard/PortalUserMenu` — [`frontend/src/components/dashboard/PortalUserMenu.tsx`](../../frontend/src/components/dashboard/PortalUserMenu.tsx) (151 baris)
 
@@ -636,13 +653,13 @@ Panel dashboard utama Admin/Petugas dengan 4 kartu KPI, grafik tren & kategori, 
 | :---: | :---: | :--- | :--- |
 | 22 | `function` | `ReportsOverviewPanel` | Ekspor function ReportsOverviewPanel. |
 
-### `components/dashboard/SiswaDashboardView` — [`frontend/src/components/dashboard/SiswaDashboardView.tsx`](../../frontend/src/components/dashboard/SiswaDashboardView.tsx) (277 baris)
+### `components/dashboard/SiswaDashboardView` — [`frontend/src/components/dashboard/SiswaDashboardView.tsx`](../../frontend/src/components/dashboard/SiswaDashboardView.tsx) (300 baris)
 
 Portal real-time Siswa dengan grafik animasi Recharts, notifikasi langsung, detail cover/deskripsi, dan pengaturan akun.
 
 | Baris | Jenis | Simbol | Deskripsi |
 | :---: | :---: | :--- | :--- |
-| 270 | `function` | `SiswaDashboardView` | Ekspor function SiswaDashboardView. |
+| 293 | `function` | `SiswaDashboardView` | Ekspor function SiswaDashboardView. |
 
 ### `components/dashboard/SiswaLoansPanel` — [`frontend/src/components/dashboard/SiswaLoansPanel.tsx`](../../frontend/src/components/dashboard/SiswaLoansPanel.tsx) (193 baris)
 
@@ -652,13 +669,13 @@ Panel riwayat peminjaman aktif dan pengembalian buku khusus Siswa.
 | :---: | :---: | :--- | :--- |
 | 19 | `function` | `SiswaLoansPanel` | Ekspor function SiswaLoansPanel. |
 
-### `components/dashboard/StaffDashboardView` — [`frontend/src/components/dashboard/StaffDashboardView.tsx`](../../frontend/src/components/dashboard/StaffDashboardView.tsx) (226 baris)
+### `components/dashboard/StaffDashboardView` — [`frontend/src/components/dashboard/StaffDashboardView.tsx`](../../frontend/src/components/dashboard/StaffDashboardView.tsx) (246 baris)
 
 Portal real-time Petugas & Admin dengan sidebar lipat, notifikasi langsung, grafik Recharts, dan pengaturan akun.
 
 | Baris | Jenis | Simbol | Deskripsi |
 | :---: | :---: | :--- | :--- |
-| 219 | `function` | `StaffDashboardView` | Ekspor function StaffDashboardView. |
+| 239 | `function` | `StaffDashboardView` | Ekspor function StaffDashboardView. |
 
 ### `components/dashboard/StaffTransactionEditModal` — [`frontend/src/components/dashboard/StaffTransactionEditModal.tsx`](../../frontend/src/components/dashboard/StaffTransactionEditModal.tsx) (178 baris)
 
@@ -868,7 +885,7 @@ Komponen Card bergaya shadcn/ui yang dikustomisasi ke tema Cream Mocha Denvora L
 
 _Tidak ada simbol terekspor langsung (konfigurasi/entry-point)._
 
-### `lib/api` — [`frontend/src/lib/api.ts`](../../frontend/src/lib/api.ts) (189 baris)
+### `lib/api` — [`frontend/src/lib/api.ts`](../../frontend/src/lib/api.ts) (215 baris)
 
 Klien HTTP terpusat untuk komunikasi dengan REST API backend Denvora Lexora.
 
@@ -891,6 +908,10 @@ Klien HTTP terpusat untuk komunikasi dengan REST API backend Denvora Lexora.
 | 162 | `function` | `updateProfileApi` | Memperbarui data profil akun milik pengguna yang sedang aktif. |
 | 175 | `function` | `changePasswordApi` | Mengubah password pengguna setelah memverifikasi password saat ini. |
 | 186 | `function` | `fetchNotificationsApi` | Mengambil umpan notifikasi real-time sesuai peran akun aktif. |
+| 191 | `function` | `markNotificationReadApi` | Menandai satu notifikasi sudah dibaca untuk akun aktif. |
+| 198 | `function` | `markAllNotificationsReadApi` | Menandai semua notifikasi aktif sudah dibaca. |
+| 203 | `function` | `deleteNotificationApi` | Menghapus / menyembunyikan satu notifikasi dari daftar akun aktif. |
+| 210 | `function` | `clearNotificationsApi` | Membersihkan notifikasi yang sudah dibaca atau seluruh notifikasi aktif. |
 
 ### `lib/portalApi` — [`frontend/src/lib/portalApi.ts`](../../frontend/src/lib/portalApi.ts) (263 baris)
 
@@ -921,14 +942,16 @@ Klien REST API terparameterisasi untuk operasi Dashboard Siswa, Petugas, dan Adm
 | 224 | `function` | `fetchReportSummaryApi` | Mengambil ringkasan statistik perpustakaan untuk dashboard laporan (Admin/Petugas). |
 | 233 | `function` | `downloadTransactionsCsvApi` | Mengunduh laporan transaksi dalam format CSV dengan cookie autentikasi aktif. |
 
-### `lib/useRealtimeSync` — [`frontend/src/lib/useRealtimeSync.ts`](../../frontend/src/lib/useRealtimeSync.ts) (65 baris)
+### `lib/useRealtimeSync` — [`frontend/src/lib/useRealtimeSync.ts`](../../frontend/src/lib/useRealtimeSync.ts) (140 baris)
 
 Hook sinkronisasi real-time antar peran dan tab browser melalui polling berkala, fokus tab, dan BroadcastChannel.
 
 | Baris | Jenis | Simbol | Deskripsi |
 | :---: | :---: | :--- | :--- |
-| 15 | `function` | `broadcastPortalSync` | Mengirim sinyal perubahan data ke seluruh tab/portal yang sedang terbuka. |
-| 29 | `function` | `useRealtimeSync` | Menjalankan sinkronisasi otomatis berkala, saat jendela kembali aktif, dan saat ada sinyal mutasi dari tab lain. |
+| 22 | `function` | `broadcastPortalSync` | Mengirim sinyal perubahan data ke seluruh tab/portal yang sedang terbuka. |
+| 36 | `function` | `useRealtimeSync` | Menjalankan sinkronisasi otomatis berkala, saat jendela kembali aktif, dan saat ada sinyal mutasi dari tab lain. |
+| 73 | `interface` | `NotificationActionControls` | Ekspor interface NotificationActionControls. |
+| 85 | `function` | `useNotificationActions` | Mengelola aksi baca/hapus notifikasi sekaligus memicu sinkronisasi lintas komponen & tab. |
 
 ### `lib/useSplashReveal` — [`frontend/src/lib/useSplashReveal.ts`](../../frontend/src/lib/useSplashReveal.ts) (40 baris)
 
@@ -946,7 +969,7 @@ Modul internal sistem Denvora Lexora.
 | :---: | :---: | :--- | :--- |
 | 7 | `function` | `cn` | Menggabungkan class Tailwind CSS secara aman tanpa konflik utilitas. |
 
-### `types/auth` — [`frontend/src/types/auth.ts`](../../frontend/src/types/auth.ts) (82 baris)
+### `types/auth` — [`frontend/src/types/auth.ts`](../../frontend/src/types/auth.ts) (84 baris)
 
 Definisi tipe pengguna terautentikasi, katalog ringkas, dan pembantu rute peran.
 
@@ -957,12 +980,12 @@ Definisi tipe pengguna terautentikasi, katalog ringkas, dan pembantu rute peran.
 | 10 | `interface` | `AuthUser` | Ekspor interface AuthUser. |
 | 23 | `interface` | `CatalogBookItem` | Ekspor interface CatalogBookItem. |
 | 39 | `interface` | `PortalNotificationItem` | Ekspor interface PortalNotificationItem. |
-| 47 | `interface` | `NotificationFeed` | Ekspor interface NotificationFeed. |
-| 52 | `interface` | `ApiFieldError` | Ekspor interface ApiFieldError. |
-| 57 | `interface` | `PaginationMeta` | Ekspor interface PaginationMeta. |
-| 64 | `interface` | `ApiResponse` | Ekspor interface ApiResponse. |
-| 72 | `const` | `ROLE_DASHBOARD_PATH` | Ekspor const ROLE_DASHBOARD_PATH. |
-| 79 | `function` | `getDashboardPath` | Mengembalikan path halaman dashboard sesuai peran pengguna. |
+| 49 | `interface` | `NotificationFeed` | Ekspor interface NotificationFeed. |
+| 54 | `interface` | `ApiFieldError` | Ekspor interface ApiFieldError. |
+| 59 | `interface` | `PaginationMeta` | Ekspor interface PaginationMeta. |
+| 66 | `interface` | `ApiResponse` | Ekspor interface ApiResponse. |
+| 74 | `const` | `ROLE_DASHBOARD_PATH` | Ekspor const ROLE_DASHBOARD_PATH. |
+| 81 | `function` | `getDashboardPath` | Mengembalikan path halaman dashboard sesuai peran pengguna. |
 
 ### `types/library` — [`frontend/src/types/library.ts`](../../frontend/src/types/library.ts) (122 baris)
 

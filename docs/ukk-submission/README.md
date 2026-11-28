@@ -11,7 +11,7 @@
 | No | Dokumen | Isi & Kegunaan | Kaitan Kriteria UKK |
 | :-: | :--- | :--- | :--- |
 | 1 | [01-DESKRIPSI-PROGRAM-DAN-MANUAL.md](./01-DESKRIPSI-PROGRAM-DAN-MANUAL.md) | Deskripsi program, arsitektur, rincian ERD & basis data, matriks hak akses, endpoint REST API, serta **Buku Manual Singkat Pengguna** (siap disalin/cetak ke pengolah kata). | `SPK-4/4` 3a, 3b, Langkah 6; `PPsp 1.1–1.12` |
-| 2 | [02-DOKUMENTASI-FUNGSI-PROSEDUR.md](./02-DOKUMENTASI-FUNGSI-PROSEDUR.md) | Katalog lengkap **99 modul** dan fungsi/komponen/tipe terekspor hasil generate otomatis dari JSDoc Backend & Frontend. | `SPK-4/4` 3c; `PPsp 1.13–1.15` |
+| 2 | [02-DOKUMENTASI-FUNGSI-PROSEDUR.md](./02-DOKUMENTASI-FUNGSI-PROSEDUR.md) | Katalog lengkap **103 modul** dan fungsi/komponen/tipe terekspor hasil generate otomatis dari JSDoc Backend & Frontend. | `SPK-4/4` 3c; `PPsp 1.13–1.15` |
 | 3 | [`generated-code-docs/index.html`](./generated-code-docs/index.html) | Dokumentasi kode **HTML interaktif offline** (dapat dibuka langsung di browser tanpa internet dan dilengkapi pencarian instan). | `PPsp 1.15` (Generate Dokumentasi) |
 | 4 | [03-LOG-DEBUGGING-DAN-PERBAIKAN.md](./03-LOG-DEBUGGING-DAN-PERBAIKAN.md) | Catatan teknis kasus bug yang ditemukan selama pengembangan, akar masalah, langkah debugging, perbaikan kode, dan hash commit verifikasi. | `SPK-4/4` 3d; `PPsp 1.17–1.18` |
 | 5 | [04-LAPORAN-UJI-COBA-DAN-EVALUASI.md](./04-LAPORAN-UJI-COBA-DAN-EVALUASI.md) | Rencana kebutuhan uji, data uji standar, skenario uji Black-Box, hasil verifikasi otomatis/manual, dan **Laporan Evaluasi Singkat**. | `SPK-4/4` 4; `PPsp 1.19–1.23` |

@@ -166,6 +166,58 @@ export const openApiSpec = {
         responses: { 200: { description: 'Profil pengguna' } },
       },
     },
+    '/auth/profile': {
+      put: {
+        tags: ['Auth'],
+        summary: 'Perbarui profil pengguna aktif (nama, email, telepon, kelas)',
+        responses: { 200: { description: 'Profil diperbarui' } },
+      },
+    },
+    '/auth/password': {
+      put: {
+        tags: ['Auth'],
+        summary: 'Ubah kata sandi akun aktif',
+        responses: { 200: { description: 'Password diperbarui' } },
+      },
+    },
+    '/auth/notifications': {
+      get: {
+        tags: ['Auth'],
+        summary: 'Ambil daftar notifikasi aktif & jumlah belum dibaca sesuai peran',
+        responses: { 200: { description: 'Umpan notifikasi' } },
+      },
+      delete: {
+        tags: ['Auth'],
+        summary: 'Bersihkan notifikasi yang sudah dibaca atau seluruhnya',
+        parameters: [
+          { name: 'mode', in: 'query', schema: { type: 'string', enum: ['read', 'all'], default: 'read' } },
+        ],
+        responses: { 200: { description: 'Notifikasi dibersihkan' } },
+      },
+    },
+    '/auth/notifications/read-all': {
+      patch: {
+        tags: ['Auth'],
+        summary: 'Tandai seluruh notifikasi aktif sudah dibaca',
+        responses: { 200: { description: 'Semua notifikasi ditandai terbaca' } },
+      },
+    },
+    '/auth/notifications/{key}/read': {
+      patch: {
+        tags: ['Auth'],
+        summary: 'Tandai satu notifikasi sudah dibaca',
+        parameters: [{ name: 'key', in: 'path', required: true, schema: { type: 'string' } }],
+        responses: { 200: { description: 'Notifikasi ditandai terbaca' } },
+      },
+    },
+    '/auth/notifications/{key}': {
+      delete: {
+        tags: ['Auth'],
+        summary: 'Hapus satu notifikasi untuk akun aktif',
+        parameters: [{ name: 'key', in: 'path', required: true, schema: { type: 'string' } }],
+        responses: { 200: { description: 'Notifikasi dihapus' } },
+      },
+    },
     '/siswa/categories': {
       get: { tags: ['Siswa'], summary: 'Daftar kategori buku', responses: { 200: { description: 'OK' } } },
     },

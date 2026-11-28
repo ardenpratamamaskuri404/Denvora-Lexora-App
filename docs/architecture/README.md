@@ -7,7 +7,7 @@ Direktori ini menyimpan artefak arsitektur teknis, topologi layanan *client–se
 | File | Deskripsi |
 |---|---|
 | [system-topology.svg](./system-topology.svg) | Diagram visual topologi terpisah Frontend Next.js, Backend Express REST API, MySQL, dan Mailpit SMTP lokal |
-| [erd-database.md](./erd-database.md) | Entity Relationship Diagram (ERD) 5 tabel ternormalisasi (`users`, `categories`, `books`, `transactions`, `otp_verifications`) |
+| [erd-database.md](./erd-database.md) | Entity Relationship Diagram (ERD) 6 tabel ternormalisasi (`users`, `categories`, `books`, `transactions`, `otp_verifications`, `user_notification_states`) |
 | [SYSTEM-ARCHITECTURE.md](../planning/SYSTEM-ARCHITECTURE.md) | Spesifikasi lengkap stack teknologi, lapisan kode, dan aturan kepatuhan |
 | [API-SPECIFICATION.md](../planning/API-SPECIFICATION.md) | Kontrak endpoint REST API publik, Auth OTP, Siswa, Petugas, dan Admin |
 
@@ -68,6 +68,7 @@ sequenceDiagram
 | Peminjaman & Pengembalian Sendiri (`/api/siswa/transactions/*`) | X | V | X | X |
 | Pengelolaan Buku & Kategori (Tambah & Ubah) | X | X | V | V |
 | Hapus Buku & Kategori | X | X | X | V |
-| Kelola Anggota (`siswa`) & Transaksi Semua Anggota | X | X | V (baca anggota + transaksi) | V |
-| Kelola Akun Staf (`petugas`) | X | X | X | V |
+| Kelola Anggota (`siswa`) & Transaksi Semua Anggota | X | X | V (`Daftar Siswa` read-only + kelola transaksi) | V (`Anggota Siswa` CRUD penuh + kelola transaksi) |
+| Kelola Akun Staf (`petugas`) | X | X | X (menu disembunyikan & API ditolak `403`) | V (menu `Akun Petugas` CRUD penuh) |
+| Pusat Notifikasi (Halaman Penuh, Tandai Dibaca & Hapus) | X | V | V | V |
 | Laporan Rekap & Ekspor CSV (`/reports/*`) | X | X | V | V |

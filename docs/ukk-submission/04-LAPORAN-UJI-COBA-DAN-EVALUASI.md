@@ -23,8 +23,9 @@
 | **UAT-06** | Validasi Stok Habis & Pinjam-Kembali Atomik | Siswa pinjam buku `id=5` (stok `0`), lalu pinjam `id=1` (stok `> 0`), kembalikan, dan coba kembalikan ganda | Stok `0` ditolak `409`; pinjam sukses `201` (stok berkurang); kembali sukses `200` (stok pulih); kembali ulang ditolak `409`. | Lulus |
 | **UAT-07** | Laporan Ringkasan, Ekspor CSV & Pencatatan Log | `GET /api/admin/reports/summary`, `GET /api/petugas/reports/transactions/export`, cek `app.log` | HTTP `200`, file CSV berisi header `Kode Transaksi` tersimpan di `backend/exports/`, dan aktivitas tercatat di `backend/logs/app.log`. | Lulus |
 | **UAT-08** | CRUD Anggota Admin dengan Email Umum | Admin tambah dan hapus anggota dengan email `@gmail.com` | Tambah sukses `201`, hapus bersih `200`. | Lulus |
-| **UAT-09** | Unggah Cover Buku, Detail Sinopsis, Notifikasi & Profil | Unggah cover ke `/api/petugas/books/cover`, cek `/api/auth/notifications`, `/api/auth/profile` | Gambar tersimpan di `backend/uploads/covers/` (`200`), notifikasi peran & pengaturan akun berfungsi. | Lulus |
+| **UAT-09** | Unggah Cover Buku, Detail Sinopsis, Notifikasi & Profil | Unggah cover ke `/api/petugas/books/cover`, uji baca/hapus `/api/auth/notifications*`, `/api/auth/profile` | Gambar tersimpan di `backend/uploads/covers/` (`200`), status baca/hapus notifikasi persisten di `user_notification_states`, pengaturan akun berfungsi. | Lulus |
 | **UAT-10** | Verifikasi Kualitas Statis & Batas Baris Kode | `tsc --noEmit` (backend & frontend), `eslint` (`--max-warnings=0`), dan pemeriksaan `<= 300` baris/file | Seluruh file kode sumber `<= 300` baris dan kompilasi/lint bersih tanpa error maupun warning. | Lulus |
+| **UAT-11** | Validasi Live Register & Pusat Notifikasi UI | Uji ketik mismatch konfirmasi password (`/register`), popover tanpa `Live`, halaman penuh **Notifikasi**, dan penyatuan kartu sidebar (`/admin` & `/petugas`) | Peringatan password tidak cocok tampil langsung; tanda dibaca menurunkan badge secara sinkron; kartu sidebar & menu Admin vs Petugas tampil sesuai peran. | Lulus |
 
 ---
 
@@ -36,7 +37,7 @@
    * Backend `npm run typecheck` (`tsc --noEmit`): **0 error**.
    * Frontend `npx tsc --noEmit` & `npm run lint` (`eslint`): **0 error, 0 warning**.
    * Batas ukuran file `<= 300` baris/file: **`LINE_LIMIT_300_OK`**.
-   * Generator Dokumentasi `npm run docs:generate`: **`GENERATED_DOCS_OK modules=99 symbols=262`**.
+   * Generator Dokumentasi `npm run docs:generate`: **`GENERATED_DOCS_OK modules=103 symbols=281`**.
 3. **Verifikasi Katalog & Scraper (`npm run seed:scrape -- --all --limit=5 --apply`):**
    * Menghasilkan `24` buku tambahan dari Open Library API ke [`seed_books_scraped.sql`](../../database/seed_books_scraped.sql) → total **`30` buku**, **`29` cover lokal**, **`30` deskripsi** aktif di `db_denvora_lexora`.
 4. **Verifikasi Rute & Antarmuka Browser (`http://localhost:3000`):**
