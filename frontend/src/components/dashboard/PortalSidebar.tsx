@@ -58,8 +58,26 @@ export function PortalNavList({
                   : "text-[#E9DCCB]/85 hover:bg-[#3A281C] hover:text-[#F6EFE6]"
               }`}
             >
-              <Icon size={17} strokeWidth={1.85} className="shrink-0" />
-              {!mini && <span className="truncate">{item.label}</span>}
+              <span className="relative shrink-0">
+                <Icon size={17} strokeWidth={1.85} />
+                {mini && item.badge !== undefined && item.badge > 0 && (
+                  <span className="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-[#9E3B33]" />
+                )}
+              </span>
+              {!mini && (
+                <span className="flex flex-1 items-center justify-between gap-2 min-w-0">
+                  <span className="truncate">{item.label}</span>
+                  {item.badge !== undefined && item.badge > 0 && (
+                    <span
+                      className={`inline-flex min-w-[20px] h-5 items-center justify-center rounded-full px-1.5 text-[10px] font-bold tabular-nums ${
+                        active ? "bg-[#F6EFE6] text-(--accent-primary)" : "bg-[#9E3B33] text-white"
+                      }`}
+                    >
+                      {item.badge > 99 ? "99+" : item.badge}
+                    </span>
+                  )}
+                </span>
+              )}
             </button>
           </div>
         );
@@ -85,15 +103,13 @@ export function PortalSidebar({
       }`}
     >
       <div className="flex flex-col min-h-0 overflow-y-auto">
-        <div className="flex justify-center">
-          <Link
-            href="/"
-            title="Denvora Lexora — Beranda"
-            className={`flex items-center justify-center overflow-hidden rounded-full bg-[#FBF7F1] shadow-xs transition-all ${
-              collapsed ? "h-11 w-11 p-1.5" : "h-11 px-4 w-full max-w-[200px]"
-            }`}
-          >
-            {collapsed ? (
+        {collapsed ? (
+          <div className="flex justify-center">
+            <Link
+              href="/"
+              title="Denvora Lexora — Beranda"
+              className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-xl bg-[#FBF7F1] p-1.5 shadow-xs transition-all hover:brightness-95"
+            >
               <Image
                 src="/splash/logo-mark.png"
                 alt="Logo Denvora Lexora"
@@ -101,24 +117,31 @@ export function PortalSidebar({
                 height={40}
                 className="h-7 w-7 object-contain"
               />
-            ) : (
+            </Link>
+          </div>
+        ) : (
+          <div className="mb-1 overflow-hidden rounded-2xl border border-[#E5D7C6] bg-[#FBF7F1] shadow-sm">
+            <Link
+              href="/"
+              title="Denvora Lexora — Beranda"
+              className="flex h-12 w-full items-center justify-center overflow-hidden px-3 pt-1.5 transition-opacity hover:opacity-90"
+            >
               <Image
                 src="/images/denvora-lexora-logo.png"
                 alt="Denvora Lexora"
                 width={240}
                 height={160}
-                className="h-[64px] w-auto object-contain"
+                className="h-[62px] w-auto object-contain"
               />
-            )}
-          </Link>
-        </div>
-
-        {!collapsed && (
-          <div className="mt-4 mb-1 rounded-2xl bg-[#3A281C]/75 border border-[#4A3528] px-3.5 py-2.5 text-center">
-            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#C87E4F] leading-snug">
-              {portalLabel}
-            </p>
-            <p className="mt-1 text-[11px] text-[#C2B09E] truncate">{portalSubtitle}</p>
+            </Link>
+            <div className="border-t border-[#E6D8C7] bg-[#F3E9DC]/80 px-3 py-2 text-center">
+              <p className="text-[10px] font-bold uppercase tracking-[0.13em] text-[#8F4B23] leading-snug">
+                {portalLabel}
+              </p>
+              <p className="mt-0.5 text-[11px] font-medium text-[#6B5140] truncate">
+                {portalSubtitle}
+              </p>
+            </div>
           </div>
         )}
 

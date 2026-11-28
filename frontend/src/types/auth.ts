@@ -42,6 +42,8 @@ export interface PortalNotificationItem {
   title: string;
   message: string;
   targetTab: string;
+  timeLabel: string;
+  isRead: boolean;
 }
 
 export interface NotificationFeed {

@@ -16,6 +16,7 @@ import { PortalNotifications } from "@/components/dashboard/PortalNotifications"
 import { PortalNavList, PortalSidebar } from "@/components/dashboard/PortalSidebar";
 import { PortalUserMenu } from "@/components/dashboard/PortalUserMenu";
 import { logoutApi } from "@/lib/api";
+import type { NotificationActionControls } from "@/lib/useRealtimeSync";
 import type { AuthUser, PortalNotificationItem } from "@/types/auth";
 
 export interface PortalNavItem {
@@ -23,6 +24,7 @@ export interface PortalNavItem {
   label: string;
   group?: string;
   icon: LucideIcon;
+  badge?: number;
 }
 
 interface PortalShellProps {
@@ -34,6 +36,8 @@ interface PortalShellProps {
   onSelectTab: (tabId: string) => void;
   onQuickSearch: (keyword: string) => void;
   notifications?: PortalNotificationItem[];
+  unreadNotificationsCount?: number;
+  notificationActions?: NotificationActionControls;
   children: React.ReactNode;
 }
 
@@ -64,6 +68,8 @@ export function PortalShell({
   onSelectTab,
   onQuickSearch,
   notifications = [],
+  unreadNotificationsCount,
+  notificationActions,
   children,
 }: PortalShellProps) {
   const router = useRouter();
@@ -72,6 +78,8 @@ export function PortalShell({
   const [loggingOut, setLoggingOut] = useState(false);
   const todayLabel = formatTodayId();
   const activeItem = navItems.find((item) => item.id === activeTab);
+  const resolvedUnreadCount =
+    unreadNotificationsCount ?? notifications.filter((n) => !n.isRead).length;
 
   async function handleLogout() {
     setLoggingOut(true);
@@ -126,7 +134,16 @@ export function PortalShell({
                 <Calendar size={12} /> {todayLabel}
               </Badge>
 
-              <PortalNotifications items={notifications} onNavigateTab={onSelectTab} />
+              <PortalNotifications
+                items={notifications}
+                unreadCount={resolvedUnreadCount}
+                busyKey={notificationActions?.busyKey}
+                onNavigateTab={onSelectTab}
+                onOpenNotificationsPage={() => onSelectTab("notifications")}
+                onMarkRead={notificationActions?.onMarkRead}
+                onMarkAllRead={notificationActions?.onMarkAllRead}
+                onDeleteItem={notificationActions?.onDeleteItem}
+              />
 
               <button
                 type="button"
