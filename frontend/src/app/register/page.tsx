@@ -27,6 +27,11 @@ export default function RegisterPage() {
   const [generalError, setGeneralError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const liveConfirmError =
+    confirmPassword.length > 0 && confirmPassword !== password
+      ? "Konfirmasi password tidak cocok"
+      : undefined;
+
   function validateForm(): boolean {
     const errs: Record<string, string> = {};
     if (name.trim().length < 3) errs.name = "Nama lengkap minimal 3 karakter";
@@ -205,7 +210,7 @@ export default function RegisterPage() {
             onChange={setConfirmPassword}
             placeholder="Ulangi password"
             autoComplete="new-password"
-            error={fieldErrors.confirmPassword}
+            error={fieldErrors.confirmPassword || liveConfirmError}
           />
         </div>
 
